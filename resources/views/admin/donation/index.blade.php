@@ -32,7 +32,7 @@
                     </div>
                     <div class="d-flex justify-content-end w-lg-25 w-md-50">
                         <a href="{{route('admin.donation.create')}}" class="btn btn-secondary me-2">Add <i class="fa fa-plus"></i></a>
-                        <!-- <a href="#" class="btn btn-primary">Export <i class="fa fa-file-excel-o"></i></a> -->
+                        <a href="{{route('admin.donation.export')}}" class="btn btn-primary">Export <i class="fa fa-file-excel-o"></i></a>
                     </div>
                 </div>
                 <div class="mt-4 table-responsive">

@@ -3,7 +3,7 @@
         <div class="dropdown d-flex profile-1">
             <a href="{{ route('admin.dashboard') }}" data-bs-toggle="dropdown"
             class="leading-none nav-link pe-0 d-flex justify-content-start animate">
-            <img src="{{ asset('assets/logo.png') }}" alt="profile-user" class="avatar profile-user brround cover-image">
+            <img src="{{ asset('images/logo.png') }}" alt="profile-user" class="avatar profile-user brround cover-image">
             <div class="p-1 text-center d-flex d-lg-none-max">
                 <h6 class="mb-0 ms-1" id="profile-heading">
                     {{ auth()->user()->name }}

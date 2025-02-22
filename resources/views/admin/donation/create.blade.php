@@ -36,29 +36,33 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const paymentMode = document.getElementById('payment_mode');
-        const chequeFields = document.querySelector('.cheque-fields');
-        const onlineFields = document.querySelector('.online-fields');
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-        paymentMode.addEventListener('change', function() {
+<script>
+    $(document).ready(function() {
+        console.log('ready');
+        const $paymentMode = $('#payment_mode');
+        const $chequeFields = $('.cheque-fields');
+        const $onlineFields = $('.online-fields');
+
+        console.log($paymentMode);
+
+        // When the payment mode changes
+        $paymentMode.change(function() {
             // Hide all payment specific fields first
-            chequeFields.classList.add('d-none');
-            onlineFields.classList.add('d-none');
+            $chequeFields.addClass('d-none');
+            $onlineFields.addClass('d-none');
 
             // Show relevant fields based on payment mode
-            if (this.value === 'cheque') {
-                chequeFields.classList.remove('d-none');
-            } else if (this.value === 'online' || this.value === 'upi') {
-                onlineFields.classList.remove('d-none');
+            if ($paymentMode.val() === 'cheque') {
+                $chequeFields.removeClass('d-none');
+            } else if ($paymentMode.val() === 'online') {
+                $onlineFields.removeClass('d-none'); // Show both transaction ID and date fields for online
             }
         });
 
-        // Trigger change event on page load to handle initial state
-        paymentMode.dispatchEvent(new Event('change'));
+        // Trigger the change event on page load to handle initial state
+        $paymentMode.trigger('change');
     });
 </script>
-@endpush
 @endsection

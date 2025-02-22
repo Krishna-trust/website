@@ -36,7 +36,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="receipt_number" class="form-label">Receipt Number <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('receipt_number') is-invalid @enderror"
-                                    id="receipt_number" name="receipt_number" value="{{ old('receipt_number', $donation->receipt_number) }}" readonly>
+                                    id="receipt_number" name="receipt_number" value="{{ old('receipt_number', $donation->receipt_number) }}">
                                 @error('receipt_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -64,7 +64,7 @@
                                 <label for="mobile_number" class="form-label">Mobile Number <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                     id="mobile_number" name="mobile_number" value="{{ old('mobile_number', $donation->mobile_number) }}"
-                                    pattern="[0-9]{10}" title="Please enter 10 digits" required>
+                                    pattern="[0-9]{10}" maxlength="10" title="Please enter 10 digits" required>
                                 @error('mobile_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -101,7 +101,7 @@
                                 <label for="pan_number" class="form-label">PAN Number</label>
                                 <input type="text" class="form-control @error('pan_number') is-invalid @enderror"
                                     id="pan_number" name="pan_number" value="{{ old('pan_number', $donation->pan_number) }}"
-                                    pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter valid PAN number (e.g., ABCDE1234F)">
+                                    pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" maxlength="10" title="Enter valid PAN number (e.g., ABCDE1234F)">
                                 @error('pan_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -117,7 +117,6 @@
                                     <option value="cash" {{ old('payment_mode', $donation->payment_mode) == 'cash' ? 'selected' : '' }}>Cash</option>
                                     <option value="cheque" {{ old('payment_mode', $donation->payment_mode) == 'cheque' ? 'selected' : '' }}>Cheque</option>
                                     <option value="online" {{ old('payment_mode', $donation->payment_mode) == 'online' ? 'selected' : '' }}>Online Transfer</option>
-                                    <option value="upi" {{ old('payment_mode', $donation->payment_mode) == 'upi' ? 'selected' : '' }}>UPI</option>
                                 </select>
                                 @error('payment_mode')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -156,16 +155,20 @@
                                 <div class="row online-fields d-none">
                                     <div class="col-md-6 mb-3">
                                         <label for="transaction_id" class="form-label">Transaction ID</label>
-                                        <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
-                                            id="transaction_id" name="transaction_id" value="{{ old('transaction_id', $donation->transaction_id) }}">
+                                        <input type="text"
+                                            class="form-control @error('transaction_id') is-invalid @enderror"
+                                            id="transaction_id" name="transaction_id"
+                                            value="{{ old('transaction_id', $donation->transaction_id) }}">
                                         @error('transaction_id')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
                                         <label for="transaction_date" class="form-label">Transaction Date</label>
-                                        <input type="datetime-local" class="form-control @error('transaction_date') is-invalid @enderror"
-                                            id="transaction_date" name="transaction_date" value="{{ old('transaction_date', $donation->transaction_date) }}">
+                                        <input type="date"
+                                            class="form-control @error('transaction_date') is-invalid @enderror"
+                                            id="transaction_date" name="transaction_date"
+                                            value="{{ old('transaction_date', $donation->transaction_date) }}">
                                         @error('transaction_date')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
@@ -194,29 +197,42 @@
     </div>
 </div>
 
-@push('scripts')
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const paymentMode = document.getElementById('payment_mode');
-        const chequeFields = document.querySelector('.cheque-fields');
-        const onlineFields = document.querySelector('.online-fields');
+    $(document).ready(function() {
+        console.log('Document is ready'); // Debugging log
 
-        paymentMode.addEventListener('change', function() {
-            // Hide all payment specific fields first
-            chequeFields.classList.add('d-none');
-            onlineFields.classList.add('d-none');
+        const $paymentMode = $('#payment_mode');
+        const $chequeFields = $('.cheque-fields');
+        const $onlineFields = $('.online-fields');
 
-            // Show relevant fields based on payment mode
-            if (this.value === 'cheque') {
-                chequeFields.classList.remove('d-none');
-            } else if (this.value === 'online' || this.value === 'upi') {
-                onlineFields.classList.remove('d-none');
-            }
+        console.log('Selected Payment Mode: ', $paymentMode.val());
+        // Ensure the initial payment mode selection is respected
+        if ($paymentMode.val()) {
+            handlePaymentModeChange($paymentMode.val());
+        }
+
+        // When the payment mode changes
+        $paymentMode.change(function() {
+            const selectedMode = $(this).val();
+            handlePaymentModeChange(selectedMode);
         });
 
-        // Trigger change event on page load to handle initial state
-        paymentMode.dispatchEvent(new Event('change'));
+        // Function to handle the visibility of payment mode fields
+        function handlePaymentModeChange(mode) {
+            // Hide both payment-specific fields first
+            $chequeFields.addClass('d-none');
+            $onlineFields.addClass('d-none');
+
+            // Show relevant fields based on payment mode
+            if (mode === 'cheque') {
+                $chequeFields.removeClass('d-none');
+            } else if (mode === 'online') {
+                $onlineFields.removeClass('d-none'); // Show both transaction ID and date fields for online
+            }
+        }
     });
 </script>
-@endpush
+
 @endsection

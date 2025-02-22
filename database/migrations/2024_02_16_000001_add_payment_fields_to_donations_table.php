@@ -10,15 +10,15 @@ class AddPaymentFieldsToDonationsTable extends Migration
     public function up()
     {
         // First, modify the payment_mode enum
-        DB::statement("ALTER TABLE donations MODIFY COLUMN payment_mode ENUM('cash', 'cheque', 'online', 'upi') NOT NULL");
+        DB::statement("ALTER TABLE donations MODIFY COLUMN payment_mode ENUM('cash', 'cheque', 'online') NOT NULL");
 
         // Then add the new columns
         Schema::table('donations', function (Blueprint $table) {
             $table->string('cheque_number')->nullable()->after('bank_name');
             $table->date('cheque_date')->nullable()->after('cheque_number');
             $table->string('transaction_id')->nullable()->after('cheque_date');
-            $table->dateTime('transaction_date')->nullable()->after('transaction_id');
-            
+            $table->date('transaction_date')->nullable()->after('transaction_id');
+
             // Add soft deletes
             $table->softDeletes();
         });

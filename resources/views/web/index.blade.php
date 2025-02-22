@@ -346,9 +346,8 @@
                                 </option>
                                 <option value="cheque" {{ old('payment_mode')=='cheque' ? 'selected' : '' }}>Cheque
                                 </option>
-                                <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
-                                    Transfer</option>
-                                <option value="upi" {{ old('payment_mode')=='upi' ? 'selected' : '' }}>UPI</option>
+                                    <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
+                                        Transfer</option>
                             </select>
                             @error('payment_mode')
                             <div class="invalid-feedback">{{ $message }}</div>

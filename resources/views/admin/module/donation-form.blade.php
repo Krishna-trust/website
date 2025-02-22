@@ -7,7 +7,7 @@
                     class="text-danger">*</span></label>
             <input type="text" class="form-control @error('receipt_number') is-invalid @enderror"
                 id="receipt_number" name="receipt_number"
-                value="{{ old('receipt_number', $nextReceiptNumber) }}" readonly>
+                value="{{ old('receipt_number', $nextReceiptNumber) }}">
             @error('receipt_number')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -103,7 +103,6 @@
                 </option>
                 <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
                     Transfer</option>
-                <option value="upi" {{ old('payment_mode')=='upi' ? 'selected' : '' }}>UPI</option>
             </select>
             @error('payment_mode')
             <div class="invalid-feedback">{{ $message }}</div>
@@ -146,8 +145,7 @@
             <!-- Online Payment Fields -->
             <div class="row online-fields d-none">
                 <div class="col-md-6 mb-3">
-                    <label for="transaction_id" class="form-label">Transaction
-                        ID</label>
+                    <label for="transaction_id" class="form-label">Transaction ID</label>
                     <input type="text"
                         class="form-control @error('transaction_id') is-invalid @enderror"
                         id="transaction_id" name="transaction_id"
@@ -157,8 +155,7 @@
                     @enderror
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="transaction_date" class="form-label">Transaction
-                        Date</label>
+                    <label for="transaction_date" class="form-label">Transaction Date</label>
                     <input type="datetime-local"
                         class="form-control @error('transaction_date') is-invalid @enderror"
                         id="transaction_date" name="transaction_date"

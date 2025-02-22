@@ -32,6 +32,10 @@ Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::clas
 Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.contents.destroy');
 Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('admin.donation.destroy');
 
+Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('admin.donation.export');
+Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::class, 'export'])->name('admin.labharthi.export');
+
+
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');

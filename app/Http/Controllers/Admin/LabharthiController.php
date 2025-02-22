@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\LabharthiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Labharthi;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LabharthiController extends Controller
 {
@@ -125,5 +127,10 @@ class LabharthiController extends Controller
         // $form->forceDelete();
 
         return redirect()->route('admin.labharthi.index')->with('success', 'Labharthi deleted successfully!');
+    }
+
+    public function export()
+    {
+        return Excel::download(new LabharthiExport, 'all_Labharthi_List.xlsx');
     }
 }
