@@ -46,41 +46,44 @@ class ContentController extends Controller
         return view('admin.content.edit', compact('content'));
     }
 
-   public function update(Request $request, Content $content)
-   {
-       $request->validate([
-           'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-           'upload_date' => 'required|date'
-       ]);
-   
-       $data = [
-           'upload_date' => $request->upload_date
-       ];
-   
-       if ($request->hasFile('image')) {
-           // Delete old image
-           if ($content->image) {
-               Storage::disk('public')->delete($content->image);
-           }
-           $data['image'] = $request->file('image')->store('content_images', 'public');
-       }
-   
-       $content->update($data);
-   
-       return redirect()->route('admin.contents.index')
-           ->with('success', 'Content updated successfully');
-   }
+    public function update(Request $request, Content $content)
+    {
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'upload_date' => 'required|date'
+        ]);
 
-   public function destroy(Content $content)
-   {
-       // Delete the image from storage
-       if ($content->image) {
-           Storage::disk('public')->delete($content->image);
-       }
-   
-       $content->delete();
-   
-       return redirect()->route('admin.contents.index')
-           ->with('success', 'Content deleted successfully');
-   }
+        $data = [
+            'upload_date' => $request->upload_date
+        ];
+
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($content->image) {
+                Storage::disk('public')->delete($content->image);
+            }
+            $data['image'] = $request->file('image')->store('content_images', 'public');
+        }
+
+        $content->update($data);
+
+        return redirect()->route('admin.contents.index')
+            ->with('success', 'Content updated successfully');
+    }
+
+    public function destroy(Request $request)
+    {
+        $contentId = $request->input('content_id');
+
+        $content = Content::findOrFail($contentId);
+
+        if ($content->image) {
+            Storage::disk('public')->delete($content->image);
+        }
+
+        $content->delete();
+
+        return redirect()->route('admin.contents.index')
+            ->with('success', 'Content deleted successfully');
+    }
 }

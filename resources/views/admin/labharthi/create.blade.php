@@ -1,22 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            Add Labharthi
+        </h1>
+    </div>
+    <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.labharthi.index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add Labharthi</li>
+        </ol>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <h4>Add New Labharthi</h4>
-                </div>
                 <div class="card-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     <form action="{{ route('admin.labharthi.store') }}" method="POST">
@@ -27,7 +38,7 @@
                                 <input type="text" class="form-control @error('name') is-invalid @enderror"
                                     id="name" name="name" value="{{ old('name') }}">
                                 @error('name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -37,7 +48,7 @@
                                     id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
                                     pattern="[0-9]{10}" title="Please enter 10 digits">
                                 @error('mobile_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -46,7 +57,7 @@
                                 <textarea class="form-control @error('address') is-invalid @enderror"
                                     id="address" name="address" rows="3">{{ old('address') }}</textarea>
                                 @error('address')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -55,7 +66,7 @@
                                 <input type="text" class="form-control @error('native_place') is-invalid @enderror"
                                     id="native_place" name="native_place" value="{{ old('native_place') }}">
                                 @error('native_place')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -64,7 +75,7 @@
                                 <input type="text" class="form-control @error('cast') is-invalid @enderror"
                                     id="cast" name="cast" value="{{ old('cast') }}">
                                 @error('cast')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -73,7 +84,7 @@
                                 <input type="text" class="form-control @error('sub_cast') is-invalid @enderror"
                                     id="sub_cast" name="sub_cast" value="{{ old('sub_cast') }}">
                                 @error('sub_cast')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -83,7 +94,7 @@
                                     id="adhar_number" name="adhar_number" value="{{ old('adhar_number') }}"
                                     pattern="[0-9]{12}" title="Please enter 12 digits">
                                 @error('adhar_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -105,7 +116,7 @@
                                     <label class="form-check-label" for="category_rejected">Rejected</label>
                                 </div>
                                 @error('category')
-                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -114,7 +125,7 @@
                                 <input type="text" class="form-control @error('work') is-invalid @enderror"
                                     id="work" name="work" value="{{ old('work') }}">
                                 @error('work')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -123,7 +134,7 @@
                                 <input type="text" class="form-control @error('identification_mark') is-invalid @enderror"
                                     id="identification_mark" name="identification_mark" value="{{ old('identification_mark') }}">
                                 @error('identification_mark')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -132,7 +143,7 @@
                                 <textarea class="form-control @error('income_source') is-invalid @enderror"
                                     id="income_source" name="income_source" rows="3">{{ old('income_source') }}</textarea>
                                 @error('income_source')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -141,7 +152,7 @@
                                 <textarea class="form-control @error('property') is-invalid @enderror"
                                     id="property" name="property" rows="3">{{ old('property') }}</textarea>
                                 @error('property')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -150,7 +161,7 @@
                                 <textarea class="form-control @error('reasion_for_not_working') is-invalid @enderror"
                                     id="reasion_for_not_working" name="reasion_for_not_working" rows="3">{{ old('reasion_for_not_working') }}</textarea>
                                 @error('reasion_for_not_working')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -159,7 +170,7 @@
                                 <textarea class="form-control @error('reasion_for_tifin') is-invalid @enderror"
                                     id="reasion_for_tifin" name="reasion_for_tifin" rows="3">{{ old('reasion_for_tifin') }}</textarea>
                                 @error('reasion_for_tifin')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -168,7 +179,7 @@
                                 <textarea class="form-control @error('comment_from_trust') is-invalid @enderror"
                                     id="comment_from_trust" name="comment_from_trust" rows="3">{{ old('comment_from_trust') }}</textarea>
                                 @error('comment_from_trust')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -177,7 +188,7 @@
                                 <input type="date" class="form-control @error('tifin_starting_date') is-invalid @enderror"
                                     id="tifin_starting_date" name="tifin_starting_date" value="{{ old('tifin_starting_date') }}">
                                 @error('tifin_starting_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -186,7 +197,7 @@
                                 <input type="date" class="form-control @error('tifin_ending_date') is-invalid @enderror"
                                     id="tifin_ending_date" name="tifin_ending_date" value="{{ old('tifin_ending_date') }}">
                                 @error('tifin_ending_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -195,7 +206,7 @@
                                 <input type="text" class="form-control @error('reasion_for_tifin_stop') is-invalid @enderror"
                                     id="reasion_for_tifin_stop" name="reasion_for_tifin_stop" value="{{ old('reasion_for_tifin_stop') }}">
                                 @error('reasion_for_tifin_stop')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>

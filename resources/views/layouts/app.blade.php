@@ -31,9 +31,9 @@
 
 <body class="ltr app sidebar-mini">
 
-    <div id="global-loader">
+    <!-- <div id="global-loader">
         <img src="{{ asset('images/loader.svg') }}" class="loader-img" alt="Loader">
-    </div>
+    </div> -->
     <div class="page is-expanded overflow-auto">
         <div class="page-main">
             <div class="app-content mt-0 overflow-auto">

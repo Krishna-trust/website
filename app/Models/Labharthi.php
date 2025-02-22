@@ -3,11 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Labharthi extends Model
 {
+    use SoftDeletes;
+
     protected $table = 'labharthi_form';
-    
+
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'name',
         'address',

@@ -1,4 +1,4 @@
-<form action="{{ route('admin.donation.store') }}" method="POST">
+<form action="{{ route('admin.donation.store') }}" method="POST" id="donation-form">
     @csrf
     <div class="row">
         <!-- Receipt Number -->

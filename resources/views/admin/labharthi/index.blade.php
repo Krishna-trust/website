@@ -1,7 +1,156 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid px-4">
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Labharthi</h1>
+    </div>
+    <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.labharthi.index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Labharthi</li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+        <div class="card overflow-hidden customers">
+            <div class="p-4 card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex justify-content-start w-75">
+                        <select id="selected_data" onchange="reloadTable()" class="w-25 form-control form-select">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="75">75</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class="d-flex justify-content-end w-lg-25 w-md-50 me-2">
+                        <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
+                    </div>
+                    <div class="d-flex justify-content-end w-lg-25 w-md-50">
+                        <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">Add <i class="fa fa-plus"></i></a>
+                        <!-- <a href="#" class="btn btn-primary">Export <i class="fa fa-file-excel-o"></i></a> -->
+                    </div>
+                </div>
+                <div class="mt-4 table-responsive">
+                    @include('admin.labharthi.view')
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- change status Modal  -->
+<div class="modal fade" id="user-delete" tabindex="-1" role="dialog" aria-labelledby="AddmodelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change status confirmation</h5>
+            </div>
+            <form action="{{ route('admin.labharthi.destroy') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <div class="modal-body">
+                    <input type="hidden" name="labharthi_id" id="labharthi_id" value="">
+                    <span>Do you want to Delete this labharthi record?</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close-btn" data-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary" value="Confirm">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session()->has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+    })
+    Toast.fire({
+        icon: 'success',
+        text: "{{ session('success') }}",
+    })
+</script>
+@endif
+
+@if (session()->has('error'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+    })
+    Toast.fire({
+        icon: 'error',
+        text: "{{ session('error') }}",
+    })
+</script>
+@endif
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.close-btn').click(function() {
+            // e.preventDefault();
+            $('.modal').modal('hide');
+        })
+        $("#editTechnician").click(function() {
+            // e.preventDefault();
+            $('#user-delete').modal('show');
+        });
+
+        $('.user-delete-btn').click(function() {
+            var DataId = $(this).data('labharthi-id');
+            $('#labharthi_id').val(DataId);
+        });
+    });
+
+    // Use event delegation to handle clicks on the button
+    $('.card-body').on('click', '#sortCreatedAt button', function() {
+        var sort = $('#sortCreatedAt').attr('data-sort');
+        sort = (sort === 'desc') ? 'asc' : 'desc';
+        reloadTable(sort);
+    });
+
+    //search and filter
+    function reloadTable(sort) {
+        let search_string = $('#search-val').val();
+        let limit = $('#selected_data').val();
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "{{ url('admin.labharthi.index') }}",
+            data: {
+                search: search_string,
+                limit: limit,
+                sort: sort,
+            },
+            success: function(response) {
+                $('.table-responsive').html(response);
+            },
+        });
+    }
+</script>
+
+<!-- <div class="container-fluid px-4">
     <div class="card">
         <div class="card-header">
             <div class="d-flex justify-content-between align-items-center">
@@ -50,8 +199,8 @@
                                     <a href="{{ route('admin.labharthi.edit', $labharthi) }}" class="btn btn-sm btn-info">
                                         <i class="fas fa-edit"></i>
                                     </a>
-                                    <form action="{{ route('admin.labharthi.destroy', $labharthi) }}" 
-                                          method="POST" 
+                                    <form action="{{ route('admin.labharthi.destroy', $labharthi) }}"
+                                          method="POST"
                                           class="d-inline-block"
                                           onsubmit="return confirm('Are you sure you want to delete this labharthi?')">
                                         @csrf
@@ -92,7 +241,7 @@
                             <i class="fas fa-angle-left"></i>
                         </button>
                     @endif
-                    
+
                     @php
                         $start = max($labharthis->currentPage() - 2, 1);
                         $end = min($start + 4, $labharthis->lastPage());
@@ -246,6 +395,6 @@
         $('#per-page').val('{{ request("per_page", 25) }}');
         $('#search').val('{{ request("search") }}');
     });
-</script>
+</script> -->
 @endpush
 @endsection

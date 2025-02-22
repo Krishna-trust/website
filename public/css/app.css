@@ -354,7 +354,7 @@ tbody tr td div a.secondary {
     border-color: var(--primary-bg-color) !important;
     border: 2px solid var(--primary-bg-color) !important;
     border-radius: 8px !important;
-    padding: 0.45rem !important;
+    padding: 0.30rem !important;
     font-size: 0.711rem !important;
     min-width: 1.625rem !important;
     height: 25px !important;
@@ -366,7 +366,7 @@ tbody tr td div a.secondary:hover {
     border-color: var(--primary-bg-color) !important;
     border: 2px solid var(--primary-bg-color) !important;
     border-radius: 8px !important;
-    padding: 0.45rem !important;
+    padding: 0.30rem !important;
     font-size: 0.711rem !important;
     min-width: 1.625rem !important;
     height: 25px !important;
@@ -379,7 +379,7 @@ tbody tr td div a.primary {
     border: 2px solid var(--primary-bg-color) !important;
     border-radius: 8px !important;
     height: 25px !important;
-    padding: 0.35rem !important;
+    padding: 0.30rem !important;
     font-size: 0.711rem !important;
     min-width: 1.625rem !important;
 }
@@ -390,7 +390,7 @@ tbody tr td div a.primary:hover {
     border-color: var(--primary-bg-color) !important;
     border: 2px solid var(--primary-bg-color) !important;
     border-radius: 8px !important;
-    padding: 0.35rem !important;
+    padding: 0.30rem !important;
     font-size: 0.711rem !important;
     min-width: 1.625rem !important;
     height: 25px !important;

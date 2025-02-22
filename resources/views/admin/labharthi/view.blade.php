@@ -1,0 +1,54 @@
+<table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
+    <thead>
+        <tr role="row">
+            <th class="text-uppercase fw-bold">#
+            </th>
+            <th class="text-uppercase fw-bold">First Name</th>
+            <th class="text-uppercase fw-bold">Last Name</th>
+            <th class="text-uppercase fw-bold">Mobile Number</th>
+            <th class="text-uppercase fw-bold">Email</th>
+            <th class="text-uppercase fw-bold text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if ($labharthis->isEmpty())
+        <tr>
+            <td colspan="4" class="text-center text-danger">No Labharthi Found.</td>
+        </tr>
+        @else
+        @forelse($labharthis as $index => $labharthi)
+        <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ Str::before($labharthi->name, ' ') }}</td>
+            <td>{{ Str::after($labharthi->name, ' ') }}</td>
+            <td>{{ $labharthi->mobile_number }}</td>
+            <td>{{ $labharthi->email ?? '-' }}</td>
+            <td class="text-center">
+                <div class="btn-group">
+                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.labharthi.edit', $labharthi->id) }}"><i class="fa fa-edit"></i></a>
+                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-labharthi-id="{{ $labharthi->id }}">
+                        <i class="fa fa-trash-o"></i>
+                    </a>
+                    <!-- <div>
+                        <form action="{{ route('admin.labharthi.destroy', $labharthi->id) }}"
+                            method="POST"
+                            class="d-inline"
+                            onsubmit="return confirm('Are you sure you want to delete this labharthi?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </div> -->
+                </div>
+            </td>
+        </tr>
+        @endforeach
+        @endif
+    </tbody>
+</table>
+
+<div class="d-md-flex justify-content-center">
+    {{ $labharthis->links('admin.parts.pagination') }}
+</div>

@@ -15,10 +15,10 @@ class LabharthiController extends Controller
         // Search functionality
         if ($request->search) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('mobile_number', 'like', "%{$search}%")
-                  ->orWhere('address', 'like', "%{$search}%");
+                    ->orWhere('mobile_number', 'like', "%{$search}%")
+                    ->orWhere('address', 'like', "%{$search}%");
             });
         }
 
@@ -57,7 +57,7 @@ class LabharthiController extends Controller
         ]);
 
         // Sanitize inputs
-        $validated = array_map(function($value) {
+        $validated = array_map(function ($value) {
             return is_string($value) ? strip_tags($value) : $value;
         }, $validated);
 
@@ -96,7 +96,7 @@ class LabharthiController extends Controller
         ]);
 
         // Sanitize inputs
-        $validated = array_map(function($value) {
+        $validated = array_map(function ($value) {
             return is_string($value) ? strip_tags($value) : $value;
         }, $validated);
 
@@ -106,10 +106,24 @@ class LabharthiController extends Controller
             ->with('success', 'Labharthi updated successfully!');
     }
 
-    public function destroy(Labharthi $labharthi)
+    // public function destroy(Labharthi $labharthi)
+    // {
+    //     $labharthi->delete();
+    //     return redirect()->route('admin.labharthi.index')
+    //         ->with('success', 'Labharthi deleted successfully!');
+    // }
+
+    public function destroy(Request $request)
     {
+        $labharthiId = $request->input('labharthi_id');
+
+        $labharthi = Labharthi::find($labharthiId);
         $labharthi->delete();
-        return redirect()->route('admin.labharthi.index')
-            ->with('success', 'Labharthi deleted successfully!');
+
+        // permenently delete this record
+        // $form = Labharthi::withTrashed()->find($id);
+        // $form->forceDelete();
+
+        return redirect()->route('admin.labharthi.index')->with('success', 'Labharthi deleted successfully!');
     }
 }

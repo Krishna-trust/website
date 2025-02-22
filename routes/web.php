@@ -28,17 +28,20 @@ Route::get('/about', [webController::class, 'about'])->name('about');
 Route::get('/contact', [webController::class, 'contact'])->name('contact');
 Route::get('/services', [webController::class, 'services'])->name('services');
 
+Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('admin.labharthi.destroy');
+Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.contents.destroy');
+Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('admin.donation.destroy');
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
 
     // Content Routes
-    Route::resource('contents', App\Http\Controllers\Admin\ContentController::class);
+    Route::resource('contents', App\Http\Controllers\Admin\ContentController::class)->except('destroy');
 
     // Labharthi Routes
-    Route::resource('labharthi', App\Http\Controllers\Admin\LabharthiController::class);
+    Route::resource('labharthi', App\Http\Controllers\Admin\LabharthiController::class)->except('destroy');
 
     // Donation Routes
-    Route::resource('donation', App\Http\Controllers\Admin\DonationController::class);
+    Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
 });

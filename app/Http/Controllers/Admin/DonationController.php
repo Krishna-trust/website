@@ -21,7 +21,7 @@ class DonationController extends Controller
         // Get the last receipt number and increment it
         $lastDonation = Donation::orderBy('receipt_number', 'desc')->first();
         $nextReceiptNumber = $lastDonation ? (intval($lastDonation->receipt_number) + 1) : 1;
-        
+
         return view('admin.donation.create', [
             'nextReceiptNumber' => str_pad($nextReceiptNumber, 6, '0', STR_PAD_LEFT)
         ]);
@@ -48,7 +48,7 @@ class DonationController extends Controller
         ]);
 
         // Sanitize inputs
-        $validated = array_map(function($value) {
+        $validated = array_map(function ($value) {
             return is_string($value) ? strip_tags($value) : $value;
         }, $validated);
 
@@ -88,7 +88,7 @@ class DonationController extends Controller
         ]);
 
         // Sanitize inputs
-        $validated = array_map(function($value) {
+        $validated = array_map(function ($value) {
             return is_string($value) ? strip_tags($value) : $value;
         }, $validated);
 
@@ -98,11 +98,25 @@ class DonationController extends Controller
             ->with('success', 'Donation receipt updated successfully!');
     }
 
-    public function destroy(Donation $donation)
+    // public function destroy(Donation $donation)
+    // {
+    //     $donation->delete();
+
+    //     return redirect()->route('admin.donation.index')
+    //         ->with('success', 'Donation receipt deleted successfully!');
+    // }
+
+    public function destroy(Request $request)
     {
+        $donationId = $request->input('donation_id');
+
+        $donation = Donation::find($donationId);
         $donation->delete();
 
-        return redirect()->route('admin.donation.index')
-            ->with('success', 'Donation receipt deleted successfully!');
+         // permenently delete this record
+        // $form = Donation::withTrashed()->find($donationId);
+        // $form->forceDelete();
+
+        return redirect()->route('admin.donation.index')->with('success', 'Donation receipt deleted successfully!');
     }
 }

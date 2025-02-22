@@ -1,29 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
+<div class="page-header">
+    <div>
+        <h1 class="page-title">
+            Edit Donation
+        </h1>
+    </div>
+    <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ route('admin.donation.index') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Donation</li>
+        </ol>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <div class="card">
-                <div class="card-header">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <h4>Edit Donation</h4>
-                        <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">
-                            <i class="fas fa-arrow-left"></i> Back to List
-                        </a>
-                    </div>
-                </div>
                 <div class="card-body">
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
-
                     <form action="{{ route('admin.donation.update', $donation->id) }}" method="POST">
                         @csrf
                         @method('PUT')
@@ -33,7 +38,7 @@
                                 <input type="text" class="form-control @error('receipt_number') is-invalid @enderror"
                                     id="receipt_number" name="receipt_number" value="{{ old('receipt_number', $donation->receipt_number) }}" readonly>
                                 @error('receipt_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -42,7 +47,7 @@
                                 <input type="date" class="form-control @error('date') is-invalid @enderror"
                                     id="date" name="date" value="{{ old('date', $donation->date) }}" required>
                                 @error('date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -51,7 +56,7 @@
                                 <input type="text" class="form-control @error('full_name') is-invalid @enderror"
                                     id="full_name" name="full_name" value="{{ old('full_name', $donation->full_name) }}" required>
                                 @error('full_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -61,7 +66,7 @@
                                     id="mobile_number" name="mobile_number" value="{{ old('mobile_number', $donation->mobile_number) }}"
                                     pattern="[0-9]{10}" title="Please enter 10 digits" required>
                                 @error('mobile_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -70,7 +75,7 @@
                                 <textarea class="form-control @error('address') is-invalid @enderror"
                                     id="address" name="address" rows="3">{{ old('address', $donation->address) }}</textarea>
                                 @error('address')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -79,7 +84,7 @@
                                 <input type="number" step="0.01" class="form-control @error('amount') is-invalid @enderror"
                                     id="amount" name="amount" value="{{ old('amount', $donation->amount) }}" required min="0">
                                 @error('amount')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -88,7 +93,7 @@
                                 <input type="text" class="form-control @error('donation_for') is-invalid @enderror"
                                     id="donation_for" name="donation_for" value="{{ old('donation_for', $donation->donation_for) }}" required>
                                 @error('donation_for')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -98,16 +103,16 @@
                                     id="pan_number" name="pan_number" value="{{ old('pan_number', $donation->pan_number) }}"
                                     pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" title="Enter valid PAN number (e.g., ABCDE1234F)">
                                 @error('pan_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Payment Mode <span class="text-danger">*</span></label>
-                                <select class="form-select @error('payment_mode') is-invalid @enderror" 
-                                        id="payment_mode" 
-                                        name="payment_mode" 
-                                        required>
+                                <select class="form-select @error('payment_mode') is-invalid @enderror"
+                                    id="payment_mode"
+                                    name="payment_mode"
+                                    required>
                                     <option value="">Select Payment Mode</option>
                                     <option value="cash" {{ old('payment_mode', $donation->payment_mode) == 'cash' ? 'selected' : '' }}>Cash</option>
                                     <option value="cheque" {{ old('payment_mode', $donation->payment_mode) == 'cheque' ? 'selected' : '' }}>Cheque</option>
@@ -115,7 +120,7 @@
                                     <option value="upi" {{ old('payment_mode', $donation->payment_mode) == 'upi' ? 'selected' : '' }}>UPI</option>
                                 </select>
                                 @error('payment_mode')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -127,7 +132,7 @@
                                         <input type="text" class="form-control @error('cheque_number') is-invalid @enderror"
                                             id="cheque_number" name="cheque_number" value="{{ old('cheque_number', $donation->cheque_number) }}">
                                         @error('cheque_number')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
@@ -135,7 +140,7 @@
                                         <input type="text" class="form-control @error('bank_name') is-invalid @enderror"
                                             id="bank_name" name="bank_name" value="{{ old('bank_name', $donation->bank_name) }}">
                                         @error('bank_name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-4 mb-3">
@@ -143,7 +148,7 @@
                                         <input type="date" class="form-control @error('cheque_date') is-invalid @enderror"
                                             id="cheque_date" name="cheque_date" value="{{ old('cheque_date', $donation->cheque_date) }}">
                                         @error('cheque_date')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -154,7 +159,7 @@
                                         <input type="text" class="form-control @error('transaction_id') is-invalid @enderror"
                                             id="transaction_id" name="transaction_id" value="{{ old('transaction_id', $donation->transaction_id) }}">
                                         @error('transaction_id')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -162,7 +167,7 @@
                                         <input type="datetime-local" class="form-control @error('transaction_date') is-invalid @enderror"
                                             id="transaction_date" name="transaction_date" value="{{ old('transaction_date', $donation->transaction_date) }}">
                                         @error('transaction_date')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                                 </div>
@@ -173,7 +178,7 @@
                                 <textarea class="form-control @error('comment') is-invalid @enderror"
                                     id="comment" name="comment" rows="3">{{ old('comment', $donation->comment) }}</textarea>
                                 @error('comment')
-                                    <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -191,27 +196,27 @@
 
 @push('scripts')
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const paymentMode = document.getElementById('payment_mode');
-    const chequeFields = document.querySelector('.cheque-fields');
-    const onlineFields = document.querySelector('.online-fields');
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentMode = document.getElementById('payment_mode');
+        const chequeFields = document.querySelector('.cheque-fields');
+        const onlineFields = document.querySelector('.online-fields');
 
-    paymentMode.addEventListener('change', function() {
-        // Hide all payment specific fields first
-        chequeFields.classList.add('d-none');
-        onlineFields.classList.add('d-none');
+        paymentMode.addEventListener('change', function() {
+            // Hide all payment specific fields first
+            chequeFields.classList.add('d-none');
+            onlineFields.classList.add('d-none');
 
-        // Show relevant fields based on payment mode
-        if (this.value === 'cheque') {
-            chequeFields.classList.remove('d-none');
-        } else if (this.value === 'online' || this.value === 'upi') {
-            onlineFields.classList.remove('d-none');
-        }
+            // Show relevant fields based on payment mode
+            if (this.value === 'cheque') {
+                chequeFields.classList.remove('d-none');
+            } else if (this.value === 'online' || this.value === 'upi') {
+                onlineFields.classList.remove('d-none');
+            }
+        });
+
+        // Trigger change event on page load to handle initial state
+        paymentMode.dispatchEvent(new Event('change'));
     });
-
-    // Trigger change event on page load to handle initial state
-    paymentMode.dispatchEvent(new Event('change'));
-});
 </script>
 @endpush
 @endsection
