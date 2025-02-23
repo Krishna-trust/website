@@ -51,7 +51,7 @@
                     <div class="card h-100 rounded-lg shadow">
                         <div class="card-body">
                             <h3 class="display-4 fw-bold text-primary">10K+</h3>
-                            <p class="lead">Volunteers</p>
+                            <p class="lead">kits distributed</p>
                         </div>
                     </div>
                 </div>

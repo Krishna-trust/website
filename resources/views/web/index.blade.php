@@ -8,11 +8,20 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold mb-3" id="heading">Feeding Hope, One Meal at a Time</h1>
-                <p class="lead mb-4" id="heading">Join us in our mission to provide nutritious meals to those in
-                    need and make a difference in our community.</p>
+                <h1 class="display-4 fw-bold mb-3" id="heading">
+                    <!-- Feeding Hope, One Meal at a Time -->
+                     {{ @trans('messages.donate_now') }}
+                </h1>
+                <p class="lead mb-4" id="heading">
+                    <!-- Join us in our mission to provide nutritious meals to those in
+                    need and make a difference in our community. -->
+                    {{ @trans('messages.donate_now_desc') }}
+                </p>
                 <button class="btn btn-light btn-lg rounded-pill me-3 mb-3" data-bs-toggle="modal"
-                    data-bs-target="#donationModal">Donate Now</button>
+                    data-bs-target="#donationModal">
+                    <!-- Donate Now -->
+                     {{ @trans('messages.donate_now') }}
+                </button>
 
             </div>
             <div class="col-lg-6">
@@ -26,17 +35,23 @@
 <!-- About Section -->
 <section id="about" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5 section-title">About FoodHope Charity</h2>
+        <h2 class="text-center mb-5 section-title">{{ @trans('messages.about_us') }}</h2>
         <div class="row">
             <div class="col-md-6 mb-3">
-                <p class="lead">FoodHope Charity is dedicated to alleviating hunger and promoting nutrition in our
+                <p class="lead">
+                    <!-- FoodHope Charity is dedicated to alleviating hunger and promoting nutrition in our
                     community. We believe that no one should go to bed hungry, and we work tirelessly to make this
-                    vision a reality.</p>
+                    vision a reality. -->
+                    {{ @trans('messages.about_us_desc') }}
+                </p>
             </div>
             <div class="col-md-6 mb-3">
-                <p class="lead">Through the generous support of our donors and the hard work of our volunteers, we
+                <p class="lead">
+                    <!-- Through the generous support of our donors and the hard work of our volunteers, we
                     serve thousands of meals each month to those in need, including homeless individuals, low-income
-                    families, and elderly citizens.</p>
+                    families, and elderly citizens. -->
+                    {{ @trans('messages.about_us_desc_2') }}
+                </p>
             </div>
         </div>
     </div>
@@ -45,17 +60,17 @@
 <!-- yearly services Section -->
 <section id="yearly-services" class="bg-light py-5">
     <div class="container">
-        <h2 class="text-center mb-5 section-title">Our yearly services</h2>
+        <h2 class="text-center mb-5 section-title">{{ @trans('messages.yearly_services') }}</h2>
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="yearly-services-item">
                     <img src="images/kit-vitaran.jpg" alt="Volunteers serve food to needy people
                     " class="img-fluid rounded">
                     <div class="yearly-services-caption">
-                        <h5>Kit Distribution
+                        <h5>{{ @trans('messages.kit_distribution') }}
                         </h5>
                         <p>
-                            Our volunteers serve food with love
+                            {{ @trans('messages.kit_distribution_desc') }}
                         </p>
                     </div>
                 </div>
@@ -65,9 +80,12 @@
                     <img src="images/korona-seva.jpg" alt="Community kitchen
                     " class="img-fluid rounded">
                     <div class="yearly-services-caption">
-                        <h5>Corona Service
+                        <h5>
+                            <!-- Corona Service -->
+                             {{ @trans('messages.corona_service') }}
                         </h5>
-                        <p>Meals prepared and distributed fresh daily.
+                        <!-- <p>Meals prepared and distributed fresh daily. -->
+                            {{ @trans('messages.corona_service_desc') }}
                         </p>
                     </div>
                 </div>
@@ -77,9 +95,13 @@
                     <img src="images/sv.jpg" alt="Food package
                     " class="img-fluid rounded">
                     <div class="yearly-services-caption">
-                        <h5>Food package distribution
+                        <h5>
+                            <!-- Food package distribution -->
+                             {{ @trans('messages.food_package_distribution') }}
                         </h5>
-                        <p>Annual grocery delivery to needy people.
+                        <p>
+                            <!-- Annual grocery delivery to needy people. -->
+                             {{ @trans('messages.food_package_distribution_desc') }}
                         </p>
                     </div>
                 </div>
@@ -91,42 +113,23 @@
 <!-- Gallery Section -->
 <section id="gallery" class="py-5">
     <div class="container">
-        <h2 class="text-center mb-5 section-title">Our Impact</h2>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="section-title">{{ @trans('messages.impact') }}</h2>
+            <a href="{{ route('impact') }}" class="btn btn-link text-muted">{{ @trans('messages.view_more') }} &rarr;</a>
+        </div>
         <div class="row g-4">
+            @foreach($contents as $content)
             <div class="col-6 col-md-4 col-lg-3">
-                <img src="images/content1.jpg" alt="Serving meals"
-                    class="img-fluid rounded-lg shadow gallery-image w-100">
+                <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image w-100">
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <img src="images/content2.jpg" alt="Food preparation"
-                    class="img-fluid rounded-lg shadow gallery-image w-100">
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <img src="images/content3.jpg" alt="Community dinner"
-                    class="img-fluid rounded-lg shadow gallery-image w-100">
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <img src="images/content4.jpg" alt="Grocery distribution"
-                    class="img-fluid rounded-lg shadow gallery-image w-100">
-            </div>
-            <!-- <div class="col-6 col-md-4 col-lg-3">
-                    <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Volunteer team" class="img-fluid rounded-lg shadow gallery-image w-100">
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <img src="https://images.unsplash.com/photo-1564844536311-de546a28c87d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cooking class" class="img-fluid rounded-lg shadow gallery-image w-100">
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Food donation" class="img-fluid rounded-lg shadow gallery-image w-100">
-                </div>
-                <div class="col-6 col-md-4 col-lg-3">
-                    <img src="https://images.unsplash.com/photo-1578357078586-491adf1aa5ba?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" alt="Happy recipients" class="img-fluid rounded-lg shadow gallery-image w-100">
-                </div> -->
+            @endforeach
         </div>
     </div>
 </section>
 
+
 <!-- Services Section -->
-<section id="services" class="py-5">
+<!-- <section id="services" class="py-5">
     <div class="container">
         <h2 class="text-center mb-5">અમારી સેવાઓ</h2>
         <div class="row g-4">
@@ -165,10 +168,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Contact Section -->
-<section id="contact" class="py-5 bg-light">
+<!-- <section id="contact" class="py-5 bg-light">
     <div class="container">
         <h2 class="text-center section-title mb-5">Contact Us</h2>
         <div class="row">
@@ -232,7 +235,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- Donation Modal -->
 <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
@@ -346,8 +349,8 @@
                                 </option>
                                 <option value="cheque" {{ old('payment_mode')=='cheque' ? 'selected' : '' }}>Cheque
                                 </option>
-                                    <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
-                                        Transfer</option>
+                                <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
+                                    Transfer</option>
                             </select>
                             @error('payment_mode')
                             <div class="invalid-feedback">{{ $message }}</div>

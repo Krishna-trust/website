@@ -65,7 +65,7 @@
                     <div class="card-body text-center">
                         <i class="bi bi-geo-alt text-primary fs-1 mb-3"></i>
                         <h3 class="card-title fw-bold mb-3">Address</h3>
-                        <p class="card-text">123 Charity St, Cityville,<br>State 12345, USA</p>
+                        <p class="card-text mx-3">Krishna Niswarth Seva Trust,<br>5, 6th Cross, Opp. Old Shivam Gas Agency,<br>Chandlodiya, Ahmedabad, India, 382481</p>
                     </div>
                 </div>
             </div>
@@ -74,18 +74,21 @@
                     <div class="card-body text-center">
                         <i class="bi bi-telephone text-primary fs-1 mb-3"></i>
                         <h3 class="card-title fw-bold mb-3">Phone</h3>
-                        <p class="card-text">+1 (123) 456-7890</p>
-                        <p class="card-text">Mon-Fri, 9am-5pm EST</p>
+                        <p class="card-text">
+                            +91 98984 45831<br>
+                            +91 96248 19356
+                        </p>
+                        <p class="card-text">Mon-Fri, 8am-8pm EST</p>
                     </div>
                 </div>
+
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body text-center">
                         <i class="bi bi-envelope text-primary fs-1 mb-3"></i>
                         <h3 class="card-title fw-bold mb-3">Email</h3>
-                        <p class="card-text">info@foodhope.org</p>
-                        <p class="card-text">support@foodhope.org</p>
+                        <p class="card-text">krishnasevatrust@gmail.com</p>
                     </div>
                 </div>
             </div>
@@ -98,8 +101,10 @@
     <div class="container">
         <h2 class="text-center section-title mb-5">Find Us</h2>
         <div class="ratio ratio-16x9">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.2176767606325!2d-73.98823492396789!3d40.748440537932896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259a9b3117469%3A0xd134e199a405a163!2sEmpire%20State%20Building!5e0!3m2!1sen!2sus!4v1685123456789!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3650.043279687615!2d72.54731931530192!3d23.08051769999445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e83556736c135%3A0x7e063934e92372c3!2sKrishna%20Nishwarth%20Seva%20Trust!5e0!3m2!1sen!2sin!4v1680531191000!5m2!1sen!2sin" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </div>
 </section>
+
+
 @endsection

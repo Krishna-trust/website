@@ -3,9 +3,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">
-                <h5 class="fw-bold mb-4">FoodHope Charity</h5>
-                <p class="mb-4">Dedicated to fighting hunger and providing nutritious meals to those in need.
-                    Together, we can make a difference.</p>
+                <h5 class="fw-bold mb-4">Krishna Niswarth Seva Trust</h5>
+                <p class="mb-4">
+                    {{ @trans('messages.about_us_desc') }}
+                </p>
                 <div class="social-links">
                     <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
@@ -14,33 +15,31 @@
                 </div>
             </div>
             <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-                <h6 class="fw-bold mb-4">Quick Links</h6>
+                <h6 class="fw-bold mb-4">{{ @trans('messages.quick_links') }}</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">Home</a></li>
-                    <li class="mb-2"><a href="about.html" class="text-white text-decoration-none">About Us</a></li>
-                    <li class="mb-2"><a href="services.html" class="text-white text-decoration-none">Services</a>
+                    <!-- <li class="mb-2"><a href="index.html" class="text-white text-decoration-none">{{ @trans('messages.home') }}</a></li> -->
+                    <li class="mb-2"><a href="about.html" class="text-white text-decoration-none">{{ @trans('messages.about_us') }}</a></li>
+                    <li class="mb-2"><a href="services.html" class="text-white text-decoration-none">{{ @trans('messages.services') }}</a>
                     </li>
-                    <li class="mb-2"><a href="get-involved.html" class="text-white text-decoration-none">Get
-                            Involved</a></li>
-                    <li class="mb-2"><a href="contact.html" class="text-white text-decoration-none">Contact</a></li>
+                    <li class="mb-2"><a href="contact.html" class="text-white text-decoration-none">{{ @trans('messages.contact_us') }}</a></li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h6 class="fw-bold mb-4">Contact Info</h6>
+                <h6 class="fw-bold mb-4">{{ @trans('messages.contact_info') }}</h6>
                 <ul class="list-unstyled">
-                    <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>123 Charity St, Cityville</li>
-                    <li class="mb-2"><i class="bi bi-telephone me-2"></i>+1 (123) 456-7890</li>
-                    <li class="mb-2"><i class="bi bi-envelope me-2"></i>info@foodhope.org</li>
+                    <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>{{ @trans('messages.addrress_desc') }}</li>
+                    <li class="mb-2"><i class="bi bi-telephone me-2"></i>{{ @trans('messages.phone_desc') }}</li>
+                    <li class="mb-2"><i class="bi bi-envelope me-2"></i>{{ @trans('messages.email_desc') }}</li>
                 </ul>
             </div>
             <div class="col-lg-3 col-md-6">
-                <h6 class="fw-bold mb-4">Newsletter</h6>
-                <p class="mb-4">Subscribe to our newsletter for updates and news.</p>
-                <form class="mb-3">
+                <h6 class="fw-bold mb-4">{{ @trans('messages.join_whatsapp') }}</h6>
+                <p class="mb-4">{{ @trans('messages.join_whatsapp_desc') }}</p>
+                <form id="subscribeForm" class="mb-3 ">
                     <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your email">
-                        <button class="btn btn-primary" type="submit">Subscribe</button>
+                        <input type="tel" id="phone" class="form-control" placeholder="{{ @trans('messages.phone') }}" required maxlength="10">
                     </div>
+                    <button class="btn btn-primary mt-3" type="submit">{{ @trans('messages.join') }}</button>
                 </form>
             </div>
         </div>
