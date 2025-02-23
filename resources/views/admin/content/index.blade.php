@@ -3,12 +3,12 @@
 @section('content')
 <div class="page-header">
     <div>
-        <h1 class="page-title">Daily Content</h1>
+        <h1 class="page-title">{{ @trans('messages.daily_content') }}</h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Daily Content</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.daily_content') }}</li>
         </ol>
     </div>
 </div>

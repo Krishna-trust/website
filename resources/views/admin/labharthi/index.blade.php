@@ -3,12 +3,12 @@
 @section('content')
 <div class="page-header">
     <div>
-        <h1 class="page-title">Labharthi</h1>
+        <h1 class="page-title">{{ @trans('messages.labharthi') }}</h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.labharthi.index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Labharthi</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.labharthi') }}</li>
         </ol>
     </div>
 </div>

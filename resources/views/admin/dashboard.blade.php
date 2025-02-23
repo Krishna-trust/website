@@ -4,12 +4,12 @@
 
 <div class="page-header mx-2">
     <div>
-        <h1 class="page-title">Dashboard</h1>
+        <h1 class="page-title">{{ @trans('messages.dashboard') }}</h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.dashboard') }}</li>
         </ol>
     </div>
 </div>
@@ -22,11 +22,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">Total Content</p>
+                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_content') }}</p>
                         <div class="d-flex justify-content-start">
-                            <div class="d-flex flex-column align-items-end justify-content-end">
+                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
                                 <span class="dashboard-currency me-2">Total:</span>
-                            </div>
+                            </div> -->
                             <div class="d-flex align-items-start">
                                 <h4 class="fw-semibold spincrement m-0 text-danger" id="">{{ $total_contents ?? 0 }}
                                 </h4>
@@ -50,11 +50,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">Donations Received</p>
+                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_donations') }}</p>
                         <div class="d-flex justify-content-start">
-                            <div class="d-flex flex-column align-items-end justify-content-end">
+                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
                                 <span class="dashboard-currency me-2">Total:</span>
-                            </div>
+                            </div> -->
                             <div class="d-flex align-items-start">
                                 <h4 class="fw-semibold spincrement m-0 text-success" id="">{{ $total_donations ?? 0 }}
                                 </h4>
@@ -88,11 +88,11 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">Donations Amount</p>
+                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_donations_amount') }}</p>
                         <div class="d-flex justify-content-start">
-                            <div class="d-flex flex-column align-items-end justify-content-end">
+                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
                                 <span class="dashboard-currency me-2">Total:</span>
-                            </div>
+                            </div> -->
                             <div class="d-flex align-items-start">
                                 <h4 class="fw-semibold spincrement m-0 text-primary" id="">{{ $total_donations_amount ?? 0 }}
                                 </h4>
@@ -116,12 +116,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">Total Labharthi</p>
+                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_labharthi') }}</p>
 
                         <div class="d-flex justify-content-start">
-                            <div class="d-flex flex-column align-items-end justify-content-end">
+                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
                                 <span class="dashboard-currency me-2">Total:</span>
-                            </div>
+                            </div> -->
                             <div class="d-flex align-items-start">
                                 <h4 class="fw-semibold spincrement m-0 text-warning" id="">{{ $total_labharthi ?? 0 }}
                                 </h4>

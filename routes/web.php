@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// routes/web.php
+Route::get('lang/{lang}', function ($lang) {
+    if (in_array($lang, ['en', 'gu'])) {
+        Illuminate\Support\Facades\App::setLocale($lang);
+    }
+    return redirect()->back();
+});
+
 // Authentication Routes
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegister'])->name('register');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
@@ -48,4 +56,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
     // Donation Routes
     Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
+
+    // change password
+    Route::get('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('changePassword');
+    Route::post('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePasswordPost'])->name('changePassword.save');
 });
