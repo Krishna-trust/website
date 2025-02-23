@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
-            <h1 class="display-4 fw-bold mb-3">{{ @trans('messages.contact_us') }}</h1>
+                <h1 class="display-4 fw-bold mb-3">{{ @trans('messages.contact_us') }}</h1>
                 <p class="lead">{{ @trans('messages.contact_us_desc') }}</p>
             </div>
             <div class="col-lg-6">
@@ -27,29 +27,58 @@
                 <div class="card rounded-lg shadow">
                     <div class="card-body p-5">
                         <h2 class="text-center section-title mb-4">{{ @trans('messages.send_us_a_message') }}</h2>
-                        <form id="contactForm" action="#" method="POST">
+
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+
+                        <form action="{{ route('contact.store') }}" method="POST">
+                        <!-- <form id="contactForm" action="{{ route('contact.store') }}" method="POST"> -->
+                            @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label">{{ @trans('messages.name') }}</label>
-                                <input type="text" class="form-control" id="name" required>
+                                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" >
+                                @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="email" class="form-label">{{ @trans('messages.email') }}</label>
-                                <input type="email" class="form-control" id="email" required>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" >
+                                @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="mb-3" id="mobile">
                                 <label for="mobile" class="form-label">{{ @trans('messages.mobile') }}</label>
-                                <input type="text" class="form-control" id="mobile" required>
+                                <input type="text" class="form-control @error('mobile') is-invalid @enderror" id="mobile" name="mobile" value="{{ old('mobile') }}" maxlength="10">
+                                @error('mobile')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="subject" class="form-label">{{ @trans('messages.subject') }}</label>
-                                <input type="text" class="form-control" id="subject" required>
+                                <input type="text" class="form-control @error('subject') is-invalid @enderror" id="subject" name="subject" value="{{ old('subject') }}" >
+                                @error('subject')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="mb-3">
                                 <label for="message" class="form-label">{{ @trans('messages.message') }}</label>
-                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="5" >{{ old('message') }}</textarea>
+                                @error('message')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
+
                             <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">{{ @trans('messages.send_message') }}</button>
+                                <button type="submit" class="btn btn-primary btn-lg">{{ @trans('messages.send_message') }}</button>
                             </div>
                         </form>
                     </div>
@@ -58,6 +87,7 @@
         </div>
     </div>
 </section>
+
 
 <!-- Contact Information Section -->
 <section class="bg-light py-5">
@@ -87,7 +117,7 @@
                         </p>
                         <p class="card-text">
                             <!-- Mon-Fri, 8am-8pm EST -->
-                             {{ @trans('messages.mon_fri') }}
+                            {{ @trans('messages.mon_fri') }}
                         </p>
                     </div>
                 </div>

@@ -34,8 +34,10 @@ Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->
 Route::get('/', [webController::class, 'index'])->name('index');
 Route::get('/about', [webController::class, 'about'])->name('about');
 Route::get('/contact', [webController::class, 'contact'])->name('contact');
+Route::post('/contact', [webController::class, 'contactPost'])->name('contact.store');
 // Route::get('/services', [webController::class, 'services'])->name('services');
 Route::get('/impact', [webController::class, 'impacts'])->name('impact');
+
 
 Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('admin.labharthi.destroy');
 Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.contents.destroy');
