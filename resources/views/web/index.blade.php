@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Home - Krishna Niswarth Seva Trust') <!-- Optional: Overriding the title -->
+@section('title', __('messages.home') . ' - ' . __('messages.trust_name'))
 
 @section('content')
 <!-- Hero Section -->
@@ -10,7 +10,7 @@
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h1 class="display-4 fw-bold mb-3" id="heading">
                     <!-- Feeding Hope, One Meal at a Time -->
-                     {{ @trans('messages.donate_now') }}
+                    {{ @trans('messages.donate_now') }}
                 </h1>
                 <p class="lead mb-4" id="heading">
                     <!-- Join us in our mission to provide nutritious meals to those in
@@ -20,7 +20,7 @@
                 <button class="btn btn-light btn-lg rounded-pill me-3 mb-3" data-bs-toggle="modal"
                     data-bs-target="#donationModal">
                     <!-- Donate Now -->
-                     {{ @trans('messages.donate_now') }}
+                    {{ @trans('messages.donate_now') }}
                 </button>
 
             </div>
@@ -64,6 +64,21 @@
         <div class="row g-4">
             <div class="col-md-4">
                 <div class="yearly-services-item">
+                    <img src="images/manav-mandir.jpg" alt="Community kitchen" class="img-fluid rounded">
+                    <div class="yearly-services-caption">
+                        <h5>
+                            <!-- Food package distribution -->
+                            {{ @trans('messages.manav_mandir_distribution') }}
+                        </h5>
+                        <p>
+                            <!-- Annual grocery delivery to needy people. -->
+                            {{ @trans('messages.manav_mandir_distribution_desc') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="yearly-services-item">
                     <img src="images/kit-vitaran.jpg" alt="Volunteers serve food to needy people
                     " class="img-fluid rounded">
                     <div class="yearly-services-caption">
@@ -82,26 +97,10 @@
                     <div class="yearly-services-caption">
                         <h5>
                             <!-- Corona Service -->
-                             {{ @trans('messages.corona_service') }}
+                            {{ @trans('messages.corona_service') }}
                         </h5>
                         <!-- <p>Meals prepared and distributed fresh daily. -->
-                            {{ @trans('messages.corona_service_desc') }}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="yearly-services-item">
-                    <img src="images/sv.jpg" alt="Food package
-                    " class="img-fluid rounded">
-                    <div class="yearly-services-caption">
-                        <h5>
-                            <!-- Food package distribution -->
-                             {{ @trans('messages.food_package_distribution') }}
-                        </h5>
-                        <p>
-                            <!-- Annual grocery delivery to needy people. -->
-                             {{ @trans('messages.food_package_distribution_desc') }}
+                        {{ @trans('messages.corona_service_desc') }}
                         </p>
                     </div>
                 </div>
@@ -127,7 +126,38 @@
     </div>
 </section>
 
-
+<!-- Testimonials Section -->
+<section class="bg-light py-5">
+    <div class="container">
+        <h2 class="text-center section-title mb-5">{{ @trans('messages.what_people_say') }}</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 rounded-lg shadow">
+                    <div class="card-body">
+                        <p class="card-text">"FoodHope Charity has been a lifesaver for my family. Their support during tough times meant we never had to worry about our next meal."</p>
+                        <p class="fw-bold mb-0">- Sarah J.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 rounded-lg shadow">
+                    <div class="card-body">
+                        <p class="card-text">"The nutrition classes have taught me so much about healthy eating on a budget. It's made a real difference in my life."</p>
+                        <p class="fw-bold mb-0">- Michael T.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 rounded-lg shadow">
+                    <div class="card-body">
+                        <p class="card-text">"Volunteering at FoodHope's soup kitchen has opened my eyes to the challenges many face. It's an honor to serve alongside such dedicated individuals."</p>
+                        <p class="fw-bold mb-0">- David L.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- Services Section -->
 <!-- <section id="services" class="py-5">
     <div class="container">
