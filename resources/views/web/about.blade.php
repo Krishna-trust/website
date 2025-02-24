@@ -92,7 +92,7 @@
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
-                    <img src="{{ asset('images/vinukaKa_image.jpg') }}" alt="Vinodbhai Mistri" class="card-img-top">
+                    <img src="{{ asset('images/vinukaka_image.jpg') }}" alt="Vinodbhai Mistri" class="card-img-top">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">{{ @trans('messages.vinukaKa_name') }}</h5>
                         <p class="card-text">{{ @trans('messages.trust_trustees') }}</p>
