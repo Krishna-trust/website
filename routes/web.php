@@ -15,12 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // routes/web.php
-Route::get('lang/{lang}', function ($lang) {
-    if (in_array($lang, ['en', 'gu'])) {
-        Illuminate\Support\Facades\App::setLocale($lang);
-    }
-    return redirect()->back();
-});
 
 // Authentication Routes
 Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegister'])->name('register');
@@ -49,6 +43,16 @@ Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
+
+    // change language
+    Route::get('/lang/{locale}', function ($locale) {
+        if (in_array($locale, ['en', 'gu'])) {
+            // Store the selected locale in the session
+            session()->put('locale', $locale);
+        }
+        return redirect()->back();
+    });
+
     Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
 
     // Content Routes

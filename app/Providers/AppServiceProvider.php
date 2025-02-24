@@ -24,8 +24,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        if (Session::has('locale')) {
-            App::setLocale(Session::get('locale')); // Set the locale from session
-        }
     }
 }

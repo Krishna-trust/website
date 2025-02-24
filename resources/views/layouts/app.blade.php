@@ -71,6 +71,13 @@
     <!-- <script src="{{ asset('assets/adminlte/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script> -->
 
+    <script>
+        function handleLanguageChange(selectElement) {
+            const selectedLang = selectElement.value;
+            // Redirect to the same page with the new language code in the URL
+            window.location.href = 'lang/' + selectedLang;
+        }
+    </script>
 
 </body>
 

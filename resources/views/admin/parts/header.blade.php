@@ -1,16 +1,14 @@
 <div class="d-flex justify-content-end animate-left">
     <div class="d-flex align-items-center">
-        <p>Current Language: {{ App::getLocale() }}</p>
-        <div class="lacale">
-            <a href="{{ url('/lang/en') }}" class="dropdown-item">
-                <i class="fa fa-fw fa-globe pe-2"></i>
-                English
-            </a>
-            <a href="{{ url('/lang/gu') }}" class="dropdown-item">
-                <i class="fa fa-fw fa-globe pe-2"></i>
-                ગુજરાતી
-            </a>
-        </div>
+        <select class="bg-white text-dark custom-dropdown" onchange="handleLanguageChange(this)" id="languageSelect">
+            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>
+                <i class="fa fa-fw fa-globe pe-2"></i> English
+            </option>
+            <option value="gu" {{ app()->getLocale() == 'gu' ? 'selected' : '' }}>
+                <i class="fa fa-fw fa-globe pe-2"></i> ગુજરાતી
+            </option>
+        </select>
+
         <div class="dropdown d-flex profile-1">
             <a href="{{ route('admin.dashboard') }}" data-bs-toggle="dropdown"
                 class="leading-none nav-link pe-0 d-flex justify-content-start animate">

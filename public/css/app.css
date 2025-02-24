@@ -979,6 +979,16 @@ h2 {
     opacity: .2;
 }
 
+#languageSelect {
+    font-weight: 700 !important;
+    height: 40px;
+    /* border: 1px solid var(--primary-bg-color) !important; */
+    border-radius: 8px !important;
+    text-align: center !important;
+    line-height: 1 !important;
+}
+
+
 .btn-group {
     margin: 0 3% !important;
 }
