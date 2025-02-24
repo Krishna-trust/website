@@ -62,6 +62,7 @@ return [
     'view_all' => 'View All',
     'yearly_services' => 'Services',
     'kit_distribution' => 'Kit Distribution',
+    'medical_cloth_kit' => 'Medical Kit, Cloth Kit',
     'kit_distribution_desc' => 'We regularly distribute food and medical kits to those in need with love and care.',
     'corona_service' => 'Corona Service',
     'corona_service_desc' => 'During the COVID-19 pandemic, we ensured daily distribution of fresh meals to those in need. Our team was dedicated to providing support and nourishment to vulnerable communities.',
