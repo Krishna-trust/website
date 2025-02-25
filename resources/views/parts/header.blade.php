@@ -12,9 +12,9 @@
         </div>
         <div class="dropdown d-flex profile-1">
             <a href="" data-bs-toggle="dropdown" class="leading-none nav-link pe-2 d-flex justify-content-start animate">
-                <img src="images/favicon.png" alt="profile-user" class="avatar profile-user brround cover-image">
+                <img src="{{ asset('images/favicon.ico') }}" alt="profile-user" class="avatar profile-user brround cover-image">
                 <div class="p-1 text-center d-flex d-lg-none-max">
-                    <h6 class="mb-0 ms-1" id="profile-heading"> admin
+                    <h6 class="mb-0 ms-1" id="profile-heading"> Admin
                         <i class="user-angle ms-1 fa fa-angle-down "></i>
                     </h6>
                 </div>
