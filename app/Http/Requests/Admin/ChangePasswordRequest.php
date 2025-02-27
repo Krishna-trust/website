@@ -28,10 +28,15 @@ class ChangePasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'current_password.required' => 'Current password is required.',
-            'password.required' => 'New password is required.',
-            'password.confirmed' => 'Password and confirmation do not match.',
-            'password_confirmation.required' => 'Password confirmation is required.',
+            'current_password.required' => __('validation.required_current_password'),
+            'current_password.string' => __('validation.string_current_password'),
+            'current_password.min' => __('validation.min_current_password'),
+            'password.string' => __('validation.string_password'),
+            'password.min' => __('validation.min_password'),
+            'password.confirmed' => __('validation.confirmed_password'),
+            'password_confirmation.string' => __('validation.string_password_confirmation'),
+            'password_confirmation.min' => __('validation.min_password_confirmation'),
+            'password_confirmation.required' => __('validation.required_password_confirmation'),
         ];
     }
 }

@@ -24,15 +24,19 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required'
+        ],[
+            'email.required' => __('validation.required_email'),
+            'email.email' => __('validation.string_email'),
+            'password.required' => __('validation.required_password'),
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            
+
             if (Auth::user()->isAdmin()) {
                 return redirect()->route('admin.dashboard');
             }
-            
+
             return redirect()->route('login')->with('error', 'You do not have admin access.');
         }
 
@@ -47,6 +51,17 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+        ],[
+            'name.required' => __('validation.required_name'),
+            'name.string' => __('validation.string_name'),
+            'name.max' => __('validation.max_name'),
+            'email.required' => __('validation.required_email'),
+            'email.string' => __('validation.string_email'),
+            'email.unique' => __('validation.email_unique'),
+            'password.required' => __('validation.required_password'),
+            'password.string' => __('validation.string_password'),
+            'password.min' => __('validation.min_password'),
+            'password.confirmed' => __('validation.confirmed_password'),
         ]);
 
         $user = User::create([

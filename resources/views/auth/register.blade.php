@@ -33,30 +33,10 @@
     <div class="container-fluid">
 
         <div class="row">
-            <!-- Left Column -->
-            <div class="col-lg-4 col-xl-4 col-xxl-4 bg-guest d-none d-lg-flex flex-column justify-content-between">
-                <div class="d-flex flex-column v-100">
-                    <div class="d-flex justify-content-between flex-column vh-100">
-                        <div class="pt-5 pb-5 mx-5 d-flex flex-column">
-                            <img src="{{ asset('images/logo.png') }}" width="124" height="80" />
-                            <span class="text-white guest-line-typography">Krishna Niswarth Seva Trust</span>
-                        </div>
-                        <!-- <div class="pt-5 pb-5 mx-5 d-flex flex-column">
-                            <span class="ml-1 text-white fs-6">
-                                Having Troubles?
-                                <a href="mailto:help@selcom.net" class="text-reset text-decoration-underline text-white">
-                                    Get Help
-                                </a>
-                            </span>
-                        </div> -->
-                    </div>
-                </div>
-            </div>
-
             <!-- Right Column -->
-            <div class="col-lg-8 col-xl-8 col-xxl-8 bg-light d-flex justify-content-center flex-column vh-100">
+            <div class="bg-light d-flex justify-content-center flex-column vh-100">
                 <div class="row d-flex justify-content-center align-items-center ">
-                    <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                    <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xxl-4">
                         <div class="bg-white p-4" style="border-radius:29px;">
                             <div class="text-center">
                                 <img src="{{ asset('images/logo.png') }}" width="124" height="80" />
@@ -64,7 +44,7 @@
                                 <!-- <p class="guest-subline text-center ">Login</p> -->
                             </div>
                             <div class="mt-4 mx-4 mb-4">
-                                @if ($errors->any())
+                                <!-- @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul class="mb-0">
                                         @foreach ($errors->all() as $error)
@@ -72,7 +52,7 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                                @endif
+                                @endif -->
 
                                 <form action="{{ route('register.post') }}" method="POST">
                                     @csrf

@@ -1,11 +1,39 @@
 <?php
 return [
+    // Login Validation
+    'required_email' => 'Email is required.',
+    'string_email' => 'Email must be a valid string.',
+    'required_password' => 'Password is required.',
+
+    // Registration Validation
+    'email_unique' => 'Email is already taken.',
+    'required_name' => 'Name is required.',
+    'string_name' => 'Name must be a valid string.',
+    'max_name' => 'Name must be at most :max characters.',
+    'required_password' => 'Password is required.',
+    'string_password' => 'Password must be a valid string.',
+    'min_password' => 'Password must be at least :min characters.',
+    'confirmed_password' => 'Password confirmation does not match.',
+    'required_password_confirmation' => 'Password confirmation is required.',
+    'string_password_confirmation' => 'Password confirmation must be a valid string.',
+    'min_password_confirmation' => 'Password confirmation must be at least :min characters.',
+
+    // change password validation
+    'required_current_password' => 'current password is required',
+    'string_current_password' => 'current password must be a valid string',
+
+    'required_new_password' => 'new password is required',
+    'string_new_password' => 'new password must be a valid string',
+
+    'required_confirm_new_password' => 'confirm new password is required',
+    'string_confirm_new_password' => 'confirm new password must be a valid string',
+
     // Donation Validation
     'required_receipt_number' => 'Receipt number is required.',
     'string_receipt_number' => 'Receipt number must be a valid string.',
 
     'required_date' => 'Date is required',
-    'date_date' =>'Date must be a valid Date',
+    'date_date' => 'Date must be a valid Date',
 
     'required_full_name' => 'Full name is required.',
     'size_full_name' => 'Full name must be between 1 and 255 characters.',

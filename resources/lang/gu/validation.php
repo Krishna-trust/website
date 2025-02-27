@@ -1,5 +1,32 @@
 <?php
 return [
+    // Login Validation
+    'required_email' => 'ઈમેલ જરૂરી છે.',
+    'string_email' => 'ઈમેલ માન્ય સ્ત્રીંગ હોવું જોઈએ.',
+    'required_password' => 'પાસવર્ડ જરૂરી છે.',
+
+    // register validation
+    'email_unique' => 'ઈમેલ પહેલેથી લીધેલ છે.',
+    'required_name' => 'નામ જરૂરી છે.',
+    'string_name' => 'નામ માન્ય સ્ત્રીંગ હોવું જોઈએ.',
+    'max_name' => 'નામમાં :max અક્ષરોથી વધારે ન હોવું જોઈએ.',
+    'required_password' => 'પાસવર્ડ જરૂરી છે.',
+    'string_password' => 'પાસવર્ડ માન્ય સ્ત્રીંગ હોવો જોઈએ.',
+    'min_password' => 'પાસવર્ડમાં કમથી કમ :min અક્ષરો હોવા જોઈએ.',
+    'confirmed_password' => 'પાસવર્ડની પુષ્ટિ મેલી નથી.',
+    'required_password_confirmation' => 'પાસવર્ડની પુષ્ટિ જરૂરી છે.',
+    'string_password_confirmation' => 'પાસવર્ડની પુષ્ટિ માન્ય સ્ત્રીંગ હોવી જોઈએ.',
+    'min_password_confirmation' => 'પાસવર્ડની પુષ્ટિમાં કમથી કમ :min અક્ષરો હોવા જોઈએ.',
+
+    // password change validation
+    'required_current_password' => 'વર્તમાન પાસવર્ડ જરૂરી છે.',
+    'string_current_password' => 'વર્તમાન પાસવર્ડ માન્ય સ્ત્રીંગ હોવો જોઈએ.',
+
+    'required_new_password' => 'નવો પાસવર્ડ જરૂરી છે.',
+    'string_new_password' => 'નવો પાસવર્ડ માન્ય સ્ત્રીંગ હોવો જોઈએ.',
+
+    'required_confirm_new_password' => 'નવી પાસવર્ડની પુષ્ટિ જરૂરી છે.',
+    'string_confirm_new_password' => 'નવી પાસવર્ડની પુષ્ટિ માન્ય સ્ત્રીંગ હોવી જોઈએ.',
 
     // Donation Validation
     'required_receipt_number' => 'રસીદ નંબર જરૂરી છે.',
