@@ -27,8 +27,8 @@
                             <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                    </div> -->
-                    @endif
+                    </div>
+                    @endif -->
                     @include('admin.module.donation-form')
                 </div>
             </div>

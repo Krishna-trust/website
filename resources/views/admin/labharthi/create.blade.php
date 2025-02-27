@@ -30,7 +30,7 @@
                     </div>
                     @endif -->
 
-                    <form action="{{ route('admin.labharthi.store') }}" method="POST" >
+                    <form action="{{ route('admin.labharthi.store') }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -213,6 +213,7 @@
 
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary">Save Labharthi</button>
+                            <a href="{{ route('admin.labharthi.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>
                 </div>
