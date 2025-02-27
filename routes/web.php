@@ -45,7 +45,7 @@ Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
 
     // change language
-    Route::get('/lang/{locale}', function ($locale) {
+    Route::get('lang/{locale}', function ($locale) {
         if (in_array($locale, ['en', 'gu'])) {
             // Store the selected locale in the session
             session()->put('locale', $locale);
