@@ -17,11 +17,10 @@
                     need and make a difference in our community. -->
                     {{ @trans('messages.donate_now_desc') }}
                 </p>
-                <button class="btn btn-light btn-lg rounded-pill me-3 mb-3" data-bs-toggle="modal"
+                <!-- <button class="btn btn-light btn-lg rounded-pill me-3 mb-3" data-bs-toggle="modal"
                     data-bs-target="#donationModal">
-                    <!-- Donate Now -->
                     {{ @trans('messages.donate_now') }}
-                </button>
+                </button> -->
 
             </div>
             <div class="col-lg-6">
