@@ -4,6 +4,8 @@ return [
     'home' => 'Home',
     'only_for_trust' => 'Only for Trust',
 
+    'thank_you_message' => 'Thank you for joining!',
+
     // admin panel
     'dashboard' => 'Dashboard',
     'add_labharthi' => 'Add Labharthi',
@@ -114,4 +116,9 @@ return [
     'subject' => 'Subject',
     'message' => 'Message',
     'send_message' => 'Send Message',
+
+    // testimonials
+    'testimonial_1' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',
+    'testimonial_2' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',
+    'testimonial_3' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',
 ];

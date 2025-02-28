@@ -31,8 +31,12 @@
                         <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
                     </div>
                     <div class="d-flex justify-content-end w-lg-25 w-md-50">
-                        <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">Add <i class="fa fa-plus"></i></a>
-                        <a href="{{route('admin.labharthi.export')}}" class="btn btn-primary">Export <i class="fa fa-file-excel-o"></i></a>
+                        <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">
+                            <span class="d-none d-sm-inline">Add</span> <i class="fa fa-plus"></i>
+                        </a>
+                        <a href="{{route('admin.labharthi.export')}}" class="btn btn-primary">
+                            <span class="d-none d-sm-inline">Export</span> <i class="fa fa-file-excel-o"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="mt-4 table-responsive">

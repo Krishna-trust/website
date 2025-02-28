@@ -30,21 +30,29 @@
 <script>
     document.getElementById('subscribeForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form from submitting normally
-console.log("Submitted");
+        console.log("Submitted");
 
         // Get the value from the phone number input
         const phone = document.getElementById('phone').value;
 
         // Validate the phone number (basic validation for length and numeric format)
         if (phone && phone.length >= 10 && !isNaN(phone)) {
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Optionally, you can hide the form after submission
+            document.getElementById('subscribeForm').style.display = 'none';
+
             // Replace with your WhatsApp group link
             const whatsappGroupLink = "https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P";
 
-            // Create WhatsApp link with the phone number prefilled
+            // Create WhatsApp link with the phone number prefilled (if necessary)
             const whatsappLink = whatsappGroupLink.replace('phone_number', phone);
 
-            // Open WhatsApp with the generated link
-            window.open(whatsappLink, '_blank');
+            // Open WhatsApp with the generated link after 2 seconds delay
+            setTimeout(function() {
+                window.open(whatsappLink, '_blank');
+            }, 2000); // Delay for 2 seconds
         } else {
             alert("Please enter a valid phone number.");
         }

@@ -61,6 +61,23 @@ class WebController extends Controller
             'mobile' => 'required|string|max:15',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
+        ],[
+            'name.required' => __('validation.required_name'),
+            'name.string' => __('validation.string_name'),
+            'name.max' => __('validation.max_name'),
+            'email.required' => __('validation.required_email'),
+            'email.string' => __('validation.string_email'),
+            'mobile.required' => __('validation.required_mobile_number'),
+            'mobile.size' => __('validation.size_mobile_number'),
+            'mobile.regex' => __('validation.regex_mobile_number'),
+            'address.required' => __('validation.required_address'),
+            'address.string' => __('validation.string_address'),
+            'phone.required' => __('validation.required_phone'),
+            'phone.string' => __('validation.string_phone'),
+            'message.required' => __('validation.required_message'),
+            'message.string' => __('validation.string_message'),
+            'subject.required' => __('validation.required_subject'),
+            'subject.string' => __('validation.string_subject'),
         ]);
 
         Contact::create($validated);

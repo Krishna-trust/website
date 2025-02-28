@@ -986,6 +986,9 @@ h2 {
     border-radius: 8px !important;
     text-align: center !important;
     line-height: 1 !important;
+    border: none;
+    outline: none;
+    padding: 5px;
 }
 
 

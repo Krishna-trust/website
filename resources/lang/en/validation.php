@@ -117,4 +117,22 @@ return [
     'date_tifin_ending_date' => 'TIFIN ending date must be a valid date.',
     'required_reasion_for_tifin_stop' => 'Reason for TIFIN stop is required.',
     'string_reasion_for_tifin_stop' => 'Reason for TIFIN stop must be a valid string.',
+
+    // contact us validation
+    'required_name' => 'Name is required.',
+    'string_name' => 'Name must be a valid string.',
+    'max_name' => 'Name must be at most :max characters.',
+    'required_email' => 'Email is required.',
+    'string_email' => 'Email must be a valid string.',
+    'required_mobile_number' => 'Mobile number is required.',
+    'size_mobile_number' => 'Mobile number must be exactly 10 digits.',
+    'regex_mobile_number' => 'Mobile number must contain only digits.',
+    'required_address' => 'Address is required.',
+    'string_address' => 'Address must be a valid string.',
+    'required_phone' => 'Phone is required.',
+    'string_phone' => 'Phone must be a valid string.',
+    'required_message' => 'Message is required.',
+    'string_message' => 'Message must be a valid string.',
+    'required_subject' => 'Subject is required.',
+    'string_subject' => 'Subject must be a valid string.',
 ];

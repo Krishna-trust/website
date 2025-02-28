@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-lg-8 mx-auto">
                 <div class="card rounded-lg shadow">
-                    <div class="card-body p-5">
+                    <div class="card-body p-lg-5 p-sm-2">
                         <h2 class="text-center section-title mb-4">{{ @trans('messages.send_us_a_message') }}</h2>
 
                         @if(session('success'))

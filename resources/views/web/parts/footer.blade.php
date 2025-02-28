@@ -37,6 +37,9 @@
             <div class="col-lg-3 col-md-6">
                 <h6 class="fw-bold mb-4">{{ @trans('messages.join_whatsapp') }}</h6>
                 <p class="mb-4">{{ @trans('messages.join_whatsapp_desc') }}</p>
+                <div id="successMessage" class="text-white" style="display:none; margin-top: 20px; font-size: 15px;">
+                    <p>&#128079; {{ @trans('messages.thank_you_message') }}</p>
+                </div>
                 <form id="subscribeForm" class="mb-3 ">
                     <div class="input-group">
                         <input type="tel" id="phone" class="form-control" placeholder="{{ @trans('messages.phone') }}" required maxlength="10">

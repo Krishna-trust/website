@@ -133,24 +133,24 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body">
-                        <p class="card-text">"FoodHope Charity has been a lifesaver for my family. Their support during tough times meant we never had to worry about our next meal."</p>
-                        <p class="fw-bold mb-0">- Sarah J.</p>
+                        <p class="card-text">{{ @trans('messages.testimonial_1') }}</p>
+                        <p class="fw-bold mb-0">- સમીર મોર્ર્વાડિયા</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body">
-                        <p class="card-text">"The nutrition classes have taught me so much about healthy eating on a budget. It's made a real difference in my life."</p>
-                        <p class="fw-bold mb-0">- Michael T.</p>
+                        <p class="card-text">{{ @trans('messages.testimonial_2') }}</p>
+                        <p class="fw-bold mb-0">- ધ્રુવ પટેલ</p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body">
-                        <p class="card-text">"Volunteering at FoodHope's soup kitchen has opened my eyes to the challenges many face. It's an honor to serve alongside such dedicated individuals."</p>
-                        <p class="fw-bold mb-0">- David L.</p>
+                        <p class="card-text">{{ @trans('messages.testimonial_3') }}</p>
+                        <p class="fw-bold mb-0">- વિનોદભાઈ મિસ્ત્રી</p>
                     </div>
                 </div>
             </div>

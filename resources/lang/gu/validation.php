@@ -116,4 +116,22 @@ return [
     'required_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ જરૂરી છે.',
     'string_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
 
+    // contact us validation
+    'required_name' => 'નામ જરૂરી છે.',
+    'string_name' => 'નામ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'max_name' => 'નામ જ્યારે કમેલી :max અક્ષરો હોવું જોઈએ.',
+    'required_email' => 'ઈમેઈલ જરૂરી છે.',
+    'string_email' => 'ઈમેઈલ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'required_mobile_number' => 'મોબાઇલ નંબર જરૂરી છે.',
+    'size_mobile_number' => 'મોબાઇલ નંબરમાં ચોક્કસ :size અંકો હોવા જોઈએ.',
+    'regex_mobile_number' => 'મોબાઇલ નંબરમાં ફક્ત અંક હોવા જોઈએ.',
+    'required_address' => 'સરનામું જરૂરી છે.',
+    'string_address' => 'સરનામું માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'required_phone' => 'ફોન નંબર જરૂરી છે.',
+    'string_phone' => 'ફોન નંબર માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'required_message' => 'સંદેશ જરૂરી છે.',
+    'string_message' => 'સંદેશ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'required_subject' => 'વિષય જરૂરી છે.',
+    'string_subject' => 'વિષય માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+
 ];

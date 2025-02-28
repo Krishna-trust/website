@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-end animate-left">
     <div class="d-flex align-items-center">
         @if(request()->routeIs('admin.dashboard'))
-        <select class="bg-white text-dark custom-dropdown" onchange="handleLanguageChange(this)" id="languageSelect">
+        <select class="text-dark custom-dropdown" onchange="handleLanguageChange(this)" id="languageSelect">
             <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>
                 <i class="fa fa-fw fa-globe pe-2"></i> English
             </option>
