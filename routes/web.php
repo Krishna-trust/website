@@ -64,6 +64,12 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     // Donation Routes
     Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
 
+    // Service Routes
+    Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->except('destroy');
+
+    // Testimonial Routes
+    Route::resource('testimonial', App\Http\Controllers\Admin\TestimonialController::class)->except('destroy');
+
     // change password
     Route::get('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('changePassword');
     Route::post('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePasswordPost'])->name('changePassword.save');

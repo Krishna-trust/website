@@ -187,7 +187,7 @@
                         </div>
 
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Update Donation</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                             <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">Cancel</a>
                         </div>
                     </form>

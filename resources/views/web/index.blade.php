@@ -10,12 +10,12 @@
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h1 class="display-4 fw-bold mb-3" id="heading">
                     <!-- Feeding Hope, One Meal at a Time -->
-                    {{ @trans('messages.donate_now') }}
+                    {{ @trans('messages.main_page_tile') }}
                 </h1>
                 <p class="lead mb-4" id="heading">
                     <!-- Join us in our mission to provide nutritious meals to those in
                     need and make a difference in our community. -->
-                    {{ @trans('messages.donate_now_desc') }}
+                    {{ @trans('messages.main_page_desc') }}
                 </p>
                 <!-- <button class="btn btn-light btn-lg rounded-pill me-3 mb-3" data-bs-toggle="modal"
                     data-bs-target="#donationModal">
@@ -61,16 +61,30 @@
     <div class="container">
         <h2 class="text-center mb-5 section-title">{{ @trans('messages.yearly_services') }}</h2>
         <div class="row g-4">
-            <div class="col-md-4">
+            @foreach($services as $service)
+            <div class="col-md-4 mb-4">
+                <div class="yearly-services-item">
+                    <img src="{{ Storage::url($service->image) }}" alt="service" class="img-fluid rounded">
+                    <div class="yearly-services-caption">
+                        <h5>
+                            {{ $service->{app()->getLocale() . '_title'} ?? '' }}
+                        </h5>
+                        <p>
+                            {{ $service->{app()->getLocale() . '_description'} ?? '' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            <!-- <div class="col-md-4">
                 <div class="yearly-services-item">
                     <img src="images/manav-mandir.jpg" alt="Community kitchen" class="img-fluid rounded">
                     <div class="yearly-services-caption">
                         <h5>
-                            <!-- Food package distribution -->
                             {{ @trans('messages.manav_mandir_distribution') }}
                         </h5>
                         <p>
-                            <!-- Annual grocery delivery to needy people. -->
                             {{ @trans('messages.manav_mandir_distribution_desc') }}
                         </p>
                     </div>
@@ -95,15 +109,13 @@
                     " class="img-fluid rounded">
                     <div class="yearly-services-caption">
                         <h5>
-                            <!-- Corona Service -->
                             {{ @trans('messages.corona_service') }}
                         </h5>
-                        <!-- <p>Meals prepared and distributed fresh daily. -->
                         {{ @trans('messages.corona_service_desc') }}
                         </p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
@@ -130,7 +142,20 @@
     <div class="container">
         <h2 class="text-center section-title mb-5">{{ @trans('messages.what_people_say') }}</h2>
         <div class="row">
+            @foreach($testimonials as $testimonial)
             <div class="col-md-4 mb-4">
+                <div class="card h-100 rounded-lg shadow">
+                    <div class="image">
+                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="img-fluid rounded-lg shadow">
+                    </div>
+                    <div class="card-body">
+                        {{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}
+                        <p class="fw-bold mb-0">- {{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            <!-- <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body">
                         <p class="card-text">{{ @trans('messages.testimonial_1') }}</p>
@@ -153,7 +178,7 @@
                         <p class="fw-bold mb-0">- વિનોદભાઈ મિસ્ત્રી</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

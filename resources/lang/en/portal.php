@@ -6,9 +6,12 @@ return [
     'content' => 'Content',
     'donation' => 'Donation',
     'labharthi' => 'Labharthi',
+    'services' => 'Services',
+    'testimonials' => 'Testimonials',
 
     // buttons
     'add' => 'Add',
+    'edit' => 'Edit',
     'export' => 'Export',
 
     // table

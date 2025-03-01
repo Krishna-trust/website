@@ -71,7 +71,7 @@
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Update Content
+                                <i class="fa fa-save"></i> Update
                             </button>
                         </div>
                     </form>

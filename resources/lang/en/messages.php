@@ -28,6 +28,8 @@ return [
     'save' => 'Save',
 
     // web
+    'main_page_tile' => 'Pride of Chandalodia',
+    'main_page_desc' => 'Help us feed the hungry',
     'donate_now' => 'Donate Now',
     'donate_now_desc' => 'Join us in our mission to provide nutritious meals to those in need and make a difference in our community.',
     'get_involved' => 'Get Involved',

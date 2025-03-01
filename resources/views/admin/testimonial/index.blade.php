@@ -31,14 +31,14 @@
                         <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
                     </div>
                     <div class="d-flex justify-content-end w-lg-25 w-md-50">
-                        <a href="{{ route('admin.contents.create') }}" class="btn btn-secondary me-2">
+                        <a href="{{ route('admin.testimonial.create') }}" class="btn btn-secondary me-2">
                             <span class="d-none d-sm-inline">Add</span> <i class="fa fa-plus"></i>
                         </a>
                     </div>
 
                 </div>
                 <div class="mt-4 table-responsive">
-                    @include('admin.content.view')
+                    @include('admin.testimonial.view')
                 </div>
             </div>
         </div>
@@ -50,7 +50,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Delete Content</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Delete Testimonial</h5>
             </div>
             <form action="{{ route('admin.contents.destroy') }}" method="POST">
                 @csrf
@@ -158,7 +158,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ url('admin.contents.index') }}",
+            url: "{{ url('admin.testimonial.index') }}",
             data: {
                 search: search_string,
                 limit: limit,
@@ -170,5 +170,4 @@
         });
     }
 </script>
-
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Content;
 use App\Models\Donation;
+use App\Models\Service;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -16,10 +18,14 @@ class WebController extends Controller
 
         // contents
         $contents = Content::orderBy('upload_date', 'desc')->take(4)->get();
+        $services = Service::orderBy('created_at', 'desc')->take(4)->get();
+        $testimonials = Testimonial::orderBy('created_at', 'desc')->take(4)->get();
 
         return view('web.index', [
             'nextReceiptNumber' => str_pad($nextReceiptNumber, 6, '0', STR_PAD_LEFT),
-            'contents' => $contents
+            'contents' => $contents,
+            'services' => $services,
+            'testimonials' => $testimonials
         ]);
     }
 

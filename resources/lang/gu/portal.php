@@ -6,9 +6,12 @@ return [
     'labharthi' => 'લાભાર્થી',
     'content' => 'પોસ્ટર',
     'donation' => 'દાન',
+    'services' => 'સેવાઓ',
+    'testimonials' => 'વિચારો',
 
     // buttons
     'add' => 'ઉમેરો',
+    'edit' => 'ફેરફાર',
     'export' => 'નિકાસ',
 
     // table
