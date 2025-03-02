@@ -1,8 +1,8 @@
   <!-- Header -->
   <header class="navbar navbar-expand-lg navbar-light sticky-top">
       <div class="container">
-          <img src="images/logo.png" alt="Logo" height="50px" class="me-2">
-          <a class="navbar-brand fw-bold text-primary " href="{{ route('index') }}">{{ @trans('messages.trust_name') }}</a>
+          <img src="images/logo.png" alt="Logo" height="70" class="me-2">
+          <!-- <a class="navbar-brand fw-bold text-primary " href="{{ route('index') }}">{{ @trans('messages.trust_name') }}</a> -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
               <span class="navbar-toggler-icon"></span>
           </button>
