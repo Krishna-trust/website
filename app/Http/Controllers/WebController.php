@@ -18,8 +18,8 @@ class WebController extends Controller
 
         // contents
         $contents = Content::orderBy('upload_date', 'desc')->take(4)->get();
-        $services = Service::orderBy('created_at', 'desc')->take(4)->get();
-        $testimonials = Testimonial::orderBy('created_at', 'desc')->take(4)->get();
+        $services = Service::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
+        $testimonials = Testimonial::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
 
         return view('web.index', [
             'nextReceiptNumber' => str_pad($nextReceiptNumber, 6, '0', STR_PAD_LEFT),

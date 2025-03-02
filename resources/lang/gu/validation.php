@@ -134,4 +134,14 @@ return [
     'required_subject' => 'વિષય જરૂરી છે.',
     'string_subject' => 'વિષય માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
 
+    // service validation
+    'required_en_title' => 'અંગ્રેજી શીર્ષક જરૂરી છે.',
+    'required_gu_title' => 'ગુજરાતી શીર્ષક જરૂરી છે.',
+    'required_en_description' => 'અંગ્રેજી વર્ણન જરૂરી છે.',
+    'required_gu_description' => 'ગુજરાતી વર્ણન જરૂરી છે.',
+    'required_status' => 'સ્થિતિ જરૂરી છે.',
+    'required_image' => 'ચિત્ર જરૂરી છે.',
+    'image' => 'ચિત્ર માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'max' => 'ચિત્ર જ્યારે કમેલી :max કિલોબોટો હોવું જોઈએ.',
+    'uploaded' => 'ચિત્ર અપલોડ થયેલ છે.',
 ];

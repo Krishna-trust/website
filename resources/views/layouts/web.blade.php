@@ -99,8 +99,6 @@
 </body>
 
 <script>
-    console.log(navigator.language);
-
     document.getElementById('subscribeForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form from submitting normally
         console.log("Submitted");

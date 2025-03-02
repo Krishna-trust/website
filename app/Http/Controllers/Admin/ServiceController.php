@@ -22,6 +22,7 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'en_title' => 'required',
             'gu_title' => 'required',
@@ -29,6 +30,16 @@ class ServiceController extends Controller
             'gu_description' => 'required',
             'status' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ], [
+            'en_title.required' => __('validation.required_en_title'),
+            'gu_title.required' => __('validation.required_gu_title'),
+            'en_description.required' => __('validation.required_en_description'),
+            'gu_description.required' => __('validation.required_gu_description'),
+            'status.required' => __('validation.required_status'),
+            'image.required' => __('validation.required_image'),
+            'image.mimes' => __('validation.image'),
+            'image.max' => __('validation.max'),
+            'image.uploaded' => __('validation.uploaded'),
         ]);
 
         $imagePath = null;
@@ -58,6 +69,10 @@ class ServiceController extends Controller
     {
         $request->validate([
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ],[
+            'image.mimes' => __('validation.image'),
+            'image.max' => __('validation.max'),
+            'image.uploaded' => __('validation.uploaded'),
         ]);
 
         $data = [

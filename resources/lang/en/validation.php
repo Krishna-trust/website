@@ -135,4 +135,15 @@ return [
     'string_message' => 'Message must be a valid string.',
     'required_subject' => 'Subject is required.',
     'string_subject' => 'Subject must be a valid string.',
+
+    // service validation
+    'required_en_title' => 'English title is required.',
+    'required_gu_title' => 'Gujarati title is required.',
+    'required_en_description' => 'English description is required.',
+    'required_gu_description' => 'Gujarati description is required.',
+    'required_status' => 'Status is required.',
+    'required_image' => 'Image is required.',
+    'image' => 'Image must be a valid image.',
+    'max' => 'Image must be at most :max kilobytes.',
+    'uploaded' => 'Image must be uploaded.',
 ];
