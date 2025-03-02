@@ -8,6 +8,7 @@ return [
     'donation' => 'દાન',
     'services' => 'સેવાઓ',
     'testimonials' => 'વિચારો',
+    'contacts' => 'સંપર્કો',
 
     // buttons
     'add' => 'ઉમેરો',

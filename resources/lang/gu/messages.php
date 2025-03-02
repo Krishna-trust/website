@@ -20,6 +20,7 @@ return [
     'total_labharthi' => 'કુલ લાભાર્થી',
 
     'daily_content' => 'દરેક પોસ્ટર',
+    'contact' => 'સંપર્ક',
 
     // admin change password
     'current_password' => 'વર્તમાન પાસવર્ડ',

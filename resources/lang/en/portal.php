@@ -8,6 +8,7 @@ return [
     'labharthi' => 'Labharthi',
     'services' => 'Services',
     'testimonials' => 'Testimonials',
+    'contacts' => 'Contacts',
 
     // buttons
     'add' => 'Add',

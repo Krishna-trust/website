@@ -20,6 +20,7 @@ return [
     'total_labharthi' => 'Total Labharthi',
 
     'daily_content' => 'Daily Content',
+    'contact' => 'Contact',
 
     // admin change password
     'current_password' => 'Current Password',
