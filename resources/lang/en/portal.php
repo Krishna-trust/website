@@ -9,6 +9,7 @@ return [
     'services' => 'Services',
     'testimonials' => 'Testimonials',
     'contacts' => 'Contacts',
+    'change_password' => 'Change Password',
 
     // buttons
     'add' => 'Add',

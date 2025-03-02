@@ -4,13 +4,13 @@
 <div class="page-header">
     <div>
         <h1 class="page-title">
-            Add Labharthi
+            {{ @trans('portal.change_password') }}
         </h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.labharthi.index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Labharthi</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('portal.change_password') }}</li>
         </ol>
     </div>
 </div>
@@ -48,6 +48,8 @@
                                     @enderror
                                 </div>
                             </div>
+
+                            <div class="col-6"></div>
 
                             <!-- New Password Field -->
                             <div class="col-md-6">

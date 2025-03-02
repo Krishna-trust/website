@@ -9,6 +9,7 @@ return [
     'services' => 'સેવાઓ',
     'testimonials' => 'વિચારો',
     'contacts' => 'સંપર્કો',
+    'change_password' => 'પાસવર્ડ બદલો',
 
     // buttons
     'add' => 'ઉમેરો',
