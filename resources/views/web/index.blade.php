@@ -138,19 +138,20 @@
 </section>
 
 <!-- Testimonials Section -->
-<section class="bg-light py-5">
+<section class="testimonials-section bg-light py-5">
     <div class="container">
         <h2 class="text-center section-title mb-5">{{ @trans('messages.what_people_say') }}</h2>
         <div class="row">
             @foreach($testimonials as $testimonial)
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
-                    <div class="image">
-                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="img-fluid rounded-lg shadow">
+                    <div class="testimonial-image-wrapper mb-0">
+                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid rounded-circle shadow-lg">
                     </div>
                     <div class="card-body">
-                        {{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}
-                        <p class="fw-bold mb-0">- {{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}</p>
+                        <p class="testimonial-text">{{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}</p>
+                        <p class="fw-bold mb-2 text-center">- {{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}</p>
+                        <!-- <span class="d-flex align-items-center justify-content-center">proejct</span> -->
                     </div>
                 </div>
             </div>
@@ -187,7 +188,7 @@
     <div class="container">
         <h2 class="text-center mb-5">અમારી સેવાઓ</h2>
         <div class="row g-4">
-            <div class="col-md-4">
+    <div class="col-md-4">
                 <div class="card h-100 text-center p-4">
                     <div class="card-body">
                         <div class="services-icon">
