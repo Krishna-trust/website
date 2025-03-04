@@ -32,10 +32,10 @@
                     </div>
                     <div class="d-flex justify-content-end w-lg-25 w-md-50">
                         <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">
-                            <span class="d-none d-sm-inline">Add</span> <i class="fa fa-plus"></i>
+                            <span class="d-none d-sm-inline">{{  @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
                         </a>
                         <a href="{{route('admin.labharthi.export')}}" class="btn btn-primary">
-                            <span class="d-none d-sm-inline">Export</span> <i class="fa fa-file-excel-o"></i>
+                            <span class="d-none d-sm-inline">{{  @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
                         </a>
                     </div>
                 </div>

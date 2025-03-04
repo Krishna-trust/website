@@ -32,7 +32,7 @@
                     </div>
                     <div class="d-flex justify-content-end w-lg-25 w-md-50">
                         <a href="{{ route('admin.service.create') }}" class="btn btn-secondary me-2">
-                            <span class="d-none d-sm-inline">Add</span> <i class="fa fa-plus"></i>
+                            <span class="d-none d-sm-inline">{{  @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
                         </a>
                     </div>
 
