@@ -10,7 +10,7 @@
     <meta name="description" content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
 
     <!-- Keywords Tag (Gujarati and English) -->
-    <meta name="keywords" content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ગોતા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના સેવા ટ્રસ્ટ ગોતા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ, વિશ્વસનીય ખોરાક, તાજું ખોરાક, ગુણવત્તાવાળું ખોરાક,Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Chandlodiya,Krishna Niswarth Seva Trust Gota,Krishna Niswarth Seva Trust Ahmedabad,Krishna Seva Trust,Krishna Seva Trust Chandlodiya,Krishna Seva Trust Gota,Krishna Seva Trust Ahmedabad,Krishna Trust,Krishna Trust Chandlodiya,Krishna Trust Gota,Krishna Trust Ahmedabad, Gujarat food, safe food, Trusted food service, fresh meals">
+    <meta name="keywords" content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ,ચાંદલોડિયા, વિના મુલ્યે ટિફીન સેવા,Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Chandlodiya, Krishna Niswarth Seva Trust Ahmedabad,Krishna Seva Trust,Krishna Seva Trust Chandlodiya,Krishna Seva Trust Ahmedabad,Krishna Trust,Krishna Trust Chandlodiya,Krishna Trust Ahmedabad,Chandlodiya, free food">
 
     <!-- Language Tag (English and Gujarati) -->
     <meta name="language" content="Gujarati, English">
