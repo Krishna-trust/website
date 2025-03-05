@@ -52,11 +52,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Delete Service</h5>
             </div>
-            <form action="{{ route('admin.contents.destroy') }}" method="POST">
+            <form action="{{ route('admin.service.destroy') }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <div class="modal-body">
-                    <input type="hidden" name="content_id" id="content_id" value="">
+                    <input type="hidden" name="service_id" id="service_id" value="">
                     <span>Do you want to Delete this record?</span>
                 </div>
 
@@ -126,8 +126,8 @@
         });
 
         $('.user-delete-btn').click(function() {
-            var DataId = $(this).data('content-id');
-            $('#user_id').val(DataId);
+            var DataId = $(this).data('service-id');
+            $('#service_id').val(DataId);
 
         });
     });

@@ -36,27 +36,27 @@
             <td colspan="8" class="text-center text-danger">No content Found.</td>
         </tr>
         @else
-        @forelse($testimonials as $index => $content)
+        @forelse($testimonials as $index => $testimonial)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>
-                @if($content->image)
-                <img src="{{ asset('storage/' . $content->image) }}"
+                @if($testimonial->image)
+                <img src="{{ asset('storage/' . $testimonial->image) }}"
                     alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 <span class="eye-icon" id="eyeIcon" data-bs-toggle="modal" data-bs-target="#imageModal">👁️</span>
                 @else
                 <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 @endif
             </td>
-            <td>{{ $content->en_name ?? '-' }}</td>
-            <td>{{ $content->gu_name ?? '-' }}</td>
-            <td>{{ $content->en_description ?? '-' }}</td>
-            <td>{{ $content->gu_description ?? '-' }}</td>
-            <td>{{ $content->status ? 'Active' : 'Inactive' }}</td>
+            <td>{{ $testimonial->en_name ?? '-' }}</td>
+            <td>{{ $testimonial->gu_name ?? '-' }}</td>
+            <td>{{ $testimonial->en_description ?? '-' }}</td>
+            <td>{{ $testimonial->gu_description ?? '-' }}</td>
+            <td>{{ $testimonial->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">
                 <div class="btn-group">
-                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.testimonial.edit', $content->id) }}"><i class="fa fa-edit"></i></a>
-                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-content-id="{{ $content->id }}">
+                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.testimonial.edit', $testimonial->id) }}"><i class="fa fa-edit"></i></a>
+                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-testimonial-id="{{ $testimonial->id }}">
                         <i class="fa fa-trash-o"></i>
                     </a>
                 </div>

@@ -36,27 +36,27 @@
             <td colspan="8" class="text-center text-danger">No content Found.</td>
         </tr>
         @else
-        @forelse($services as $index => $content)
+        @forelse($services as $index => $service)
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>
-                @if($content->image)
-                <img src="{{ asset('storage/' . $content->image) }}"
+                @if($service->image)
+                <img src="{{ asset('storage/' . $service->image) }}"
                     alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 <span class="eye-icon" id="eyeIcon" data-bs-toggle="modal" data-bs-target="#imageModal">👁️</span>
                 @else
                 <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 @endif
             </td>
-            <td>{{ $content->en_title ?? '-' }}</td>
-            <td>{{ $content->gu_title ?? '-' }}</td>
-            <td>{{ $content->en_description ?? '-' }}</td>
-            <td>{{ $content->gu_description ?? '-' }}</td>
-            <td>{{ $content->status ? 'Active' : 'Inactive' }}</td>
+            <td>{{ $service->en_title ?? '-' }}</td>
+            <td>{{ $service->gu_title ?? '-' }}</td>
+            <td>{{ $service->en_description ?? '-' }}</td>
+            <td>{{ $service->gu_description ?? '-' }}</td>
+            <td>{{ $service->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">
                 <div class="btn-group">
-                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.service.edit', $content->id) }}"><i class="fa fa-edit"></i></a>
-                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-content-id="{{ $content->id }}">
+                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.service.edit', $service->id) }}"><i class="fa fa-edit"></i></a>
+                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-service-id="{{ $service->id }}">
                         <i class="fa fa-trash-o"></i>
                     </a>
                 </div>
