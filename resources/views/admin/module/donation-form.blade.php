@@ -81,7 +81,7 @@
 
         <!-- PAN Number -->
         <div class="col-md-6 mb-3">
-            <label for="pan_number" class="form-label">PAN Number</label>
+            <label for="pan_number" class="form-label">PAN Number <span class="text-success">{{ __('messages.pan_card_compulsory') }}</span></label>
             <input type="text" class="form-control @error('pan_number') is-invalid @enderror"
                 id="pan_number" name="pan_number" value="{{ old('pan_number') }}"
                 pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"

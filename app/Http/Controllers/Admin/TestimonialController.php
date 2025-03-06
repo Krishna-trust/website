@@ -25,9 +25,11 @@ class TestimonialController extends Controller
         $request->validate([
             'en_name' => 'required',
             'gu_name' => 'required',
+            'en_post' => 'nullable',
+            'gu_post' => 'nullable',
             'en_description' => 'required',
             'gu_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|mએax:2048',
             'status' => 'required|integer',
         ]);
 
@@ -39,6 +41,8 @@ class TestimonialController extends Controller
         Testimonial::create([
             'en_name' => $request->en_name,
             'gu_name' => $request->gu_name,
+            'en_post' => $request->en_post,
+            'gu_post' => $request->gu_post,
             'en_description' => $request->en_description,
             'gu_description' => $request->gu_description,
             'image' => $imagePath,
@@ -63,6 +67,8 @@ class TestimonialController extends Controller
         $data = [
             'en_name' => $request->en_name,
             'gu_name' => $request->gu_name,
+            'en_post' => $request->en_post,
+            'gu_post' => $request->gu_post,
             'en_description' => $request->en_description,
             'gu_description' => $request->gu_description,
             'status' => $request->status,

@@ -126,7 +126,7 @@
         <div class="row g-4">
             @foreach($contents as $content)
             <div class="col-6 col-md-4 col-lg-3">
-                <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image w-100">
+                <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image object-fit-sm-contain px-3">
             </div>
             @endforeach
         </div>
@@ -142,11 +142,12 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="testimonial-image-wrapper mb-0">
-                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid rounded-circle shadow-lg">
+                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid  shadow-lg">
                     </div>
                     <div class="card-body">
                         <p class="testimonial-text">{{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}</p>
                         <p class="fw-bold mb-2 text-center">- {{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}</p>
+                        <span class="d-flex align-items-center justify-content-center">{{ $testimonial->{app()->getLocale() . '_post'} ?? '' }}</span>
                         <!-- <span class="d-flex align-items-center justify-content-center">proejct</span> -->
                     </div>
                 </div>

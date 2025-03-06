@@ -23,6 +23,8 @@
             <th class="text-uppercase fw-bold">Image</th>
             <th class="text-uppercase fw-bold">English Name</th>
             <th class="text-uppercase fw-bold">Gujarati Name</th>
+            <th class="text-uppercase fw-bold">English Post</th>
+            <th class="text-uppercase fw-bold">Gujarati Post</th>
             <th class="text-uppercase fw-bold">English Description</th>
             <th class="text-uppercase fw-bold">Gujarati Description</th>
             <th class="text-uppercase fw-bold">Status</th>
@@ -50,6 +52,8 @@
             </td>
             <td>{{ $testimonial->en_name ?? '-' }}</td>
             <td>{{ $testimonial->gu_name ?? '-' }}</td>
+            <td>{{ $testimonial->en_post ?? '-' }}</td>
+            <td>{{ $testimonial->gu_post ?? '-' }}</td>
             <td>{{ $testimonial->en_description ?? '-' }}</td>
             <td>{{ $testimonial->gu_description ?? '-' }}</td>
             <td>{{ $testimonial->status ? 'Active' : 'Inactive' }}</td>

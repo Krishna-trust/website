@@ -18,6 +18,7 @@ return [
     'total_donations' => 'Total Donations',
     'total_donations_amount' => 'Total Donations Amount',
     'total_labharthi' => 'Total Labharthi',
+    'pan_card_compulsory' => 'PAN card is mandatory for tax exemption under Section 80G.',
 
     'daily_content' => 'Daily Content',
     'contact' => 'Contact',
@@ -111,7 +112,7 @@ return [
     'phone' => 'Phone',
     'email' => 'Email',
     'find_us' => 'Find Us',
-    'mon_fri' => 'Mon-Fri, 8am-8pm EST',
+    'mon_sun' => 'Mon-Fri, 8am-1pm EST, 4pm-8pm EST (1pm-4pm break)',
     'send_us_a_message' => 'Send Us a Message',
     'name' => 'Name',
     'email' => 'Email',

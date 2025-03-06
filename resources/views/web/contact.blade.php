@@ -116,12 +116,11 @@
                         <i class="bi bi-telephone text-primary fs-1 mb-3"></i>
                         <h3 class="card-title fw-bold mb-3">{{ @trans('messages.phone') }}</h3>
                         <p class="card-text">
-                            +91 98984 45831<br>
+                            +91 98984 45831,
                             +91 96248 19356
                         </p>
                         <p class="card-text">
-                            <!-- Mon-Fri, 8am-8pm EST -->
-                            {{ @trans('messages.mon_fri') }}
+                            {{ @trans('messages.mon_sun') }}
                         </p>
                     </div>
                 </div>
@@ -232,7 +231,7 @@
 
                         <!-- PAN Number -->
                         <div class="col-md-6 mb-3">
-                            <label for="pan_number" class="form-label">PAN Number</label>
+                            <label for="pan_number" class="form-label">PAN Number <span class="text-success">*{{ __('messages.pan_card_compulsory') }}</span></label>
                             <input type="text" class="form-control @error('pan_number') is-invalid @enderror"
                                 id="pan_number" name="pan_number" value="{{ old('pan_number') }}"
                                 pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"

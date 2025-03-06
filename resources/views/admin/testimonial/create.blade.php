@@ -58,6 +58,30 @@
                             </div>
 
                             <div class="mb-3 col-md-6">
+                                <label for="en_post" class="form-label">Post in English<span>*</span></label>
+                                <input type="text"
+                                    class="form-control @error('en_post') is-invalid @enderror"
+                                    id="en_post"
+                                    name="en_post"
+                                    value="{{ old('en_post') }}">
+                                @error('en_post')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
+                                <label for="gu_post" class="form-label">Post in Gujarati<span>*</span></label>
+                                <input type="text"
+                                    class="form-control @error('gu_post') is-invalid @enderror"
+                                    id="gu_post"
+                                    name="gu_post"
+                                    value="{{ old('gu_post') }}">
+                                @error('gu_post')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 col-md-6">
                                 <label for="en_description" class="form-label">English Description<span>*(Max 1000 characters)</span></label>
                                 <textarea class="form-control @error('en_description') is-invalid @enderror"
                                     id="en_description"
