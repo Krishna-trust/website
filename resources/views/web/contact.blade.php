@@ -151,31 +151,20 @@
 
 <!-- Donation Modal -->
 <div class="modal fade" id="donationModal" tabindex="-1" aria-labelledby="donationModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-fullscreen">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="donationModalLabel">Make a Donation</h5>
+                <h5 class="modal-title fw-bold" id="donationModalLabel">{{ @trans('portal.donation_form') }}</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.donation.store') }}" method="POST" id="donation-form">
+                <form action="{{ route('donation.store') }}" method="POST" id="donation-form">
                     @csrf
                     <div class="row">
-
-                        <!-- Date -->
-                        <div class="col-md-6 mb-3">
-                            <label for="date" class="form-label">Date <span class="text-danger">*</span></label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
-                                name="date" value="{{ old('date', date('Y-m-d')) }}">
-                            @error('date')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <!-- <span id="formattedDate"></span> -->
-                        </div>
-
                         <!-- Donor Name -->
+                        <input type="hidden" name="is_web" value="1">
                         <div class="col-md-6 mb-3">
-                            <label for="full_name" class="form-label">Donor Name <span
+                            <label for="full_name" class="form-label">{{ @trans('portal.donor_name') }} <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('full_name') is-invalid @enderror"
                                 id="full_name" name="full_name" value="{{ old('full_name') }}">
@@ -186,29 +175,19 @@
 
                         <!-- Mobile Number -->
                         <div class="col-md-6 mb-3">
-                            <label for="mobile_number" class="form-label">Mobile Number <span
+                            <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }} <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                 id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
-                                pattern="[0-9]{10}" title="Please enter 10 digits">
+                                title="Please enter 10 digits" maxlength="10">
                             @error('mobile_number')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Address -->
-                        <div class="col-md-12 mb-3">
-                            <label for="address" class="form-label">Address</label>
-                            <textarea class="form-control @error('address') is-invalid @enderror" id="address"
-                                name="address" rows="3">{{ old('address') }}</textarea>
-                            @error('address')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
 
                         <!-- Amount -->
                         <div class="col-md-6 mb-3">
-                            <label for="amount" class="form-label">Amount (₹) <span
+                            <label for="amount" class="form-label">{{ @trans('portal.amount') }} (₹)<span
                                     class="text-danger">*</span></label>
                             <input type="number" step="0.01"
                                 class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount"
@@ -220,10 +199,16 @@
 
                         <!-- Donation For -->
                         <div class="col-md-6 mb-3">
-                            <label for="donation_for" class="form-label">Donation For <span
+                            <label for="donation_for" class="form-label">{{ @trans('portal.donation_for') }} <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('donation_for') is-invalid @enderror"
-                                id="donation_for" name="donation_for" value="{{ old('donation_for') }}">
+                            <select name="donation_for" id="donation_for" class="form-select @error('donation_for') is-invalid @enderror">
+                                <option value="">{{ @trans('portal.select_donation_for') }}</option>
+                                <option value="meals">{{ @trans('portal.meals') }}</option>
+                                <option value="medical">{{ @trans('portal.medical') }}</option>
+                                <option value="education">{{ @trans('portal.education') }}</option>
+                                <option value="rasankit">{{ @trans('portal.rasankit') }}</option>
+                                <option value="other">{{ @trans('portal.other') }}</option>
+                            </select>
                             @error('donation_for')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -231,7 +216,7 @@
 
                         <!-- PAN Number -->
                         <div class="col-md-6 mb-3">
-                            <label for="pan_number" class="form-label">PAN Number <span class="text-success">*{{ __('messages.pan_card_compulsory') }}</span></label>
+                            <label for="pan_number" class="form-label">{{ @trans('portal.pan_number') }} <span class="text-success">*{{ __('messages.pan_card_compulsory') }}</span></label>
                             <input type="text" class="form-control @error('pan_number') is-invalid @enderror"
                                 id="pan_number" name="pan_number" value="{{ old('pan_number') }}"
                                 pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
@@ -241,96 +226,60 @@
                             @enderror
                         </div>
 
-                        <!-- Payment Mode -->
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label">Payment Mode <span class="text-danger">*</span></label>
-                            <select class="form-select @error('payment_mode') is-invalid @enderror"
-                                id="payment_mode" name="payment_mode">
-                                <option value="">Select Payment Mode</option>
-                                <option value="cash" {{ old('payment_mode')=='cash' ? 'selected' : '' }}>Cash
-                                </option>
-                                <option value="cheque" {{ old('payment_mode')=='cheque' ? 'selected' : '' }}>Cheque
-                                </option>
-                                <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
-                                    Transfer</option>
-                            </select>
-                            @error('payment_mode')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Payment Details (Conditional) -->
-                        <div id="payment_details">
-                            <!-- Cheque Fields -->
-                            <div class="row cheque-fields d-none">
-                                <div class="col-md-4 mb-3">
-                                    <label for="cheque_number" class="form-label">Cheque
-                                        Number</label>
-                                    <input type="text"
-                                        class="form-control @error('cheque_number') is-invalid @enderror"
-                                        id="cheque_number" name="cheque_number" value="{{ old('cheque_number') }}">
-                                    @error('cheque_number')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="bank_name" class="form-label">Bank Name</label>
-                                    <input type="text" class="form-control @error('bank_name') is-invalid @enderror"
-                                        id="bank_name" name="bank_name" value="{{ old('bank_name') }}">
-                                    @error('bank_name')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="cheque_date" class="form-label">Cheque Date</label>
-                                    <input type="date"
-                                        class="form-control @error('cheque_date') is-invalid @enderror"
-                                        id="cheque_date" name="cheque_date" value="{{ old('cheque_date') }}">
-                                    @error('cheque_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                        <!-- Online Payment Fields -->
+                        <div class="row online-fields ">
+                            <div class="col-md-6 mb-3">
+                                <label for="transaction_id" class="form-label">{{ @trans('portal.transaction_id') }}</label>
+                                <input type="text"
+                                    class="form-control @error('transaction_id') is-invalid @enderror"
+                                    id="transaction_id" name="transaction_id"
+                                    value="{{ old('transaction_id') }}">
+                                @error('transaction_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
-
-                            <!-- Online Payment Fields -->
-                            <div class="row online-fields d-none">
-                                <div class="col-md-6 mb-3">
-                                    <label for="transaction_id" class="form-label">Transaction ID</label>
-                                    <input type="text"
-                                        class="form-control @error('transaction_id') is-invalid @enderror"
-                                        id="transaction_id" name="transaction_id"
-                                        value="{{ old('transaction_id') }}">
-                                    @error('transaction_id')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label for="transaction_date" class="form-label">Transaction Date</label>
-                                    <input type="datetime-local"
-                                        class="form-control @error('transaction_date') is-invalid @enderror"
-                                        id="transaction_date" name="transaction_date"
-                                        value="{{ old('transaction_date') }}">
-                                    @error('transaction_date')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="transaction_date" class="form-label">{{ @trans('portal.transaction_date') }}</label>
+                                <input type="datetime-local"
+                                    class="form-control @error('transaction_date') is-invalid @enderror"
+                                    id="transaction_date" name="transaction_date"
+                                    value="{{ old('transaction_date') }}">
+                                @error('transaction_date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
 
-                        <!-- Comment -->
-                        <div class="col-md-12 mb-3">
-                            <label for="comment" class="form-label">Comment</label>
-                            <textarea class="form-control @error('comment') is-invalid @enderror" id="comment"
-                                name="comment" rows="3">{{ old('comment') }}</textarea>
-                            @error('comment')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <!-- Address -->
+                        <div class="row online-fields ">
+                            <div class="col-md-6 mb-3">
+                                <label for="address" class="form-label">{{ @trans('portal.address') }}</label>
+                                <textarea class="form-control @error('address') is-invalid @enderror" id="address"
+                                    name="address" rows="3">{{ old('address') }}</textarea>
+                                @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Comment -->
+                            <div class="col-md-6 mb-3">
+                                <label for="comment" class="form-label">{{ @trans('portal.comment') }}</label>
+                                <textarea class="form-control @error('comment') is-invalid @enderror" id="comment"
+                                    name="comment" rows="3">{{ old('comment') }}</textarea>
+                                @error('comment')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-center">
+                        <img src="{{ asset('images/scanner.jpg') }}" alt="scanner" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
+                    </div>
+
                     <div class="text-end">
-                        <button type="submit" class="btn btn-primary">Create Donation</button>
-                        <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">Cancel</a>
+                        <button type="submit" class="btn btn-primary">{{ @trans('portal.save') }}</button>
+                        <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">{{ @trans('portal.cancel') }}</a>
                     </div>
                 </form>
             </div>
@@ -338,7 +287,46 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+@if (session()->has('success'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+    })
+    Toast.fire({
+        icon: 'success',
+        text: "{{ session('success') }}",
+    })
+</script>
+@endif
+
+@if (session()->has('error'))
+<script>
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+    })
+    Toast.fire({
+        icon: 'error',
+        text: "{{ session('error') }}",
+    })
+</script>
+@endif
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+@if ($errors->any())
+<script>
+    $(document).ready(function() {
+        $('#donationModal').modal('show');
+    });
+</script>
+@endif
 
 <script>
     $(document).ready(function() {
@@ -365,30 +353,6 @@
             let formattedInitialDate = formatDate(initialDate);
             // $('#formattedDate').text(`Selected Date: ${formattedInitialDate}`); // Display formatted date on page load
         }
-
-        // payment mode
-        const $paymentMode = $('#payment_mode');
-        const $chequeFields = $('.cheque-fields');
-        const $onlineFields = $('.online-fields');
-
-        console.log($paymentMode);
-
-        // When the payment mode changes
-        $paymentMode.change(function() {
-            // Hide all payment specific fields first
-            $chequeFields.addClass('d-none');
-            $onlineFields.addClass('d-none');
-
-            // Show relevant fields based on payment mode
-            if ($paymentMode.val() === 'cheque') {
-                $chequeFields.removeClass('d-none');
-            } else if ($paymentMode.val() === 'online') {
-                $onlineFields.removeClass('d-none'); // Show both transaction ID and date fields for online
-            }
-        });
-
-        // Trigger the change event on page load to handle initial state
-        $paymentMode.trigger('change');
     });
 </script>
 

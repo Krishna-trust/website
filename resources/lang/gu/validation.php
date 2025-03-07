@@ -39,8 +39,8 @@ return [
     'size_full_name' => 'પૂર્ણ નામ 1 થી 255 અક્ષરો વચ્ચે હોવું જોઈએ.',
 
     'required_mobile_number' => 'મોબાઇલ નંબર જરૂરી છે.',
-    'size_mobile_number' => 'મોબાઇલ નંબર ચોક્કસ 10 અંક હોવો જોઈએ.',
-    'regex_mobile_number' => 'મોબાઇલ નંબરમાં ફક્ત અંક હોવા જોઈએ.',
+    'size_mobile_number' => 'મોબાઇલ નંબર ચોક્કસ 10 નંબર હોવો જોઈએ.',
+    'regex_mobile_number' => 'મોબાઇલ નંબરમાં ફક્ત નંબર હોવા જોઈએ.',
 
     'string_address' => 'સરનામું માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
 
@@ -64,9 +64,11 @@ return [
 
     'date_cheque_date' => 'ચેકની તારીખ માન્ય તારીખ હોવી જોઈએ.',
 
-    'string_transaction_id' => 'લેણદેણ ID માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
-    'date_transaction_date' => 'લેણદેણ તારીખ માન્ય તારીખ હોવી જોઈએ.',
-    'required_transaction_date' => 'લેણદેણ તારીખ જરૂરી છે.',
+    'required_transaction_id' => 'પેમેન્ટ ID જરૂરી છે.',
+    'string_transaction_id' => 'પેમેન્ટ ID માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'required_transaction_date' => 'પેમેન્ટ તારીખ જરૂરી છે.',
+    'date_transaction_date' => 'પેમેન્ટ તારીખ માન્ય તારીખ હોવી જોઈએ.',
+    'required_transaction_date' => 'પેમેન્ટ તારીખ જરૂરી છે.',
 
 
     // Labharthi Validation
@@ -90,13 +92,11 @@ return [
     'regex_adhar_number' => 'આધાર નંબરમાં ફક્ત અંક હોવા જોઈએ.',
     'required_mobile_number' => 'મોબાઇલ નંબર જરૂરી છે.',
     'string_mobile_number' => 'મોબાઇલ નંબર માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
-    'size_mobile_number' => 'મોબાઇલ નંબરમાં ચોક્કસ :size અંકો હોવા જોઈએ.',
-    'regex_mobile_number' => 'મોબાઇલ નંબરમાં ફક્ત અંક હોવા જોઈએ.',
-    'required_category' => 'કાર્યક્રમ જરૂરી છે.',
+    'required_category' => 'વર્ગ જરૂરી છે.',
     'required_work' => 'કામ જરૂરી છે.',
     'string_work' => 'કામ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'max_work' => 'કામમાં ઓછામાં ઓછું :max અક્ષર હોવું જોઈએ.',
-    'required_identification_mark' => 'આઈડેન્ટિફિકેશન માર્ક જરૂરી છે.',
+    'required_identification_mark' => 'કોઈ કાયમી ખોળ-ખાપણ અથવા કાયમી બીમારી જરૂરી છે.',
     'string_identification_mark' => 'આઈડેન્ટિફિકેશન માર્ક માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'max_identification_mark' => 'આઈડેન્ટિફિકેશન માર્કમાં ઓછામાં ઓછું :max અક્ષર હોવું જોઈએ.',
     'required_income_source' => 'આવકનો સ્ત્રોત જરૂરી છે.',
@@ -123,8 +123,6 @@ return [
     'required_email' => 'ઈમેઈલ જરૂરી છે.',
     'string_email' => 'ઈમેઈલ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'required_mobile_number' => 'મોબાઇલ નંબર જરૂરી છે.',
-    'size_mobile_number' => 'મોબાઇલ નંબરમાં ચોક્કસ :size અંકો હોવા જોઈએ.',
-    'regex_mobile_number' => 'મોબાઇલ નંબરમાં ફક્ત અંક હોવા જોઈએ.',
     'required_address' => 'સરનામું જરૂરી છે.',
     'string_address' => 'સરનામું માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'required_phone' => 'ફોન નંબર જરૂરી છે.',

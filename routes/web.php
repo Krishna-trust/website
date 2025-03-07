@@ -31,6 +31,7 @@ Route::get('/contact', [webController::class, 'contact'])->name('contact');
 Route::post('/contact', [webController::class, 'contactPost'])->name('contact.store');
 // Route::get('/services', [webController::class, 'services'])->name('services');
 Route::get('/impact', [webController::class, 'impacts'])->name('impact');
+Route::post('/donation', [webController::class, 'donationStore'])->name('donation.store');
 
 
 Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('admin.labharthi.destroy');

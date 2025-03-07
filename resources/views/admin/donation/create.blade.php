@@ -4,13 +4,13 @@
 <div class="page-header">
     <div>
         <h1 class="page-title">
-            Add Donation
+            {{ @trans('portal.add') }} {{ @trans('messages.donation') }}
         </h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Add Donation</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('portal.add') }} {{ @trans('messages.donation') }}</li>
         </ol>
     </div>
 </div>

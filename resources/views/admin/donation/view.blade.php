@@ -2,13 +2,13 @@
     <thead>
         <tr role="row">
             <th class="text-uppercase fw-bold">#</th>
-            <th class="text-uppercase fw-bold">Receipt No</th>
-            <th class="text-uppercase fw-bold">Date</th>
-            <th class="text-uppercase fw-bold">Donor Name</th>
-            <th class="text-uppercase fw-bold">Mobile</th>
-            <th class="text-uppercase fw-bold">Amount</th>
-            <th class="text-uppercase fw-bold">Payment Mode</th>
-            <th class="text-uppercase fw-bold text-center">Action</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.receipt_number') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.date') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.donor_name') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.mobile') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.amount') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.payment_mode') }}</th>
+            <th class="text-uppercase fw-bold text-center">{{ @trans('portal.action') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -20,10 +20,10 @@
         @forelse($donations as $index => $donation)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td>{{ $donation->receipt_number }}</td>
+            <td>{{ $donation->receipt_number ?? '-' }}</td>
             <td>{{ date('d-m-Y', strtotime($donation->date)) }}</td>
-            <td>{{ $donation->full_name }}</td>
-            <td>{{ $donation->mobile_number }}</td>
+            <td>{{ $donation->full_name ?? '-' }}</td>
+            <td>{{ $donation->mobile_number ?? '-' }}</td>
             <td>₹{{ number_format($donation->amount, 2) }}</td>
             <td>{{ ucfirst($donation->payment_mode) }}</td>
             <td class="text-center">

@@ -3,11 +3,11 @@
     <div class="row">
         <!-- Receipt Number -->
         <div class="col-md-6 mb-3">
-            <label for="receipt_number" class="form-label">Receipt Number <span
+            <label for="receipt_number" class="form-label">{{ @trans('portal.receipt_number') }} <span
                     class="text-danger">*</span></label>
             <input type="text" class="form-control @error('receipt_number') is-invalid @enderror"
                 id="receipt_number" name="receipt_number"
-                value="{{ old('receipt_number', $nextReceiptNumber) }}">
+                value="{{ old('receipt_number') }}">
             @error('receipt_number')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -15,7 +15,7 @@
 
         <!-- Date -->
         <div class="col-md-6 mb-3">
-            <label for="date" class="form-label">Date <span class="text-danger">*</span></label>
+            <label for="date" class="form-label">{{ @trans('portal.date') }} <span class="text-danger">*</span></label>
             <input type="date" class="form-control @error('date') is-invalid @enderror" id="date"
                 name="date" value="{{ old('date', date('Y-m-d')) }}">
             @error('date')
@@ -25,7 +25,7 @@
 
         <!-- Donor Name -->
         <div class="col-md-6 mb-3">
-            <label for="full_name" class="form-label">Donor Name <span
+            <label for="full_name" class="form-label">{{ @trans('portal.donor_name') }} <span
                     class="text-danger">*</span></label>
             <input type="text" class="form-control @error('full_name') is-invalid @enderror"
                 id="full_name" name="full_name" value="{{ old('full_name') }}">
@@ -36,7 +36,7 @@
 
         <!-- Mobile Number -->
         <div class="col-md-6 mb-3">
-            <label for="mobile_number" class="form-label">Mobile Number <span
+            <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }} <span
                     class="text-danger">*</span></label>
             <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                 id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
@@ -48,7 +48,7 @@
 
         <!-- Address -->
         <div class="col-md-12 mb-3">
-            <label for="address" class="form-label">Address</label>
+            <label for="address" class="form-label">{{ @trans('portal.address') }}</label>
             <textarea class="form-control @error('address') is-invalid @enderror" id="address"
                 name="address" rows="3">{{ old('address') }}</textarea>
             @error('address')
@@ -58,7 +58,7 @@
 
         <!-- Amount -->
         <div class="col-md-6 mb-3">
-            <label for="amount" class="form-label">Amount (₹) <span
+            <label for="amount" class="form-label">{{ @trans('portal.amount') }} (₹)<span
                     class="text-danger">*</span></label>
             <input type="number" step="0.01"
                 class="form-control @error('amount') is-invalid @enderror" id="amount" name="amount"
@@ -70,10 +70,16 @@
 
         <!-- Donation For -->
         <div class="col-md-6 mb-3">
-            <label for="donation_for" class="form-label">Donation For <span
+            <label for="donation_for" class="form-label">{{ @trans('portal.donation_for') }} <span
                     class="text-danger">*</span></label>
-            <input type="text" class="form-control @error('donation_for') is-invalid @enderror"
-                id="donation_for" name="donation_for" value="{{ old('donation_for') }}">
+            <select name="donation_for" id="donation_for" class="form-select @error('donation_for') is-invalid @enderror">
+                <option value="">{{ @trans('portal.select_donation_for') }}</option>
+                <option value="meals">{{ @trans('portal.meals') }}</option>
+                <option value="medical">{{ @trans('portal.medical') }}</option>
+                <option value="education">{{ @trans('portal.education') }}</option>
+                <option value="rasankit">{{ @trans('portal.rasankit') }}</option>
+                <option value="other">{{ @trans('portal.other') }}</option>
+            </select>
             @error('donation_for')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -81,7 +87,7 @@
 
         <!-- PAN Number -->
         <div class="col-md-6 mb-3">
-            <label for="pan_number" class="form-label">PAN Number <span class="text-success">{{ __('messages.pan_card_compulsory') }}</span></label>
+            <label for="pan_number" class="form-label">{{ @trans('portal.pan_number') }} <span class="text-success">*{{ __('messages.pan_card_compulsory') }}</span></label>
             <input type="text" class="form-control @error('pan_number') is-invalid @enderror"
                 id="pan_number" name="pan_number" value="{{ old('pan_number') }}"
                 pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}"
@@ -93,15 +99,15 @@
 
         <!-- Payment Mode -->
         <div class="col-md-6 mb-3">
-            <label class="form-label">Payment Mode <span class="text-danger">*</span></label>
+            <label class="form-label">{{ @trans('portal.payment_mode') }} <span class="text-danger">*</span></label>
             <select class="form-select @error('payment_mode') is-invalid @enderror"
                 id="payment_mode" name="payment_mode">
                 <option value="">Select Payment Mode</option>
-                <option value="cash" {{ old('payment_mode')=='cash' ? 'selected' : '' }}>Cash
+                <option value="cash" {{ old('payment_mode')=='cash' ? 'selected' : '' }}>{{ @trans('portal.cash') }}
                 </option>
-                <option value="cheque" {{ old('payment_mode')=='cheque' ? 'selected' : '' }}>Cheque
+                <option value="cheque" {{ old('payment_mode')=='cheque' ? 'selected' : '' }}>{{ @trans('portal.cheque') }}
                 </option>
-                <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>Online
+                <option value="online" {{ old('payment_mode')=='online' ? 'selected' : '' }}>{{ @trans('portal.online_transfer') }}</option>
                     Transfer</option>
             </select>
             @error('payment_mode')
@@ -114,8 +120,7 @@
             <!-- Cheque Fields -->
             <div class="row cheque-fields d-none">
                 <div class="col-md-4 mb-3">
-                    <label for="cheque_number" class="form-label">Cheque
-                        Number</label>
+                    <label for="cheque_number" class="form-label">{{ @trans('portal.cheque_number') }}</label>
                     <input type="text"
                         class="form-control @error('cheque_number') is-invalid @enderror"
                         id="cheque_number" name="cheque_number" value="{{ old('cheque_number') }}">
@@ -124,7 +129,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="bank_name" class="form-label">Bank Name</label>
+                    <label for="bank_name" class="form-label">{{ @trans('portal.bank_name') }}</label>
                     <input type="text" class="form-control @error('bank_name') is-invalid @enderror"
                         id="bank_name" name="bank_name" value="{{ old('bank_name') }}">
                     @error('bank_name')
@@ -132,7 +137,7 @@
                     @enderror
                 </div>
                 <div class="col-md-4 mb-3">
-                    <label for="cheque_date" class="form-label">Cheque Date</label>
+                    <label for="cheque_date" class="form-label">{{ @trans('portal.cheque_date') }}</label>
                     <input type="date"
                         class="form-control @error('cheque_date') is-invalid @enderror"
                         id="cheque_date" name="cheque_date" value="{{ old('cheque_date') }}">
@@ -145,7 +150,7 @@
             <!-- Online Payment Fields -->
             <div class="row online-fields d-none">
                 <div class="col-md-6 mb-3">
-                    <label for="transaction_id" class="form-label">Transaction ID</label>
+                    <label for="transaction_id" class="form-label">{{ @trans('portal.transaction_id') }}</label>
                     <input type="text"
                         class="form-control @error('transaction_id') is-invalid @enderror"
                         id="transaction_id" name="transaction_id"
@@ -155,7 +160,7 @@
                     @enderror
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="transaction_date" class="form-label">Transaction Date</label>
+                    <label for="transaction_date" class="form-label">{{ @trans('portal.transaction_date') }}</label>
                     <input type="datetime-local"
                         class="form-control @error('transaction_date') is-invalid @enderror"
                         id="transaction_date" name="transaction_date"
@@ -169,7 +174,7 @@
 
         <!-- Comment -->
         <div class="col-md-12 mb-3">
-            <label for="comment" class="form-label">Comment</label>
+            <label for="comment" class="form-label">{{ @trans('portal.comment') }}</label>
             <textarea class="form-control @error('comment') is-invalid @enderror" id="comment"
                 name="comment" rows="3">{{ old('comment') }}</textarea>
             @error('comment')
@@ -179,7 +184,7 @@
     </div>
 
     <div class="text-end">
-        <button type="submit" class="btn btn-primary">Create Donation</button>
-        <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary">{{ @trans('portal.save') }}</button>
+        <a href="{{ route('admin.donation.index') }}" class="btn btn-secondary">{{ @trans('portal.cancel') }}</a>
     </div>
 </form>

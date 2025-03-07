@@ -91,4 +91,48 @@ class WebController extends Controller
         // Redirect or return a response
         return back()->with('success', 'Your message has been sent successfully!');
     }
+
+    public function donationStore(Request $request)
+    {
+        $validated = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
+            'address' => 'nullable|string',
+            'amount' => 'required|numeric|min:0',
+            'donation_for' => 'required|string|max:255',
+            'comment' => 'nullable|string',
+            'pan_number' => 'nullable|string|max:10|regex:/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/',
+            'transaction_id' => 'required|string|max:100',
+            'transaction_date' => 'required|date',
+        ], [
+            'full_name.required' => __('validation.required_full_name'),
+            'full_name.string' => __('validation.size_full_name'),
+            'mobile_number.required' => __('validation.required_mobile_number'),
+            'mobile_number.size' => __('validation.size_mobile_number'),
+            'mobile_number.regex' => __('validation.regex_mobile_number'),
+            'address.string' => __('validation.string_address'),
+            'amount.required' => __('validation.required_amount'),
+            'amount.numeric' => __('validation.numeric_amount'),
+            'amount.min' => __('validation.min_amount'),
+            'donation_for.required' => __('validation.required_donation_for'),
+            'donation_for.string' => __('validation.string_donation_for'),
+            'comment.string' => __('validation.string_comment'),
+            'pan_number.regex' => __('validation.regex_pan_number'),
+            'transaction_id.required' => __('validation.required_transaction_id'),
+            'transaction_date.required' => __('validation.required_transaction_date'),
+            'transaction_id.string' => __('validation.string_transaction_id'),
+            'transaction_date.date' => __('validation.date_transaction_date'),
+        ]);
+
+        $validated['date'] = date('Y-m-d');
+        // Sanitize inputs
+        $validated = array_map(function ($value) {
+            return is_string($value) ? strip_tags($value) : $value;
+        }, $validated);
+
+        Donation::create($validated);
+
+        return redirect()->route('contact')
+            ->with('success', __('portal.donation_receipt_created'));
+    }
 }
