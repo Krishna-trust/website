@@ -4,13 +4,13 @@
 <div class="page-header">
         <div>
             <h1 class="page-title">
-                Edit Content
+                {{ @trans('portal.edit') }} {{ @trans('portal.content') }}
             </h1>
         </div>
         <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Edit Content</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ @trans('portal.edit') }} {{ @trans('portal.content') }}</li>
             </ol>
         </div>
     </div>
@@ -34,7 +34,7 @@
                         @method('PUT')
 
                         <div class="mb-3">
-                            <label for="image" class="form-label">Image</label>
+                            <label for="image" class="form-label">{{ @trans('portal.poster') }}</label>
                             @if($content->image)
                                 <div class="mb-2">
                                     <img src="{{ asset('storage/' . $content->image) }}"
@@ -52,12 +52,12 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <small class="form-text text-muted">
-                                Leave empty to keep the current image. Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB
+                                {{ @trans('portal.accepted_formats') }}
                             </small>
                         </div>
 
                         <div class="mb-3">
-                            <label for="upload_date" class="form-label">Upload Date</label>
+                            <label for="upload_date" class="form-label">{{ @trans('portal.date') }}</label>
                             <input type="date"
                                    class="form-control @error('upload_date') is-invalid @enderror"
                                    id="upload_date"
@@ -71,7 +71,7 @@
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fa fa-save"></i> Update
+                                <i class="fa fa-save"></i> {{ @trans('portal.update') }}
                             </button>
                         </div>
                     </form>

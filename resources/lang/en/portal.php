@@ -31,6 +31,15 @@ return [
     'country' => 'Country',
     'pincode' => 'Pincode',
     'action' => 'Action',
+    'subject' => 'Subject',
+    'message' => 'Message',
+    'image' => 'Image',
+    'poster' => 'Poster',
+    'date' => 'Date',
+    'post' => 'Post',
+    'description' => 'Description',
+    'status' => 'Status',
+    'title' => 'Title',
 
     // labharthi
     'labharthi' => 'Labharthi',
@@ -83,5 +92,22 @@ return [
     'comment' => 'Comment',
 
     'donation_receipt_created' => 'Donation receipt created successfully!',
+    'donation_receipt_updated' => 'Donation receipt updated successfully!',
+    'donation_receipt_deleted' => 'Donation receipt deleted successfully!',
+    'password_change' => 'Password changed successfully!',
+    'current_password_incorrect' => 'The provided password does not match our records.',
+    'content_updated' => 'Content updated successfully!',
+    'content_deleted' => 'Content deleted successfully!',
+    'labharthi_created' => 'Labharthi created successfully!',
+    'labharthi_updated' => 'Labharthi updated successfully!',
+    'labharthi_deleted' => 'Labharthi deleted successfully!',
+    'service_created' => 'Service created successfully!',
+    'service_updated' => 'Service updated successfully!',
+    'service_deleted' => 'Service deleted successfully!',
+    'testimonial_created' => 'Testimonial created successfully!',
+    'testimonial_updated' => 'Testimonial updated successfully!',
+    'testimonial_deleted' => 'Testimonial deleted successfully!',
+
+    'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
 
 ];

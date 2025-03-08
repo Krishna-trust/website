@@ -20,16 +20,18 @@
     <thead>
         <tr role="row">
             <th class="text-uppercase fw-bold">#</th>
-            <th class="text-uppercase fw-bold">Image</th>
-            <th class="text-uppercase fw-bold">English Name</th>
-            <th class="text-uppercase fw-bold">Gujarati Name</th>
-            <th class="text-uppercase fw-bold">English Post</th>
-            <th class="text-uppercase fw-bold">Gujarati Post</th>
-            <th class="text-uppercase fw-bold">English Description</th>
-            <th class="text-uppercase fw-bold">Gujarati Description</th>
-            <th class="text-uppercase fw-bold">Status</th>
-            <th class="text-center text-uppercase fw-bold">
-                Actions </th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.image') }}</th>
+            @if(app()->getLocale() == 'gu')
+            <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.post') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.description') }}</th>
+            @else
+            <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.post') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.description') }}</th>
+            @endif
+            <th class="text-uppercase fw-bold">{{ @trans('portal.status') }}</th>
+            <th class="text-center text-uppercase fw-bold">{{ @trans('portal.action') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -50,12 +52,15 @@
                 <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 @endif
             </td>
-            <td>{{ $testimonial->en_name ?? '-' }}</td>
+            @if(app()->getLocale() == 'gu')
             <td>{{ $testimonial->gu_name ?? '-' }}</td>
-            <td>{{ $testimonial->en_post ?? '-' }}</td>
             <td>{{ $testimonial->gu_post ?? '-' }}</td>
-            <td>{{ $testimonial->en_description ?? '-' }}</td>
             <td>{{ $testimonial->gu_description ?? '-' }}</td>
+            @else
+            <td>{{ $testimonial->en_name ?? '-' }}</td>
+            <td>{{ $testimonial->en_post ?? '-' }}</td>
+            <td>{{ $testimonial->en_description ?? '-' }}</td>
+            @endif
             <td>{{ $testimonial->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">
                 <div class="btn-group">

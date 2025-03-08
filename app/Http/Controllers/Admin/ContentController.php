@@ -68,7 +68,7 @@ class ContentController extends Controller
         $content->update($data);
 
         return redirect()->route('admin.contents.index')
-            ->with('success', 'Content updated successfully');
+            ->with('success', __('portal.content_updated'));
     }
 
     public function destroy(Request $request)
@@ -84,6 +84,6 @@ class ContentController extends Controller
         $content->delete();
 
         return redirect()->route('admin.contents.index')
-            ->with('success', 'Content deleted successfully');
+            ->with('success', __('portal.content_deleted'));
     }
 }

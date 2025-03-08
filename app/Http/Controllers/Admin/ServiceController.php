@@ -57,7 +57,7 @@ class ServiceController extends Controller
         ]);
 
         return redirect()->route('admin.service.index')
-            ->with('success', 'Service added successfully');
+            ->with('success', __('portal.service_created'));
     }
 
     public function edit(Service $service)
@@ -94,7 +94,7 @@ class ServiceController extends Controller
         $service->update($data);
 
         return redirect()->route('admin.service.index')
-            ->with('success', 'Service updated successfully');
+            ->with('success', __('portal.service_updated'));
     }
 
     public function destroy(Request $request)
@@ -110,6 +110,6 @@ class ServiceController extends Controller
         $service->delete();
 
         return redirect()->route('admin.service.index')
-            ->with('success', 'Service deleted successfully');
+            ->with('success', __('portal.service_deleted'));
     }
 }

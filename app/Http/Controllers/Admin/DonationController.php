@@ -84,7 +84,7 @@ class DonationController extends Controller
         Donation::create($validated);
 
             return redirect()->route('admin.donation.index')
-                ->with('success', 'Donation receipt created successfully!');
+                ->with('success', __('portal.donation_receipt_created'));
     }
 
     public function show(Donation $donation)
@@ -152,7 +152,7 @@ class DonationController extends Controller
         $donation->update($validated);
 
         return redirect()->route('admin.donation.index')
-            ->with('success', 'Donation receipt updated successfully!');
+            ->with('success', __('portal.donation_receipt_updated'));
     }
 
     // public function destroy(Donation $donation)
@@ -174,7 +174,7 @@ class DonationController extends Controller
         // $form = Donation::withTrashed()->find($donationId);
         // $form->forceDelete();
 
-        return redirect()->route('admin.donation.index')->with('success', 'Donation receipt deleted successfully!');
+        return redirect()->route('admin.donation.index')->with('success', __('portal.donation_receipt_deleted'));
     }
 
     public function export()

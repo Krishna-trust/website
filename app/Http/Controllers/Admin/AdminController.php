@@ -43,11 +43,11 @@ class AdminController extends Controller
             $user->password = Hash::make($validated['password']);
             $user->save();
 
-            return redirect()->back()->with('success', 'Password changed successfully!');
+            return redirect()->back()->with('success', __('portal.password_changed'));
         }
 
         return redirect()->back()->withErrors([
-            'current_password' => 'The provided credentials do not match our records.',
+            'current_password' => __('portal.current_password_incorrect'),
         ])->withInput($request->only('current_password'));
     }
 }

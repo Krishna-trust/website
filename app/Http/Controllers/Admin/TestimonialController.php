@@ -50,7 +50,7 @@ class TestimonialController extends Controller
         ]);
 
         return redirect()->route('admin.testimonial.index')
-            ->with('success', 'Testimonial added successfully');
+            ->with('success', __('portal.testimonial_created'));
     }
 
     public function edit(Testimonial $testimonial)
@@ -85,7 +85,7 @@ class TestimonialController extends Controller
         $testimonial->update($data);
 
         return redirect()->route('admin.testimonial.index')
-            ->with('success', 'testimonial updated successfully');
+            ->with('success', __('portal.testimonial_updated'));
     }
 
     public function destroy(Request $request)
@@ -101,6 +101,6 @@ class TestimonialController extends Controller
         $testimonial->delete();
 
         return redirect()->route('admin.testimonial.index')
-            ->with('success', 'testimonial Deleted successfully');
+            ->with('success', __('portal.testimonial_deleted'));
     }
 }

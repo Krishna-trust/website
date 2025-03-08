@@ -94,7 +94,7 @@
                                 <span class="dashboard-currency me-2">Total:</span>
                             </div> -->
                             <div class="d-flex align-items-start">
-                                <h4 class="fw-semibold spincrement m-0 text-primary" id="">{{ $total_donations_amount ?? 0 }}
+                                <h4 class="fw-semibold spincrement m-0 text-primary" id="">(₹) {{ $total_donations_amount ?? 0 }}
                                 </h4>
                             </div>
                         </div>

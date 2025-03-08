@@ -21,11 +21,12 @@
         <tr role="row">
             <th class="text-uppercase fw-bold">#
             </th>
-            <th class="text-uppercase fw-bold">Name</th>
-            <th class="text-uppercase fw-bold">Email</th>
-            <th class="text-uppercase fw-bold">Mobile Number</th>
-            <th class="text-uppercase fw-bold">Subject</th>
-            <th class="text-uppercase fw-bold">Message</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.email') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.mobile') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.subject') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.message') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.date') }}</th>
         </tr>
     </thead>
     <tbody>

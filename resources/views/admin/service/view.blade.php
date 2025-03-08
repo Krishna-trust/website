@@ -20,14 +20,16 @@
     <thead>
         <tr role="row">
             <th class="text-uppercase fw-bold">#</th>
-            <th class="text-uppercase fw-bold">Image</th>
-            <th class="text-uppercase fw-bold">English Tital</th>
-            <th class="text-uppercase fw-bold">Gujarati Tital</th>
-            <th class="text-uppercase fw-bold">English Description</th>
-            <th class="text-uppercase fw-bold">Gujarati Description</th>
-            <th class="text-uppercase fw-bold">Status</th>
-            <th class="text-center text-uppercase fw-bold">
-                Actions </th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.image') }}</th>
+            @if(app()->getLocale() == 'gu')
+            <th class="text-uppercase fw-bold">{{ @trans('portal.title') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.description') }}</th>
+            @else
+            <th class="text-uppercase fw-bold">{{ @trans('portal.title') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.description') }}</th>
+            @endif
+            <th class="text-uppercase fw-bold">{{ @trans('portal.status') }}</th>
+            <th class="text-center text-uppercase fw-bold">{{ @trans('portal.action') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -48,10 +50,13 @@
                 <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 @endif
             </td>
-            <td>{{ $service->en_title ?? '-' }}</td>
+            @if(app()->getLocale() == 'gu')
             <td>{{ $service->gu_title ?? '-' }}</td>
-            <td>{{ $service->en_description ?? '-' }}</td>
             <td>{{ $service->gu_description ?? '-' }}</td>
+            @else
+            <td>{{ $service->en_title ?? '-' }}</td>
+            <td>{{ $service->en_description ?? '-' }}</td>
+            @endif
             <td>{{ $service->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">
                 <div class="btn-group">

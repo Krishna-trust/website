@@ -106,7 +106,7 @@ class LabharthiController extends Controller
         Labharthi::create($validated);
 
         return redirect()->route('admin.labharthi.index')
-            ->with('success', 'Labharthi added successfully!');
+            ->with('success', __('portal.labharthi_created'));
     }
 
     public function edit(Labharthi $labharthi)
@@ -176,7 +176,7 @@ class LabharthiController extends Controller
         $labharthi->update($validated);
 
         return redirect()->route('admin.labharthi.index')
-            ->with('success', 'Labharthi updated successfully!');
+            ->with('success', __('portal.labharthi_updated'));
     }
 
     // public function destroy(Labharthi $labharthi)
@@ -197,7 +197,7 @@ class LabharthiController extends Controller
         // $form = Labharthi::withTrashed()->find($id);
         // $form->forceDelete();
 
-        return redirect()->route('admin.labharthi.index')->with('success', 'Labharthi deleted successfully!');
+        return redirect()->route('admin.labharthi.index')->with('success', __('portal.labharthi_deleted'));
     }
 
     public function export()

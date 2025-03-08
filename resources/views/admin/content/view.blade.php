@@ -21,10 +21,9 @@
         <tr role="row">
             <th class="text-uppercase fw-bold">#
             </th>
-            <th class="text-uppercase fw-bold">Image</th>
-            <th class="text-uppercase fw-bold">Upload Date</th>
-            <th class="text-center text-uppercase fw-bold">
-                Actions </th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.poster') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.date') }}</th>
+            <th class="text-center text-uppercase fw-bold">{{ @trans('portal.action') }}</th>
         </tr>
     </thead>
     <tbody>

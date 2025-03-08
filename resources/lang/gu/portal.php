@@ -31,6 +31,15 @@ return [
     'country' => 'દેશ',
     'pincode' => 'પિનકોડ',
     'action' => 'ક્રિયા',
+    'subject' => 'વિષય',
+    'message' => 'સંદેશ',
+    'image' => 'ચિત્ર',
+    'poster' => 'પોસ્ટર',
+    'date' => 'તારીખ',
+    'post' => 'પોસ્ટ',
+    'description' => 'વર્ણન',
+    'status' => 'સ્થિતિ',
+    'title' => 'શીર્ષક',
 
     // labharthi
     'full_name' => 'પૂર્ણ નામ',
@@ -82,4 +91,21 @@ return [
     'comment' => 'મંતવ્ય',
 
     'donation_receipt_created' => 'દાન રસીદ બનાવી ગયેલ છે!',
+    'donation_receipt_updated' => 'દાન રસીદ સુધારેલ છે!',
+    'donation_receipt_deleted' => 'દાન રસીદ કાઢી નાખવાયેલ છે!',
+    'password_change' => 'પાસવર્ડ બદલાયેલ છે!',
+    'current_password_incorrect' => 'વર્તમાન પાસવર્ડ ખોટો છે.',
+    'content_updated' => 'પોસ્ટર સુધારેલ છે!',
+    'content_deleted' => 'પોસ્ટર કાઢી નાખવાયેલ છે!',
+    'labharthi_created' => 'લાભાર્થી બનાવાયેલ છે!',
+    'labharthi_updated' => 'લાભાર્થી સુધારેલ છે!',
+    'labharthi_deleted' => 'લાભાર્થી કાઢી નાખવાયેલ છે!',
+    'service_created' => 'સેવા બનાવાયેલ છે!',
+    'service_updated' => 'સેવા સુધારેલ છે!',
+    'service_deleted' => 'સેવા કાઢી નાખવાયેલ છે!',
+    'testimonial_created' => 'વિચારો બનાવાયેલ છે!',
+    'testimonial_updated' => 'વિચારો સુધારેલ છે!',
+    'testimonial_deleted' => 'વિચારો કાઢી નાખવાયેલ છે!',
+
+    'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
 ];
