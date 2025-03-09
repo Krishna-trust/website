@@ -125,7 +125,7 @@
         </div>
         <div class="row g-4">
             @foreach($contents as $content)
-            <div class="col-6 col-md-4 col-lg-3">
+            <div class="col-md-6 col-lg-3">
                 <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image object-fit-sm-contain px-3">
             </div>
             @endforeach
