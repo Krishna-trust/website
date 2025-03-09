@@ -44,6 +44,16 @@ class WebController extends Controller
         return view('web.services');
     }
 
+    public function privacyPolicy()
+    {
+        return view('module.'. app()->getLocale() .'-privacy-policy');
+    }
+
+    public function termsAndConditions()
+    {
+        return view('module.'. app()->getLocale() .'-terms-and-conditions');
+    }
+
     public function impacts()
     {
         $contents = Content::orderBy('upload_date', 'desc')->get();

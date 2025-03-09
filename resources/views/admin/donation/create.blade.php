@@ -29,7 +29,7 @@
                         </ul>
                     </div>
                     @endif -->
-                    @include('admin.module.donation-form')
+                    @include('module.donation-form')
                 </div>
             </div>
         </div>

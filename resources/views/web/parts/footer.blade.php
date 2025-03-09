@@ -54,8 +54,8 @@
                 <p class="mb-0">&copy; {{ date('Y') }} {{ @trans('messages.trust_name') }}. {{ @trans('messages.all_rights_reserved') }}</p>
             </div>
             <div class="col-md-6 text-center text-md-end">
-                <a href="#" class="text-white text-decoration-none me-3">{{ @trans('messages.privacy_policy') }}</a>
-                <a href="#" class="text-white text-decoration-none">{{ @trans('messages.terms_of_service') }}</a>
+                <a href="{{ route('privacy-policy') }}" class="text-white text-decoration-none me-3">{{ @trans('messages.privacy_policy') }}</a>
+                <a href="{{ route('terms-and-conditions') }}" class="text-white text-decoration-none">{{ @trans('messages.terms_of_service') }}</a>
             </div>
         </div>
     </div>
