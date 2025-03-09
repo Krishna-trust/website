@@ -20,7 +20,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @if($errors->any())
+                    <!-- @if($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">
                             @foreach($errors->all() as $error)
@@ -28,87 +28,50 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif
+                    @endif -->
                     <form action="{{ route('admin.testimonial.update', $testimonial) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="name" class="form-label">User Name in English</label>
+                                <label for="name" class="form-label">{{ @trans('portal.name') }}<span>*</span></label>
                                 <input type="text"
-                                    class="form-control @error('en_name') is-invalid @enderror"
-                                    id="en_name"
-                                    name="en_name"
-                                    value="{{ old('en_name', $testimonial->en_name) }}"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    id="name"
+                                    name="name"
+                                    value="{{ old('name', $testimonial->gu_name) }}"
                                     required>
-                                @error('en_name')
+                                @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="gu_name" class="form-label">User Name in Gujarati</label>
+                                <label for="post" class="form-label">Post <span>*</span></label>
                                 <input type="text"
-                                    class="form-control @error('gu_name') is-invalid @enderror"
-                                    id="gu_name"
-                                    name="gu_name"
-                                    value="{{ old('gu_name', $testimonial->gu_name) }}"
+                                    class="form-control @error('post') is-invalid @enderror"
+                                    id="post"
+                                    name="post"
+                                    value="{{ old('post', $testimonial->gu_post) }}"
                                     required>
-                                @error('gu_name')
+                                @error('post')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="en_post" class="form-label">Post in English <span>*</span></label>
-                                <input type="text"
-                                    class="form-control @error('en_post') is-invalid @enderror"
-                                    id="en_post"
-                                    name="en_post"
-                                    value="{{ old('en_post', $testimonial->en_post) }}"
-                                    required>
-                                @error('en_post')
+                                <label for="description" class="form-label">{{ @trans('portal.description') }} <span>*(Max 1000 characters)</span></label>
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                    id="description"
+                                    name="description"
+                                    rows="3">{{ old('description', $testimonial->gu_description) }}</textarea>
+                                @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="gu_post" class="form-label">Post in Gujarati <span>*</span></label>
-                                <input type="text"
-                                    class="form-control @error('gu_post') is-invalid @enderror"
-                                    id="gu_post"
-                                    name="gu_post"
-                                    value="{{ old('gu_post', $testimonial->gu_post) }}"
-                                    required>
-                                @error('gu_post')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="en_description" class="form-label">English Description <span>*(Max 1000 characters)</span></label>
-                                <textarea class="form-control @error('en_description') is-invalid @enderror"
-                                    id="en_description"
-                                    name="en_description"
-                                    rows="3">{{ old('en_description', $testimonial->en_description) }}</textarea>
-                                @error('en_description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="gu_description" class="form-label">Gujarati Description<span>*(Max 1000 characters)</span></label>
-                                <textarea class="form-control @error('gu_description') is-invalid @enderror"
-                                    id="gu_description"
-                                    name="gu_description"
-                                    rows="3">{{ old('gu_description', $testimonial->gu_description) }}</textarea>
-                                @error('gu_description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="status" class="form-label">Status</label>
+                                <label for="status" class="form-label">{{ @trans('portal.status') }}</label>
                                 <select class="form-select @error('status') is-invalid @enderror"
                                     id="status"
                                     name="status"
@@ -121,8 +84,8 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <label for="image" class="form-label">Image</label>
+                            <div class="mb-3 col-md-6">
+                                <label for="image" class="form-label">{{ @trans('portal.image') }}</label>
                                 @if($testimonial->image)
                                 <div class="mb-2">
                                     <img src="{{ asset('storage/' . $testimonial->image) }}"
@@ -140,13 +103,13 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <small class="form-text text-muted">
-                                    Leave empty to keep the current image. Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB
+                                    {{ @trans('portal.accepted_formats') }}
                                 </small>
                             </div>
 
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save"></i> Update
+                                    <i class="fa fa-save"></i> {{ @trans('portal.update') }}
                                 </button>
                             </div>
                         </div>

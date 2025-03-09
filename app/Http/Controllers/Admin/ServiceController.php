@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class ServiceController extends Controller
 {
@@ -22,42 +25,63 @@ class ServiceController extends Controller
 
     public function store(Request $request)
     {
+        try {
+            // Manually create the validator
+            $validator = Validator::make($request->all(), [
+                'title' => 'required',
+                'description' => 'required',
+                'status' => 'required',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ], [
+                'title.required' => __('validation.required_title'),
+                'description.required' => __('validation.required_description'),
+                'status.required' => __('validation.required_status'),
+                'image.required' => __('validation.required_image'),
+                'image.mimes' => __('validation.image'),
+                'image.max' => __('validation.max'),
+            ]);
 
-        $request->validate([
-            'en_title' => 'required',
-            'gu_title' => 'required',
-            'en_description' => 'required',
-            'gu_description' => 'required',
-            'status' => 'required|integer',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ], [
-            'en_title.required' => __('validation.required_en_title'),
-            'gu_title.required' => __('validation.required_gu_title'),
-            'en_description.required' => __('validation.required_en_description'),
-            'gu_description.required' => __('validation.required_gu_description'),
-            'status.required' => __('validation.required_status'),
-            'image.required' => __('validation.required_image'),
-            'image.mimes' => __('validation.image'),
-            'image.max' => __('validation.max'),
-            'image.uploaded' => __('validation.uploaded'),
-        ]);
+            // Check if the validation fails
+            if ($validator->fails()) {
+                // Redirect back with validation errors and old input
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('service_images', 'public');
+            $imagePath = null;
+
+            // Check if the image exists in the request
+            if ($request->hasFile('image')) {
+                // Store the image in the "public" storage under "service_images"
+                $imagePath = $request->file('image')->store('service_images', 'public');
+            }
+
+            // Translate title and description to English (if needed)
+            $tr = new GoogleTranslate('en');
+            $en_title = $tr->translate($request->title);
+            $en_description = $tr->translate($request->description);
+
+            // Save the service data
+            Service::create([
+                'gu_title' => $request->title,
+                'en_title' => $en_title,
+                'gu_description' => $request->description,
+                'en_description' => $en_description,
+                'image' => $imagePath,
+                'status' => $request->status,
+            ]);
+
+            // Redirect to the service index page with a success message
+            return redirect()->route('admin.service.index')
+                ->with('success', __('portal.service_created'));
+        } catch (\Exception $e) {
+            // Log the error message for debugging
+            Log::error('Service creation error: ' . $e->getMessage());
+
+            // Optionally, redirect back with an error message
+            return redirect()->back()->withInput()->withErrors(['error' => 'Something went wrong']);
         }
-
-        Service::create([
-            'en_title' => $request->en_title,
-            'gu_title' => $request->gu_title,
-            'en_description' => $request->en_description,
-            'gu_description' => $request->gu_description,
-            'image' => $imagePath,
-            'status' => $request->status,
-        ]);
-
-        return redirect()->route('admin.service.index')
-            ->with('success', __('portal.service_created'));
     }
 
     public function edit(Service $service)
@@ -68,18 +92,27 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         $request->validate([
+            'title' => 'required',
+            'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ],[
+        ], [
+            'title.required' => __('validation.required_title'),
+            'description.required' => __('validation.required_description'),
             'image.mimes' => __('validation.image'),
             'image.max' => __('validation.max'),
             'image.uploaded' => __('validation.uploaded'),
         ]);
 
+        // translate to english
+        $tr = new GoogleTranslate('en');
+        $en_title =  $tr->translate($request->title);
+        $en_description = $tr->translate($request->description);
+
         $data = [
-            'en_title' => $request->en_title,
-            'gu_title' => $request->gu_title,
-            'en_description' => $request->en_description,
-            'gu_description' => $request->gu_description,
+            'gu_title' => $request->title,
+            'en_title' => $en_title,
+            'gu_description' => $request->description,
+            'en_description' => $en_description,
             'status' => $request->status,
         ];
 
@@ -93,6 +126,7 @@ class ServiceController extends Controller
 
         $service->update($data);
 
+        Log::info('service update : ' . $service->id);
         return redirect()->route('admin.service.index')
             ->with('success', __('portal.service_updated'));
     }

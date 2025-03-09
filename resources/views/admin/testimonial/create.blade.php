@@ -20,7 +20,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    @if($errors->any())
+                    <!-- @if($errors->any())
                     <div class="alert alert-danger">
                         <ul class="mb-0">
                             @foreach($errors->all() as $error)
@@ -28,83 +28,48 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif
+                    @endif -->
 
                     <form action="{{ route('admin.testimonial.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="mb-3 col-md-6">
-                                <label for="en_name" class="form-label">User Name in English </label>
+                                <label for="name" class="form-label">{{ @trans('portal.name') }}<span>*</span></label>
                                 <input type="text"
-                                    class="form-control @error('en_name') is-invalid @enderror"
-                                    id="en_name"
-                                    name="en_name"
-                                    value="{{ old('en_name') }}">
-                                @error('en_name')
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    id="name"
+                                    name="name"
+                                    value="{{ old('name') }}">
+                                @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="gu_name" class="form-label">User Name in Gujarati</label>
+                                <label for="post" class="form-label">{{ @trans('portal.post') }}<span>*</span></label>
                                 <input type="text"
-                                    class="form-control @error('gu_name') is-invalid @enderror"
-                                    id="gu_name"
-                                    name="gu_name"
-                                    value="{{ old('gu_name') }}">
-                                @error('gu_name')
+                                    class="form-control @error('post') is-invalid @enderror"
+                                    id="post"
+                                    name="post"
+                                    value="{{ old('post') }}">
+                                @error('post')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="en_post" class="form-label">Post in English<span>*</span></label>
-                                <input type="text"
-                                    class="form-control @error('en_post') is-invalid @enderror"
-                                    id="en_post"
-                                    name="en_post"
-                                    value="{{ old('en_post') }}">
-                                @error('en_post')
+                                <label for="description" class="form-label">{{ @trans('portal.description') }}<span>*(Max 1000 characters)</span></label>
+                                <textarea class="form-control @error('description') is-invalid @enderror"
+                                    id="description"
+                                    name="description"
+                                    rows="3">{{ old('description') }}</textarea>
+                                @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="gu_post" class="form-label">Post in Gujarati<span>*</span></label>
-                                <input type="text"
-                                    class="form-control @error('gu_post') is-invalid @enderror"
-                                    id="gu_post"
-                                    name="gu_post"
-                                    value="{{ old('gu_post') }}">
-                                @error('gu_post')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="en_description" class="form-label">English Description<span>*(Max 1000 characters)</span></label>
-                                <textarea class="form-control @error('en_description') is-invalid @enderror"
-                                    id="en_description"
-                                    name="en_description"
-                                    rows="3">{{ old('en_description') }}</textarea>
-                                @error('en_description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="gu_description" class="form-label">Gujarati Description<span>*(Max 1000 characters)</span></label>
-                                <textarea class="form-control @error('gu_description') is-invalid @enderror"
-                                    id="gu_description"
-                                    name="gu_description"
-                                    rows="3">{{ old('gu_description') }}</textarea>
-                                @error('gu_description')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
-                            <div class="mb-3 col-md-6">
-                                <label for="image" class="form-label">Image</label>
+                                <label for="image" class="form-label">{{ @trans('portal.image') }}</label>
                                 <input type="file"
                                     class="form-control @error('image') is-invalid @enderror"
                                     id="image"
@@ -114,12 +79,12 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                                 <small class="form-text text-muted">
-                                    Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB
+                                    {{ @trans('portal.accepted_formats') }}
                                 </small>
                             </div>
 
                             <div class="mb-3 col-md-6">
-                                <label for="status" class="form-label">Status</label>
+                                <label for="status" class="form-label">{{ @trans('portal.status') }}</label>
                                 <select class="form-select @error('status') is-invalid @enderror"
                                     id="status"
                                     name="status"
@@ -134,10 +99,10 @@
 
                             <div class="mb-3">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-save"></i> Save
+                                    <i class="fa fa-save"></i> {{ @trans('portal.save') }}
                                 </button>
                                 <a href="{{ route('admin.testimonial.index') }}" class="btn btn-secondary">
-                                    <i class="fa fa-arrow-left"></i> Back
+                                    <i class="fa fa-arrow-left"></i> {{ @trans('portal.back') }}
                                 </a>
                             </div>
                         </div>

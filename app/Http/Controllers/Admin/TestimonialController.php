@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class TestimonialController extends Controller
 {
@@ -23,14 +24,18 @@ class TestimonialController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'en_name' => 'required',
-            'gu_name' => 'required',
-            'en_post' => 'nullable',
-            'gu_post' => 'nullable',
-            'en_description' => 'required',
-            'gu_description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|mએax:2048',
+            'name' => 'required',
+            'post' => 'nullable',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'status' => 'required|integer',
+        ],[
+            'name.required' => __('validation.required_name'),
+            'post.required' => __('validation.required_post'),
+            'description.required' => __('validation.required_description'),
+            'image.required' => __('validation.required_image'),
+            'image.mimes' => __('validation.image'),
+            'image.max' => __('validation.max'),
         ]);
 
         $imagePath = null;
@@ -38,13 +43,19 @@ class TestimonialController extends Controller
             $imagePath = $request->file('image')->store('testimonial_images', 'public');
         }
 
+        // translate to english
+        $tr = new GoogleTranslate('en');
+        $en_name =  $tr->translate($request->name);
+        $en_post = $tr->translate($request->post);
+        $en_description = $tr->translate($request->description);
+
         Testimonial::create([
-            'en_name' => $request->en_name,
-            'gu_name' => $request->gu_name,
-            'en_post' => $request->en_post,
-            'gu_post' => $request->gu_post,
-            'en_description' => $request->en_description,
-            'gu_description' => $request->gu_description,
+            'gu_name' => $request->name,
+            'en_name' => $en_name,
+            'gu_post' => $request->post,
+            'en_post' => $en_post,
+            'gu_description' => $request->description,
+            'en_description' => $en_description,
             'image' => $imagePath,
             'status' => $request->status,
         ]);
@@ -61,16 +72,31 @@ class TestimonialController extends Controller
     public function update(Request $request, Testimonial $testimonial)
     {
         $request->validate([
+            'name' => 'required',
+            'post' => 'nullable',
+            'description' => 'required',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ],[
+            'name.required' => __('validation.required_name'),
+            'post.required' => __('validation.required_post'),
+            'description.required' => __('validation.required_description'),
+            'image.mimes' => __('validation.image'),
+            'image.max' => __('validation.max'),
+            'image.uploaded' => __('validation.uploaded'),
         ]);
 
+        $tr = new GoogleTranslate('en');
+        $en_post = $tr->translate($request->post);
+        $en_description = $tr->translate($request->description);
+        $en_name = $tr->translate($request->name);
+
         $data = [
-            'en_name' => $request->en_name,
-            'gu_name' => $request->gu_name,
-            'en_post' => $request->en_post,
-            'gu_post' => $request->gu_post,
-            'en_description' => $request->en_description,
-            'gu_description' => $request->gu_description,
+            'gu_name' => $request->name,
+            'en_name' => $en_name,
+            'gu_post' => $request->post,
+            'en_post' => $en_post,
+            'gu_description' => $request->description,
+            'en_description' => $en_description,
             'status' => $request->status,
         ];
 
