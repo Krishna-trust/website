@@ -102,7 +102,7 @@
                                     <i class="fa fa-save"></i> {{ @trans('portal.save') }}
                                 </button>
                                 <a href="{{ route('admin.testimonial.index') }}" class="btn btn-secondary">
-                                    <i class="fa fa-arrow-left"></i> {{ @trans('portal.back') }}
+                                    <i class="fa fa-arrow-left"></i> {{ @trans('portal.cancel') }}
                                 </a>
                             </div>
                         </div>

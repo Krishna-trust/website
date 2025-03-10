@@ -178,6 +178,10 @@ body {
     font-style: italic;
 }
 
+.navbar-nav .nav-link.active {
+    color: #fbfa08 !important;
+}
+
 .fw-bold {
     font-weight: bold;
 }

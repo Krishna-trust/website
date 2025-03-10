@@ -121,6 +121,11 @@ return [
     'message' => 'Message',
     'send_message' => 'Send Message',
 
+    // labharthi list
+    'labharthi_list_desc' => 'Labharthi List',
+    'labharthi_list_sub_desc' => 'this is list for our trust labharthi.',
+    'no_content' => 'No Labharthi Found',
+
     // testimonials
     'testimonial_1' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',
     'testimonial_2' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',

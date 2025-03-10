@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Content;
 use App\Models\Donation;
+use App\Models\Labharthi;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -52,6 +53,14 @@ class WebController extends Controller
     public function termsAndConditions()
     {
         return view('module.'. app()->getLocale() .'-terms-and-conditions');
+    }
+
+    public function labharthiList()
+    {
+        $labharthi = Labharthi::orderBy('created_at', 'desc')->get();
+        return view('web.labharthi-list', [
+            'labharthi' => $labharthi
+        ]);
     }
 
     public function impacts()

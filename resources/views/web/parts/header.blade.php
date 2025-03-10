@@ -33,6 +33,11 @@
                           {{ @trans('messages.impact') }}
                       </a>
                   </li>
+                  <li>
+                    <a href="{{ route('labharthi.list') }}" class="nav-link {{ (Route::currentRouteName() == 'labharthi.list') ? 'active fw-bold' : '' }}">
+                        {{ @trans('messages.labharthi') }}
+                    </a>
+                  </li>
                   <li class="nav-item">
                       <a class="nav-link btn btn-primary text-dark {{ (Route::currentRouteName() == 'login') ? 'active fw-bold' : '' }}" href="{{ route('login') }}">
                           {{ @trans('messages.only_for_trust') }}

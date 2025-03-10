@@ -10,7 +10,7 @@ class CreateDonationsTable extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->string('receipt_number')->unique();
+            $table->string('receipt_number')->unique()->nullable();
             $table->string('full_name');
             $table->string('mobile_number', 10)->nullable();
             $table->text('address')->nullable();
@@ -20,7 +20,7 @@ class CreateDonationsTable extends Migration
             $table->string('pan_number')->nullable();
             $table->enum('payment_mode', ['online', 'rtgs', 'cash']);
             $table->string('bank_name')->nullable();
-            $table->date('date');
+            $table->date('date')->nullable();;
             $table->timestamps();
         });
     }

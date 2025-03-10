@@ -33,7 +33,7 @@
                         <form action="{{ route('admin.contents.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-12 col-lg-6">
                                 <label for="image" class="form-label">{{ @trans('portal.poster') }}</label>
                                 <input type="file"
                                        class="form-control @error('image') is-invalid @enderror"
@@ -48,7 +48,7 @@
                                 </small>
                             </div>
 
-                            <div class="mb-3 col-6">
+                            <div class="mb-3 col-md-12 col-lg-6">
                                 <label for="upload_date" class="form-label">{{ @trans('portal.date') }}</label>
                                 <input type="date"
                                        class="form-control @error('upload_date') is-invalid @enderror"
@@ -60,7 +60,7 @@
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
+                            <div class="mb-3 col-md-12 col-lg-6">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-save"></i> {{ @trans('portal.save') }}
                                 </button>
