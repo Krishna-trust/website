@@ -32,7 +32,6 @@ Route::post('/contact', [webController::class, 'contactPost'])->name('contact.st
 // Route::get('/services', [webController::class, 'services'])->name('services');
 Route::get('/impact', [webController::class, 'impacts'])->name('impact');
 Route::post('/donation', [webController::class, 'donationStore'])->name('donation.store');
-Route::get('/labharthi', [webController::class, 'labharthiList'])->name('labharthi.list');
 Route::get('privacy-policy', [webController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('terms-and-conditions', [webController::class, 'termsAndConditions'])->name('terms-and-conditions');
 

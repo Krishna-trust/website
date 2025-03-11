@@ -32,7 +32,7 @@
     <tbody>
         @if ($contacts->isEmpty())
         <tr>
-            <td colspan="7" class="text-center text-danger">No Contact Found.</td>
+            <td colspan="7" class="text-center text-danger">{{ @trans('messages.no_contact') }}</td>
         </tr>
         @else
         @forelse($contacts as $index => $contact)

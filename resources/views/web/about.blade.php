@@ -3,6 +3,18 @@
 @section('title', __('messages.about_us') . ' - ' . __('messages.trust_name'))
 
 @section('content')
+<style>
+
+    /* Optional: If you want to control the radius on specific parts of the card */
+    img {
+        border-top-left-radius: 30px !important;
+        border-top-right-radius: 30px !important;
+        border-bottom-left-radius: 30px !important;
+        border-bottom-right-radius: 30px !important;
+    }
+
+
+</style>
 <!-- About Us Hero Section -->
 <section class="bg-primary text-white py-5">
     <div class="container">
@@ -59,8 +71,8 @@
             <div class="col-md-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="card-body">
-                        <h3 class="display-4 fw-bold text-primary">10K+</h3>
-                        <p class="lead">{{ @trans('messages.kit_distributed') }}</p>
+                        <h3 class="display-4 fw-bold text-primary">{{ $labharthi }}</h3>
+                        <p class="lead">{{ @trans('messages.labharthi') }}</p>
                     </div>
                 </div>
             </div>
@@ -81,42 +93,35 @@
     <div class="container">
         <h2 class="text-center section-title mb-5">{{ @trans('messages.our_team') }}</h2>
         <div class="row">
-            <div class="col-md-4 mb-4">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
-                    <img src="{{ asset('images/chandukaka-image.jpg') }}" alt="Chandrakantbhai Patel" class="card-img-top">
+                    <img src="{{ asset('images/trusty6.png') }}" alt="Chandrakantbhai Patel" class="card-img-top img-fluid" style="object-fit: cover; height: 450px;">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">{{ @trans('messages.chandukaka_name') }}</h5>
                         <p class="card-text">{{ @trans('messages.trust_founder') }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
                 <div class="card h-100 rounded-lg shadow">
-                    <img src="{{ asset('images/vinukaka_image.jpg') }}" alt="Vinodbhai Mistri" class="card-img-top">
+                    <img src="{{ asset('images/trusty5.png') }}" alt="Vinodbhai Mistri" class="card-img-top img-fluid" style="object-fit: cover; height: 450px;">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">{{ @trans('messages.vinukaKa_name') }}</h5>
                         <p class="card-text">{{ @trans('messages.trust_trustees') }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
+
+            <div class="col-12 col-md-6 col-lg-4  mb-4">
                 <div class="card h-100 rounded-lg shadow">
-                    <img src="{{ asset('images/dhruv-image.png') }}" alt="Dhruv Patel" class="card-img-top">
+                    <img src="{{ asset('images/dhruv_img.png') }}" alt="Dhruv Patel" class="card-img-top img-fluid" style="object-fit: cover; height: 450px;">
                     <div class="card-body text-center">
                         <h5 class="card-title fw-bold">{{ @trans('messages.dhruv_name') }}</h5>
                         <p class="card-text">{{ @trans('messages.trust_it_supporter') }}</p>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-md-3 mb-4">
-                    <div class="card h-100 rounded-lg shadow">
-                        <img src="" alt="Kathan Patel" class="card-img-top">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">{{ @trans('messages.kathan_name') }}</h5>
-                            <p class="card-text">{{ @trans('messages.trust_technical_supporter') }}</p>
-                        </div>
-                    </div>
-                </div> -->
         </div>
     </div>
 </section>

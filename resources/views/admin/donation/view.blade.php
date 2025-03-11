@@ -14,7 +14,7 @@
     <tbody>
         @if ($donations->isEmpty())
         <tr>
-            <td colspan="4" class="text-center text-danger">No content Found.</td>
+            <td colspan="8" class="text-center text-danger">{{ @trans('messages.no_donation') }}</td>
         </tr>
         @else
         @forelse($donations as $index => $donation)

@@ -29,7 +29,7 @@
     <tbody>
         @if ($contents->isEmpty())
         <tr>
-            <td colspan="4" class="text-center text-danger">No content Found.</td>
+            <td colspan="4" class="text-center text-danger">{{ @trans('messages.no_content') }}</td>
         </tr>
         @else
         @forelse($contents as $index => $content)

@@ -37,7 +37,7 @@
     <tbody>
         @if ($testimonials->isEmpty())
         <tr>
-            <td colspan="8" class="text-center text-danger">No content Found.</td>
+            <td colspan="8" class="text-center text-danger">{{ @trans('messages.no_testimonial') }}</td>
         </tr>
         @else
         @forelse($testimonials as $index => $testimonial)

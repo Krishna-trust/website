@@ -32,7 +32,10 @@ class WebController extends Controller
 
     public function about()
     {
-        return view('web.about');
+        $labharthi = Labharthi::count();
+        return view('web.about', [
+            'labharthi' => $labharthi
+        ]);
     }
 
     public function contact()
@@ -55,13 +58,6 @@ class WebController extends Controller
         return view('module.'. app()->getLocale() .'-terms-and-conditions');
     }
 
-    public function labharthiList()
-    {
-        $labharthi = Labharthi::orderBy('created_at', 'desc')->get();
-        return view('web.labharthi-list', [
-            'labharthi' => $labharthi
-        ]);
-    }
 
     public function impacts()
     {

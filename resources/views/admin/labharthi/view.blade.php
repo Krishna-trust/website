@@ -12,7 +12,7 @@
     <tbody>
         @if ($labharthis->isEmpty())
         <tr>
-            <td colspan="4" class="text-center text-danger">No Labharthi Found.</td>
+            <td colspan="5" class="text-center text-danger">{{ @trans('messages.no_labharthi') }}</td>
         </tr>
         @else
         @forelse($labharthis as $index => $labharthi)

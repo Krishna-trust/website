@@ -35,7 +35,7 @@
     <tbody>
         @if ($services->isEmpty())
         <tr>
-            <td colspan="8" class="text-center text-danger">No content Found.</td>
+            <td colspan="8" class="text-center text-danger">{{ @trans('messages.no_service') }}</td>
         </tr>
         @else
         @forelse($services as $index => $service)
