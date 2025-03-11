@@ -141,7 +141,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ url('admin.contents.index') }}",
+            url: "{{ route('admin.donation.index') }}",
             data: {
                 search: search_string,
                 limit: limit,

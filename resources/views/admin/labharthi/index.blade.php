@@ -141,7 +141,7 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ url('admin.labharthi.index') }}",
+            url: "{{ route('admin.labharthi.index') }}",
             data: {
                 search: search_string,
                 limit: limit,

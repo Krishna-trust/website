@@ -91,59 +91,71 @@ class ServiceController extends Controller
 
     public function update(Request $request, Service $service)
     {
-        $request->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ], [
-            'title.required' => __('validation.required_title'),
-            'description.required' => __('validation.required_description'),
-            'image.mimes' => __('validation.image'),
-            'image.max' => __('validation.max'),
-            'image.uploaded' => __('validation.uploaded'),
-        ]);
+        try {
+            $request->validate([
+                'title' => 'required',
+                'description' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ], [
+                'title.required' => __('validation.required_title'),
+                'description.required' => __('validation.required_description'),
+                'image.mimes' => __('validation.image'),
+                'image.max' => __('validation.max'),
+                'image.uploaded' => __('validation.uploaded'),
+            ]);
 
-        // translate to english
-        $tr = new GoogleTranslate('en');
-        $en_title =  $tr->translate($request->title);
-        $en_description = $tr->translate($request->description);
+            // translate to english
+            $tr = new GoogleTranslate('en');
+            $en_title =  $tr->translate($request->title);
+            $en_description = $tr->translate($request->description);
 
-        $data = [
-            'gu_title' => $request->title,
-            'en_title' => $en_title,
-            'gu_description' => $request->description,
-            'en_description' => $en_description,
-            'status' => $request->status,
-        ];
+            $data = [
+                'gu_title' => $request->title,
+                'en_title' => $en_title,
+                'gu_description' => $request->description,
+                'en_description' => $en_description,
+                'status' => $request->status,
+            ];
 
-        if ($request->hasFile('image')) {
-            // Delete old image
-            if ($service->image) {
-                Storage::disk('public')->delete($service->image);
+            if ($request->hasFile('image')) {
+                // Delete old image
+                if ($service->image) {
+                    Storage::disk('public')->delete($service->image);
+                }
+                $data['image'] = $request->file('image')->store('service_images', 'public');
             }
-            $data['image'] = $request->file('image')->store('service_images', 'public');
+
+            $service->update($data);
+
+            Log::info('service update : ' . $service->id);
+            return redirect()->route('admin.service.index')
+                ->with('success', __('portal.service_updated'));
+        } catch (\Throwable $th) {
+            Log::error('ServiceController@update Error: ' . $th->getMessage());
+            return redirect()->route('admin.service.index')
+                ->with('error', $th->getMessage());
         }
-
-        $service->update($data);
-
-        Log::info('service update : ' . $service->id);
-        return redirect()->route('admin.service.index')
-            ->with('success', __('portal.service_updated'));
     }
 
     public function destroy(Request $request)
     {
-        $serviceId = $request->input('service_id');
+        try {
+            $serviceId = $request->input('service_id');
 
-        $service = Service::findOrFail($serviceId);
+            $service = Service::findOrFail($serviceId);
 
-        if ($service->image) {
-            Storage::disk('public')->delete($service->image);
+            if ($service->image) {
+                Storage::disk('public')->delete($service->image);
+            }
+
+            $service->delete();
+
+            return redirect()->route('admin.service.index')
+                ->with('success', __('portal.service_deleted'));
+        } catch (\Throwable $th) {
+            Log::error('ServiceController@destroy Error: ' . $th->getMessage());
+            return redirect()->route('admin.service.index')
+                ->with('error', $th->getMessage());
         }
-
-        $service->delete();
-
-        return redirect()->route('admin.service.index')
-            ->with('success', __('portal.service_deleted'));
     }
 }
