@@ -46,21 +46,21 @@ class DonationExport implements FromCollection, WithHeadings, WithStyles
     public function headings(): array
     {
         return [
-            @trans('Portal.receipt_number'),
-            @trans('Portal.date'),
-            @trans('Portal.full_name'),
-            @trans('Portal.mobile'),
-            @trans('Portal.address'),
-            @trans('Portal.amount'),
-            @trans('Portal.donation_for'),
-            @trans('Portal.comment'),
-            @trans('Portal.pan_number'),
-            @trans('Portal.payment_mode'),
-            @trans('Portal.bank_name'),
-            @trans('Portal.cheque_number'),
-            @trans('Portal.cheque_date'),
-            @trans('Portal.transaction_id'),
-            @trans('Portal.transaction_date'),
+            'Receipt Number',
+            'Donation Date',
+            'Full Name',
+            'Mobile Number',
+            'Address',
+            'Amount',
+            'Donation For',
+            'Comment',
+            'Pan Number',
+            'Payment Mode',
+            'Bank Name',
+            'Cheque Number',
+            'Cheque Date',
+            'Transaction Id',
+            'Transaction Date',
         ];
     }
 
