@@ -66,6 +66,7 @@ return [
 
     // donation
     'receipt_number' => 'રસીદ નંબર',
+    'donation_date' => 'દાનની તારીખ',
     'date' => 'તારીખ',
     'donor_name' => 'નામ',
     'mobile' => 'મોબાઇલ નંબર',

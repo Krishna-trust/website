@@ -67,6 +67,7 @@ return [
 
     // donation
     'receipt_number' => 'Receipt Number',
+    'donation_date' => 'Donation Date',
     'date' => 'Date',
     'donor_name' => 'Donor Name',
     'mobile' => 'Mobile Number',
