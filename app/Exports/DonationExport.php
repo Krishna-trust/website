@@ -60,7 +60,7 @@ class DonationExport implements FromCollection, WithHeadings, WithStyles
             @trans('Portal.cheque_number'),
             @trans('Portal.cheque_date'),
             @trans('Portal.transaction_id'),
-            @trans('Portal.transaction_date')
+            @trans('Portal.transaction_date'),
         ];
     }
 
