@@ -7,6 +7,7 @@ use App\Models\Content;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ContentController extends Controller
 {
@@ -24,10 +25,27 @@ class ContentController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate([
+            $rules = [
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'upload_date' => 'required|date'
-            ]);
+            ];
+
+            $messages = [
+                'image.required' => __('validation.required_image'),
+                'image.image' => __('validation.image'),
+                'image.max' => __('validation.max'),
+                'upload_date.required' => __('validation.required_upload_date'),
+                'upload_date.date' => __('validation.date_upload_date'),
+            ];
+
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             $imagePath = null;
             if ($request->hasFile('image')) {
@@ -55,10 +73,24 @@ class ContentController extends Controller
     public function update(Request $request, Content $content)
     {
         try {
-            $request->validate([
+            $rules = [
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'upload_date' => 'required|date'
-            ]);
+                'upload_date' => 'nullable|date'
+            ];
+
+            $messages = [
+                'image.image' => __('validation.image'),
+                'image.max' => __('validation.max'),
+                'upload_date.date' => __('validation.date_upload_date'),
+            ];
+
+              $validator = Validator::make($request->all(), $rules, $messages);
+
+              // Check if validation fails
+              if ($validator->fails()) {
+                  // Return back with errors and old input
+                  return redirect()->back()->withErrors($validator)->withInput();
+              }
 
             $data = [
                 'upload_date' => $request->upload_date

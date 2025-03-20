@@ -127,7 +127,7 @@
 
         $('.user-delete-btn').click(function() {
             var DataId = $(this).data('content-id');
-            $('#user_id').val(DataId);
+            $('#content_id').val(DataId);
 
         });
     });
