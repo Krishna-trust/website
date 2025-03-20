@@ -46,7 +46,7 @@
                                 <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }}</label>
                                 <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                     id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
-                                    pattern="[0-9]{10}" title="Please enter 10 digits">
+                                    pattern="[0-9]{10}" maxlength="10" title="Please enter 10 digits">
                                 @error('mobile_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -92,7 +92,7 @@
                                 <label for="adhar_number" class="form-label">{{ @trans('portal.adhar_number') }}</label>
                                 <input type="text" class="form-control @error('adhar_number') is-invalid @enderror"
                                     id="adhar_number" name="adhar_number" value="{{ old('adhar_number') }}"
-                                    pattern="[0-9]{12}" title="Please enter 12 digits">
+                                    pattern="[0-9]{12}" maxlength="12" title="Please enter 12 digits">
                                 @error('adhar_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -114,6 +114,11 @@
                                     <input class="form-check-input" type="radio" name="category"
                                         id="category_rejected" value="rejected" {{ old('category') == 'rejected' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="category_rejected">{{ @trans('portal.rejected') }}</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="category"
+                                        id="category_other" value="other" {{ old('category') == 'other' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="category_other">{{ @trans('portal.other') }}</label>
                                 </div>
                                 @error('category')
                                 <div class="invalid-feedback d-block">{{ $message }}</div>

@@ -110,6 +110,7 @@
                                         <option value="vidhva" {{ old('category', $labharthi->category) == 'vidhva' ? 'selected' : '' }}>{{ @trans('portal.vidhva') }}</option>
                                         <option value="vidhur" {{ old('category', $labharthi->category) == 'vidhur' ? 'selected' : '' }}>{{ @trans('portal.vidhur') }}</option>
                                         <option value="rejected" {{ old('category', $labharthi->category) == 'rejected' ? 'selected' : '' }}>{{ @trans('portal.rejected') }}</option>
+                                        <option value="other" {{ old('category', $labharthi->category) == 'other' ? 'selected' : '' }}>{{ @trans('portal.other') }}</option>
                                     </select>
                                     @error('category')
                                     <span class="invalid-feedback">{{ $message }}</span>
@@ -188,7 +189,9 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="tifin_starting_date">{{ @trans('portal.tifin_starting_date') }}</label>
-                                    <input type="date" name="tifin_starting_date" id="tifin_starting_date" class="form-control @error('tifin_starting_date') is-invalid @enderror" value="{{ old('tifin_starting_date', $labharthi->tifin_starting_date) }}">
+                                    <input type="date" name="tifin_starting_date" id="tifin_starting_date"
+                                        class="form-control @error('tifin_starting_date') is-invalid @enderror"
+                                        value="{{ isset($labharthi->tifin_starting_date) ? \Carbon\Carbon::parse($labharthi->tifin_starting_date)->format('Y-m-d') : old('tifin_starting_date') }}">
                                     @error('tifin_starting_date')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -197,7 +200,7 @@
                             <div class="col-md-4">
                                 <div class="form-group mb-3">
                                     <label for="tifin_ending_date">{{ @trans('portal.tifin_ending_date') }}</label>
-                                    <input type="date" name="tifin_ending_date" id="tifin_ending_date" class="form-control @error('tifin_ending_date') is-invalid @enderror" value="{{ old('tifin_ending_date', $labharthi->tifin_ending_date) }}">
+                                    <input type="date" name="tifin_ending_date" id="tifin_ending_date" class="form-control @error('tifin_ending_date') is-invalid @enderror" value="{{ isset($labharthi->tifin_ending_date) ? \Carbon\Carbon::parse($labharthi->tifin_ending_date)->format('Y-m-d') : old('tifin_ending_date') }}">
                                     @error('tifin_ending_date')
                                     <span class="invalid-feedback">{{ $message }}</span>
                                     @enderror
@@ -216,7 +219,7 @@
 
                         <div class="form-group mt-4">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> {{ @trans('portal.update') }}
+                                <i class="fa fa-save"></i> {{ @trans('portal.update') }}
                             </button>
                         </div>
                     </form>

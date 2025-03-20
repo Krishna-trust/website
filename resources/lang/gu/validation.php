@@ -105,7 +105,7 @@ return [
     'string_property' => 'સમ્મત મિલકત માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'required_reasion_for_not_working' => 'કામ ન કરવાનો કારણ જરૂરી છે.',
     'string_reasion_for_not_working' => 'કામ ન કરવાનો કારણ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
-    'required_reasion_for_tifin' => 'ટીફિન માટેનો કારણ જરૂરી છે.',
+    'required_reasion_for_tifin' => 'ટીફિન માટેનુ કારણ જરૂરી છે.',
     'string_reasion_for_tifin' => 'ટીફિન માટેનો કારણ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'required_comment_from_trust' => 'ટ્રસ્ટ પાસેથી ટિપ્પણી જરૂરી છે.',
     'string_comment_from_trust' => 'ટ્રસ્ટ પાસેથી ટિપ્પણી માન્ય સ્ટ્રિંગ હોવું જોઈએ.',

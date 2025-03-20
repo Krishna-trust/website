@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Labharthi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LabharthiController extends Controller
@@ -55,15 +56,15 @@ class LabharthiController extends Controller
     public function store(Request $request)
     {
         try {
-            $validated = $request->validate([
+            $rules = [
                 'name' => 'required|string|max:255',
                 'address' => 'required|string',
                 'native_place' => 'required|string',
-                'cast' => 'required|string|',
-                'sub_cast' => 'nullable|string|',
+                'cast' => 'required|string',
+                'sub_cast' => 'nullable|string',
                 'adhar_number' => 'required|string|size:12|regex:/^[0-9]+$/',
                 'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
-                'category' => 'required|in:vidhva,vidhur,rejected',
+                'category' => 'required|in:vidhva,vidhur,rejected,other',
                 'work' => 'required|string',
                 'identification_mark' => 'nullable|string',
                 'income_source' => 'required|string',
@@ -74,7 +75,10 @@ class LabharthiController extends Controller
                 'tifin_starting_date' => 'required|date',
                 'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
                 'reasion_for_tifin_stop' => 'nullable|string',
-            ], [
+            ];
+
+            // Define the custom error messages
+            $messages = [
                 'name.required' => __('validation.required_name'),
                 'name.string' => __('validation.string_name'),
                 'name.max' => __('validation.max_name'),
@@ -114,9 +118,18 @@ class LabharthiController extends Controller
                 'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
                 'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
                 'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
-            ]);
+            ];
 
-            // Sanitize inputs
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $validated = $validator->validated();
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
             }, $validated);
@@ -140,17 +153,17 @@ class LabharthiController extends Controller
     public function update(Request $request, Labharthi $labharthi)
     {
         try {
-            $validated = $request->validate([
+            $rules = [
                 'name' => 'required|string|max:255',
                 'address' => 'required|string',
                 'native_place' => 'required|string|max:255',
                 'cast' => 'required|string|max:255',
-                'sub_cast' => 'required|string|max:255',
+                'sub_cast' => 'nullable|string|max:255',
                 'adhar_number' => 'required|string|size:12|regex:/^[0-9]+$/',
                 'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
-                'category' => 'required|in:vidhva,vidhur,rejected',
+                'category' => 'required|in:vidhva,vidhur,rejected,other',
                 'work' => 'required|string|max:255',
-                'identification_mark' => 'required|string|max:255',
+                'identification_mark' => 'nullable|string|max:255',
                 'income_source' => 'nullable|string',
                 'property' => 'nullable|string',
                 'reasion_for_not_working' => 'nullable|string',
@@ -159,14 +172,16 @@ class LabharthiController extends Controller
                 'tifin_starting_date' => 'required|date',
                 'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
                 'reasion_for_tifin_stop' => 'nullable|string|max:255',
-            ], [
+            ];
+            $messages = [
                 'name.required' => __('validation.required_name'),
                 'name.string' => __('validation.string_name'),
                 'name.max' => __('validation.max_name'),
-                'address.required' => __('validation.'),
+                'address.required' => __('validation.required_address'),
                 'address.string' => __('validation.string_address'),
                 'native_place.string' => __('validation.string_native_place'),
                 'native_place.max' => __('validation.max_native_place'),
+                'cast.required' => __('validation.required_cast'),
                 'cast.string' => __('validation.string_cast'),
                 'cast.max' => __('validation.max_cast'),
                 'sub_cast.string' => __('validation.string_sub_cast'),
@@ -190,9 +205,18 @@ class LabharthiController extends Controller
                 'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
                 'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
                 'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
-            ]);
+            ];
 
-            // Sanitize inputs
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $validated = $validator->validated();
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
             }, $validated);
@@ -237,8 +261,8 @@ class LabharthiController extends Controller
 
     public function export()
     {
-        try{
-        return Excel::download(new LabharthiExport, 'all_Labharthi_List.xlsx');
+        try {
+            return Excel::download(new LabharthiExport, 'all_Labharthi_List.xlsx');
         } catch (\Throwable $th) {
             Log::error('LabharthiController@export Error: ' . $th->getMessage());
         }
