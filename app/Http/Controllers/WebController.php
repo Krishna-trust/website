@@ -111,7 +111,7 @@ class WebController extends Controller
     {
         $validated = $request->validate([
             'full_name' => 'required|string|max:255',
-            'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
+            'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
             'address' => 'nullable|string',
             'amount' => 'required|numeric|min:0',
             'donation_for' => 'required|string|max:255',
@@ -122,7 +122,7 @@ class WebController extends Controller
         ], [
             'full_name.required' => __('validation.required_full_name'),
             'full_name.string' => __('validation.size_full_name'),
-            'mobile_number.required' => __('validation.required_mobile_number'),
+            // 'mobile_number.required' => __('validation.required_mobile_number'),
             'mobile_number.size' => __('validation.size_mobile_number'),
             'mobile_number.regex' => __('validation.regex_mobile_number'),
             'address.string' => __('validation.string_address'),

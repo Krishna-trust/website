@@ -93,7 +93,7 @@ class DonationController extends Controller
                 'date.date' => __('validation.date_date'),
                 'full_name.required' => __('validation.required_full_name'),
                 'full_name.string' => __('validation.size_full_name'),
-                'mobile_number.required' => __('validation.required_mobile_number'),
+                // 'mobile_number.required' => __('validation.required_mobile_number'),
                 'mobile_number.size' => __('validation.size_mobile_number'),
                 'mobile_number.regex' => __('validation.regex_mobile_number'),
                 'address.string' => __('validation.string_address'),
