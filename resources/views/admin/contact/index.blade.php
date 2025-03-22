@@ -1,14 +1,13 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="page-header">
     <div>
-        <h1 class="page-title">{{ @trans('messages.contact') }}</h1>
+        <h1 class="page-title">{{ @trans('portal.contacts') }}</h1>
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.contact') }}</li>
+            <li class="breadcrumb-item active" aria-current="page">{{ @trans('portal.contacts') }}</li>
         </ol>
     </div>
 </div>
@@ -18,8 +17,8 @@
         <div class="card overflow-hidden customers">
             <div class="p-4 card-body">
                 <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-start w-75">
-                        <select id="selected_data" onchange="reloadTable()" class="w-25 form-control form-select">
+                    <div class="d-flex justify-content-start">
+                        <select id="selected_data" onchange="reloadTable()" class="form-control form-select me-2" >
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -27,7 +26,7 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-end w-lg-25 w-md-50 me-2">
+                    <div class="d-flex justify-content-end w-lg-25 w-md-50">
                         <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
                     </div>
                 </div>

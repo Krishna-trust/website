@@ -38,12 +38,12 @@
         @forelse($contacts as $index => $contact)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td>{{ $contact->name }}</td>
-            <td>{{ $contact->email }}</td>
-            <td>{{ $contact->mobile }}</td>
-            <td>{{ $contact->subject }}</td>
-            <td>{{ $contact->message }}</td>
-            <td>{{ date('d-m-Y', strtotime($contact->created_at)) }}</td>
+            <td>{{ $contact->name ? $contact->name : '-' }}</td>
+            <td>{{ $contact->email ? $contact->email : '-' }}</td>
+            <td>{{ $contact->mobile ? $contact->mobile : '-' }}</td>
+            <td>{{ $contact->subject ? $contact->subject : '-' }}</td>
+            <td>{{ $contact->message ? $contact->message : '-' }}</td>
+            <td>{{ $contact->created_at ? date('d-m-Y', strtotime($contact->created_at)) : '-' }}</td>
         </tr>
         @endforeach
         @endif

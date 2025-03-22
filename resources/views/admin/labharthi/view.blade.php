@@ -18,9 +18,9 @@
         @forelse($labharthis as $index => $labharthi)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td>{{ $labharthi->name ?? '-'}}</td>
-            <td>{{ $labharthi->mobile_number ?? '-' }}</td>
-            <td>{{ date('d/m/Y', strtotime($labharthi->tifin_starting_date)) }}</td>
+            <td>{{ $labharthi->name ? $labharthi->name : '-'}}</td>
+            <td>{{ $labharthi->mobile_number ? $labharthi->mobile_number : '-' }}</td>
+            <td>{{ $labharthi->tifin_starting_date ? date('d/m/Y', strtotime($labharthi->tifin_starting_date)) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a class="secondary edit-technician-btn me-2" href="{{ route('admin.labharthi.edit', $labharthi->id) }}"><i class="fa fa-edit"></i></a>

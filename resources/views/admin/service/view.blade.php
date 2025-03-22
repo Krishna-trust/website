@@ -51,11 +51,11 @@
                 @endif
             </td>
             @if(app()->getLocale() == 'gu')
-            <td>{{ $service->gu_title ?? '-' }}</td>
-            <td>{{ $service->gu_description ?? '-' }}</td>
+            <td>{{ $service->gu_title ? $service->gu_title : '-' }}</td>
+            <td>{{ $service->gu_description ? $service->gu_description : '-' }}</td>
             @else
-            <td>{{ $service->en_title ?? '-' }}</td>
-            <td>{{ $service->en_description ?? '-' }}</td>
+            <td>{{ $service->en_title ? $service->en_title : '-' }}</td>
+            <td>{{ $service->en_description ? $service->en_description : '-' }}</td>
             @endif
             <td>{{ $service->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">

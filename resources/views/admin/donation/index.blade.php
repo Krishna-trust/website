@@ -1,15 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="page-header">
+<div class="page-header d-flex flex-wrap justify-content-between align-items-center my-0">
     <div>
         <h1 class="page-title">{{ @trans('messages.donation') }}</h1>
     </div>
-    <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex">
+    <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex mt-3">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('admin.donation.index') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.donation') }}</li>
         </ol>
+    </div>
+    <div class="ms-auto pageheader-btn d-flex d-md-none mt-0">
+        <a href="{{ route('admin.donation.create') }}" class="btn btn-secondary me-2">
+            <span class="d-none d-sm-inline">{{ @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
+        </a>
+        <a href="{{ route('admin.donation.export') }}" class="btn btn-primary">
+            <span class="d-none d-sm-inline">{{ @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
+        </a>
     </div>
 </div>
 
@@ -18,8 +26,8 @@
         <div class="card overflow-hidden customers">
             <div class="p-4 card-body">
                 <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-start w-75">
-                        <select id="selected_data" onchange="reloadTable()" class="w-25 form-control form-select">
+                    <div class="d-flex justify-content-start col-lg-8">
+                        <select id="selected_data" onchange="reloadTable()" class="col-md-9 col-lg-3 form-control form-select me-2">
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -30,14 +38,15 @@
                     <div class="d-flex justify-content-end w-lg-25 w-md-50 me-2">
                         <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
                     </div>
-                    <div class="d-flex justify-content-end w-lg-25 w-md-50">
+                    <div class="d-none d-md-flex justify-content-end w-lg-25 w-md-50">
                         <a href="{{route('admin.donation.create')}}" class="btn btn-secondary me-2">
-                            <span class="d-none d-sm-inline">{{  @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
+                            <span class="d-none d-sm-inline">{{ @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
                         </a>
                         <a href="{{route('admin.donation.export')}}" class="btn btn-primary">
-                            <span class="d-none d-sm-inline">{{  @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
+                            <span class="d-none d-sm-inline">{{ @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
                         </a>
                     </div>
+
                 </div>
                 <div class="mt-4 table-responsive">
                     @include('admin.donation.view')

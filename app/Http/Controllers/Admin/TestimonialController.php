@@ -7,6 +7,7 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class TestimonialController extends Controller
@@ -26,20 +27,30 @@ class TestimonialController extends Controller
     {
         try {
 
-            $request->validate([
+            $rules = [
                 'name' => 'required',
                 'post' => 'nullable',
                 'description' => 'required',
                 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'status' => 'required|integer',
-            ], [
+            ];
+            $messages = [
                 'name.required' => __('validation.required_name'),
                 'post.required' => __('validation.required_post'),
                 'description.required' => __('validation.required_description'),
                 'image.required' => __('validation.required_image'),
                 'image.mimes' => __('validation.image'),
                 'image.max' => __('validation.max'),
-            ]);
+            ];
+
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             $imagePath = null;
             if ($request->hasFile('image')) {

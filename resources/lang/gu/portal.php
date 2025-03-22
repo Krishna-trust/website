@@ -79,7 +79,7 @@ return [
     'education' => 'શૈક્ષણિક સહાય',
     'rasankit' => 'રાશન કિટ સહાય',
     'other' => 'અન્ય',
-    'pan_number' => 'પાન નંબર',
+    'pan_number' => 'પાન કાર્ડ નંબર',
     'payment_mode' => 'પેમેન્ટ મોડ',
     'cash' => 'રોકડ જમા',
     'cheque' => 'ચેક',

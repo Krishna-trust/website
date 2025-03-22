@@ -53,13 +53,13 @@
                 @endif
             </td>
             @if(app()->getLocale() == 'gu')
-            <td>{{ $testimonial->gu_name ?? '-' }}</td>
-            <td>{{ $testimonial->gu_post ?? '-' }}</td>
-            <td>{{ $testimonial->gu_description ?? '-' }}</td>
+            <td>{{ $testimonial->gu_name ? $testimonial->gu_name : '-' }}</td>
+            <td>{{ $testimonial->gu_post ? $testimonial->gu_post : '-' }}</td>
+            <td>{{ $testimonial->gu_description ? $testimonial->gu_description : '-' }}</td>
             @else
-            <td>{{ $testimonial->en_name ?? '-' }}</td>
-            <td>{{ $testimonial->en_post ?? '-' }}</td>
-            <td>{{ $testimonial->en_description ?? '-' }}</td>
+            <td>{{ $testimonial->en_name ? $testimonial->en_name : '-' }}</td>
+            <td>{{ $testimonial->en_post ? $testimonial->en_post : '-' }}</td>
+            <td>{{ $testimonial->en_description ? $testimonial->en_description : '-' }}</td>
             @endif
             <td>{{ $testimonial->status ? 'Active' : 'Inactive' }}</td>
             <td class="text-center">

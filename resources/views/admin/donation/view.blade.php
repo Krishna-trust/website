@@ -20,12 +20,12 @@
         @forelse($donations as $index => $donation)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td>{{ $donation->receipt_number ?? '-' }}</td>
-            <td>{{ date('d-m-Y', strtotime($donation->date)) }}</td>
-            <td>{{ $donation->full_name ?? '-' }}</td>
-            <td>{{ $donation->mobile_number ?? '-' }}</td>
-            <td>₹{{ number_format($donation->amount, 2) }}</td>
-            <td>{{ ucfirst($donation->payment_mode) }}</td>
+            <td>{{ $donation->receipt_number ? $donation->receipt_number : '-' }}</td>
+            <td>{{ $donation->date ? date('d-m-Y', strtotime($donation->date)) : '-' }}</td>
+            <td>{{ $donation->full_name ? $donation->full_name : '-' }}</td>
+            <td>{{ $donation->mobile_number ? $donation->mobile_number : '-' }}</td>
+            <td>₹{{ $donation->amount ? number_format($donation->amount, 2) : '-' }}</td>
+            <td>{{ $donation->payment_mode ? ucfirst($donation->payment_mode) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a class="secondary edit-technician-btn me-2" href="{{ route('admin.donation.edit', $donation->id) }}"><i class="fa fa-edit"></i></a>
