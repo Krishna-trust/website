@@ -54,6 +54,7 @@ return [
     'identification_mark' => 'કોઈ કાયમી ખોળ-ખાપણ અથવા કાયમી બીમારી હોય તો',
     'income_source' => 'આવક સાધનો',
     'property' => 'મિલકત હોય તો તેની વિગત',
+    'relative_info' => 'સગા-સંબંધી વિશે ( નામ, ફોન નંબર, સરનામું )',
     'reasion_for_not_working' => 'મહેનત અથવા કામ નહિ કરવાનું કારણ',
     'reasion_for_tifin' => 'ટીફીન સેવા લેવાનું કારણ',
     'comment_from_trust' => 'નોધ: સંસ્થા નો અભિપ્રયા',

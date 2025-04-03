@@ -26,6 +26,7 @@ class Labharthi extends Model
         'identification_mark',
         'income_source',
         'property',
+        'relative_info',
         'reasion_for_not_working',
         'reasion_for_tifin',
         'comment_from_trust',

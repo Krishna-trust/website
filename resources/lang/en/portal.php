@@ -55,6 +55,7 @@ return [
     'identification_mark' => 'Identification Mark',
     'income_source' => 'Income Source',
     'property' => 'Property',
+    'relative_info' => 'Relative Info (  Name, Phone, Address )',
     'reasion_for_not_working' => 'Reason for Not Working',
     'reasion_for_tifin' => 'Reason for Tiffin',
     'comment_from_trust' => 'Comment from Trust',
