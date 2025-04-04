@@ -81,7 +81,7 @@ return [
     'rasankit' => 'રાશન કિટ સહાય',
     'other' => 'અન્ય',
     'pan_number' => 'પાન કાર્ડ નંબર',
-    'payment_mode' => 'પેમેન્ટ મોડ',
+    'payment_mode' => 'પેમેન્ટ મોડ પસંદ કરો',
     'cash' => 'રોકડ જમા',
     'cheque' => 'ચેક',
     'online_transfer' => 'ઓનલાઇન પેમેન્ટ',
@@ -111,5 +111,5 @@ return [
 
     'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
 
-    'contact_form_submitted' => 'તમારું સંદેશ મોકલી નાખ્યો છે!',
+    'contact_form_submitted' => 'તમારું સંદેશ મોકલી નાખ્યો છે.',
 ];

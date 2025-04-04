@@ -229,7 +229,7 @@
                         <!-- Online Payment Fields -->
                         <div class="row online-fields ">
                             <div class="col-md-6 mb-3">
-                                <label for="transaction_id" class="form-label">{{ @trans('portal.transaction_id') }}</label>
+                                <label for="transaction_id" class="form-label">{{ @trans('portal.transaction_id') }} <span class="text-danger">*</span></label>
                                 <input type="text"
                                     class="form-control @error('transaction_id') is-invalid @enderror"
                                     id="transaction_id" name="transaction_id"
@@ -239,7 +239,7 @@
                                 @enderror
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label for="transaction_date" class="form-label">{{ @trans('portal.transaction_date') }}</label>
+                                <label for="transaction_date" class="form-label">{{ @trans('portal.transaction_date') }} <span class="text-danger">*</span></label>
                                 <input type="datetime-local"
                                     class="form-control @error('transaction_date') is-invalid @enderror"
                                     id="transaction_date" name="transaction_date"

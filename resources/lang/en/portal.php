@@ -82,7 +82,7 @@ return [
     'rasankit' => 'Rasankit',
     'other' => 'Other',
     'pan_number' => 'PAN Number',
-    'payment_mode' => 'Payment Mode',
+    'payment_mode' => 'Select Payment Mode',
     'cash' => 'Cash',
     'cheque' => 'Cheque',
     'online_transfer' => 'Online Transfer',
