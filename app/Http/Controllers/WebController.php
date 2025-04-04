@@ -50,12 +50,12 @@ class WebController extends Controller
 
     public function privacyPolicy()
     {
-        return view('module.'. app()->getLocale() .'-privacy-policy');
+        return view('module.' . app()->getLocale() . '-privacy-policy');
     }
 
     public function termsAndConditions()
     {
-        return view('module.'. app()->getLocale() .'-terms-and-conditions');
+        return view('module.' . app()->getLocale() . '-terms-and-conditions');
     }
 
 
@@ -79,10 +79,10 @@ class WebController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'mobile' => 'required|string|max:15',
+            'mobile' => 'required|string|size:10|regex:/^[0-9]+$/',
             'subject' => 'required|string|max:255',
             'message' => 'required|string',
-        ],[
+        ], [
             'name.required' => __('validation.required_name'),
             'name.string' => __('validation.string_name'),
             'name.max' => __('validation.max_name'),
@@ -101,10 +101,17 @@ class WebController extends Controller
             'subject.string' => __('validation.string_subject'),
         ]);
 
+        // Format the mobile number
+        $mobileNumber = $validated['mobile'];
+
+        if (preg_match('/^\d{10}$/', $mobileNumber)) {
+            $validated['mobile'] = '+91' . $mobileNumber;
+        }
+
         Contact::create($validated);
 
         // Redirect or return a response
-        return back()->with('success', 'Your message has been sent successfully!');
+        return back()->with('success', __('portal.contact_form_submitted'));
     }
 
     public function donationStore(Request $request)
@@ -140,6 +147,14 @@ class WebController extends Controller
         ]);
 
         $validated['date'] = date('Y-m-d');
+
+        // Format the mobile number
+        $mobileNumber = $validated['mobile_number'];
+
+        if (preg_match('/^\d{10}$/', $mobileNumber)) {
+            $validated['mobile'] = '+91' . $mobileNumber;
+        }
+
         // Sanitize inputs
         $validated = array_map(function ($value) {
             return is_string($value) ? strip_tags($value) : $value;

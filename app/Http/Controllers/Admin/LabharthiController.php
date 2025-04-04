@@ -131,6 +131,14 @@ class LabharthiController extends Controller
             }
 
             $validated = $validator->validated();
+
+            // Format the mobile number
+            $mobileNumber = $validated['mobile_number'];
+
+            if (preg_match('/^\d{10}$/', $mobileNumber)) {
+                $validated['mobile_number'] = '+91' . $mobileNumber;
+            }
+
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
             }, $validated);
@@ -148,6 +156,9 @@ class LabharthiController extends Controller
 
     public function edit(Labharthi $labharthi)
     {
+        $mobile = preg_replace('/\+91/', '', $labharthi->mobile_number);
+        $labharthi->mobile_number = $mobile;
+        
         return view('admin.labharthi.edit', compact('labharthi'));
     }
 
@@ -224,6 +235,14 @@ class LabharthiController extends Controller
             }
 
             $validated = $validator->validated();
+
+           // Format the mobile number
+           $mobileNumber = $validated['mobile_number'];
+
+           if (preg_match('/^\d{10}$/', $mobileNumber)) {
+               $validated['mobile_number'] = '+91' . $mobileNumber;
+           }
+
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
             }, $validated);

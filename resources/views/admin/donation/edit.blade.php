@@ -61,10 +61,10 @@
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }} <span class="text-danger">*</span></label>
+                                <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }}</label>
                                 <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                     id="mobile_number" name="mobile_number" value="{{ old('mobile_number', $donation->mobile_number) }}"
-                                    pattern="[0-9]{10}" maxlength="10" title="Please enter 10 digits" required>
+                                    maxlength="10">
                                 @error('mobile_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

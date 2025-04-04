@@ -40,7 +40,25 @@
             <td>{{ $index + 1 }}</td>
             <td>{{ $contact->name ? $contact->name : '-' }}</td>
             <td>{{ $contact->email ? $contact->email : '-' }}</td>
-            <td>{{ $contact->mobile ? $contact->mobile : '-' }}</td>
+            <td>@if ($contact->mobile)
+                @php
+                    $number = $contact->mobile;
+                    // Remove non-digit characters
+                    $digits = preg_replace('/\D/', '', $number);
+        
+                    // Format the number based on conditions
+                    if (strlen($digits) === 10) {
+                        $formatted = '+91 ' . $digits;
+                    } elseif (preg_match('/^(?:\+91|91)(\d{10})$/', $digits, $matches)) {
+                        $formatted = '+91 ' . $matches[1];
+                    } else {
+                        $formatted = $number; // Fallback if format is incorrect
+                    }
+                @endphp
+                {{ $formatted }}
+            @else
+                -
+            @endif</td>
             <td>{{ $contact->subject ? $contact->subject : '-' }}</td>
             <td>{{ $contact->message ? $contact->message : '-' }}</td>
             <td>{{ $contact->created_at ? date('d-m-Y', strtotime($contact->created_at)) : '-' }}</td>

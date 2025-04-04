@@ -110,4 +110,6 @@ return [
     'testimonial_deleted' => 'વિચારો કાઢી નાખવાયેલ છે!',
 
     'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
+
+    'contact_form_submitted' => 'તમારું સંદેશ મોકલી નાખ્યો છે!',
 ];

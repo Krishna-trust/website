@@ -112,4 +112,6 @@ return [
 
     'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
 
+    'contact_form_submitted' => 'Your message has been sent successfully!',
+
 ];
