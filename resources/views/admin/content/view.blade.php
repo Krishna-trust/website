@@ -44,7 +44,7 @@
                 <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
                 @endif
             </td>
-            <td>{{ date('d-m-Y', strtotime($content->upload_date)) }}</td>
+            <td style="white-space: nowrap;">{{ date('d-m-Y', strtotime($content->upload_date)) }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a class="secondary edit-technician-btn me-2" href="{{ route('admin.contents.edit', $content->id) }}"><i class="fa fa-edit"></i></a>

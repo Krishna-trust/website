@@ -38,7 +38,7 @@
             @else
                 -
             @endif</td>
-            <td>{{ $labharthi->tifin_starting_date ? date('d/m/Y', strtotime($labharthi->tifin_starting_date)) : '-' }}</td>
+            <td style="white-space: nowrap;">{{ $labharthi->tifin_starting_date ? date('d/m/Y', strtotime($labharthi->tifin_starting_date)) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">
                     <a class="secondary edit-technician-btn me-2" href="{{ route('admin.labharthi.edit', $labharthi->id) }}"><i class="fa fa-edit"></i></a>

@@ -21,7 +21,7 @@
         <tr>
             <td>{{ $index + 1 }}</td>
             <td>{{ $donation->receipt_number ? $donation->receipt_number : '-' }}</td>
-            <td>{{ $donation->date ? date('d-m-Y', strtotime($donation->date)) : '-' }}</td>
+            <td style="white-space: nowrap;">{{ $donation->date ? date('d-m-Y', strtotime($donation->date)) : '-' }}</td>
             <td>{{ $donation->full_name ? $donation->full_name : '-' }}</td>
             <td>@if ($donation->mobile_number)
                 @php

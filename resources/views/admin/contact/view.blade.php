@@ -61,7 +61,7 @@
             @endif</td>
             <td>{{ $contact->subject ? $contact->subject : '-' }}</td>
             <td>{{ $contact->message ? $contact->message : '-' }}</td>
-            <td>{{ $contact->created_at ? date('d-m-Y', strtotime($contact->created_at)) : '-' }}</td>
+            <td style="white-space: nowrap;">{{ $contact->created_at ? date('d-m-Y', strtotime($contact->created_at)) : '-' }}</td>
         </tr>
         @endforeach
         @endif

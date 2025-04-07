@@ -7,6 +7,7 @@ return [
     'content' => 'પોસ્ટર',
     'donation' => 'દાન',
     'services' => 'સેવાઓ',
+    'expenses' => 'ખર્ચ',
     'testimonials' => 'વિચારો',
     'contacts' => 'સંપર્કો',
     'change_password' => 'પાસવર્ડ બદલો',
@@ -65,6 +66,13 @@ return [
     'vidhur' => 'વિધુર',
     'rejected' => 'ત્યજેલા',
 
+    // Expense
+    'purpose' => 'હેતુ',
+    'expense' => 'ખર્ચ',
+    'select_purpose' => 'હેતુ પસંદ કરો',
+    'grocery' => 'કરિયાણું',
+    'transportation' => 'પરિવહન',
+
     // donation
     'receipt_number' => 'રસીદ નંબર',
     'donation_date' => 'દાનની તારીખ',
@@ -108,6 +116,9 @@ return [
     'testimonial_created' => 'વિચારો બનાવાયેલ છે!',
     'testimonial_updated' => 'વિચારો સુધારેલ છે!',
     'testimonial_deleted' => 'વિચારો કાઢી નાખવાયેલ છે!',
+    'expense_created' => 'ખર્ચ બનાવાયેલ છે!',
+    'expense_updated' => 'ખર્ચ સુધારેલ છે!',
+    'expense_deleted' => 'ખર્ચ કાઢી નાખવાયેલ છે!',
 
     'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
 

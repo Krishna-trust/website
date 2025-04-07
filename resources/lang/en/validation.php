@@ -144,4 +144,7 @@ return [
     'image' => 'Image must be a valid image.',
     'max' => 'Image must be at most :max kilobytes.',
     'uploaded' => 'Image must be uploaded.',
+
+    // Expense validation
+    'required_purpose' => 'Purpose is required.',
 ];

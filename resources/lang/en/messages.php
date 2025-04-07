@@ -63,7 +63,6 @@ return [
     'back_to_top' => 'Back to Top',
     'search' => 'Search',
     'no_results' => 'No results found',
-    'no_content' => 'No content found',
     'view_more' => 'View More',
     'view_all' => 'View All',
     'yearly_services' => 'Services',
@@ -130,6 +129,7 @@ return [
     'no_service' => 'No Service Found',
     'no_contact' => 'No Contact Found',
     'no_testimonial' => 'No Testimonial Found',
+    'no_expense' => 'No Expense Found',
 
     // testimonials
     'testimonial_1' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',

@@ -7,6 +7,7 @@ return [
     'donation' => 'Donation',
     'labharthi' => 'Labharthi',
     'services' => 'Services',
+    'expenses' => 'Expenses',
     'testimonials' => 'Testimonials',
     'contacts' => 'Contacts',
     'change_password' => 'Change Password',
@@ -66,6 +67,13 @@ return [
     'vidhur' => 'Vidhur',
     'rejected' => 'Rejected',
 
+    // Expense
+    'purpose' => 'Purpose',
+    'expense' => 'Expense',
+    'select_purpose' => 'Select Purpose',
+    'grocery' => 'Grocery',
+    'transportation' => 'Transportation',
+
     // donation
     'receipt_number' => 'Receipt Number',
     'donation_date' => 'Donation Date',
@@ -109,6 +117,9 @@ return [
     'testimonial_created' => 'Testimonial created successfully!',
     'testimonial_updated' => 'Testimonial updated successfully!',
     'testimonial_deleted' => 'Testimonial deleted successfully!',
+    'expense_created' => 'Expense created successfully!',
+    'expense_updated' => 'Expense updated successfully!',
+    'expense_deleted' => 'Expense deleted successfully!',
 
     'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
 
