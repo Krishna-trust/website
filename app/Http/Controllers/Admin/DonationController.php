@@ -15,7 +15,7 @@ class DonationController extends Controller
     public function index(Request $request)
     {
         try {
-
+            $limit = $request->limit ?? 10;
             // Log::info(json_encode($request->all()));
             $query = Donation::query();
 
@@ -38,10 +38,9 @@ class DonationController extends Controller
             }
 
             // Get paginated results
-            $donations = $query->latest()->paginate($request->get('per_page', 10));
+            $donations = $query->latest()->paginate($request->get('per_page', $limit));
 
             if (request()->ajax()) {
-                Log::info('sdf');
                 return view('admin.donation.view', compact('donations'));
             }
 

@@ -15,6 +15,7 @@ class LabharthiController extends Controller
     public function index(Request $request)
     {
         try {
+            $limit = $request->limit ?? 10;
             $query = Labharthi::query();
 
             // Search functionality
@@ -35,7 +36,7 @@ class LabharthiController extends Controller
             }
 
             // Get paginated results
-            $labharthis = $query->latest()->paginate($request->get('per_page', 25));
+            $labharthis = $query->latest()->paginate($request->get('per_page', $limit));
 
             if (request()->ajax()) {
                 return view('admin.labharthi.view', compact('labharthis'));
