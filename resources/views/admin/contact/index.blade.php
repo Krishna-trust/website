@@ -16,8 +16,8 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card overflow-hidden customers">
             <div class="p-4 card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-start">
+                <div class="row d-md-flex justify-content-between align-items-center">
+                    <div class="col-12 col-md-auto mb-2 mb-md-0">
                         <select id="selected_data" onchange="reloadTable()" class="form-control form-select me-2" >
                             <option value="10">10</option>
                             <option value="25">25</option>
@@ -26,7 +26,7 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-end w-lg-25 w-md-50">
+                    <div class="col-12 col-md-auto">
                         <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
                     </div>
                 </div>

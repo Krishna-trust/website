@@ -114,7 +114,7 @@
                                     id="payment_mode"
                                     name="payment_mode"
                                     required>
-                                    <option value="">{{ @trans('portal.payment_mode') }}</option>
+                                    <option value="">{{ @trans('portal.select_payment_mode') }}</option>
                                     <option value="cash" {{ old('payment_mode', $donation->payment_mode) == 'cash' ? 'selected' : '' }}>{{ @trans('portal.cash') }}</option>
                                     <option value="cheque" {{ old('payment_mode', $donation->payment_mode) == 'cheque' ? 'selected' : '' }}>{{ @trans('portal.cheque') }}</option>
                                     <option value="online" {{ old('payment_mode', $donation->payment_mode) == 'online' ? 'selected' : '' }}>{{ @trans('portal.online_transfer') }}</option>

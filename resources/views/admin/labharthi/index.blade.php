@@ -25,9 +25,9 @@
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
         <div class="card overflow-hidden customers">
             <div class="p-4 card-body">
-                <div class="d-flex justify-content-between">
-                    <div class="d-flex justify-content-start col-lg-8">
-                        <select id="selected_data" onchange="reloadTable()" class="col-md-9 col-lg-3 form-control form-select me-2">
+                <div class="row d-md-flex justify-content-between align-items-center">
+                    <div class="col-12 col-md-auto mb-2 mb-md-0">
+                        <select id="selected_data" onchange="reloadTable()" class="form-control form-select me-md-2">
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -35,16 +35,26 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="d-flex justify-content-end w-lg-25 w-md-50 me-2">
-                        <input type="text" name="search" class="form-control" id="search-val" onkeyup="reloadTable()" @if (empty($search)) placeholder="Search..." @else value="{{ $search }}" @endif>
-                    </div>
-                    <div class="d-none d-md-flex justify-content-end w-lg-25 w-md-50">
-                        <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">
-                            <span class="d-none d-sm-inline">{{  @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
-                        </a>
-                        <a href="{{route('admin.labharthi.export')}}" class="btn btn-primary">
-                            <span class="d-none d-sm-inline">{{  @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
-                        </a>
+
+                    <div class="col-12 col-md-auto">
+                        <div class="d-flex flex-column flex-md-row align-items-stretch">
+                            <!-- Search Input -->
+                            <input type="text" name="search" class="form-control mb-2 mb-md-0 me-md-2" id="search-val"
+                                   onkeyup="reloadTable()"
+                                   @if (empty($search)) placeholder="Search..."
+                                   @else value="{{ $search }}"
+                                   @endif>
+
+                            <!-- Add Button (visible on md and up only) -->
+                            <div class="d-none d-md-flex justify-content-end">
+                                <a href="{{route('admin.labharthi.create')}}" class="btn btn-secondary me-2">
+                                    <span class="d-none d-sm-inline">{{  @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
+                                </a>
+                                <a href="{{route('admin.labharthi.export')}}" class="btn btn-primary">
+                                    <span class="d-none d-sm-inline">{{  @trans('portal.export') }}</span> <i class="fa fa-file-excel-o"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="mt-4 table-responsive">
