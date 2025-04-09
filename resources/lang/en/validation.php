@@ -69,7 +69,9 @@ return [
     'date_transaction_date' => 'Transaction date must be a valid date.',
     'required_transaction_date' => 'Transaction date is required.',
 
-
+    // Employee Validation
+    'required_salary' => 'Salary is required.',
+    'required_employee_image' => 'Image is required.',
 
     // Labharthi Validation
     'required_name' => 'Name is required.',
@@ -147,4 +149,7 @@ return [
 
     // Expense validation
     'required_purpose' => 'Purpose is required.',
+
+    // testimonial validation
+    'required_post' => 'Post is required.',
 ];

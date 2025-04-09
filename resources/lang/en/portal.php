@@ -8,6 +8,7 @@ return [
     'labharthi' => 'Labharthi',
     'services' => 'Services',
     'expenses' => 'Expenses',
+    'employees' => 'Employees',
     'testimonials' => 'Testimonials',
     'contacts' => 'Contacts',
     'change_password' => 'Change Password',
@@ -74,6 +75,14 @@ return [
     'grocery' => 'Grocery',
     'transportation' => 'Transportation',
 
+    // Employee
+    'employee' => 'Employee',
+    'select_employee' => 'Select Employee',
+    'salary' => 'Salary',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'employee_image' => 'Image',
+
     // donation
     'receipt_number' => 'Receipt Number',
     'donation_date' => 'Donation Date',
@@ -121,6 +130,9 @@ return [
     'expense_created' => 'Expense created successfully!',
     'expense_updated' => 'Expense updated successfully!',
     'expense_deleted' => 'Expense deleted successfully!',
+    'employee_created' => 'Employee created successfully!',
+    'employee_updated' => 'Employee updated successfully!',
+    'employee_deleted' => 'Employee deleted successfully!',
 
     'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
 

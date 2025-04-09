@@ -42,6 +42,7 @@ Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class,
 Route::delete('service', [App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('admin.service.destroy');
 Route::delete('testimonial', [App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])->name('admin.testimonial.destroy');
 Route::delete('expense', [App\Http\Controllers\Admin\ExpenseController::class, 'destroy'])->name('admin.expense.destroy');
+Route::delete('employee', [App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
 
 Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('admin.donation.export');
 Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::class, 'export'])->name('admin.labharthi.export');
@@ -72,6 +73,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
     // Expense Routes
     Route::resource('expense', App\Http\Controllers\Admin\ExpenseController::class)->except('destroy');
+
+    // Employee Routes
+    Route::resource('employee', App\Http\Controllers\Admin\EmployeeController::class)->except('destroy');
 
     // Service Routes
     Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->except('destroy');

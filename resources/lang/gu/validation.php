@@ -70,6 +70,9 @@ return [
     'date_transaction_date' => 'પેમેન્ટ તારીખ માન્ય તારીખ હોવી જોઈએ.',
     'required_transaction_date' => 'પેમેન્ટ તારીખ જરૂરી છે.',
 
+    // Employee Validation
+    'required_salary' => 'પગાર જરૂરી છે.',
+    'required_employee_image' => 'ફોટો જરૂરી છે.',
 
     // Labharthi Validation
     'required_name' => 'નામ જરૂરી છે.',
@@ -143,4 +146,7 @@ return [
 
     // Expense validation
     'required_purpose' => 'હેતુ જરૂરી છે.',
+
+    // testimonial validation
+    'required_post' => 'પોસ્ટ જરૂરી છે.',
 ];
