@@ -16,27 +16,34 @@ class EmployeeController extends Controller
     {
         try {
             Log::info($request->all());
-            $limit = $request->limit ?? 10;
-            $query = Employee::query();
+            $limit = $request->limit ?? 8;
+            $search = $request->search;
+            $sort = 'desc';
 
-            // Search functionality
-            if ($request->search) {
-                $search = $request->search;
-                Log::info($search);
+            $query = Employee::query();
+            // $query = Employee::where('status', 'active');
+            if ($search) {
                 $query->where(function ($q) use ($search) {
-                    $q->where('purpose', 'like', "%{$search}%")
-                        ->orWhere('comment', 'like', "%{$search}%")
-                        ->orWhere('date', 'like', "%{$search}%");
+                    $q->where('name', 'like', "%{$search}%")
+                        ->orWhere('address', 'like', "%{$search}%")
+                        ->orWhere('mobile_number', 'like', "%{$search}%")
+                        ->orWhere('email', 'like', "%{$search}%")
+                        ->orWhere('salary', 'like', "%{$search}%");
                 });
             }
 
-            // Get paginated results
+            if (in_array($sort, ['asc', 'desc'])) {
+                $query->orderBy('created_at', $sort);
+            }
+
             $employees = $query->latest()->paginate($limit);
 
-            if (request()->ajax()) {
-                return view('admin.employee.view', compact('employees'));
+            if ($request->ajax()) {
+                Log::info('EmployeeController@index ajax');
+                return view('admin.employee.view', ['employees' => $employees]);
             }
-            return view('admin.employee.index', compact('employees'));
+
+            return view('admin.employee.index', compact('employees', 'search'));
         } catch (\Throwable $th) {
             Log::error('EmployeeController@index Error: ' . $th->getMessage());
             return redirect()->route('admin.employee.index')
@@ -123,7 +130,7 @@ class EmployeeController extends Controller
     public function update(Request $request, Employee $employee)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'address' => 'required',
                 'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
@@ -131,7 +138,6 @@ class EmployeeController extends Controller
                 // 'password' => 'required',
                 'status' => 'required',
                 'salary' => 'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ], [
                 'name.required' => __('validation.required_name'),
                 'address.required' => __('validation.required_address'),
@@ -143,11 +149,15 @@ class EmployeeController extends Controller
                 // 'password.required' => __('validation.required_password'),
                 'status.required' => __('validation.required_status'),
                 'salary.required' => __('validation.required_salary'),
-                'image.required' => __('validation.required_employee_image'),
-                'image.mimes' => __('validation.image'),
-                'image.max' => __('validation.max'),
             ]);
 
+            // Check if the validation fails
+            if ($validator->fails()) {
+                // Redirect back with validation errors and old input
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
 
             $data = [
                 'name' => $request->name ?? '',

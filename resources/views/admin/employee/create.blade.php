@@ -78,7 +78,6 @@
                                 <label for="status" class="form-label">{{ @trans('portal.status') }} <span
                                         class="text-danger">*</span></label>
                                 <select class="form-select @error('status') is-invalid @enderror" id="status" name="status">
-                                    <option value="">{{ @trans('portal.status') }}</option>
                                     <option value="Active" {{ old('status')=='Active' ? 'selected' : '' }}>{{ @trans('portal.active') }}</option>
                                     <option value="Inactive" {{ old('status')=='Inactive' ? 'selected' : '' }}>{{ @trans('portal.inactive') }}</option>
                                 </select>

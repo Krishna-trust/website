@@ -1,5 +1,43 @@
 @extends('layouts.app')
 
+<style>
+    .employee-card {
+        position: relative;
+        border-radius: 16px;
+        padding: 1rem;
+        background: #fff;
+        box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.1); /* fallback soft red border */
+        background-clip: padding-box;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent;
+        background-origin: border-box;
+        background-image:
+            linear-gradient(#fff, #fff),
+            linear-gradient(45deg, #ffcccc, #ff9999);
+        background-clip: padding-box, border-box;
+    }
+
+    .employee-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(253, 13, 13, 0.4);
+    }
+
+    .employee-card .card-body img {
+        object-fit: cover;
+        border: 3px solid #dee2e6;
+        border-radius: 8px;
+    }
+
+    .employee-card ul li {
+        margin-bottom: 6px;
+    }
+
+    .clickable-image {
+        cursor: pointer;
+    }
+</style>
+
+
 @section('content')
 <div class="page-header d-flex flex-wrap justify-content-between align-items-center my-0">
     <div>
@@ -26,11 +64,11 @@
                     <!-- Dropdown: col-12 on mobile, auto on md+ -->
                     <div class="col-12 col-md-auto mb-2 mb-md-0">
                         <select id="selected_data" onchange="reloadTable()" class="form-control form-select me-md-2">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="75">75</option>
-                            <option value="100">100</option>
+                            <option value="4">4</option>
+                            <option value="8">8</option>
+                            <option value="16">16</option>
+                            <option value="24">24</option>
+                            <option value="32">32</option>
                         </select>
                     </div>
 
@@ -55,17 +93,16 @@
                     </div>
                 </div>
 
-                <!-- Table content -->
-                <div class="mt-4 table-responsive">
-                    @include('admin.employee.view')
+                <!-- Employee Cards -->
+                <div id="employee-cards" class="mt-4">
+                   @include('admin.employee.view')
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
-<!-- change delete Modal  -->
+<!-- Delete Modal -->
 <div class="modal fade" id="user-delete" tabindex="-1" role="dialog" aria-labelledby="AddmodelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -89,7 +126,7 @@
     </div>
 </div>
 
-<!-- Modal for the image -->
+<!-- Image Modal -->
 <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -134,7 +171,7 @@
 @endif
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('.close-btn').click(function() {
@@ -154,25 +191,18 @@
     });
 
       // image preview
-      $('.eye-icon').click(function() {
-        var imageUrl = $(this).parent().find('img').attr('src');
+      $('.clickable-image').click(function() {
+        var imageUrl = $(this).data('image');
         $('#popupImage').attr('src', imageUrl);
-    });
-
-    // Use event delegation to handle clicks on the button
-    $('.card-body').on('click', '#sortCreatedAt button', function() {
-        var sort = $('#sortCreatedAt').attr('data-sort');
-        sort = (sort === 'desc') ? 'asc' : 'desc';
-        reloadTable(sort);
+        $('#imageModal').modal('show');
     });
 
     //search and filter
-    function reloadTable(sort) {
+    function reloadTable() {
         let search_string = $('#search-val').val();
         let limit = $('#selected_data').val();
         console.log(search_string);
         console.log(limit);
-        
 
         $.ajaxSetup({
             headers: {
@@ -186,11 +216,14 @@
             data: {
                 search: search_string,
                 limit: limit,
-                sort: sort,
             },
             success: function(response) {
-                $('.table-responsive').html(response);
+                $('#employee-cards').html(response);
             },
+            error: function(xhr, status, error) {
+                // console.error('AJAX error:', error);
+                // console.log(xhr.responseText);
+            }
         });
     }
 </script>

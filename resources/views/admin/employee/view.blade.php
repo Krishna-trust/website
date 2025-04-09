@@ -1,78 +1,78 @@
-<style>
-    /* Small image styling */
-    .small-image {
-        width: 40px;
-        border-radius: 4px;
-        padding-right: 2px;
-        padding-bottom: 4px;
-        cursor: pointer;
-    }
+<div class="row">
+    @if ($employees->isEmpty())
+        <div class="col-12 text-center text-danger">
+            {{ @trans('messages.no_employee') }}
+        </div>
+    @else
+        @foreach($employees as $employee)
+            <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
+                <div class="card employee-card shadow-md h-100 border-0 mb-0">
+                    <div class="card-body text-center pb-0">
+                        @if($employee->image)
+                            <img src="{{ asset('storage/' . $employee->image) }}"
+                                 alt="Profile"
+                                 class="rounded-circle clickable-image shadow"
+                                 width="100"
+                                 height="100"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#imageModal"
+                                 data-image="{{ asset('storage/' . $employee->image) }}">
+                        @else
+                            <img src="{{ asset('images/not_found.jpg') }}"
+                                 alt="Profile"
+                                 class="rounded-circle shadow"
+                                 width="100"
+                                 height="100">
+                        @endif
 
-    /* Eye icon styling */
-    .eye-icon {
-        cursor: pointer;
-        font-size: 18px;
-        margin-left: 10px;
-    }
-</style>
+                        
+                        <h5 class="mt-3 text-danger">{{ ucfirst($employee->name ?? '-') }}</h5>
+                        <ul class="list-unstyled small text-start mt-3 text-secondary">
+                            <li class="mb-2 d-flex justify-content-start">
+                                <i class="fa fa-map-marker me-2 text-danger d-flex justify-content-center align-items-center"></i>
+                                <span class="fw-bolder">{{ $employee->address ?? '-' }}</span>
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa fa-phone me-2 text-success"></i>
+                                <span class="fw-bolder">{{ $employee->mobile_number ?? '-' }}</span>
+                            </li>
+                            <li class="mb-2 d-flex justify-content-start">
+                                <i class="fa fa-envelope me-2 text-primary d-flex justify-content-center align-items-center"></i>
+                               <span class="fw-bolder">{{ $employee->email ?? '-' }}</span>
+                            </li>
+                            <li class="mb-2 pb-1">
+                                <i class="fa fa-info-circle me-2 text-warning"></i>
+                                <span class="badge {{ $employee->status == 'Active' ? 'bg-success' : 'bg-danger' }}">
+                                    {{ $employee->status ?? '-' }}
+                                </span>
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa fa-inr me-2 text-success"></i>
+                                <span class="fw-bolder">{{ $employee->salary ?? '-' }}</span>
+                            </li>
+                            <li class="mb-2">
+                                <i class="fa fa-calendar me-2 text-muted"></i>
+                                <span class="fw-bolder">{{ $employee->created_at ? date('d-m-Y', strtotime($employee->created_at)) : '-' }}</span>
+                            </li>
+                        </ul>                        
 
-<table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
-    <thead>
-        <tr role="row">
-            <th class="text-uppercase fw-bold">#</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.employee_image') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.address') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.mobile') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.email') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.status') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.salary') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.date') }}</th>
-            <th class="text-center text-uppercase fw-bold">{{ @trans('portal.action') }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if ($employees->isEmpty())
-        <tr>
-            <td colspan="10" class="text-center text-danger">{{ @trans('messages.no_employee') }}</td>
-        </tr>
-        @else
-        @forelse($employees as $index => $employee)
-        <tr>
-            <td>{{ $index + 1 }}</td>
-            <td>
-                @if($employee->image)
-                <img src="{{ asset('storage/' . $employee->image) }}"
-                    alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
-                <span class="eye-icon" id="eyeIcon" data-bs-toggle="modal" data-bs-target="#imageModal">👁️</span>
-                @else
-                <img src="{{ asset('images/not_found.jpg') }}" alt="Profile" width="40px" style="border-radius: 4px; padding-right: 2px; padding-bottom: 4px;">
-                @endif
-            </td>
-            <td>{{ $employee->name ? $employee->name : '-' }}</td>
-            <td>{{ $employee->address ? $employee->address : '-' }}</td>
-            <td>{{ $employee->mobile_number ? $employee->mobile_number : '-' }}</td>
-            <td>{{ $employee->email ? $employee->email : '-' }}</td>
-            <td>{{ $employee->status ? $employee->status : '-' }}</td>
-            <td>{{ $employee->salary ? $employee->salary : '-' }}</td>
-            <td style="white-space: nowrap;">{{ $employee->created_at ? date('d-m-Y', strtotime($employee->created_at)) : '-' }}</td>
-            <td class="text-center">
-                <div class="btn-group">
-                    <a class="secondary edit-technician-btn me-2" href="{{ route('admin.employee.edit', $employee->id) }}"><i class="fa fa-edit"></i></a>
-                    <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-employee-id="{{ $employee->id }}">
-                        <i class="fa fa-trash-o"></i>
-                    </a>
+                        <div class="mt-3 d-flex justify-content-center gap-2">
+                            <a class="btn btn-secondary" href="{{ route('admin.employee.edit', $employee->id) }}">
+                                <i class="fa fa-edit"></i> 
+                            </a>
+                            <a class="btn btn-primary user-delete-btn"
+                               data-bs-toggle="modal"
+                               data-bs-target="#user-delete"
+                               data-employee-id="{{ $employee->id }}">
+                                <i class="fa fa-trash-o"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="6" class="text-center text-danger">{{ @trans('messages.no_employee') }}</td>
-        </tr>
-        @endforelse
-        @endif
-    </tbody>
-</table>
+            </div>
+        @endforeach
+    @endif
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $employees->links('admin.parts.pagination') }}
