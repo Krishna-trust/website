@@ -83,6 +83,13 @@ return [
     'inactive' => 'Inactive',
     'employee_image' => 'Image',
 
+    // Employee Withdrawal
+    'withdrawal' => 'Withdrawal',
+    'select_month_year' => 'Select Month-Year',
+    'add_withdrawal' => 'Add Withdrawal',
+    'month_year' => 'Month-Year',
+    'final_salary' => 'Final Salary',
+
     // donation
     'receipt_number' => 'Receipt Number',
     'donation_date' => 'Donation Date',
@@ -133,6 +140,7 @@ return [
     'employee_created' => 'Employee created successfully!',
     'employee_updated' => 'Employee updated successfully!',
     'employee_deleted' => 'Employee deleted successfully!',
+    'employee_withdrawal_created' => 'Employee withdrawal created successfully!',
 
     'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
 

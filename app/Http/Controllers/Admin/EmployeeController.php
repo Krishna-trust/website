@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Employee;
+use App\Models\EmployeeWithdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -203,6 +204,76 @@ class EmployeeController extends Controller
             Log::error('EmployeeController@destroy Error: ' . $th->getMessage());
             return redirect()->route('admin.employee.index')
                 ->with('error', $th->getMessage());
+        }
+    }
+
+    public function Withdrawal($id, Request $request)
+    {
+        $employee_id = $id;
+    
+        $withdrawals = EmployeeWithdrawal::join('employees', 'employee_withdrawals.employee_id', '=', 'employees.id')
+            ->selectRaw('
+                employee_withdrawals.id, 
+                employee_withdrawals.withdrawal_date, 
+                employee_withdrawals.withdrawal_amount,
+                DATE_FORMAT(withdrawal_date, "%M-%Y") as month_year,
+                employees.name as name,
+                employees.salary as salary
+            ')
+            ->where('employees.id', $id)
+            ->groupByRaw('employee_withdrawals.id, employee_withdrawals.withdrawal_date, employees.name, employees.salary');
+    
+        // Handle AJAX request for filtering by month_year
+        if ($request->ajax()) {
+            $monthYear = $request->input('month_year') ?? '';
+            $withdrawals = $withdrawals->whereRaw('DATE_FORMAT(withdrawal_date, "%M-%Y") = ?', [$monthYear])->get();
+    
+            foreach ($withdrawals as $withdrawal) {
+                $withdrawal->final_salary = $withdrawal->salary - $withdrawal->withdrawal_amount;
+            }
+    
+            $html = view('admin.employee.withdrawal_view', compact('withdrawals'))->render();
+            return response()->json(['html' => $html]);
+        }
+    
+        $withdrawals = $withdrawals->get();
+        foreach ($withdrawals as $withdrawal) {
+            $withdrawal->final_salary = $withdrawal->salary - $withdrawal->withdrawal_amount;
+        }
+    
+        return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id'));
+    }
+    
+
+    public function WithdrawalStore(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'withdrawal_amount' => 'required',
+                'withdrawal_date' => 'required',
+                'employee_id' => 'required',
+            ], [
+                'withdrawal_amount.required' => __('validation.required_amount'),
+                'withdrawal_date.required' => __('validation.required_date'),
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+            EmployeeWithdrawal::create([
+                'withdrawal_amount' => $request->withdrawal_amount ?? '',
+                'withdrawal_date' => $request->withdrawal_date ?? '',
+                'employee_id' => $request->employee_id ?? 0,
+            ]);
+
+            return redirect()->route('admin.employee.withdrawal', $request->employee_id)
+                ->with('success', __('portal.employee_withdrawal_created'));
+        } catch (\Exception $e) {
+            Log::error('employee WithdrawalStore error: ' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['error' => 'Something went wrong']);
         }
     }
 }

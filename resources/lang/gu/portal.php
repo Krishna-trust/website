@@ -82,6 +82,13 @@ return [
     'inactive' => 'અસક્રિય',
     'employee_image' => 'ફોટો',
 
+    // Employee withdrawal
+    'withdrawal' => 'ઉપાડ',
+    'select_month_year' => 'મહિનો-વર્ષ પસંદ કરો',
+    'add_withdrawal' => 'ઉપાડ ઉમેરો',
+    'month_year' => 'મહિનો-વર્ષ',
+    'final_salary' => 'અંતિમ પગાર',
+
     // donation
     'receipt_number' => 'રસીદ નંબર',
     'donation_date' => 'દાનની તારીખ',
@@ -132,6 +139,7 @@ return [
     'employee_created' => 'સહાયક બનાવાયેલ છે!',
     'employee_updated' => 'સહાયક સુધારેલ છે!',
     'employee_deleted' => 'સહાયક કાઢી નાખવાયેલ છે!',
+    'employee_withdrawal_created' => 'સહાયક ઉપાડ બનાવાયેલ છે!',
 
     'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
 

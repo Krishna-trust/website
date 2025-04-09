@@ -35,6 +35,9 @@ Route::post('/donation', [webController::class, 'donationStore'])->name('donatio
 Route::get('privacy-policy', [webController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('terms-and-conditions', [webController::class, 'termsAndConditions'])->name('terms-and-conditions');
 
+// Employee Withdrawal
+Route::get('employee/withdrawal/{id}', [App\Http\Controllers\Admin\EmployeeController::class, 'Withdrawal'])->name('admin.employee.withdrawal');
+Route::post('employee/withdrawal', [App\Http\Controllers\Admin\EmployeeController::class, 'WithdrawalStore'])->name('admin.employee.withdrawal.store');
 
 Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('admin.labharthi.destroy');
 Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.contents.destroy');

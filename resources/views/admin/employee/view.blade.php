@@ -66,6 +66,9 @@
                                data-employee-id="{{ $employee->id }}">
                                 <i class="fa fa-trash-o"></i>
                             </a>
+                            <a class="btn btn-secondary" href="{{ route('admin.employee.withdrawal', $employee->id) }}">
+                                <i class="fa fa-inr"></i> 
+                            </a>
                         </div>
                     </div>
                 </div>
