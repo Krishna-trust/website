@@ -43,7 +43,7 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" id="mobile_number" name="mobile_number" value="{{ old('mobile_number', $employee->mobile_number) }}" >
+                                <input type="text" class="form-control @error('mobile_number') is-invalid @enderror" id="mobile_number" name="mobile_number" value="{{ old('mobile_number', $employee->mobile_number) }}" maxlength="10" >
                                 @error('mobile_number')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
