@@ -221,8 +221,8 @@ class EmployeeController extends Controller
                 employees.name as name,
                 employees.salary as salary
             ')
-            ->where('employees.id', $id)
-            ->groupByRaw('employee_withdrawals.id, employee_withdrawals.withdrawal_date, employees.name, employees.salary');
+            ->where('employees.id', $id);
+            // ->groupByRaw('employee_withdrawals.id, employee_withdrawals.withdrawal_date, employees.name, employees.salary');
     
         // Handle AJAX request for filtering by month_year
         if ($request->ajax()) {
