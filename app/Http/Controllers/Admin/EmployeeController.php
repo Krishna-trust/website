@@ -209,6 +209,7 @@ class EmployeeController extends Controller
 
     public function Withdrawal($id, Request $request)
     {
+        try {
         $employee_id = $id;
     
         $withdrawals = EmployeeWithdrawal::join('employees', 'employee_withdrawals.employee_id', '=', 'employees.id')
@@ -242,6 +243,12 @@ class EmployeeController extends Controller
         }
     
         return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id'));
+
+        } catch (\Throwable $th) {
+            Log::error('EmployeeController@Withdrawal Error: ' . $th->getMessage());
+            return redirect()->route('admin.employee.index')
+                ->with('error', $th->getMessage());
+        }
     }
     
 
