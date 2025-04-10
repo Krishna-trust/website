@@ -71,7 +71,7 @@
                                     <thead>
                                         <tr role="row">
                                             <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
-                                            <th class="text-uppercase fw-bold">{{ @trans('portal.month_year') }}</th>
+                                            <th class="text-uppercase fw-bold">{{ @trans('portal.month') }}</th>
                                             <th class="text-uppercase fw-bold">{{ @trans('portal.salary') }}</th>
                                         </tr>
                                     </thead>
@@ -98,14 +98,18 @@
                         <div class="mb-3">
                             <label for="month_year" class="form-label">{{ @trans('portal.select_month_year') }}</label>
                             <select name="month_year" id="month_year" class="form-select">
-                                <option>Select Month-Year</option>
-                                @foreach ($withdrawals as $data)
-                                    <option value="{{ $data->month_year }}">{{ $data->month_year }}</option>
+                                <option value="">Select Month-Year</option>
+                                @foreach ($monthYears as $month)
+                                    <option value="{{ $month }}"
+                                        {{ $month == $selectedMonthYear ? 'selected' : '' }}>
+                                        {{ $month }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
-
-                        @include('admin.employee.withdrawal_view')
+                        <div id="withdrawal_data">
+                            @include('admin.employee.withdrawal_view')
+                        </div>
                     </div>
                 </div>
             </div>
@@ -151,9 +155,7 @@
     $(document).ready(function() {
         $('#month_year').on('change', function() {
             var selectedMonthYear = $(this).val();
-
-            // If a valid month_year is selected, make an AJAX call
-            if (selectedMonthYear !== '') {
+            if (selectedMonthYear !== '' && selectedMonthYear !== 'Select Month-Year') {
                 fetchMonthWiseData(selectedMonthYear);
             }
         });
@@ -161,7 +163,7 @@
 
     function fetchMonthWiseData(monthYear) {
         console.log(monthYear);
-        
+
         $.ajax({
             url: "{{ route('admin.employee.withdrawal', ['id' => $employee_id]) }}", // Correct route
             type: 'GET',

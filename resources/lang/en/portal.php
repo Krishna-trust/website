@@ -88,6 +88,7 @@ return [
     'select_month_year' => 'Select Month-Year',
     'add_withdrawal' => 'Add Withdrawal',
     'month_year' => 'Month-Year',
+    'month' => 'Month',
     'final_salary' => 'Final Salary',
 
     // donation

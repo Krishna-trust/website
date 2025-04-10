@@ -87,6 +87,7 @@ return [
     'select_month_year' => 'મહિનો-વર્ષ પસંદ કરો',
     'add_withdrawal' => 'ઉપાડ ઉમેરો',
     'month_year' => 'મહિનો-વર્ષ',
+    'month' => 'મહિનો',
     'final_salary' => 'અંતિમ પગાર',
 
     // donation

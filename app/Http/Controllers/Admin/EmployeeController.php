@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\EmployeeWithdrawal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -210,47 +211,48 @@ class EmployeeController extends Controller
     public function Withdrawal($id, Request $request)
     {
         try {
-        $employee_id = $id;
-    
-        $withdrawals = EmployeeWithdrawal::join('employees', 'employee_withdrawals.employee_id', '=', 'employees.id')
-            ->selectRaw('
-                employee_withdrawals.id, 
-                employee_withdrawals.withdrawal_date, 
-                employee_withdrawals.withdrawal_amount,
-                DATE_FORMAT(withdrawal_date, "%M-%Y") as month_year,
-                employees.name as name,
-                employees.salary as salary
-            ')
-            ->where('employees.id', $id);
-            // ->groupByRaw('employee_withdrawals.id, employee_withdrawals.withdrawal_date, employees.name, employees.salary');
-    
-        // Handle AJAX request for filtering by month_year
-        if ($request->ajax()) {
-            $monthYear = $request->input('month_year') ?? '';
-            $withdrawals = $withdrawals->whereRaw('DATE_FORMAT(withdrawal_date, "%M-%Y") = ?', [$monthYear])->get();
-    
+            $employee_id = $id;
+
+            $currentMonthYear = Carbon::now()->format('F-Y'); // e.g., April-2025
+            $selectedMonthYear = $request->input('month_year') ?? $currentMonthYear;
+
+            $monthYears = EmployeeWithdrawal::where('employee_id', $id)
+                ->selectRaw('DATE_FORMAT(withdrawal_date, "%M-%Y") as month_year, MAX(withdrawal_date) as sort_date')
+                ->groupByRaw('month_year')
+                ->orderByDesc('sort_date')
+                ->pluck('month_year');
+
+            // Fetch withdrawals for selected month-year (default = current)
+            $withdrawals = EmployeeWithdrawal::join('employees', 'employee_withdrawals.employee_id', '=', 'employees.id')
+                ->selectRaw('
+                    employee_withdrawals.id, 
+                    employee_withdrawals.withdrawal_date, 
+                    employee_withdrawals.withdrawal_amount,
+                    DATE_FORMAT(withdrawal_date, "%M-%Y") as month_year,
+                    employees.name as name,
+                    employees.salary as salary
+                ')
+                ->where('employees.id', $id)
+                ->whereRaw('DATE_FORMAT(withdrawal_date, "%M-%Y") = ?', [$selectedMonthYear])
+                ->get();
+
             foreach ($withdrawals as $withdrawal) {
                 $withdrawal->final_salary = $withdrawal->salary - $withdrawal->withdrawal_amount;
             }
-    
-            $html = view('admin.employee.withdrawal_view', compact('withdrawals'))->render();
-            return response()->json(['html' => $html]);
-        }
-    
-        $withdrawals = $withdrawals->get();
-        foreach ($withdrawals as $withdrawal) {
-            $withdrawal->final_salary = $withdrawal->salary - $withdrawal->withdrawal_amount;
-        }
-    
-        return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id'));
 
+            if ($request->ajax()) {
+                $html = view('admin.employee.withdrawal_view', compact('withdrawals'))->render();
+                return response()->json(['html' => $html]);
+            }
+
+            return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id', 'monthYears', 'selectedMonthYear'));
         } catch (\Throwable $th) {
             Log::error('EmployeeController@Withdrawal Error: ' . $th->getMessage());
             return redirect()->route('admin.employee.index')
                 ->with('error', $th->getMessage());
         }
     }
-    
+
 
     public function WithdrawalStore(Request $request)
     {
