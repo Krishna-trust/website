@@ -60,6 +60,12 @@
                                     <option value="">{{ @trans('portal.select_purpose') }}</option>
                                     <option value="grocery" {{ old('purpose')=='grocery' ? 'selected' : '' }}>{{ @trans('portal.grocery') }}
                                     </option>
+                                    <option value="sabji" {{ old('purpose')=='sabji' ? 'selected' : '' }}>{{ @trans('portal.sabji') }}
+                                    </option>
+                                    <option value="lightbill" {{ old('purpose')=='lightbill' ? 'selected' : '' }}>{{ @trans('portal.lightbill') }}
+                                    </option>
+                                    <option value="rent" {{ old('purpose')=='rent' ? 'selected' : '' }}>{{ @trans('portal.rent') }}
+                                    </option>
                                     <option value="transportation" {{ old('purpose')=='transportation' ? 'selected' : '' }}>{{ @trans('portal.transportation') }}
                                     </option>
                                     <option value="other" {{ old('purpose')=='other' ? 'selected' : '' }}>{{ @trans('portal.other') }}</option>

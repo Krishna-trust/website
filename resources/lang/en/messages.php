@@ -22,6 +22,7 @@ return [
 
     'daily_content' => 'Daily Content',
     'contact' => 'Contact',
+    'expense' => 'Expense',
 
     // admin change password
     'current_password' => 'Current Password',

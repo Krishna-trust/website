@@ -12,10 +12,40 @@ use Stichoza\GoogleTranslate\GoogleTranslate;
 
 class TestimonialController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $testimonials = Testimonial::latest()->paginate(10);
-        return view('admin.testimonial.index', compact('testimonials'));
+
+        try {
+            $limit = $request->limit ?? 10;
+            $query = Testimonial::query();
+
+            // Search functionality
+            if ($request->search) {
+                $search = $request->search;
+
+                $query->where(function ($q) use ($search) {
+                    $q->where('en_name', 'like', "%{$search}%")
+                        ->orWhere('gu_name', 'like', "%{$search}%")
+                        ->orWhere('en_post', 'like', "%{$search}%")
+                        ->orWhere('gu_post', 'like', "%{$search}%")
+                        ->orWhere('en_description', 'like', "%{$search}%")
+                        ->orWhere('gu_description', 'like', "%{$search}%");
+                });
+            }
+
+            // Get paginated results
+            $testimonials = $query->latest()->paginate($request->get('per_page', $limit));
+
+            if (request()->ajax()) {
+                return view('admin.testimonial.view', compact('testimonials'));
+            }
+
+            return view('admin.testimonial.index', compact('testimonials'));
+        } catch (\Throwable $th) {
+            Log::error('testimonialController@index Error: ' . $th->getMessage());
+            return redirect()->route('admin.testimonial.index')
+                ->with('error', $th->getMessage());
+        }
     }
 
     public function create()

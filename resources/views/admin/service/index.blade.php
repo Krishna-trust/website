@@ -7,7 +7,7 @@
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex mt-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.service.index') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.services') }}</li>
         </ol>
     </div>

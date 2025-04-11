@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\ContactExport;
 use App\Exports\DonationExport;
 use App\Exports\EmployeeWithdrawalExport;
+use App\Exports\ExpenseExport;
 use App\Exports\LabharthiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use App\Models\Donation;
 use App\Models\EmployeeWithdrawal;
+use App\Models\Expense;
 use App\Models\Labharthi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -69,12 +71,23 @@ class ReportController extends Controller
         ->orderByDesc('sort_date')
         ->get();
 
+    // Expense 
+    $expenseMonths = Expense::selectRaw('
+            DATE_FORMAT(created_at, "%Y-%m") as value,
+            DATE_FORMAT(created_at, "%M-%Y") as label,
+            MAX(created_at) as sort_date
+        ')
+        ->groupByRaw('value, label')
+        ->orderByDesc('sort_date')
+        ->get();  
+
     return view('admin.monthly-report.index', compact(
         'selectedMonthYear',
         'donationMonths',
         'labharthiMonths',
         'contactMonths',
-        'employeeWithdrawalMonths'
+        'employeeWithdrawalMonths',
+        'expenseMonths'
     ));
     }
 
@@ -126,6 +139,18 @@ class ReportController extends Controller
             return Excel::download(new EmployeeWithdrawalExport($monthYear), $formatted . '-Employee-Withdrawal-List.xlsx');
         } catch (\Throwable $th) {
             Log::error('DonationController@employeeWithdrawalReport Error: ' . $th->getMessage());
+        }
+    }
+
+    public function expenseReport(Request $request)
+    {
+        try {
+            $monthYear = $request->input('month_year');
+            $formatted = Carbon::parse($monthYear . '-01')->format('F-Y');
+
+            return Excel::download(new ExpenseExport($monthYear), $formatted . '-Expense-List.xlsx');
+        } catch (\Throwable $th) {
+            Log::error('DonationController@expenseReport Error: ' . $th->getMessage());
         }
     }
 }

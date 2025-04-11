@@ -7,7 +7,7 @@
     </div>
     <div class="ms-auto pageheader-btn d-none d-xl-flex d-lg-flex mt-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ route('admin.contents.index') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.testimonial.index') }}">Home</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{ @trans('messages.testimonials') }}</li>
         </ol>
     </div>
@@ -152,15 +152,9 @@
         $('#popupImage').attr('src', imageUrl);
     });
 
-    // Use event delegation to handle clicks on the button
-    $('.card-body').on('click', '#sortCreatedAt button', function() {
-        var sort = $('#sortCreatedAt').attr('data-sort');
-        sort = (sort === 'desc') ? 'asc' : 'desc';
-        reloadTable(sort);
-    });
-
+   
     //search and filter
-    function reloadTable(sort) {
+    function reloadTable() {
         let search_string = $('#search-val').val();
         let limit = $('#selected_data').val();
 
@@ -172,11 +166,10 @@
 
         $.ajax({
             type: "GET",
-            url: "{{ url('admin.testimonial.index') }}",
+            url: "{{ route('admin.testimonial.index') }}",
             data: {
                 search: search_string,
                 limit: limit,
-                sort: sort,
             },
             success: function(response) {
                 $('.table-responsive').html(response);

@@ -73,6 +73,9 @@ return [
     'select_purpose' => 'હેતુ પસંદ કરો',
     'grocery' => 'કરિયાણું',
     'transportation' => 'પરિવહન',
+    'sabji' => 'શાકભાજી',
+    'lightbill' => 'લાઇટબીલ',
+    'rent' => 'મકાન ભાડુ',
 
     // Employee
     'employee' => 'સહાયક',
@@ -119,7 +122,7 @@ return [
     'comment' => 'મંતવ્ય',
 
     // monthly report
-    'monthly-reports' => 'મહિનાય રિપોર્ટ',
+    'monthly-reports' => 'રિપોર્ટ્સ',
 
     'donation_receipt_created' => 'દાન રસીદ બનાવી ગયેલ છે!',
     'donation_receipt_updated' => 'દાન રસીદ સુધારેલ છે!',

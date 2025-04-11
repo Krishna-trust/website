@@ -74,6 +74,9 @@ return [
     'select_purpose' => 'Select Purpose',
     'grocery' => 'Grocery',
     'transportation' => 'Transportation',
+    'sabji' => 'Sabji',
+    'lightbill' => 'Lightbill',
+    'rent' => 'Rent',
 
     // Employee
     'employee' => 'Employee',

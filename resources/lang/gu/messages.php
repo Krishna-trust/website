@@ -23,6 +23,7 @@ return [
     'daily_content' => 'પોસ્ટર',
     'contact' => 'સંપર્ક',
     'testimonials' => 'વિચારો',
+    'expense' => 'ખર્ચ',
 
     // admin change password
     'current_password' => 'વર્તમાન પાસવર્ડ',
