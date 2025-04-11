@@ -50,4 +50,9 @@ class AdminController extends Controller
             'current_password' => __('portal.current_password_incorrect'),
         ])->withInput($request->only('current_password'));
     }
+
+    public function leaflatMap()
+    {
+        return view('admin.leaflat-map');
+    }
 }

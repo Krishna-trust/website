@@ -63,6 +63,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
         return redirect()->back();
     });
 
+    Route::get('leaflat-map', [App\Http\Controllers\Admin\AdminController::class, 'leaflatMap'])->name('leaflat-map');
+
+
     Route::get('/dashboard', [App\Http\Controllers\Admin\AdminController::class, 'dashboard'])->name('dashboard');
 
     // Content Routes
