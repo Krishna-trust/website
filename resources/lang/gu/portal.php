@@ -118,6 +118,9 @@ return [
     'transaction_date' => 'ઓનલાઇન પેમેન્ટ તારીખ',
     'comment' => 'મંતવ્ય',
 
+    // monthly report
+    'monthly-reports' => 'મહિનાય રિપોર્ટ',
+
     'donation_receipt_created' => 'દાન રસીદ બનાવી ગયેલ છે!',
     'donation_receipt_updated' => 'દાન રસીદ સુધારેલ છે!',
     'donation_receipt_deleted' => 'દાન રસીદ કાઢી નાખવાયેલ છે!',

@@ -119,6 +119,9 @@ return [
     'transaction_date' => 'Transaction Date',
     'comment' => 'Comment',
 
+    // monthly report
+    'monthly-reports' => 'Monthly Reports',
+
     'donation_receipt_created' => 'Donation receipt created successfully!',
     'donation_receipt_updated' => 'Donation receipt updated successfully!',
     'donation_receipt_deleted' => 'Donation receipt deleted successfully!',

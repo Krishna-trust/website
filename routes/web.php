@@ -89,6 +89,13 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     // cotanct us
     Route::get('contact', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('contact.index');
 
+    // Reports
+    Route::get('monthly-report', [App\Http\Controllers\Admin\ReportController::class, 'index'])->name('monthly-report.index');
+    Route::get('monthly-report/donation', [App\Http\Controllers\Admin\ReportController::class, 'donationReport'])->name('monthly-report.donation');
+    Route::get('monthly-report/labharthi', [App\Http\Controllers\Admin\ReportController::class, 'labharthiReport'])->name('monthly-report.labharthi');
+    Route::get('monthly-report/contact', [App\Http\Controllers\Admin\ReportController::class, 'contactReport'])->name('monthly-report.contact');
+    Route::get('monthly-report/employee-withdrawal', [App\Http\Controllers\Admin\ReportController::class, 'employeeWithdrawalReport'])->name('monthly-report.employee-withdrawal');
+
     // change password
     Route::get('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('changePassword');
     Route::post('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePasswordPost'])->name('changePassword.save');

@@ -266,13 +266,4 @@ class DonationController extends Controller
                 ->with('error', $th->getMessage());
         }
     }
-
-    public function export()
-    {
-        try {
-            return Excel::download(new DonationExport, 'all_Donation_List.xlsx');
-        } catch (\Throwable $th) {
-            Log::error('DonationController@export Error: ' . $th->getMessage());
-        }
-    }
 }

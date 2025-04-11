@@ -3,23 +3,40 @@
 namespace App\Exports;
 
 use App\Models\Labharthi;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use PhpOffice\PhpSpreadsheet\Style\Font;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class LabharthiExport implements FromCollection, WithHeadings, WithStyles
+
+class LabharthiExport implements FromCollection, WithHeadings, WithStyles, WithColumnFormatting
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
+    public $monthYear;
+
+    public function __construct($monthYear)
+    {
+        $this->monthYear = $monthYear;
+    }
+
     public function collection()
     {
-        return Labharthi::all()->map(function ($item) {
+        $start = Carbon::parse($this->monthYear . '-01')->startOfMonth();
+        $end = Carbon::parse($this->monthYear . '-01')->endOfMonth();
+
+        Log::info('Export Start Date: ' . $start);
+        Log::info('Export End Date: ' . $end);
+
+        $labharthis = Labharthi::whereBetween('created_at', [$start, $end])->get();
+
+        Log::info('Labharthi record count: ' . $labharthis->count());
+
+        return $labharthis->map(function ($item) {
             return [
                 'name' => $item->name ?? '-',
-                'mobile_number' => (string) $item->mobile_number ?? '-',
+                'mobile_number' => $item->mobile_number ? $this->formatMobileNumber($item->mobile_number) : '-',
                 'address' => $item->address ?? '-',
                 'native_place' => $item->native_place ?? '-',
                 'cast' => $item->cast ?? '-',
@@ -38,12 +55,6 @@ class LabharthiExport implements FromCollection, WithHeadings, WithStyles
             ];
         });
     }
-
-    /**
-     * Return the headings for the export file.
-     *
-     * @return array
-     */
 
     public function headings(): array
     {
@@ -68,10 +79,18 @@ class LabharthiExport implements FromCollection, WithHeadings, WithStyles
         ];
     }
 
-    public function styles($sheet)
+    public function styles(Worksheet $sheet)
     {
-        // Apply bold to the first row (header row)
-        $sheet->getStyle('A1:O1')->getFont()->setBold(true);
+        $sheet->getStyle('A1:Q1')->getFont()->setBold(true);
+    }
+
+    public function columnFormats(): array
+    {
+        return [
+            // 'D' => NumberFormat::FORMAT_TEXT,
+            'B' => '###0', //mobile number
+            'G' => '@',  //Adhar Number
+        ];
     }
 
     private function formatAadharNumber($adharNumber)
@@ -87,11 +106,27 @@ class LabharthiExport implements FromCollection, WithHeadings, WithStyles
         return substr($adharNumber, 0, 4) . ' ' . substr($adharNumber, 4, 4) . ' ' . substr($adharNumber, 8, 4);
     }
 
-    public function columnFormats(): array
+    private function formatMobileNumber($number)
     {
-        return [
-            'B' => '###0', //mobile number
-            'G' => '@',  //Adhar Number
-        ];
+        if (empty($number)) {
+            return '-';
+        }
+
+        $number = preg_replace('/\D/', '', $number);
+
+        // Ensure it's 10 digits (remove country code if present)
+        if (strlen($number) === 12 && substr($number, 0, 2) === '91') {
+            $number = substr($number, 2); // remove country code
+        } elseif (strlen($number) === 11 && $number[0] === '0') {
+            $number = substr($number, 1); // remove leading 0
+        }
+
+        // Validate final length
+        if (strlen($number) !== 10) {
+            return $number; // return as-is if not valid 10-digit
+        }
+
+        // Format: +91 XXXXX-XXXXX
+        return '+91 ' . substr($number, 0, 5) . ' ' . substr($number, 5);
     }
 }
