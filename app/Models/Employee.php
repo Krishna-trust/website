@@ -14,6 +14,7 @@ class Employee extends Model
         'name',
         'address',
         'mobile_number',
+        'adhar_number',
         'email',
         'password',
         'status',

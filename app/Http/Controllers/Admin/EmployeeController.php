@@ -29,6 +29,7 @@ class EmployeeController extends Controller
                     $q->where('name', 'like', "%{$search}%")
                         ->orWhere('address', 'like', "%{$search}%")
                         ->orWhere('mobile_number', 'like', "%{$search}%")
+                        ->orWhere('adhar_number', 'like', "%{$search}%")
                         ->orWhere('email', 'like', "%{$search}%")
                         ->orWhere('salary', 'like', "%{$search}%");
                 });
@@ -66,6 +67,7 @@ class EmployeeController extends Controller
                 'name' => 'required',
                 'address' => 'required',
                 'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
+                'adhar_number' => 'required|string|size:12|regex:/^[0-9]+$/',
                 'email' => 'nullable',
                 // 'password' => 'nullable',
                 'status' => 'required',
@@ -78,6 +80,10 @@ class EmployeeController extends Controller
                 'mobile_number.string' => __('validation.string_mobile_number'),
                 'mobile_number.size' => __('validation.size_mobile_number'),
                 'mobile_number.regex' => __('validation.regex_mobile_number'),
+                'adhar_number.required' => __('validation.required_adhar_number'),
+                'adhar_number.string' => __('validation.string_adhar_number'),
+                'adhar_number.size' => __('validation.size_adhar_number'),
+                'adhar_number.regex' => __('validation.regex_adhar_number'),
                 // 'email.required' => __('validation.required_email'),
                 // 'password.required' => __('validation.required_password'),
                 'status.required' => __('validation.required_status'),
@@ -105,6 +111,7 @@ class EmployeeController extends Controller
                 'name' => $request->name ?? '',
                 'address' => $request->address ?? '',
                 'mobile_number' => $request->mobile_number ?? '',
+                'adhar_number' => $request->adhar_number ?? '',
                 'email' => $request->email ?? '',
                 'password' => '',
                 'status' => $request->status ?? '',
@@ -136,6 +143,7 @@ class EmployeeController extends Controller
                 'name' => 'required',
                 'address' => 'required',
                 'mobile_number' => 'required|string|size:10|regex:/^[0-9]+$/',
+                'adhar_number' => 'required|string|size:12|regex:/^[0-9]+$/',
                 'email' => 'nullable',
                 // 'password' => 'required',
                 'status' => 'required',
@@ -147,6 +155,10 @@ class EmployeeController extends Controller
                 'mobile_number.string' => __('validation.string_mobile_number'),
                 'mobile_number.size' => __('validation.size_mobile_number'),
                 'mobile_number.regex' => __('validation.regex_mobile_number'),
+                'adhar_number.required' => __('validation.required_adhar_number'),
+                'adhar_number.string' => __('validation.string_adhar_number'),
+                'adhar_number.size' => __('validation.size_adhar_number'),
+                'adhar_number.regex' => __('validation.regex_adhar_number'),
                 // 'email.required' => __('validation.required_email'),
                 // 'password.required' => __('validation.required_password'),
                 'status.required' => __('validation.required_status'),
@@ -165,6 +177,7 @@ class EmployeeController extends Controller
                 'name' => $request->name ?? '',
                 'address' => $request->address ?? '',
                 'mobile_number' => $request->mobile_number ?? '',
+                'adhar_number' => $request->adhar_number ?? '',
                 'email' => $request->email ?? '',
                 'status' => $request->status ?? '',
                 'salary' => $request->salary ?? '',

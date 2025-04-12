@@ -36,7 +36,7 @@
         @forelse($expenses as $index => $expense)
         <tr>
             <td>{{ $index + 1 }}</td>
-            <td>{{ $expense->purpose ? $expense->purpose : '-' }}</td>
+            <td>{{ $expense->purpose ? trans('portal.'.$expense->purpose) : '-' }}</td>
             <td>{{ $expense->amount ? $expense->amount : '-' }}</td>
             <td>{{ $expense->comment ? $expense->comment : '-' }}</td>
             <td style="white-space: nowrap;">{{ $expense->date ? date('d-m-Y', strtotime($expense->date)) : '-' }}</td>

@@ -36,6 +36,10 @@
                                 <i class="fa fa-phone me-2 text-success"></i>
                                 <span class="fw-bolder">{{ $employee->mobile_number ?? '-' }}</span>
                             </li>
+                            <li class="mb-2">
+                                <i class="fa fa-id-card me-2 text-success"></i>
+                                <span class="fw-bolder">{{ $employee->adhar_number ?? '-' }}</span>
+                            </li>
                             <li class="mb-2 d-flex justify-content-start">
                                 <i class="fa fa-envelope me-2 text-primary d-flex justify-content-center align-items-center"></i>
                                <span class="fw-bolder">{{ $employee->email ?? '-' }}</span>
