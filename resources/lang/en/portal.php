@@ -125,6 +125,8 @@ return [
     // monthly report
     'monthly-reports' => 'Monthly Reports',
 
+    'map' => 'Map',
+
     'donation_receipt_created' => 'Donation receipt created successfully!',
     'donation_receipt_updated' => 'Donation receipt updated successfully!',
     'donation_receipt_deleted' => 'Donation receipt deleted successfully!',

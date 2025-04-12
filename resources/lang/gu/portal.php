@@ -124,6 +124,8 @@ return [
     // monthly report
     'monthly-reports' => 'રિપોર્ટ્સ',
 
+    'map' => 'નકશો',
+
     'donation_receipt_created' => 'દાન રસીદ બનાવી ગયેલ છે!',
     'donation_receipt_updated' => 'દાન રસીદ સુધારેલ છે!',
     'donation_receipt_deleted' => 'દાન રસીદ કાઢી નાખવાયેલ છે!',

@@ -51,8 +51,8 @@ class AdminController extends Controller
         ])->withInput($request->only('current_password'));
     }
 
-    public function leaflatMap()
+    public function leafletMap()
     {
-        return view('admin.leaflat-map');
+        return view('admin.leaflet-map');
     }
 }

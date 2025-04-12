@@ -15,11 +15,15 @@
         <div class="p-0 side-menu">
             <!-- dashboard Menu -->
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.dashboard'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.dashboard'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.dashboard') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1772 1772">
-                        <path d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z" fill="currentColor" class="color000000 svgShape"></path>
+                        <path
+                            d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z"
+                            fill="currentColor" class="color000000 svgShape"></path>
                     </svg>
                     <span class="side-menu__label">
                         {{ __('portal.dashboard') }}
@@ -28,11 +32,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contents.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.contents.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.contents.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -42,11 +50,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.donation.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.donation.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.donation.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -56,11 +68,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.expense.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.expense.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.expense.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -70,11 +86,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.labharthi.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.labharthi.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.labharthi.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -84,11 +104,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.service.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.service.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.service.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -98,11 +122,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.testimonial.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.testimonial.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.testimonial.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -112,11 +140,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contact.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.contact.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.contact.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -126,12 +158,16 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.employee.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.employee.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.employee.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                      </svg>                      
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
 
                     <span class="side-menu__label">
                         {{ __('portal.employees') }}
@@ -140,12 +176,16 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.monthly-report.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.monthly-report.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.monthly-report.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                      </svg>                                           
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                    </svg>
 
                     <span class="side-menu__label">
                         {{ __('portal.monthly-reports') }}
@@ -153,6 +193,21 @@
                 </a>
             </div>
 
+            <div class="slide animate-right">
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.leaflet-map.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                    href="{{ route('admin.leaflet-map') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                      </svg>                      
+                    <span class="side-menu__label">
+                        {{ __('portal.map') }}
+                    </span>
+                </a>
+            </div>
         </div>
     </div>
 
@@ -160,18 +215,24 @@
         <div class="main-sidemenu mb-md-4">
             <a href="{{ route('admin.dashboard') }}" class="d-flex justify-content-center align-items-center">
                 <svg viewBox="0 0 52 51" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M42.5724 14.8858V13.2354C42.5724 10.9501 40.7009 9.09864 38.391 9.09864H13.6074C11.2975 9.09864 9.42605 10.9501 9.42605 13.2354V30.4064H22.0558V30.417H26.7237C27.0018 30.417 27.2798 30.3958 27.5632 30.3482C27.8413 30.3006 28.0979 30.2107 28.3332 30.0731C28.5631 29.9356 28.7503 29.7504 28.8893 29.523C29.0283 29.2955 29.0978 28.994 29.0978 28.6237C29.0978 27.8619 28.9 27.37 28.5043 27.1372C28.1086 26.9045 27.5739 26.7934 26.9002 26.7934H24.4566C23.8524 26.7934 23.2642 26.7246 22.6921 26.5871C22.1199 26.4495 21.612 26.2168 21.1575 25.8941C20.703 25.5714 20.3394 25.1482 20.056 24.6192C19.7779 24.0902 19.6389 23.4237 19.6389 22.6144C19.6389 21.8315 19.794 21.1755 20.1094 20.6465C20.4249 20.1175 20.8313 19.689 21.3286 19.3664C21.8312 19.0437 22.3873 18.8215 23.0022 18.6945C23.6171 18.5676 24.232 18.5041 24.8362 18.5041H43.7166C44.492 18.5041 45.1176 19.123 45.1176 19.8901V37.7594C45.1176 41.4358 42.1072 44.4141 38.391 44.4141H13.6074C9.89125 44.4141 6.88086 41.4358 6.88086 37.7594V36.3787C6.88086 36.0296 7.02523 35.7175 7.25515 35.49C7.48508 35.2625 7.8059 35.1197 8.15346 35.1197C8.85392 35.1197 9.42605 35.6857 9.42605 36.3787V37.7594C9.42605 40.0446 11.2975 41.8961 13.6074 41.8961H38.3963C40.7063 41.8961 42.5777 40.0446 42.5777 37.7594V20.8634H28.1247V20.8528H24.6651C23.9219 20.8528 23.3391 20.9745 22.922 21.2125C22.5049 21.4559 22.291 21.9108 22.291 22.5773C22.291 23.2015 22.4782 23.6459 22.8471 23.9263C23.2214 24.2013 23.7561 24.3389 24.4512 24.3389H26.9644C27.6167 24.3389 28.2316 24.4076 28.8144 24.5452C29.3973 24.6827 29.9052 24.9155 30.349 25.2382C30.7928 25.5608 31.1404 25.9946 31.3971 26.5342C31.6537 27.0738 31.782 27.7509 31.782 28.5549C31.782 29.3854 31.6484 30.0678 31.381 30.6074C31.1137 31.147 30.7554 31.5807 30.317 31.9034C29.8731 32.2261 29.3705 32.4483 28.7984 32.5753C28.2263 32.7022 27.6381 32.7657 27.0339 32.7657H8.5224C7.6134 32.7657 6.88086 32.0357 6.88086 31.1417V13.2406C6.88086 9.56416 9.89125 6.58594 13.6074 6.58594H38.3963C42.1125 6.58594 45.1229 9.56416 45.1229 13.2406V14.8911C45.1229 15.2402 44.9785 15.5523 44.7486 15.7798C44.5187 16.0073 44.1979 16.1501 43.8503 16.1501C43.1445 16.1448 42.5724 15.5841 42.5724 14.8858Z" fill="white" />
+                    <path
+                        d="M42.5724 14.8858V13.2354C42.5724 10.9501 40.7009 9.09864 38.391 9.09864H13.6074C11.2975 9.09864 9.42605 10.9501 9.42605 13.2354V30.4064H22.0558V30.417H26.7237C27.0018 30.417 27.2798 30.3958 27.5632 30.3482C27.8413 30.3006 28.0979 30.2107 28.3332 30.0731C28.5631 29.9356 28.7503 29.7504 28.8893 29.523C29.0283 29.2955 29.0978 28.994 29.0978 28.6237C29.0978 27.8619 28.9 27.37 28.5043 27.1372C28.1086 26.9045 27.5739 26.7934 26.9002 26.7934H24.4566C23.8524 26.7934 23.2642 26.7246 22.6921 26.5871C22.1199 26.4495 21.612 26.2168 21.1575 25.8941C20.703 25.5714 20.3394 25.1482 20.056 24.6192C19.7779 24.0902 19.6389 23.4237 19.6389 22.6144C19.6389 21.8315 19.794 21.1755 20.1094 20.6465C20.4249 20.1175 20.8313 19.689 21.3286 19.3664C21.8312 19.0437 22.3873 18.8215 23.0022 18.6945C23.6171 18.5676 24.232 18.5041 24.8362 18.5041H43.7166C44.492 18.5041 45.1176 19.123 45.1176 19.8901V37.7594C45.1176 41.4358 42.1072 44.4141 38.391 44.4141H13.6074C9.89125 44.4141 6.88086 41.4358 6.88086 37.7594V36.3787C6.88086 36.0296 7.02523 35.7175 7.25515 35.49C7.48508 35.2625 7.8059 35.1197 8.15346 35.1197C8.85392 35.1197 9.42605 35.6857 9.42605 36.3787V37.7594C9.42605 40.0446 11.2975 41.8961 13.6074 41.8961H38.3963C40.7063 41.8961 42.5777 40.0446 42.5777 37.7594V20.8634H28.1247V20.8528H24.6651C23.9219 20.8528 23.3391 20.9745 22.922 21.2125C22.5049 21.4559 22.291 21.9108 22.291 22.5773C22.291 23.2015 22.4782 23.6459 22.8471 23.9263C23.2214 24.2013 23.7561 24.3389 24.4512 24.3389H26.9644C27.6167 24.3389 28.2316 24.4076 28.8144 24.5452C29.3973 24.6827 29.9052 24.9155 30.349 25.2382C30.7928 25.5608 31.1404 25.9946 31.3971 26.5342C31.6537 27.0738 31.782 27.7509 31.782 28.5549C31.782 29.3854 31.6484 30.0678 31.381 30.6074C31.1137 31.147 30.7554 31.5807 30.317 31.9034C29.8731 32.2261 29.3705 32.4483 28.7984 32.5753C28.2263 32.7022 27.6381 32.7657 27.0339 32.7657H8.5224C7.6134 32.7657 6.88086 32.0357 6.88086 31.1417V13.2406C6.88086 9.56416 9.89125 6.58594 13.6074 6.58594H38.3963C42.1125 6.58594 45.1229 9.56416 45.1229 13.2406V14.8911C45.1229 15.2402 44.9785 15.5523 44.7486 15.7798C44.5187 16.0073 44.1979 16.1501 43.8503 16.1501C43.1445 16.1448 42.5724 15.5841 42.5724 14.8858Z"
+                        fill="white" />
                 </svg>
             </a>
         </div>
         <div class="p-0 side-menu">
             <!-- Dashboard -->
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.dashboard'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.dashboard'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.dashboard') }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1772 1772">
-                        <path d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z" fill="currentColor" class="color000000 svgShape"></path>
+                        <path
+                            d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z"
+                            fill="currentColor" class="color000000 svgShape"></path>
                     </svg>
                     <span class="side-menu__label">
                         {{ __('portal.dashboard') }}
@@ -180,11 +241,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contents.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.contents.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.contents.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -194,11 +259,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.donation.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.donation.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.donation.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -208,11 +277,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.expense.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.expense.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.expense.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -222,11 +295,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.labharthi.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.labharthi.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.labharthi.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -236,11 +313,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.service.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.service.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.service.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -250,11 +331,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.testimonial.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.testimonial.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.testimonial.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -264,11 +349,15 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contact.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.contact.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.contact.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
                     </svg>
 
                     <span class="side-menu__label">
@@ -278,12 +367,16 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.employee.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.employee.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.employee.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                      </svg>  
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                    </svg>
 
                     <span class="side-menu__label">
                         {{ __('portal.employees') }}
@@ -292,15 +385,35 @@
             </div>
 
             <div class="slide animate-right">
-                <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.monthly-report.*'),
-                    ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.monthly-report.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
                     href="{{ route('admin.monthly-report.index') }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                      </svg>                      
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                    </svg>
 
                     <span class="side-menu__label">
                         {{ __('portal.monthly-reports') }}
+                    </span>
+                </a>
+            </div>
+
+            <div class="slide animate-right">
+                <a @class([
+                    'side-menu__item has-link',
+                    'active' => request()->routeIs('admin.leaflet-map.*'),
+                ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                    href="{{ route('admin.leaflet-map') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                      </svg> 
+                    <span class="side-menu__label">
+                        {{ __('portal.map') }}
                     </span>
                 </a>
             </div>
@@ -313,14 +426,18 @@
             <a href="{{ route('admin.dashboard') }}" style="width: 50px;">
                 <img src="{{ asset('images/logo.png') }}" alt="logo" class="img-fluid rounded-circle">
             </a>
-            <a aria-controls="offcanvas-1" aria-label="Hide Sidebar" class="app-sidebar__toggle" data-bs-toggle="offcanvas" href="#offcanvas-1" role="button"></a>
+            <a aria-controls="offcanvas-1" aria-label="Hide Sidebar" class="app-sidebar__toggle"
+                data-bs-toggle="offcanvas" href="#offcanvas-1" role="button"></a>
         </div>
-        <div aria-labelledby="offcanvas-1Label" class="offcanvas offcanvas-start" id="offcanvas-1" tabindex="-1" aria-hidden="true">
+        <div aria-labelledby="offcanvas-1Label" class="offcanvas offcanvas-start" id="offcanvas-1" tabindex="-1"
+            aria-hidden="true">
             <div class="offcanvas-header me-2 mt-2">
                 <h5 class="offcanvas-title" id="offcanvas-1Label">
                 </h5>
                 <button aria-label="Close" class="btn-close text-reset" data-bs-dismiss="offcanvas" type="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="">
                         <circle cx="12" cy="12" r="10"></circle>
                         <line x1="15" y1="9" x2="9" y2="15"></line>
                         <line x1="9" y1="9" x2="15" y2="15"></line>
@@ -332,11 +449,15 @@
 
                     <!-- Dashbaord -->
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.dashboard'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.dashboard'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.dashboard') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1772 1772">
-                                <path d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z" fill="currentColor" class="color000000 svgShape"></path>
+                                <path
+                                    d="M384 1152q0-53-37.5-90.5T256 1024t-90.5 37.5T128 1152t37.5 90.5T256 1280t90.5-37.5T384 1152zm192-448q0-53-37.5-90.5T448 576t-90.5 37.5T320 704t37.5 90.5T448 832t90.5-37.5T576 704zm428 481 101-382q6-26-7.5-48.5T1059 725t-48 6.5-30 39.5l-101 382q-60 5-107 43.5t-63 98.5q-20 77 20 146t117 89 146-20 89-117q16-60-6-117t-72-91zm660-33q0-53-37.5-90.5T1536 1024t-90.5 37.5-37.5 90.5 37.5 90.5 90.5 37.5 90.5-37.5 37.5-90.5zm-640-640q0-53-37.5-90.5T896 384t-90.5 37.5T768 512t37.5 90.5T896 640t90.5-37.5T1024 512zm448 192q0-53-37.5-90.5T1344 576t-90.5 37.5T1216 704t37.5 90.5T1344 832t90.5-37.5T1472 704zm320 448q0 261-141 483-19 29-54 29H195q-35 0-54-29Q0 1414 0 1152q0-182 71-348t191-286 286-191 348-71 348 71 286 191 191 286 71 348z"
+                                    fill="currentColor" class="color000000 svgShape"></path>
                             </svg>
                             <span class="side-menu__label">
                                 {{ __('portal.dashboard') }}
@@ -345,11 +466,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contents.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.contents.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.contents.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M11.35 3.836c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m8.9-4.414c.376.023.75.05 1.124.08 1.131.094 1.976 1.057 1.976 2.192V16.5A2.25 2.25 0 0 1 18 18.75h-2.25m-7.5-10.5H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V18.75m-7.5-10.5h6.375c.621 0 1.125.504 1.125 1.125v9.375m-8.25-3 1.5 1.5 3-3.75" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -359,11 +484,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.donation.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.donation.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.donation.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -373,11 +502,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.expense.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.expense.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.expense.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 8.25H9m6 3H9m3 6-3-3h1.5a3 3 0 1 0 0-6M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -387,11 +520,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.labharthi.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.labharthi.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.labharthi.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -401,11 +538,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.service.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.service.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.service.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -415,11 +556,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.testimonial.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.testimonial.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.testimonial.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -429,11 +574,15 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.contact.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.contact.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.contact.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
                             </svg>
 
                             <span class="side-menu__label">
@@ -443,12 +592,16 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.employee.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.employee.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.employee.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
-                              </svg>  
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                            </svg>
 
                             <span class="side-menu__label">
                                 {{ __('portal.employees') }}
@@ -457,15 +610,35 @@
                     </div>
 
                     <div class="slide animate-right">
-                        <a @class([ 'side-menu__item has-link' , 'active'=> request()->routeIs('admin.monthly-report.*'),
-                            ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.monthly-report.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
                             href="{{ route('admin.monthly-report.index') }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-                              </svg>
-                              
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                            </svg>
+
                             <span class="side-menu__label">
                                 {{ __('portal.monthly-reports') }}
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="slide animate-right">
+                        <a @class([
+                            'side-menu__item has-link',
+                            'active' => request()->routeIs('admin.leaflet-map.*'),
+                        ]) class="side-menu__item has-link" data-bs-toggle="slide"
+                            href="{{ route('admin.leaflet-map') }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                              </svg> 
+                            <span class="side-menu__label">
+                                {{ __('portal.map') }}
                             </span>
                         </a>
                     </div>
@@ -478,20 +651,20 @@
 
 
 @push('js')
-<script src="{{ asset('sidemenu/sidemenu.js') }}"></script>
-<script>
-    $(document).ready(() => {
-        $('.app-sidebar__toggle').on('click', (e) => {
-            e.preventDefault()
-            $('.app-sidebar__toggle').addClass('hide-content')
-            $('.main-content').addClass('hide-content')
-        })
+    <script src="{{ asset('sidemenu/sidemenu.js') }}"></script>
+    <script>
+        $(document).ready(() => {
+            $('.app-sidebar__toggle').on('click', (e) => {
+                e.preventDefault()
+                $('.app-sidebar__toggle').addClass('hide-content')
+                $('.main-content').addClass('hide-content')
+            })
 
-        $('.offcanvas-header .btn-close.text-reset').on('click', (e) => {
-            e.preventDefault()
-            $('.app-sidebar__toggle').removeClass('hide-content')
-            $('.main-content').removeClass('hide-content')
+            $('.offcanvas-header .btn-close.text-reset').on('click', (e) => {
+                e.preventDefault()
+                $('.app-sidebar__toggle').removeClass('hide-content')
+                $('.main-content').removeClass('hide-content')
+            })
         })
-    })
-</script>
+    </script>
 @endpush
