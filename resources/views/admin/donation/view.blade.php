@@ -42,7 +42,7 @@
             @else
                 -
             @endif</td>
-            <td>₹{{ $donation->amount ? number_format($donation->amount, 2) : '-' }}</td>
+            <td>₹ {{ $donation->amount ? number_format($donation->amount, 2) : '-' }}</td>
             <td>{{ $donation->payment_mode ? ucfirst($donation->payment_mode) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">

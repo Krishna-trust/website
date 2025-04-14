@@ -80,7 +80,7 @@
                                             <tr>
                                                 <td>{{ $withdrawal->name ? $withdrawal->name : '-' }}</td>
                                                 <td>{{ $withdrawal->month_year ? $withdrawal->month_year : '-' }}</td>
-                                                <td>₹{{ $withdrawal->final_salary ? number_format($withdrawal->final_salary, 2) : '-' }}
+                                                <td>₹ {{ $withdrawal->final_salary ? number_format($withdrawal->final_salary, 2) : '-' }}
                                                 </td>
                                             </tr>
                                         @endforeach
