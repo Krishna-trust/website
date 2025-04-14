@@ -16,6 +16,8 @@ class Labharthi extends Model
     protected $fillable = [
         'name',
         'address',
+        'latitude',
+        'longitude',
         'native_place',
         'cast',
         'sub_cast',

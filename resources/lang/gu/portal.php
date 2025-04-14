@@ -125,6 +125,9 @@ return [
     'monthly-reports' => 'રિપોર્ટ્સ',
 
     'map' => 'નકશો',
+    'get_location' => 'વર્તમાન સ્થાન મેળવો',
+    'show_location' => 'સ્થાન બતાવો',
+    'location' => 'તમારું વર્તમાન સ્થાન',
 
     'donation_receipt_created' => 'દાન રસીદ બનાવી ગયેલ છે!',
     'donation_receipt_updated' => 'દાન રસીદ સુધારેલ છે!',

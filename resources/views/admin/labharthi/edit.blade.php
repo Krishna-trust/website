@@ -21,15 +21,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <!-- @if ($errors->any())
-    <div class="alert alert-danger">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-                            </ul>
-                        </div>
-    @endif -->
                         <form action="{{ route('admin.labharthi.update', $labharthi->id) }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -265,6 +256,39 @@
                                 </div>
                             </div>
 
+                            {{-- get location --}}
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label">{{ __('portal.location') }}</label>
+                            
+                                <!-- Table -->
+                                <div id="location-table" class="table-responsive" style="margin-top: 10px;">
+                                    <table class="table table-bordered w-100">
+                                        <thead>
+                                            <tr>
+                                                <th>Latitude</th>
+                                                <th>Longitude</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td id="lat-value">{{ old('latitude', $labharthi->latitude ?? '-') }}</td>
+                                                <td id="lon-value">{{ old('longitude', $labharthi->longitude ?? '-') }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            
+                                <!-- Hidden Inputs -->
+                                <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude', $labharthi->latitude ?? '') }}">
+                                <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude', $labharthi->longitude ?? '') }}">
+                            
+                                <!-- Button -->
+                                <button type="button" id="location-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal">
+                                    <i class="fa fa-map-marker"></i>
+                                    {{ (old('latitude', $labharthi->latitude ?? '') && old('longitude', $labharthi->longitude ?? '')) ? __('portal.show_location') : __('portal.get_location') }}
+                                </button>
+                            </div>                            
+
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-save"></i> {{ @trans('portal.update') }}
@@ -273,4 +297,9 @@
                         </form>
                     </div>
                 </div>
-            @endsection
+            </div>
+        </div>
+    </div>
+
+    @include('admin.location-map')
+@endsection

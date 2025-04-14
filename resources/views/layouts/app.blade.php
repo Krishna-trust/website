@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="{{ asset('css/fade.css') }}">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -70,7 +71,47 @@
     <!-- <script src="{{ asset('assets/adminlte/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets/adminlte/bower_components/bootstrap-daterangepicker/daterangepicker.js') }}"></script> -->
 
+    <!-- Include Leaflet CSS and JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
     <script>
+        let map;
+        let marker;
+
+        function loadMap() {
+            // Give time for modal to fully open before loading the map
+            setTimeout(() => {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const lat = position.coords.latitude;
+                        const lon = position.coords.longitude;
+
+                        // If map already exists, remove and recreate it
+                        if (map) {
+                            map.remove();
+                        }
+
+                        map = L.map('map').setView([lat, lon], 13);
+
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '© OpenStreetMap'
+                        }).addTo(map);
+
+                        marker = L.marker([lat, lon]).addTo(map)
+                            .bindPopup("You are here!")
+                            .openPopup();
+
+                    }, function(error) {
+                        alert("Error: " + error.message);
+                    });
+                } else {
+                    alert("Geolocation is not supported by your browser.");
+                }
+            }, 500); // slight delay to ensure modal is rendered
+        }
+
         function handleLanguageChange(selectElement) {
             const selectedLang = selectElement.value;
             // Redirect to the same page with the new language code in the URL

@@ -126,6 +126,9 @@ return [
     'monthly-reports' => 'Monthly Reports',
 
     'map' => 'Map',
+    'get_location' => 'Get Location',
+    'show_location' => 'Show Location',
+    'location' => 'Location',
 
     'donation_receipt_created' => 'Donation receipt created successfully!',
     'donation_receipt_updated' => 'Donation receipt updated successfully!',

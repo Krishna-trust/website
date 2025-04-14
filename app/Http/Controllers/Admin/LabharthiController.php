@@ -77,6 +77,8 @@ class LabharthiController extends Controller
                 'tifin_starting_date' => 'nullable|date',
                 'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
                 'reasion_for_tifin_stop' => 'nullable|string',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
             ];
 
             // Define the custom error messages
