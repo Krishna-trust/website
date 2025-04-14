@@ -133,6 +133,7 @@ class ReportController extends Controller
     public function employeeWithdrawalReport(Request $request)
     {
         try {
+            
             $monthYear = $request->input('month_year');
             $formatted = Carbon::parse($monthYear . '-01')->format('F-Y');
 
