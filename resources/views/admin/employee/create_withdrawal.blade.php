@@ -76,11 +76,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($withdrawals as $withdrawal)
+                                        @forelse($finalSalary as $data)
                                             <tr>
-                                                <td>{{ $withdrawal->name ? $withdrawal->name : '-' }}</td>
-                                                <td>{{ $withdrawal->month_year ? $withdrawal->month_year : '-' }}</td>
-                                                <td>₹ {{ $withdrawal->final_salary ? number_format($withdrawal->final_salary, 2) : '-' }}
+                                                <td>{{ $data->name ? $data->name : '-' }}</td>
+                                                <td>{{ $data->month_year ? $data->month_year : '-' }}</td>
+                                                <td>₹ {{ $data->final_salary ? number_format($data->final_salary, 2) : '-' }}
                                                 </td>
                                             </tr>
                                         @endforeach

@@ -249,7 +249,20 @@ class EmployeeController extends Controller
                 ->whereRaw('DATE_FORMAT(withdrawal_date, "%M-%Y") = ?', [$selectedMonthYear])
                 ->get();
 
-            foreach ($withdrawals as $withdrawal) {
+            $finalSalary = EmployeeWithdrawal::join('employees', 'employee_withdrawals.employee_id', '=', 'employees.id')
+                ->selectRaw('
+                    MIN(employee_withdrawals.id) as id, 
+                    DATE_FORMAT(withdrawal_date, "%M-%Y") as month_year,
+                    MIN(employee_withdrawals.withdrawal_date) as withdrawal_date,
+                    SUM(employee_withdrawals.withdrawal_amount) as withdrawal_amount,
+                    employees.name as name,
+                    employees.salary as salary
+                ')
+                ->where('employees.id', $id)
+                ->groupBy('month_year', 'employees.name', 'employees.salary')
+                ->get();
+
+            foreach ($finalSalary as $withdrawal) {
                 $withdrawal->final_salary = $withdrawal->salary - $withdrawal->withdrawal_amount;
             }
 
@@ -258,7 +271,7 @@ class EmployeeController extends Controller
                 return response()->json(['html' => $html]);
             }
 
-            return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id', 'monthYears', 'selectedMonthYear'));
+            return view('admin.employee.create_withdrawal', compact('withdrawals', 'employee_id', 'monthYears', 'selectedMonthYear', 'finalSalary'));
         } catch (\Throwable $th) {
             Log::error('EmployeeController@Withdrawal Error: ' . $th->getMessage());
             return redirect()->route('admin.employee.index')
