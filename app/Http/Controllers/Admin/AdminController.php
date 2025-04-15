@@ -53,6 +53,21 @@ class AdminController extends Controller
 
     public function leafletMap()
     {
-        return view('admin.leaflet-map');
+        $labharthis = Labharthi::orderBy('id', 'desc')->get();
+
+        $locations = [];
+        foreach ($labharthis as $labharthi) {
+            if (!empty($labharthi->latitude) || !empty($labharthi->longitude)) {
+                $locations[] = [
+                    'lat' => $labharthi->latitude,
+                    'lng' => $labharthi->longitude,
+                    'label' => $labharthi->name,
+                ];
+            }
+        }
+
+        // dd($locations);
+
+        return view('admin.leaflet-map', compact('locations'));
     }
 }

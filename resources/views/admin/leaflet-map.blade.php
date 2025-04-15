@@ -4,7 +4,7 @@
   <title>Krishna Niswarth Seva Trust</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- Leaflet CSS & JS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -22,7 +22,7 @@
 <div id="map"></div>
 
 <script>
-  // HTTPS check
+  // HTTPS warning
   if (location.protocol !== 'https:' && location.hostname !== 'localhost') {
     alert('Location accuracy may be limited over HTTP. Use HTTPS for better precision.');
   }
@@ -51,13 +51,10 @@
 
   let userMarker, accuracyCircle;
 
-  const holdPoints = [
-    { lat: 23.081, lng: 72.540, label: "Stop 1: Tea Break" },
-    { lat: 23.082, lng: 72.542, label: "Stop 2: Fuel Station" },
-    { lat: 23.083047041943733, lng: 72.54580072024893, label: "Stop 3: Passenger Pickup" }
-  ];
+  // Laravel-injected dynamic stop data
+  const holdPoints = @json($locations);
 
-  // Add static stop markers
+  // Add stop markers to map
   holdPoints.forEach(point => {
     L.marker([point.lat, point.lng], { icon: stopIcon })
       .addTo(map)
@@ -72,10 +69,10 @@
 
     console.log(`User location: ${lat}, ${lng}, Accuracy: ${accuracy}m`);
 
-    // Initial set view
+    // Center the map
     map.setView(userLocation, 15);
 
-    // Add or update marker
+    // Add or update user marker
     if (!userMarker) {
       userMarker = L.marker(userLocation, { icon: rickshawIcon }).addTo(map).bindPopup("You are here").openPopup();
     } else {
@@ -94,7 +91,7 @@
     }
 
     // Draw route (only once)
-    if (!window.routeDrawn) {
+    if (!window.routeDrawn && holdPoints.length > 0) {
       const waypoints = [
         L.latLng(userLocation),
         ...holdPoints.map(stop => L.latLng(stop.lat, stop.lng))
@@ -111,11 +108,11 @@
         }
       }).addTo(map);
 
-      window.routeDrawn = true; // prevent duplicate routing
+      window.routeDrawn = true;
     }
   }
 
-  // Get initial location
+  // Initial location fetch
   navigator.geolocation.getCurrentPosition(showUserLocation, error => {
     alert("Location access denied or unavailable.");
     console.error("Geolocation error:", error);
@@ -123,14 +120,13 @@
     enableHighAccuracy: true
   });
 
-  // Watch for location updates
+  // Continuous location tracking
   navigator.geolocation.watchPosition(showUserLocation, error => {
     console.error("Location update error:", error);
   }, {
     enableHighAccuracy: true,
     maximumAge: 0
   });
-
 </script>
 
 </body>
