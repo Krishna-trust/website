@@ -19,11 +19,11 @@
 <section class="bg-primary text-white py-5">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="col-lg-6 mb-4 mb-lg-0 animate__animated animate__zoomIn">
                 <h1 class="display-4 fw-bold mb-3">{{ @trans('messages.about_us') }}</h1>
                 <p class="lead">{{ @trans('messages.about_us_sub_desc') }}</p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 animate__animated animate__zoomIn">
                 <img src="{{ asset('images/chandukaka.jpg') }}" alt="About us" class="img-fluid rounded-lg shadow-lg hero-image w-100">
             </div>
         </div>
@@ -33,7 +33,7 @@
 <!-- Mission and Vision -->
 <section class="py-5">
     <div class="container">
-        <div class="row">
+        <div class="row animate__animated animate__jackInTheBox">
             <div class="col-md-6 mb-4">
                 <h2 class="section-title mb-4">{{ @trans('messages.mission') }}</h2>
                 <p class="lead">

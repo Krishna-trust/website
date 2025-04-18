@@ -5,7 +5,7 @@
 @section('content')
 <!-- Hero Section -->
 <section id="home" class="bg-primary text-white py-5">
-    <div class="container">
+    <div class="container animate__animated animate__zoomInDown">
         <div class="row align-items-center">
             <div class="col-lg-6 mb-4 mb-lg-0">
                 <h1 class="display-4 fw-bold mb-3" id="heading">
@@ -28,7 +28,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-5">
+<section id="about" class="py-5 animate__animated animate__bounce ">
     <div class="container">
         <h2 class="text-center mb-5 section-title">{{ @trans('messages.about_us') }}</h2>
         <div class="row">
@@ -58,7 +58,7 @@
         <h2 class="text-center mb-5 section-title">{{ @trans('messages.yearly_services') }}</h2>
         <div class="row g-4">
             @foreach($services as $service)
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 animate__animated animate__flipInX">
                 <div class="yearly-services-item">
                     <img src="{{ Storage::url($service->image) }}" alt="service" class="img-fluid rounded">
                     <div class="yearly-services-caption">
@@ -119,13 +119,13 @@
 <!-- Gallery Section -->
 <section id="gallery" class="py-5">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 ">
             <h2 class="section-title">{{ @trans('messages.impact') }}</h2>
             <a href="{{ route('impact') }}" class="btn btn-link text-muted">{{ @trans('messages.view_more') }} &rarr;</a>
         </div>
         <div class="row g-4">
             @foreach($contents as $content)
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-3 animate__animated animate__rotateIn">
                 <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image object-fit-sm-contain px-3">
             </div>
             @endforeach
@@ -139,7 +139,7 @@
         <h2 class="text-center section-title mb-5">{{ @trans('messages.what_people_say') }}</h2>
         <div class="row">
             @foreach($testimonials as $testimonial)
-            <div class="col-md-4 mb-4">
+            <div class="col-md-4 mb-4 animate__animated animate__jackInTheBox">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="testimonial-image-wrapper mb-0">
                         <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid  shadow-lg">
