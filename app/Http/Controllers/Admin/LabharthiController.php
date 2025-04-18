@@ -21,13 +21,6 @@ class LabharthiController extends Controller
             // Search functionality
             if ($request->search) {
                 $search = $request->search;
-                // Log::info($search);
-                // $formattedDate = \DateTime::createFromFormat('d/m/Y', $search);
-                // if ($formattedDate) {
-                //     // Convert to the format YYYY-MM-DD
-                //     $search = $formattedDate->format('Y-m-d');
-                // }
-
                 $query->where(function ($q) use ($search) {
                     $q->where('name', 'like', "%{$search}%")
                         ->orWhere('mobile_number', 'like', "%{$search}%")
@@ -35,8 +28,11 @@ class LabharthiController extends Controller
                 });
             }
 
+            $query->orderBy('created_at', 'desc');
+
             // Get paginated results
-            $labharthis = $query->latest()->paginate($request->get('per_page', $limit));
+            $labharthis = $query->paginate($limit);
+            // $labharthis = $query->latest()->paginate($request->get('per_page', $limit));
 
             if (request()->ajax()) {
                 return view('admin.labharthi.view', compact('labharthis'));

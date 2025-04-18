@@ -35,7 +35,7 @@
         @else
         @forelse($expenses as $index => $expense)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $expenses->firstItem() + $index }}</td>
             <td>{{ $expense->purpose ? trans('portal.'.$expense->purpose) : '-' }}</td>
             <td>₹ {{ $expense->amount ? $expense->amount : '-' }}</td>
             <td>{{ $expense->comment ? $expense->comment : '-' }}</td>

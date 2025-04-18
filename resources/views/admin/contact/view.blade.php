@@ -37,7 +37,7 @@
         @else
         @forelse($contacts as $index => $contact)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $contacts->firstItem() + $index }}</td>
             <td>{{ $contact->name ? $contact->name : '-' }}</td>
             <td>{{ $contact->email ? $contact->email : '-' }}</td>
             <td>@if ($contact->mobile)

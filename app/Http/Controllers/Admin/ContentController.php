@@ -13,7 +13,7 @@ class ContentController extends Controller
 {
     public function index()
     {
-        $contents = Content::latest()->paginate(25);
+        $contents = Content::latest()->orderBy('created_at', 'desc')->paginate(10);
         return view('admin.content.index', compact('contents'));
     }
 

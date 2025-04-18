@@ -37,8 +37,11 @@ class DonationController extends Controller
                 });
             }
 
+            $query->orderBy('created_at', 'desc');
+
             // Get paginated results
-            $donations = $query->latest()->paginate($request->get('per_page', $limit));
+            $donations = $query->paginate($limit);
+            // $donations = $query->latest()->paginate($request->get('per_page', $limit));
 
             if (request()->ajax()) {
                 return view('admin.donation.view', compact('donations'));

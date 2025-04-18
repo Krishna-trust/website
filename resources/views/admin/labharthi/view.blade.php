@@ -17,7 +17,7 @@
         @else
         @forelse($labharthis as $index => $labharthi)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $labharthis->firstItem() + $index }}</td>
             <td>{{ $labharthi->name ? $labharthi->name : '-'}}</td>
             <td>@if ($labharthi->mobile_number)
                 @php

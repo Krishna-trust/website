@@ -34,7 +34,7 @@
         @else
         @forelse($contents as $index => $content)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $contents->firstItem() + $index }}</td>
             <td>
                 @if($content->image)
                 <img src="{{ asset('storage/' . $content->image) }}"

@@ -40,7 +40,7 @@
         @else
         @forelse($services as $index => $service)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $services->firstItem() + $index }}</td>
             <td>
                 @if($service->image)
                 <img src="{{ asset('storage/' . $service->image) }}"

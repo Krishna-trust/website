@@ -30,8 +30,11 @@ class ExpenseController extends Controller
                 });
             }
 
+            $query->orderBy('created_at', 'desc');
+
             // Get paginated results
-            $expenses = $query->latest()->paginate($limit);
+            $expenses = $query->paginate($limit);
+            // $expenses = $query->latest()->paginate($limit);
 
             if (request()->ajax()) {
                 return view('admin.expense.view', compact('expenses'));

@@ -39,7 +39,11 @@ class EmployeeController extends Controller
                 $query->orderBy('created_at', $sort);
             }
 
-            $employees = $query->latest()->paginate($limit);
+            $query->orderBy('created_at', 'desc');
+
+            // Get paginated results
+            $employees = $query->paginate($limit);
+            // $employees = $query->latest()->paginate($limit);
 
             if ($request->ajax()) {
                 Log::info('EmployeeController@index ajax');

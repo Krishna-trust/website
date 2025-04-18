@@ -42,7 +42,7 @@
         @else
         @forelse($testimonials as $index => $testimonial)
         <tr>
-            <td>{{ $index + 1 }}</td>
+            <td>{{ $testimonials->firstItem() + $index }}</td>
             <td>
                 @if($testimonial->image)
                 <img src="{{ asset('storage/' . $testimonial->image) }}"

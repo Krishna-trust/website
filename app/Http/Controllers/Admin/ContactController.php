@@ -29,7 +29,11 @@ class ContactController extends Controller
             }
 
             // Get paginated results
-            $contacts = $query->latest()->paginate($request->get('per_page', $limit));
+            $query->orderBy('created_at', 'desc');
+
+            // Get paginated results
+            $contacts = $query->paginate($limit);
+            // $contacts = $query->latest()->paginate($request->get('per_page', $limit));
 
             if (request()->ajax()) {
                 return view('admin.contact.view', compact('contacts'));
