@@ -22,7 +22,7 @@ class AttendanceController extends Controller
     {
         try {
             // $limit = $request->limit ?? 10;
-            $query = Labharthi::query();
+            $query = Labharthi::where('status', 1);
 
             // Search functionality
             if ($request->search) {

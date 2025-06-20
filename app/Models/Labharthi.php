@@ -15,6 +15,7 @@ class Labharthi extends Model
 
     protected $fillable = [
         'position',
+        'status',
         'name',
         'address',
         'latitude',

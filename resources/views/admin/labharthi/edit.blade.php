@@ -26,26 +26,46 @@
                             @method('PUT')
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="name">{{ @trans('portal.name') }}</label>
-                                        <input type="text" name="name" id="name"
-                                            class="form-control @error('name') is-invalid @enderror"
-                                            value="{{ old('name', $labharthi->name) }}">
-                                        @error('name')
-                                            <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
+                                {{-- add status field --}}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="status">{{ @trans('portal.status') }}</label>
+                                            <select name="status" id="status"
+                                                class="form-control @error('status') is-invalid @enderror">
+                                                <option value="1" @if ($labharthi->status == 1) selected @endif>
+                                                    {{ @trans('portal.active') }}</option>
+                                                <option value="0" @if ($labharthi->status == 0) selected @endif>
+                                                    {{ @trans('portal.inactive') }}</option>
+                                            </select>
+                                            @error('status')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group mb-3">
-                                        <label for="mobile_number">{{ @trans('portal.mobile') }}</label>
-                                        <input type="text" name="mobile_number" id="mobile_number"
-                                            class="form-control @error('mobile_number') is-invalid @enderror"
-                                            value="{{ old('mobile_number', $labharthi->mobile_number) }}" maxlength="10">
-                                        @error('mobile_number')
-                                            <span class="invalid-feedback">{{ $message }}</span>
-                                        @enderror
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="name">{{ @trans('portal.name') }}</label>
+                                            <input type="text" name="name" id="name"
+                                                class="form-control @error('name') is-invalid @enderror"
+                                                value="{{ old('name', $labharthi->name) }}">
+                                            @error('name')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-3">
+                                            <label for="mobile_number">{{ @trans('portal.mobile') }}</label>
+                                            <input type="text" name="mobile_number" id="mobile_number"
+                                                class="form-control @error('mobile_number') is-invalid @enderror"
+                                                value="{{ old('mobile_number', $labharthi->mobile_number) }}"
+                                                maxlength="10">
+                                            @error('mobile_number')
+                                                <span class="invalid-feedback">{{ $message }}</span>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -259,7 +279,7 @@
                             {{-- get location --}}
                             <div class="mb-3 col-md-6">
                                 <label class="form-label">{{ __('portal.location') }}</label>
-                            
+
                                 <!-- Table -->
                                 <div id="location-table" class="table-responsive" style="margin-top: 10px;">
                                     <table class="table table-bordered w-100">
@@ -272,22 +292,26 @@
                                         <tbody>
                                             <tr>
                                                 <td id="lat-value">{{ old('latitude', $labharthi->latitude ?? '-') }}</td>
-                                                <td id="lon-value">{{ old('longitude', $labharthi->longitude ?? '-') }}</td>
+                                                <td id="lon-value">{{ old('longitude', $labharthi->longitude ?? '-') }}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            
+
                                 <!-- Hidden Inputs -->
-                                <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude', $labharthi->latitude ?? '') }}">
-                                <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude', $labharthi->longitude ?? '') }}">
-                            
+                                <input type="hidden" id="latitude" name="latitude"
+                                    value="{{ old('latitude', $labharthi->latitude ?? '') }}">
+                                <input type="hidden" id="longitude" name="longitude"
+                                    value="{{ old('longitude', $labharthi->longitude ?? '') }}">
+
                                 <!-- Button -->
-                                <button type="button" id="location-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal">
+                                <button type="button" id="location-btn" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#locationModal">
                                     <i class="fa fa-map-marker"></i>
-                                    {{ (old('latitude', $labharthi->latitude ?? '') && old('longitude', $labharthi->longitude ?? '')) ? __('portal.show_location') : __('portal.get_location') }}
+                                    {{ old('latitude', $labharthi->latitude ?? '') && old('longitude', $labharthi->longitude ?? '') ? __('portal.show_location') : __('portal.get_location') }}
                                 </button>
-                            </div>                            
+                            </div>
 
                             <div class="form-group mt-4">
                                 <button type="submit" class="btn btn-primary">

@@ -16,7 +16,7 @@ class LabharthiController extends Controller
     {
         try {
             $limit = $request->limit ?? 10;
-            $query = Labharthi::query();
+            $query = Labharthi::where('status', 1);
 
             // Search functionality
             if ($request->search) {
@@ -165,6 +165,7 @@ class LabharthiController extends Controller
     {
         try {
             $rules = [
+                'status' => 'nullable|in:1,0',
                 'name' => 'required|string|max:255',
                 'address' => 'required|string',
                 'native_place' => 'nullable|string|max:255',
@@ -297,7 +298,7 @@ class LabharthiController extends Controller
 
     public function position()
     {
-        $labharthis = Labharthi::orderBy('position')->get();
+        $labharthis = Labharthi::where('status', 1)->orderBy('position')->get();
         return view('admin.labharthi.postion', compact('labharthis'));
     }
 
