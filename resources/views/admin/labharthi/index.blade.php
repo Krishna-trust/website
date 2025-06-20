@@ -12,6 +12,10 @@
             </ol>
         </div>
         <div class="ms-auto pageheader-btn d-flex d-md-none mt-0">
+            {{-- position button --}}
+            <a href="{{ route('admin.labharthi.position') }}" class="btn btn-secondary me-2">
+                <span class="d-none d-sm-inline">{{ @trans('portal.position') }}</span> <i class="fa fa-street-view"></i>
+            </a>
             <a href="{{ route('admin.labharthi.create') }}" class="btn btn-secondary me-2">
                 <span class="d-none d-sm-inline">{{ @trans('portal.add') }}</span> <i class="fa fa-plus"></i>
             </a>
@@ -48,7 +52,7 @@
                                 <div class="d-none d-md-flex justify-content-end">
                                     <a href="{{ route('admin.labharthi.position') }}" class="btn btn-secondary me-2">
                                         <span class="d-none d-sm-inline">{{ @trans('portal.position') }}</span> <i
-                                            class="fa fa-plus"></i>
+                                            class="fa fa-street-view"></i>
                                     </a>
                                     <a href="{{ route('admin.labharthi.create') }}" class="btn btn-secondary me-2">
                                         <span class="d-none d-sm-inline">{{ @trans('portal.add') }}</span> <i
