@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,9 +54,16 @@
     </div>
     <a href="#top" id="back-to-top" style="display: none;"><i class="fa fa-long-arrow-up"></i></a>
 
-    <script type="text/Javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script> <!-- jquery -->
+    {{-- <script type="text/Javascript" src="https://code.jquery.com/jquery-3.7.0.js"></script> <!-- jquery --> --}}
+    {{-- <script src="{{ asset('js/jquery.min.js') }}"></script> --}}
 
-    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <!-- jQuery (compatible version for jQuery UI) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+
+    @yield('scripts')
+
     <script src="{{ asset('js/spinner.js') }}"></script>
     <script src="{{ asset('bootstrap/js/popper.min.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>

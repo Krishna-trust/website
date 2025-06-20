@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\AttendanceExport;
 use App\Exports\ContactExport;
 use App\Exports\DonationExport;
 use App\Exports\EmployeeWithdrawalExport;
 use App\Exports\ExpenseExport;
 use App\Exports\LabharthiExport;
 use App\Http\Controllers\Controller;
+use App\Models\Attendance;
 use App\Models\Contact;
 use App\Models\Donation;
 use App\Models\EmployeeWithdrawal;
@@ -51,6 +53,16 @@ class ReportController extends Controller
         ->orderByDesc('sort_date')
         ->get();
 
+    // Attendance
+    $attendanceMonths = Attendance::selectRaw('
+            DATE_FORMAT(attendance_date, "%Y-%m") as value,
+            DATE_FORMAT(attendance_date, "%M-%Y") as label,
+            MAX(attendance_date) as sort_date
+        ')
+        ->groupByRaw('value, label')
+        ->orderByDesc('sort_date')
+        ->get();
+
     // Contact
     $contactMonths = Contact::selectRaw('
             DATE_FORMAT(created_at, "%Y-%m") as value,
@@ -85,6 +97,7 @@ class ReportController extends Controller
         'selectedMonthYear',
         'donationMonths',
         'labharthiMonths',
+        'attendanceMonths',
         'contactMonths',
         'employeeWithdrawalMonths',
         'expenseMonths'
@@ -99,7 +112,7 @@ class ReportController extends Controller
 
             return Excel::download(new DonationExport($monthYear), $formatted . '-Donation-List.xlsx');
         } catch (\Throwable $th) {
-            Log::error('DonationController@donationReport Error: ' . $th->getMessage());
+            Log::error('ReportController@donationReport Error: ' . $th->getMessage());
             return back()->with('error', 'Failed to export data.');
         }
     }
@@ -113,7 +126,19 @@ class ReportController extends Controller
 
             return Excel::download(new LabharthiExport($monthYear), $formatted . '-Labharthi-List.xlsx');
         } catch (\Throwable $th) {
-            Log::error('DonationController@labharthiReport Error: ' . $th->getMessage());
+            Log::error('ReportController@labharthiReport Error: ' . $th->getMessage());
+        }
+    }
+
+    public function attendanceReport(Request $request)
+    {
+        try {
+            $monthYear = $request->input('month_year');
+            $formatted = Carbon::parse($monthYear . '-01')->format('F-Y');
+
+            return Excel::download(new AttendanceExport($monthYear), $formatted . '-Attendance-List.xlsx');
+        } catch (\Throwable $th) {
+            Log::error('ReportController@attendanceReport Error: ' . $th->getMessage());
         }
     }
 
@@ -126,7 +151,7 @@ class ReportController extends Controller
             return Excel::download(new ContactExport($monthYear), $formatted . '-Contact-List.xlsx');
         
         } catch (\Throwable $th) {
-            Log::error('DonationController@contactReport Error: ' . $th->getMessage());
+            Log::error('ReportController@contactReport Error: ' . $th->getMessage());
         }
     }
 
@@ -139,7 +164,7 @@ class ReportController extends Controller
 
             return Excel::download(new EmployeeWithdrawalExport($monthYear), $formatted . '-Employee-Withdrawal-List.xlsx');
         } catch (\Throwable $th) {
-            Log::error('DonationController@employeeWithdrawalReport Error: ' . $th->getMessage());
+            Log::error('ReportController@employeeWithdrawalReport Error: ' . $th->getMessage());
         }
     }
 
@@ -151,7 +176,7 @@ class ReportController extends Controller
 
             return Excel::download(new ExpenseExport($monthYear), $formatted . '-Expense-List.xlsx');
         } catch (\Throwable $th) {
-            Log::error('DonationController@expenseReport Error: ' . $th->getMessage());
+            Log::error('ReportController@expenseReport Error: ' . $th->getMessage());
         }
     }
 }

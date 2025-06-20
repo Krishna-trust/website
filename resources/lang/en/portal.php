@@ -68,6 +68,15 @@ return [
     'vidhur' => 'Vidhur',
     'rejected' => 'Rejected',
 
+    // Attendance
+    'attendance' => 'Attendance',
+    'attendance_date' => 'Attendance Date',
+    'attendance_status' => 'Attendance Status',
+    'position' => 'Position',
+    'present' => 'Present',
+    'absent' => 'Absent',
+    'not_specified' => 'Not Specified',
+
     // Expense
     'purpose' => 'Purpose',
     'expense' => 'Expense',
@@ -99,7 +108,7 @@ return [
     'donation_date' => 'Donation Date',
     'date' => 'Date',
     'donor_name' => 'Donor Name',
-    'mobile' => 'Mobile Number',
+    'mobile_number' => 'Mobile Number',
     'address' => 'Address',
     'amount' => 'Amount',
     'donation_for' => 'Donation For',

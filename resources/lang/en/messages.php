@@ -133,6 +133,7 @@ return [
     'no_expense' => 'No Expense Found',
     'no_employee' => 'No Employee Found',
     'no_withdrawal' => 'No Employee Withdrawal Found',
+    'no_attendence_records' => 'No Attendance Records Found',
 
     // testimonials
     'testimonial_1' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',

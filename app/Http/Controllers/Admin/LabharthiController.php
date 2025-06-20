@@ -157,7 +157,7 @@ class LabharthiController extends Controller
     {
         $mobile = preg_replace('/\+91/', '', $labharthi->mobile_number);
         $labharthi->mobile_number = $mobile;
-        
+
         return view('admin.labharthi.edit', compact('labharthi'));
     }
 
@@ -237,12 +237,12 @@ class LabharthiController extends Controller
 
             $validated = $validator->validated();
 
-           // Format the mobile number
-           $mobileNumber = $validated['mobile_number'];
+            // Format the mobile number
+            $mobileNumber = $validated['mobile_number'];
 
-           if (preg_match('/^\d{10}$/', $mobileNumber)) {
-               $validated['mobile_number'] = '+91' . $mobileNumber;
-           }
+            if (preg_match('/^\d{10}$/', $mobileNumber)) {
+                $validated['mobile_number'] = '+91' . $mobileNumber;
+            }
 
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
@@ -293,5 +293,22 @@ class LabharthiController extends Controller
         } catch (\Throwable $th) {
             Log::error('LabharthiController@export Error: ' . $th->getMessage());
         }
+    }
+
+    public function position()
+    {
+        $labharthis = Labharthi::orderBy('position')->get();
+        return view('admin.labharthi.postion', compact('labharthis'));
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $request->validate(['order' => 'required|array']);
+
+        foreach ($request->order as $position => $userId) {
+            Labharthi::where('id', $userId)->update(['position' => $position + 1]);
+        }
+
+        return response()->json(['success' => true, 'message' => 'Order updated']);
     }
 }

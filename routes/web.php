@@ -72,7 +72,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::resource('contents', App\Http\Controllers\Admin\ContentController::class)->except('destroy');
 
     // Labharthi Routes
-    Route::resource('labharthi', App\Http\Controllers\Admin\LabharthiController::class)->except('destroy');
+    Route::resource('labharthi', App\Http\Controllers\Admin\LabharthiController::class)->except(['show','destroy']);
+
+    // Attendance Routes for Labharthi
+    Route::resource('attendance', App\Http\Controllers\Admin\AttendanceController::class)->except('destroy');
 
     // Donation Routes
     Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
@@ -96,6 +99,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('monthly-report', [App\Http\Controllers\Admin\ReportController::class, 'index'])->name('monthly-report.index');
     Route::get('monthly-report/donation', [App\Http\Controllers\Admin\ReportController::class, 'donationReport'])->name('monthly-report.donation');
     Route::get('monthly-report/labharthi', [App\Http\Controllers\Admin\ReportController::class, 'labharthiReport'])->name('monthly-report.labharthi');
+    Route::get('monthly-report/attendance', [App\Http\Controllers\Admin\ReportController::class, 'attendanceReport'])->name('monthly-report.attendance');
     Route::get('monthly-report/expense', [App\Http\Controllers\Admin\ReportController::class, 'expenseReport'])->name('monthly-report.expense');
     Route::get('monthly-report/contact', [App\Http\Controllers\Admin\ReportController::class, 'contactReport'])->name('monthly-report.contact');
     Route::get('monthly-report/employee-withdrawal', [App\Http\Controllers\Admin\ReportController::class, 'employeeWithdrawalReport'])->name('monthly-report.employee-withdrawal');
@@ -103,4 +107,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     // change password
     Route::get('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('changePassword');
     Route::post('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePasswordPost'])->name('changePassword.save');
+
+    // Labharthi Order postion
+    Route::get('labharthi/position', [App\Http\Controllers\Admin\LabharthiController::class, 'position'])->name('labharthi.position');
+    Route::post('labharthi/update-order', [App\Http\Controllers\Admin\LabharthiController::class, 'updateOrder'])->name('labharthi.update-order');
+
+    // Attendance Export (per day)
+    // Route::get('attendance/export', [App\Http\Controllers\Admin\AttendanceController::class, 'export'])->name('attendance.export');
 });

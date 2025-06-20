@@ -14,6 +14,7 @@ class Labharthi extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
+        'position',
         'name',
         'address',
         'latitude',

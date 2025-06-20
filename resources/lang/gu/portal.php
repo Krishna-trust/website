@@ -67,6 +67,15 @@ return [
     'vidhur' => 'વિધુર',
     'rejected' => 'ત્યજેલા',
 
+    // Attendance
+    'attendance' => 'હાજરી',
+    'attendance_date' => 'હાજરી તારીખ',
+    'attendance_status' => 'હાજરી સ્થિતિ',
+    'position' => 'સ્થાન',
+    'present' => 'હાજર',
+    'absent' => 'ગેરહાજર',
+    'not_specified' => 'સ્પષ્ટ નથી',
+
     // Expense
     'purpose' => 'હેતુ',
     'expense' => 'ખર્ચ',
@@ -98,7 +107,7 @@ return [
     'donation_date' => 'દાનની તારીખ',
     'date' => 'તારીખ',
     'donor_name' => 'નામ',
-    'mobile' => 'મોબાઇલ નંબર',
+    'mobile_number' => 'મોબાઇલ નંબર',
     'address' => 'સરનામું',
     'amount' => 'રકમ',
     'donation_for' => 'દાનનો હેતુ',
