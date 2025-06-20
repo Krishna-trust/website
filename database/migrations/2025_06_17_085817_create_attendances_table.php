@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('labharthi_id')->constrained('labharthi')->onDelete('cascade');
+            $table->foreignId('labharthi_id')->constrained('labharthi_form')->onDelete('cascade');
             $table->tinyInteger('attendance')->comment('0: not present, 1: present, 2: not specified');
             $table->date('attendance_date');
             $table->timestamps();
