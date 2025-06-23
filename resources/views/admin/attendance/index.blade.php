@@ -108,7 +108,7 @@
         });
 
         // image preview
-        $('.status').click(function() {
+       $(document).on('click', '.status', function() {
             let $button = $(this);
             let status = $button.data('status');
             let date = $('#date').val();

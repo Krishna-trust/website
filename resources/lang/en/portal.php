@@ -1,5 +1,7 @@
 <?php
 return [
+    'total' => 'Total',
+    
     'change_password' => 'Change Password',
     'logout' => 'Logout',
     'dashboard' => 'Dashboard',

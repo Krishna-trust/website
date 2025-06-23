@@ -5,7 +5,7 @@
             </th>
             {{-- <th class="text-uppercase fw-bold">{{ @trans('portal.position') }}</th> --}}
             <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.adhar_number') }}</th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.address') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.mobile_number') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.attendance') }}</th>
         </tr>
@@ -22,8 +22,8 @@
                     {{-- <td>{{ $index + 1 }}</td> --}}
                     <td>{{ $attendence->position ?? '-' }}</td>
                     <td>{{ $attendence->name ? $attendence->name : '-' }}</td>
-                    <td>{{ $attendence->adhar_number ? $attendence->adhar_number : '-' }}</td>
-                    <td>
+                    <td>{{ $attendence->address ? $attendence->address : '-' }}</td>
+                    <td style="white-space: nowrap;">
                         @if ($attendence->mobile_number)
                             @php
                                 $number = $attendence->mobile_number;

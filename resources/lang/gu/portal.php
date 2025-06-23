@@ -1,5 +1,7 @@
 <?php
 return [
+    'total' => 'કુલ',
+    
     'change_password' => 'પાસવર્ડ બદલો',
     'logout' => 'લોગ આઉટ',
     'dashboard' => 'ડેશબોર્ડ',

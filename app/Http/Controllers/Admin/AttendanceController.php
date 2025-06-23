@@ -32,7 +32,7 @@ class AttendanceController extends Controller
                     $q->where('name', 'like', "%{$search}%")
                         ->orWhere('position', 'like', "%{$search}%")
                         ->orWhere('mobile_number', 'like', "%{$search}%")
-                        ->orWhere('adhar_number', 'like', "%{$search}%");
+                        ->orWhere('address', 'like', "%{$search}%");
                 });
             }
 
