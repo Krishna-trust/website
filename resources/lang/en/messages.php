@@ -80,7 +80,7 @@ return [
     'address' => 'Address',
     'phone' => 'Phone',
     'email' => 'Email',
-    'addrress_desc' => 'Krishna Niswarth Seva Trust, Opp. Old Shivam Gas Agency, Chandlodiya, Ahmedabad, India, 382481.',
+    'addrress_desc' => 'Krishna Niswarth Seva Trust, E-7, Premkunj society, Mirambika school, Narangpura, Ahmedabad 380013.',
     'phone_desc' => '+91 98984 45831',
     'email_desc' => 'krishnasevatrust@gmail.com',
     'contact_info' => 'Contact Info',

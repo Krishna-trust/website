@@ -186,6 +186,11 @@ body {
     font-weight: bold;
 }
 
+.modal-content {
+    max-width: 500px;
+    margin: auto;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .testimonial-card {

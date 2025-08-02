@@ -26,17 +26,20 @@
     </script>
     <!-- End Google Tag Manager -->
 
-    <meta name="description" content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
+    <meta name="description"
+        content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
 
     <!-- Keywords Tag (Gujarati and English) -->
-    <meta name="keywords" content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ,ચાંદલોડિયા, વિના મુલ્યે ટિફીન સેવા,Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Chandlodiya, Krishna Niswarth Seva Trust Ahmedabad,Krishna Seva Trust,Krishna Seva Trust Chandlodiya,Krishna Seva Trust Ahmedabad,Krishna Trust,Krishna Trust Chandlodiya,Krishna Trust Ahmedabad,Chandlodiya, free food">
+    <meta name="keywords"
+        content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ,ચાંદલોડિયા, વિના મુલ્યે ટિફીન સેવા,Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Chandlodiya, Krishna Niswarth Seva Trust Ahmedabad,Krishna Seva Trust,Krishna Seva Trust Chandlodiya,Krishna Seva Trust Ahmedabad,Krishna Trust,Krishna Trust Chandlodiya,Krishna Trust Ahmedabad,Chandlodiya, free food">
 
     <!-- Language Tag (English and Gujarati) -->
     <meta name="language" content="Gujarati, English">
 
     <!-- Open Graph Tags (Social Media Optimization) -->
     <meta property="og:title" content="Krishna Niswarth Seva Trust">
-    <meta property="og:description" content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
+    <meta property="og:description"
+        content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta property="og:url" content="https://www.krishnaniswarthsevatrust.com/">
     <meta property="og:type" content="website">
@@ -99,7 +102,7 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     {{-- animate css --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <!-- Hreflang Tags for Multilingual Content -->
     <link rel="alternate" href="https://www.krishnaniswarthsevatrust.com/" hreflang="en" />
@@ -108,9 +111,45 @@
 
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJRKNRWH"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WJRKNRWH" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Office Relocation Popup -->
+    {{-- <div id="relocationPopup" class="modal fade" tabindex="-1" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="popupTitle" class="modal-title mb-3">📍 New Office Location!</h5>
+                <img src="{{ asset('images/new-office-location.jpg') }}" alt="New Office"
+                    class="img-fluid mb-3 rounded">
+                <p class="mb-3">Our office has moved! Visit us at the new location shown above.</p>
+                <a href="https://maps.app.goo.gl/TUG6X4dQHGptBaVi8?g_st=aw" target="_blank" class="btn btn-primary">
+                    Set Location
+                </a>
+            </div>
+        </div>
+    </div> --}}
+
+    <!-- New Office Location Popup (Gujarati) -->
+    <div id="relocationPopup" class="modal fade" tabindex="-1" aria-labelledby="popupTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center p-4">
+                <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 id="popupTitle" class="modal-title mb-3">📍 નવું ઑફિસ સ્થાન!</h5>
+                {{-- <img src="{{ asset('images/content2.jpg') }}" alt="નવું ઑફિસ સ્થાન"
+                    class="img-fluid mb-3 rounded"> --}}
+                <p class="mb-3">
+                    અમારી ઑફિસ હવે નવા સ્થળે ખસેડાઈ ગઈ છે. 
+                    {{-- ઉપર આપેલ સ્થાન પર અમારી મુલાકાત લો. --}}
+                </p>
+                <a href="https://maps.app.goo.gl/TUG6X4dQHGptBaVi8?g_st=aw" target="_blank" class="btn btn-primary">
+                    સ્થળ બતાવો
+                </a>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Include the header -->
     @include('web.parts.header')
@@ -126,6 +165,21 @@
 </body>
 
 <script>
+    window.addEventListener('load', function() {
+        // If performance.navigation is available (for legacy browsers)
+        let isHardRefresh = performance.navigation.type === 1;
+
+        // Modern approach using PerformanceNavigationTiming
+        if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+            isHardRefresh = true;
+        }
+
+        if (isHardRefresh) {
+            const popup = new bootstrap.Modal(document.getElementById('relocationPopup'));
+            popup.show();
+        }
+    });
+
     document.getElementById('subscribeForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent form from submitting normally
         console.log("Submitted");
