@@ -19,8 +19,6 @@ return new class extends Migration
             $table->string('gu_name')->nullable();
             $table->string('en_description',1000)->nullable();
             $table->string('gu_description',1000)->nullable();
-            $table->string('gu_post')->nullable();
-            $table->string('en_post')->nullable();
             $table->unsignedBigInteger('status')->default(0);
             $table->string('image')->nullable();
             $table->timestamps();

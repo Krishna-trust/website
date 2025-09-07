@@ -136,11 +136,11 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center p-4">
                 <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
-                <h5 id="popupTitle" class="modal-title mb-3">📍 નવું ઑફિસ સ્થાન!</h5>
-                {{-- <img src="{{ asset('images/content2.jpg') }}" alt="નવું ઑફિસ સ્થાન"
+                <h5 id="popupTitle" class="modal-title mb-3">📍 નવું સંસ્થાનુ સ્થાન!</h5>
+                {{-- <img src="{{ asset('images/content2.jpg') }}" alt="નવું સંસ્થાન"
                     class="img-fluid mb-3 rounded"> --}}
                 <p class="mb-3">
-                    અમારી ઑફિસ હવે નવા સ્થળે ખસેડાઈ ગઈ છે. 
+                    અમારી સંસ્થા હવે નવા સ્થળે ખસેડાઈ ગઈ છે. 
                     {{-- ઉપર આપેલ સ્થાન પર અમારી મુલાકાત લો. --}}
                 </p>
                 <a href="https://maps.app.goo.gl/TUG6X4dQHGptBaVi8?g_st=aw" target="_blank" class="btn btn-primary">
