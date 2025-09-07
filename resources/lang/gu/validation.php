@@ -118,6 +118,7 @@ return [
     'date_tifin_ending_date' => 'ટીફિન સમાપ્ત થવાની તારીખ માન્ય તારીખ હોવી જોઈએ.',
     'required_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ જરૂરી છે.',
     'string_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
+    'unique_adhar_number' => 'આ આધાર નંબર પહેલેથી જ નોંધાયેલ છે.',
 
     // contact us validation
     'required_name' => 'નામ જરૂરી છે.',

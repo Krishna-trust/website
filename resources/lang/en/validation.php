@@ -119,6 +119,7 @@ return [
     'date_tifin_ending_date' => 'TIFIN ending date must be a valid date.',
     'required_reasion_for_tifin_stop' => 'Reason for TIFIN stop is required.',
     'string_reasion_for_tifin_stop' => 'Reason for TIFIN stop must be a valid string.',
+    'unique_adhar_number' => 'This Aadhaar number is already registered.',
 
     // contact us validation
     'required_name' => 'Name is required.',
