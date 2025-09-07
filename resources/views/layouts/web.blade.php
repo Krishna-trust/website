@@ -166,17 +166,29 @@
 
 <script>
     window.addEventListener('load', function() {
-        // If performance.navigation is available (for legacy browsers)
-        let isHardRefresh = performance.navigation.type === 1;
-
-        // Modern approach using PerformanceNavigationTiming
-        if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
-            isHardRefresh = true;
-        }
-
-        if (isHardRefresh) {
+        // Check if user has seen the popup before
+        const hasSeenPopup = sessionStorage.getItem('hasSeenPopup');
+        
+        if (!hasSeenPopup) {
+            // Show popup if user hasn't seen it
             const popup = new bootstrap.Modal(document.getElementById('relocationPopup'));
             popup.show();
+            
+            // Set flag in sessionStorage
+            sessionStorage.setItem('hasSeenPopup', 'true');
+        } else {
+            // For refresh cases, check if it's a hard refresh
+            let isHardRefresh = performance.navigation.type === 1;
+
+            // Modern approach using PerformanceNavigationTiming
+            if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+                isHardRefresh = true;
+            }
+
+            if (isHardRefresh) {
+                const popup = new bootstrap.Modal(document.getElementById('relocationPopup'));
+                popup.show();
+            }
         }
     });
 
