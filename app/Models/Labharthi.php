@@ -14,9 +14,11 @@ class Labharthi extends Model
     protected $dates = ['deleted_at'];
 
     protected $fillable = [
+        'labharthi_number',
         'position',
         'status',
         'name',
+        'area',
         'address',
         'latitude',
         'longitude',
@@ -43,4 +45,9 @@ class Labharthi extends Model
         'tifin_starting_date' => 'date',
         'tifin_ending_date' => 'date',
     ];
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
 }

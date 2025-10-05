@@ -114,4 +114,6 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
     // Attendance Export (per day)
     // Route::get('attendance/export', [App\Http\Controllers\Admin\AttendanceController::class, 'export'])->name('attendance.export');
+    Route::get('get-next-labharthi-number/{areaId}', [App\Http\Controllers\Admin\LabharthiController::class, 'getNextLabharthiNumber'])
+        ->name('get-next-labharthi-number');
 });

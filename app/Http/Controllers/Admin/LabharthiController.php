@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Exports\LabharthiExport;
 use App\Http\Controllers\Controller;
 use App\Models\Labharthi;
+use App\Models\Area;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -48,235 +49,243 @@ class LabharthiController extends Controller
 
     public function create()
     {
-        return view('admin.labharthi.create');
+        $areas = Area::all();
+        return view('admin.labharthi.create', compact('areas'));
     }
 
-   public function store(Request $request)
-{
-    try {
-        $rules = [
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'native_place' => 'nullable|string',
-            'cast' => 'nullable|string',
-            'sub_cast' => 'nullable|string',
-            'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number',
-            'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
-            'category' => 'nullable|in:vidhva,vidhur,rejected,other',
-            'work' => 'nullable|string',
-            'identification_mark' => 'nullable|string',
-            'income_source' => 'nullable|string',
-            'property' => 'nullable|string',
-            'relative_info' => 'nullable|string',
-            'reasion_for_not_working' => 'nullable|string',
-            'reasion_for_tifin' => 'nullable|string',
-            'comment_from_trust' => 'nullable|string',
-            'tifin_starting_date' => 'nullable|date',
-            'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
-            'reasion_for_tifin_stop' => 'nullable|string',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-        ];
+    public function store(Request $request)
+    {
+        try {
+            $rules = [
+                'name' => 'required|string|max:255',
+                'address' => 'required|string',
+                'native_place' => 'nullable|string',
+                'cast' => 'nullable|string',
+                'sub_cast' => 'nullable|string',
+                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number',
+                'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
+                'category' => 'nullable|in:vidhva,vidhur,rejected,other',
+                'work' => 'nullable|string',
+                'identification_mark' => 'nullable|string',
+                'income_source' => 'nullable|string',
+                'property' => 'nullable|string',
+                'relative_info' => 'nullable|string',
+                'reasion_for_not_working' => 'nullable|string',
+                'reasion_for_tifin' => 'nullable|string',
+                'comment_from_trust' => 'nullable|string',
+                'tifin_starting_date' => 'nullable|date',
+                'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
+                'reasion_for_tifin_stop' => 'nullable|string',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
+                'area_id' => 'required|exists:areas,id',
+                'labharthi_number' => 'required|unique:labharthis,labharthi_number'
+            ];
 
-        // Define the custom error messages
-        $messages = [
-            'name.required' => __('validation.required_name'),
-            'name.string' => __('validation.string_name'),
-            'name.max' => __('validation.max_name'),
-            'address.required' => __('validation.required_address'),
-            'address.string' => __('validation.string_address'),
-            'native_place.required' => __('validation.required_native_place'),
-            'native_place.string' => __('validation.string_native_place'),
-            'native_place.max' => __('validation.max_native_place'),
-            'cast.string' => __('validation.string_cast'),
-            'cast.max' => __('validation.max_cast'),
-            'sub_cast.string' => __('validation.string_sub_cast'),
-            'sub_cast.max' => __('validation.max_sub_cast'),
-            'adhar_number.string' => __('validation.string_adhar_number'),
-            'adhar_number.size' => __('validation.size_adhar_number'),
-            'adhar_number.regex' => __('validation.regex_adhar_number'),
-            'adhar_number.unique' => __('validation.unique_adhar_number'),
-            'mobile_number.string' => __('validation.string_mobile_number'),
-            'mobile_number.size' => __('validation.size_mobile_number'),
-            'mobile_number.regex' => __('validation.regex_mobile_number'),
-            'work.string' => __('validation.string_work'),
-            'work.max' => __('validation.max_work'),
-            'identification_mark.string' => __('validation.string_identification_mark'),
-            'identification_mark.max' => __('validation.max_identification_mark'),
-            'income_source.string' => __('validation.string_income_source'),
-            'property.string' => __('validation.string_property'),
-            'reasion_for_not_working.string' => __('validation.string_reasion_for_not_working'),
-            'reasion_for_tifin.string' => __('validation.string_reasion_for_tifin'),
-            'comment_from_trust.string' => __('validation.string_comment_from_trust'),
-            'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
-            'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
-            'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
-        ];
+            // Define the custom error messages
+            $messages = [
+                'name.required' => __('validation.required_name'),
+                'name.string' => __('validation.string_name'),
+                'name.max' => __('validation.max_name'),
+                'address.required' => __('validation.required_address'),
+                'address.string' => __('validation.string_address'),
+                'native_place.required' => __('validation.required_native_place'),
+                'native_place.string' => __('validation.string_native_place'),
+                'native_place.max' => __('validation.max_native_place'),
+                'cast.string' => __('validation.string_cast'),
+                'cast.max' => __('validation.max_cast'),
+                'sub_cast.string' => __('validation.string_sub_cast'),
+                'sub_cast.max' => __('validation.max_sub_cast'),
+                'adhar_number.string' => __('validation.string_adhar_number'),
+                'adhar_number.size' => __('validation.size_adhar_number'),
+                'adhar_number.regex' => __('validation.regex_adhar_number'),
+                'adhar_number.unique' => __('validation.unique_adhar_number'),
+                'mobile_number.string' => __('validation.string_mobile_number'),
+                'mobile_number.size' => __('validation.size_mobile_number'),
+                'mobile_number.regex' => __('validation.regex_mobile_number'),
+                'work.string' => __('validation.string_work'),
+                'work.max' => __('validation.max_work'),
+                'identification_mark.string' => __('validation.string_identification_mark'),
+                'identification_mark.max' => __('validation.max_identification_mark'),
+                'income_source.string' => __('validation.string_income_source'),
+                'property.string' => __('validation.string_property'),
+                'reasion_for_not_working.string' => __('validation.string_reasion_for_not_working'),
+                'reasion_for_tifin.string' => __('validation.string_reasion_for_tifin'),
+                'comment_from_trust.string' => __('validation.string_comment_from_trust'),
+                'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
+                'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
+                'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
+                'area_id.required' => __('validation.required_area'),
+                'area_id.exists' => __('validation.exists_area'),
+                'labharthi_number.required' => __('validation.required_labharthi_number'),
+                'labharthi_number.unique' => __('validation.unique_labharthi_number')
+            ];
 
-        // Create a validator instance
-        $validator = Validator::make($request->all(), $rules, $messages);
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            // Check specifically for Aadhaar uniqueness error
-            // if ($validator->errors()->has('adhar_number') && 
-            //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Check specifically for Aadhaar uniqueness error
+                // if ($validator->errors()->has('adhar_number') && 
+                //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
+                    
+                //     return redirect()->back()
+                //         ->withErrors($validator)
+                //         ->withInput()
+                //         ->with('aadhaar_popup', [
+                //             'title' => __('messages.error_title'),
+                //             'message' => __('validation.unique_adhar_number'),
+                //             'type' => 'error'
+                //         ]);
+                // }
                 
-            //     return redirect()->back()
-            //         ->withErrors($validator)
-            //         ->withInput()
-            //         ->with('aadhaar_popup', [
-            //             'title' => __('messages.error_title'),
-            //             'message' => __('validation.unique_adhar_number'),
-            //             'type' => 'error'
-            //         ]);
-            // }
-            
-            // Return back with errors and old input
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $validated = $validator->validated();
-
-        // Format the mobile number
-        if (isset($validated['mobile_number'])) {
-            $mobileNumber = $validated['mobile_number'];
-            if (preg_match('/^\d{10}$/', $mobileNumber)) {
-                $validated['mobile_number'] = '+91' . $mobileNumber;
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
             }
+
+            $validated = $validator->validated();
+
+            // Format the mobile number
+            if (isset($validated['mobile_number'])) {
+                $mobileNumber = $validated['mobile_number'];
+                if (preg_match('/^\d{10}$/', $mobileNumber)) {
+                    $validated['mobile_number'] = '+91' . $mobileNumber;
+                }
+            }
+
+            // Add labharthi number to validated data
+            $validated['area_id'] = $request->area_id;
+
+            // Create new labharthi
+            Labharthi::create($validated);
+
+            return redirect()->route('admin.labharthi.index')
+                ->with('success', __('portal.labharthi_created'));
+        } catch (\Throwable $th) {
+            Log::error('LabharthiController@store Error: ' . $th->getMessage());
+            return redirect()->back()
+                ->withInput()
+                ->with('error', $th->getMessage());
         }
-
-        $validated = array_map(function ($value) {
-            return is_string($value) ? strip_tags($value) : $value;
-        }, $validated);
-
-        Labharthi::create($validated);
-
-        return redirect()->route('admin.labharthi.index')
-            ->with('success', __('portal.labharthi_created'));
-    } catch (\Throwable $th) {
-        Log::error('LabharthiController@store Error: ' . $th->getMessage());
-        return redirect()->route('admin.labharthi.index')
-            ->with('error', $th->getMessage());
     }
-}
 
-public function edit(Labharthi $labharthi)
-{
-    $mobile = preg_replace('/\+91/', '', $labharthi->mobile_number);
-    $labharthi->mobile_number = $mobile;
+    public function edit(Labharthi $labharthi)
+    {
+        $mobile = preg_replace('/\+91/', '', $labharthi->mobile_number);
+        $labharthi->mobile_number = $mobile;
 
-    return view('admin.labharthi.edit', compact('labharthi'));
-}
+        return view('admin.labharthi.edit', compact('labharthi'));
+    }
 
-public function update(Request $request, Labharthi $labharthi)
-{
-    try {
-        $rules = [
-            'status' => 'nullable|in:1,0',
-            'name' => 'required|string|max:255',
-            'address' => 'required|string',
-            'native_place' => 'nullable|string|max:255',
-            'cast' => 'nullable|string|max:255',
-            'sub_cast' => 'nullable|string|max:255',
-            'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number,'.$labharthi->id,
-            'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
-            'category' => 'nullable|in:vidhva,vidhur,rejected,other',
-            'work' => 'nullable|string|max:255',
-            'identification_mark' => 'nullable|string|max:255',
-            'income_source' => 'nullable|string',
-            'property' => 'nullable|string',
-            'relative_info' => 'nullable|string',
-            'reasion_for_not_working' => 'nullable|string',
-            'reasion_for_tifin' => 'nullable|string',
-            'comment_from_trust' => 'nullable|string',
-            'tifin_starting_date' => 'nullable|date',
-            'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
-            'reasion_for_tifin_stop' => 'nullable|string|max:255',
-            'latitude' => 'nullable|numeric',
-            'longitude' => 'nullable|numeric',
-        ];
+    public function update(Request $request, Labharthi $labharthi)
+    {
+        try {
+            $rules = [
+                'status' => 'nullable|in:1,0',
+                'name' => 'required|string|max:255',
+                'address' => 'required|string',
+                'native_place' => 'nullable|string|max:255',
+                'cast' => 'nullable|string|max:255',
+                'sub_cast' => 'nullable|string|max:255',
+                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number,'.$labharthi->id,
+                'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
+                'category' => 'nullable|in:vidhva,vidhur,rejected,other',
+                'work' => 'nullable|string|max:255',
+                'identification_mark' => 'nullable|string|max:255',
+                'income_source' => 'nullable|string',
+                'property' => 'nullable|string',
+                'relative_info' => 'nullable|string',
+                'reasion_for_not_working' => 'nullable|string',
+                'reasion_for_tifin' => 'nullable|string',
+                'comment_from_trust' => 'nullable|string',
+                'tifin_starting_date' => 'nullable|date',
+                'tifin_ending_date' => 'nullable|date|after_or_equal:tifin_starting_date',
+                'reasion_for_tifin_stop' => 'nullable|string|max:255',
+                'latitude' => 'nullable|numeric',
+                'longitude' => 'nullable|numeric',
+            ];
 
-        $messages = [
-            'name.required' => __('validation.required_name'),
-            'name.string' => __('validation.string_name'),
-            'name.max' => __('validation.max_name'),
-            'address.required' => __('validation.required_address'),
-            'address.string' => __('validation.string_address'),
-            'native_place.string' => __('validation.string_native_place'),
-            'native_place.max' => __('validation.max_native_place'),
-            'cast.string' => __('validation.string_cast'),
-            'cast.max' => __('validation.max_cast'),
-            'sub_cast.string' => __('validation.string_sub_cast'),
-            'sub_cast.max' => __('validation.max_sub_cast'),
-            'adhar_number.string' => __('validation.string_adhar_number'),
-            'adhar_number.size' => __('validation.size_adhar_number'),
-            'adhar_number.regex' => __('validation.regex_adhar_number'),
-            'adhar_number.unique' => __('validation.unique_adhar_number'),
-            'mobile_number.string' => __('validation.string_mobile_number'),
-            'mobile_number.size' => __('validation.size_mobile_number'),
-            'mobile_number.regex' => __('validation.regex_mobile_number'),
-            'work.string' => __('validation.string_work'),
-            'work.max' => __('validation.max_work'),
-            'identification_mark.string' => __('validation.string_identification_mark'),
-            'identification_mark.max' => __('validation.max_identification_mark'),
-            'income_source.string' => __('validation.string_income_source'),
-            'property.string' => __('validation.string_property'),
-            'reasion_for_not_working.string' => __('validation.string_reasion_for_not_working'),
-            'reasion_for_tifin.string' => __('validation.string_reasion_for_tifin'),
-            'comment_from_trust.string' => __('validation.string_comment_from_trust'),
-            'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
-            'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
-            'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
-        ];
+            $messages = [
+                'name.required' => __('validation.required_name'),
+                'name.string' => __('validation.string_name'),
+                'name.max' => __('validation.max_name'),
+                'address.required' => __('validation.required_address'),
+                'address.string' => __('validation.string_address'),
+                'native_place.string' => __('validation.string_native_place'),
+                'native_place.max' => __('validation.max_native_place'),
+                'cast.string' => __('validation.string_cast'),
+                'cast.max' => __('validation.max_cast'),
+                'sub_cast.string' => __('validation.string_sub_cast'),
+                'sub_cast.max' => __('validation.max_sub_cast'),
+                'adhar_number.string' => __('validation.string_adhar_number'),
+                'adhar_number.size' => __('validation.size_adhar_number'),
+                'adhar_number.regex' => __('validation.regex_adhar_number'),
+                'adhar_number.unique' => __('validation.unique_adhar_number'),
+                'mobile_number.string' => __('validation.string_mobile_number'),
+                'mobile_number.size' => __('validation.size_mobile_number'),
+                'mobile_number.regex' => __('validation.regex_mobile_number'),
+                'work.string' => __('validation.string_work'),
+                'work.max' => __('validation.max_work'),
+                'identification_mark.string' => __('validation.string_identification_mark'),
+                'identification_mark.max' => __('validation.max_identification_mark'),
+                'income_source.string' => __('validation.string_income_source'),
+                'property.string' => __('validation.string_property'),
+                'reasion_for_not_working.string' => __('validation.string_reasion_for_not_working'),
+                'reasion_for_tifin.string' => __('validation.string_reasion_for_tifin'),
+                'comment_from_trust.string' => __('validation.string_comment_from_trust'),
+                'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
+                'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
+                'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
+            ];
 
-        // Create a validator instance
-        $validator = Validator::make($request->all(), $rules, $messages);
+            // Create a validator instance
+            $validator = Validator::make($request->all(), $rules, $messages);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            // Check specifically for Aadhaar uniqueness error
-            // if ($validator->errors()->has('adhar_number') && 
-            //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
+            // Check if validation fails
+            if ($validator->fails()) {
+                // Check specifically for Aadhaar uniqueness error
+                // if ($validator->errors()->has('adhar_number') && 
+                //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
+                    
+                //     return redirect()->back()
+                //         ->withErrors($validator)
+                //         ->withInput()
+                //         ->with('aadhaar_popup', [
+                //             'title' => __('messages.error_title'),
+                //             'message' => __('validation.unique_adhar_number'),
+                //             'type' => 'error'
+                //         ]);
+                // }
                 
-            //     return redirect()->back()
-            //         ->withErrors($validator)
-            //         ->withInput()
-            //         ->with('aadhaar_popup', [
-            //             'title' => __('messages.error_title'),
-            //             'message' => __('validation.unique_adhar_number'),
-            //             'type' => 'error'
-            //         ]);
-            // }
-            
-            // Return back with errors and old input
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $validated = $validator->validated();
-
-        // Format the mobile number
-        if (isset($validated['mobile_number'])) {
-            $mobileNumber = $validated['mobile_number'];
-            if (preg_match('/^\d{10}$/', $mobileNumber)) {
-                $validated['mobile_number'] = '+91' . $mobileNumber;
+                // Return back with errors and old input
+                return redirect()->back()->withErrors($validator)->withInput();
             }
+
+            $validated = $validator->validated();
+
+            // Format the mobile number
+            if (isset($validated['mobile_number'])) {
+                $mobileNumber = $validated['mobile_number'];
+                if (preg_match('/^\d{10}$/', $mobileNumber)) {
+                    $validated['mobile_number'] = '+91' . $mobileNumber;
+                }
+            }
+
+            $validated = array_map(function ($value) {
+                return is_string($value) ? strip_tags($value) : $value;
+            }, $validated);
+
+            $labharthi->update($validated);
+
+            return redirect()->route('admin.labharthi.index')
+                ->with('success', __('portal.labharthi_updated'));
+        } catch (\Throwable $th) {
+            Log::error('LabharthiController@update Error: ' . $th->getMessage());
+            return redirect()->route('admin.labharthi.index')
+                ->with('error', $th->getMessage());
         }
-
-        $validated = array_map(function ($value) {
-            return is_string($value) ? strip_tags($value) : $value;
-        }, $validated);
-
-        $labharthi->update($validated);
-
-        return redirect()->route('admin.labharthi.index')
-            ->with('success', __('portal.labharthi_updated'));
-    } catch (\Throwable $th) {
-        Log::error('LabharthiController@update Error: ' . $th->getMessage());
-        return redirect()->route('admin.labharthi.index')
-            ->with('error', $th->getMessage());
     }
-}
 
     // public function destroy(Labharthi $labharthi)
     // {
@@ -329,5 +338,45 @@ public function update(Request $request, Labharthi $labharthi)
         }
 
         return response()->json(['success' => true, 'message' => 'Order updated']);
+    }
+
+    public function getNextLabharthiNumber($areaId) 
+    {
+        try {
+            // Get area details
+            $area = Area::findOrFail($areaId);
+            
+            // Get area short_form as prefix
+            $prefix = strtoupper($area->short_form);
+
+            // Get last labharthi number for this area
+            $lastLabharthi = Labharthi::where('area_id', $areaId)
+                ->orderBy('labharthi_number', 'desc')
+                ->first();
+
+            // Initialize sequence number
+            $sequence = 1;
+
+            if ($lastLabharthi) {
+                // Extract number from last labharthi_number
+                preg_match('/[0-9]+$/', $lastLabharthi->labharthi_number, $matches);
+                if (!empty($matches)) {
+                    $sequence = intval($matches[0]) + 1;
+                }
+            }
+
+            // Generate new labharthi number
+            $number = $prefix . str_pad($sequence, 4, '0', STR_PAD_LEFT);
+
+            return response()->json([
+                'success' => true,
+                'number' => $number
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
     }
 }
