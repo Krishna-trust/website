@@ -24,6 +24,32 @@
                         <form action="{{ route('admin.labharthi.store') }}" method="POST">
                             @csrf
                             <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="area_id" class="form-label">{{ @trans('portal.area') }} <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select @error('area_id') is-invalid @enderror" id="area_id"
+                                        name="area_id" required>
+                                        <option value="">{{ @trans('portal.select_area') }}</option>
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area->id }}"
+                                                {{ old('area_id') == $area->id ? 'selected' : '' }}>
+                                                {{ $area->name }} ({{ $area->pincode }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('area_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="labharthi_number"
+                                        class="form-label">{{ @trans('portal.labharthi_number') }}</label>
+                                    <input type="text" class="form-control" id="labharthi_number" name="labharthi_number"
+                                        value="{{ old('labharthi_number') }}" readonly>
+                                </div>
+
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">{{ @trans('portal.name') }}</label>
                                     <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -93,14 +119,16 @@
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label d-block">{{ @trans('portal.category') }}</label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="category" id="category_vidhva"
-                                            value="vidhva" {{ old('category') == 'vidhva' ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="radio" name="category"
+                                            id="category_vidhva" value="vidhva"
+                                            {{ old('category') == 'vidhva' ? 'checked' : '' }}>
                                         <label class="form-check-label"
                                             for="category_vidhva">{{ @trans('portal.vidhva') }}</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="category" id="category_vidhur"
-                                            value="vidhur" {{ old('category') == 'vidhur' ? 'checked' : '' }}>
+                                        <input class="form-check-input" type="radio" name="category"
+                                            id="category_vidhur" value="vidhur"
+                                            {{ old('category') == 'vidhur' ? 'checked' : '' }}>
                                         <label class="form-check-label"
                                             for="category_vidhur">{{ @trans('portal.vidhur') }}</label>
                                     </div>
@@ -237,30 +265,10 @@
                                     @enderror
                                 </div>
 
-                                <div class="col-md-6 mb-3">
-                                    <label for="area_id" class="form-label">{{ @trans('portal.area') }} <span class="text-danger">*</span></label>
-                                    <select class="form-select @error('area_id') is-invalid @enderror" id="area_id" name="area_id" required>
-                                        <option value="">{{ @trans('portal.select_area') }}</option>
-                                        @foreach($areas as $area)
-                                            <option value="{{ $area->id }}" {{ old('area_id') == $area->id ? 'selected' : '' }}>
-                                                {{ $area->name }} ({{ $area->pincode }})
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    @error('area_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-6 mb-3">
-                                    <label for="labharthi_number" class="form-label">{{ @trans('portal.labharthi_number') }}</label>
-                                    <input type="text" class="form-control" id="labharthi_number" name="labharthi_number" value="{{ old('labharthi_number') }}" readonly>
-                                </div>
-
                                 {{-- get location --}}
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">{{ __('portal.location') }}</label>
-                                
+
                                     <!-- Table -->
                                     <div id="location-table" class="table-responsive" style="margin-top: 10px;">
                                         <table class="table table-bordered w-100">
@@ -272,23 +280,28 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td id="lat-value">{{ old('latitude', $labharthi->latitude ?? '-') }}</td>
-                                                    <td id="lon-value">{{ old('longitude', $labharthi->longitude ?? '-') }}</td>
+                                                    <td id="lat-value">{{ old('latitude', $labharthi->latitude ?? '-') }}
+                                                    </td>
+                                                    <td id="lon-value">
+                                                        {{ old('longitude', $labharthi->longitude ?? '-') }}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
-                                
+
                                     <!-- Hidden Inputs -->
-                                    <input type="hidden" id="latitude" name="latitude" value="{{ old('latitude', $labharthi->latitude ?? '') }}">
-                                    <input type="hidden" id="longitude" name="longitude" value="{{ old('longitude', $labharthi->longitude ?? '') }}">
-                                
+                                    <input type="hidden" id="latitude" name="latitude"
+                                        value="{{ old('latitude', $labharthi->latitude ?? '') }}">
+                                    <input type="hidden" id="longitude" name="longitude"
+                                        value="{{ old('longitude', $labharthi->longitude ?? '') }}">
+
                                     <!-- Button -->
-                                    <button type="button" id="location-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#locationModal">
+                                    <button type="button" id="location-btn" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#locationModal">
                                         <i class="fa fa-map-marker"></i>
-                                        {{ (old('latitude', $labharthi->latitude ?? '') && old('longitude', $labharthi->longitude ?? '')) ? __('portal.show_location') : __('portal.get_location') }}
+                                        {{ old('latitude', $labharthi->latitude ?? '') && old('longitude', $labharthi->longitude ?? '') ? __('portal.show_location') : __('portal.get_location') }}
                                     </button>
-                                </div>                                
+                                </div>
                             </div>
 
                             <div class="text-end">
@@ -307,32 +320,32 @@
 @endsection
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const areaSelect = document.getElementById('area_id');
-    const labharthiNumberInput = document.getElementById('labharthi_number');
+    document.addEventListener('DOMContentLoaded', function() {
+        const areaSelect = document.getElementById('area_id');
+        const labharthiNumberInput = document.getElementById('labharthi_number');
 
-    areaSelect.addEventListener('change', function() {
-        const areaId = this.value;
-        if (!areaId) {
-            labharthiNumberInput.value = '';
-            return;
-        }
+        areaSelect.addEventListener('change', function() {
+            const areaId = this.value;
+            if (!areaId) {
+                labharthiNumberInput.value = '';
+                return;
+            }
 
-        // Use the named route
-        fetch(`{{ route('admin.get-next-labharthi-number', '') }}/${areaId}`)
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    labharthiNumberInput.value = data.number;
-                } else {
-                    console.error('Error:', data.message);
+            // Use the named route
+            fetch(`{{ route('admin.get-next-labharthi-number', '') }}/${areaId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        labharthiNumberInput.value = data.number;
+                    } else {
+                        console.error('Error:', data.message);
+                        toastr.error('Error generating labharthi number');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
                     toastr.error('Error generating labharthi number');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                toastr.error('Error generating labharthi number');
-            });
+                });
+        });
     });
-});
 </script>

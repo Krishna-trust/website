@@ -69,6 +69,9 @@ return [
     'vidhva' => 'Vidhva',
     'vidhur' => 'Vidhur',
     'rejected' => 'Rejected',
+    'area' => 'Area',
+    'select_area' => 'Select Area',
+    'labharthi_number' => 'Labharthi Number',
 
     // Attendance
     'attendance' => 'Attendance',

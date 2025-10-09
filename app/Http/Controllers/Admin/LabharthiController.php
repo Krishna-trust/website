@@ -129,7 +129,7 @@ class LabharthiController extends Controller
                 // Check specifically for Aadhaar uniqueness error
                 // if ($validator->errors()->has('adhar_number') && 
                 //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
-                    
+
                 //     return redirect()->back()
                 //         ->withErrors($validator)
                 //         ->withInput()
@@ -139,7 +139,7 @@ class LabharthiController extends Controller
                 //             'type' => 'error'
                 //         ]);
                 // }
-                
+
                 // Return back with errors and old input
                 return redirect()->back()->withErrors($validator)->withInput();
             }
@@ -175,7 +175,8 @@ class LabharthiController extends Controller
         $mobile = preg_replace('/\+91/', '', $labharthi->mobile_number);
         $labharthi->mobile_number = $mobile;
 
-        return view('admin.labharthi.edit', compact('labharthi'));
+        $areas = Area::all();
+        return view('admin.labharthi.edit', compact('labharthi', 'areas'));
     }
 
     public function update(Request $request, Labharthi $labharthi)
@@ -188,7 +189,7 @@ class LabharthiController extends Controller
                 'native_place' => 'nullable|string|max:255',
                 'cast' => 'nullable|string|max:255',
                 'sub_cast' => 'nullable|string|max:255',
-                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number,'.$labharthi->id,
+                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number,' . $labharthi->id,
                 'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
                 'category' => 'nullable|in:vidhva,vidhur,rejected,other',
                 'work' => 'nullable|string|max:255',
@@ -204,6 +205,8 @@ class LabharthiController extends Controller
                 'reasion_for_tifin_stop' => 'nullable|string|max:255',
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
+                'area_id' => 'required|exists:areas,id',
+                'labharthi_number' => 'required|unique:labharthis,labharthi_number'
             ];
 
             $messages = [
@@ -237,6 +240,10 @@ class LabharthiController extends Controller
                 'tifin_starting_date.date' => __('validation.date_tifin_starting_date'),
                 'tifin_ending_date.date' => __('validation.date_tifin_ending_date'),
                 'reasion_for_tifin_stop.string' => __('validation.string_reasion_for_tifin_stop'),
+                'area_id.required' => __('validation.required_area'),
+                'area_id.exists' => __('validation.exists_area'),
+                'labharthi_number.required' => __('validation.required_labharthi_number'),
+                'labharthi_number.unique' => __('validation.unique_labharthi_number')
             ];
 
             // Create a validator instance
@@ -247,7 +254,7 @@ class LabharthiController extends Controller
                 // Check specifically for Aadhaar uniqueness error
                 // if ($validator->errors()->has('adhar_number') && 
                 //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
-                    
+
                 //     return redirect()->back()
                 //         ->withErrors($validator)
                 //         ->withInput()
@@ -257,7 +264,7 @@ class LabharthiController extends Controller
                 //             'type' => 'error'
                 //         ]);
                 // }
-                
+
                 // Return back with errors and old input
                 return redirect()->back()->withErrors($validator)->withInput();
             }
@@ -275,6 +282,9 @@ class LabharthiController extends Controller
             $validated = array_map(function ($value) {
                 return is_string($value) ? strip_tags($value) : $value;
             }, $validated);
+
+            // Add labharthi number to validated data
+            $validated['area_id'] = $request->area_id;
 
             $labharthi->update($validated);
 
@@ -340,12 +350,12 @@ class LabharthiController extends Controller
         return response()->json(['success' => true, 'message' => 'Order updated']);
     }
 
-    public function getNextLabharthiNumber($areaId) 
+    public function getNextLabharthiNumber($areaId)
     {
         try {
             // Get area details
             $area = Area::findOrFail($areaId);
-            
+
             // Get area short_form as prefix
             $prefix = strtoupper($area->short_form);
 

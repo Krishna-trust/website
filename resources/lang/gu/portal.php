@@ -68,6 +68,9 @@ return [
     'vidhva' => 'વિધવા',
     'vidhur' => 'વિધુર',
     'rejected' => 'ત્યજેલા',
+    'area' => 'એરિયા',
+    'select_area' => 'એરિયા પસંદ કરો',
+    'labharthi_number' => 'લાભાર્થી નંબર',
 
     // Attendance
     'attendance' => 'હાજરી',

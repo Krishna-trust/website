@@ -26,6 +26,31 @@
                             @method('PUT')
 
                             <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="area_id" class="form-label">{{ @trans('portal.area') }} <span
+                                            class="text-danger">*</span></label>
+                                    <select class="form-select @error('area_id') is-invalid @enderror" id="area_id"
+                                        name="area_id" required>
+                                        <option value="">{{ @trans('portal.select_area') }}</option>
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area->id }}"
+                                                {{ old('area_id', $labharthi->area_id) == $area->id ? 'selected' : '' }}>
+                                                {{ $area->name }} ({{ $area->pincode }})
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('area_id')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="labharthi_number"
+                                        class="form-label">{{ @trans('portal.labharthi_number') }}</label>
+                                    <input type="text" class="form-control" id="labharthi_number" name="labharthi_number"
+                                        value="{{ old('labharthi_number', $labharthi->labharthi_number) }}" readonly>
+                                </div>
+
                                 {{-- add status field --}}
                                 <div class="row">
                                     <div class="col-md-4">
@@ -327,3 +352,34 @@
 
     @include('admin.location-map')
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const areaSelect = document.getElementById('area_id');
+        const labharthiNumberInput = document.getElementById('labharthi_number');
+
+        areaSelect.addEventListener('change', function() {
+            const areaId = this.value;
+            if (!areaId) {
+                labharthiNumberInput.value = '';
+                return;
+            }
+
+            // Use the named route
+            fetch(`{{ route('admin.get-next-labharthi-number', '') }}/${areaId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        labharthiNumberInput.value = data.number;
+                    } else {
+                        console.error('Error:', data.message);
+                        toastr.error('Error generating labharthi number');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    toastr.error('Error generating labharthi number');
+                });
+        });
+    });
+</script>

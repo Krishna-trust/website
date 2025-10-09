@@ -3,6 +3,7 @@
         <tr role="row">
             <th class="text-uppercase fw-bold">#
             </th>
+            <th class="text-uppercase fw-bold">{{ @trans('portal.labharthi_number') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.mobile') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.tifin_starting_date') }}</th>
@@ -18,6 +19,7 @@
         @forelse($labharthis as $index => $labharthi)
         <tr>
             <td>{{ $labharthis->firstItem() + $index }}</td>
+            <td>{{ $labharthi->labharthi_number ? $labharthi->labharthi_number : '-'}}</td>
             <td>{{ $labharthi->name ? $labharthi->name : '-'}}</td>
             <td>@if ($labharthi->mobile_number)
                 @php
