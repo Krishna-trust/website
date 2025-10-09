@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('labharthi_form', function (Blueprint $table) {
             $table->string('labharthi_number')->nullable()->after('id');
-            $table->foreignId('area_id')->after('name')->constrained('area');
+            $table->foreignId('area_id')->nullable()->after('name')->constrained('area');
         });
     }
 
