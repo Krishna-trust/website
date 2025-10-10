@@ -62,7 +62,7 @@ class LabharthiController extends Controller
                 'native_place' => 'nullable|string',
                 'cast' => 'nullable|string',
                 'sub_cast' => 'nullable|string',
-                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number',
+                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthi_form,adhar_number',
                 'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
                 'category' => 'nullable|in:vidhva,vidhur,rejected,other',
                 'work' => 'nullable|string',
@@ -79,7 +79,7 @@ class LabharthiController extends Controller
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
                 'area_id' => 'required|exists:area,id',
-                'labharthi_number' => 'required|unique:labharthis,labharthi_number'
+                'labharthi_number' => 'required|unique:labharthi_form,labharthi_number'
             ];
 
             // Define the custom error messages
@@ -189,7 +189,7 @@ class LabharthiController extends Controller
                 'native_place' => 'nullable|string|max:255',
                 'cast' => 'nullable|string|max:255',
                 'sub_cast' => 'nullable|string|max:255',
-                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthis,adhar_number,' . $labharthi->id,
+                'adhar_number' => 'nullable|string|size:12|regex:/^[0-9]+$/|unique:labharthi_form,adhar_number,' . $labharthi->id,
                 'mobile_number' => 'nullable|string|size:10|regex:/^[0-9]+$/',
                 'category' => 'nullable|in:vidhva,vidhur,rejected,other',
                 'work' => 'nullable|string|max:255',
@@ -206,7 +206,7 @@ class LabharthiController extends Controller
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
                 'area_id' => 'required|exists:area,id',
-                'labharthi_number' => 'required|unique:labharthis,labharthi_number'
+                'labharthi_number' => 'required|unique:labharthi_form,labharthi_number'
             ];
 
             $messages = [
