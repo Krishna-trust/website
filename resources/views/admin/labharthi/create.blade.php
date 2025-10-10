@@ -34,7 +34,7 @@
                                         @foreach ($areas as $area)
                                             <option value="{{ $area->id }}"
                                                 {{ old('area_id') == $area->id ? 'selected' : '' }}>
-                                                {{ $area->name }} ({{ $area->pincode }})
+                                                {{ app()->getLocale() == 'en' ? $area->name : $area->slug }} ({{ $area->pincode }})
                                             </option>
                                         @endforeach
                                     </select>

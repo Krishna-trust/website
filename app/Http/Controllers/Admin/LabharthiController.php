@@ -78,7 +78,7 @@ class LabharthiController extends Controller
                 'reasion_for_tifin_stop' => 'nullable|string',
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
-                'area_id' => 'required|exists:areas,id',
+                'area_id' => 'required|exists:area,id',
                 'labharthi_number' => 'required|unique:labharthis,labharthi_number'
             ];
 
@@ -205,7 +205,7 @@ class LabharthiController extends Controller
                 'reasion_for_tifin_stop' => 'nullable|string|max:255',
                 'latitude' => 'nullable|numeric',
                 'longitude' => 'nullable|numeric',
-                'area_id' => 'required|exists:areas,id',
+                'area_id' => 'required|exists:area,id',
                 'labharthi_number' => 'required|unique:labharthis,labharthi_number'
             ];
 
