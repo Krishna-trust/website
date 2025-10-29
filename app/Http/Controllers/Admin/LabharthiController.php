@@ -387,6 +387,7 @@ class LabharthiController extends Controller
                 'number' => $number
             ]);
         } catch (\Exception $e) {
+            Log::error('LabharthiController@getNextLabharthiNumber Error: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage()

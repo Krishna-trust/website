@@ -18,7 +18,7 @@ class Labharthi extends Model
         'position',
         'status',
         'name',
-        'area',
+        'area_id',
         'address',
         'latitude',
         'longitude',

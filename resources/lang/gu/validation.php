@@ -119,6 +119,10 @@ return [
     'required_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ જરૂરી છે.',
     'string_reasion_for_tifin_stop' => 'ટીફિન બંધ થવાનું કારણ માન્ય સ્ટ્રિંગ હોવું જોઈએ.',
     'unique_adhar_number' => 'આ આધાર નંબર પહેલેથી જ નોંધાયેલ છે.',
+    'required_area' => 'ક્ષેત્ર જરૂરી છે.',
+    'exists_area' => 'ક્ષેત્ર અસ્તિત્વમાં નથી.',
+    'required_labharthi_number' => 'લાભાર્થી નંબર જરૂરી છે.',
+    'unique_labharthi_number' => 'આ લાભાર્થી નંબર પહેલેથી જ નોંધાયેલ છે.',
 
     // contact us validation
     'required_name' => 'નામ જરૂરી છે.',
