@@ -56,6 +56,7 @@ class LabharthiController extends Controller
     public function store(Request $request)
     {
         try {
+            Log::info('LabharthiController@store Request Data: ', $request->all());
             $rules = [
                 'name' => 'required|string|max:255',
                 'address' => 'required|string',
@@ -126,6 +127,7 @@ class LabharthiController extends Controller
 
             // Check if validation fails
             if ($validator->fails()) {
+                Log::warning('LabharthiController@store Validation Failed: ', $validator->errors()->toArray());
                 // Check specifically for Aadhaar uniqueness error
                 // if ($validator->errors()->has('adhar_number') && 
                 //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
@@ -153,6 +155,8 @@ class LabharthiController extends Controller
                     $validated['mobile_number'] = '+91' . $mobileNumber;
                 }
             }
+
+            Log::info('LabharthiController@store Validated Data: ', $validated);
 
             // Add labharthi number to validated data
             $validated['area_id'] = $request->area_id;
