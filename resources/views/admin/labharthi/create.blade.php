@@ -63,7 +63,7 @@
                                     <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }}</label>
                                     <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                         id="mobile_number" name="mobile_number" value="{{ old('mobile_number') }}"
-                                        maxlength="10">
+                                        data-type="mobile" maxlength="11">
                                     @error('mobile_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -110,7 +110,7 @@
                                         class="form-label">{{ @trans('portal.adhar_number') }}</label>
                                     <input type="text" class="form-control @error('adhar_number') is-invalid @enderror"
                                         id="adhar_number" name="adhar_number" value="{{ old('adhar_number') }}"
-                                        pattern="[0-9]{12}" maxlength="12" title="Please enter 12 digits">
+                                        data-type="adhar" maxlength="14">
                                     @error('adhar_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

@@ -104,6 +104,36 @@ if (!function_exists('decryptAesResponse')) {
 //     }
 // }
 
+// Format mobile number for display: +91 XXXXX XXXXX
+if (!function_exists('formatMobileNumber')) {
+    function formatMobileNumber($mobile = '')
+    {
+        if (empty($mobile)) return '-';
+        $digits = preg_replace('/\D/', '', $mobile);
+        // Strip country code 91 if 12 digits
+        if (strlen($digits) === 12 && str_starts_with($digits, '91')) {
+            $digits = substr($digits, 2);
+        }
+        if (strlen($digits) === 10) {
+            return '+91 ' . substr($digits, 0, 5) . ' ' . substr($digits, 5);
+        }
+        return $mobile;
+    }
+}
+
+// Format Aadhaar number for display: XXXX XXXX XXXX
+if (!function_exists('formatAdharNumber')) {
+    function formatAdharNumber($adhar = '')
+    {
+        if (empty($adhar)) return '-';
+        $digits = preg_replace('/\D/', '', $adhar);
+        if (strlen($digits) === 12) {
+            return substr($digits, 0, 4) . ' ' . substr($digits, 4, 4) . ' ' . substr($digits, 8, 4);
+        }
+        return $adhar;
+    }
+}
+
 if (!function_exists('plainAmount')) {
     function plainAmount($formattedAmount = 0)
     {

@@ -214,6 +214,10 @@ class EmployeeController extends Controller
 
             $employee = Employee::findOrFail($employeeId);
 
+            if ($employee->image) {
+                Storage::disk('public')->delete($employee->image);
+            }
+
             $employee->delete();
 
             return redirect()->route('admin.employee.index')

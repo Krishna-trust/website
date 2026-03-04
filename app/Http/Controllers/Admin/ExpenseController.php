@@ -101,7 +101,7 @@ class ExpenseController extends Controller
     public function update(Request $request, Expense $expense)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'amount' => 'required',
                 'purpose' => 'required',
                 'comment' => 'nullable',
@@ -109,6 +109,10 @@ class ExpenseController extends Controller
                 'amount.required' => __('validation.required_amount'),
                 'purpose.required' => __('validation.required_purpose'),
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
 
             $data = [

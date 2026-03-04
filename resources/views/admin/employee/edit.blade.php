@@ -51,7 +51,8 @@
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
                                         id="mobile_number" name="mobile_number"
-                                        value="{{ old('mobile_number', $employee->mobile_number) }}" maxlength="10">
+                                        value="{{ old('mobile_number', $employee->mobile_number) }}"
+                                        data-type="mobile" maxlength="11">
                                     @error('mobile_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -63,7 +64,8 @@
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('adhar_number') is-invalid @enderror"
                                         id="adhar_number" name="adhar_number"
-                                        value="{{ old('adhar_number', $employee->adhar_number) }}" maxlength="12">
+                                        value="{{ old('adhar_number', $employee->adhar_number) }}"
+                                        data-type="adhar" maxlength="14">
                                     @error('adhar_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror

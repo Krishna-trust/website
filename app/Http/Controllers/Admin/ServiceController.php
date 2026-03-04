@@ -95,7 +95,7 @@ class ServiceController extends Controller
     public function update(Request $request, Service $service)
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'description' => 'required',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -106,6 +106,10 @@ class ServiceController extends Controller
                 'image.max' => __('validation.max'),
                 'image.uploaded' => __('validation.uploaded'),
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             // translate to english
             $tr = new GoogleTranslate('en');

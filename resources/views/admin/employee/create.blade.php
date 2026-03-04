@@ -59,7 +59,8 @@
                                     <label for="mobile_number" class="form-label">{{ @trans('portal.mobile') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('mobile_number') is-invalid @enderror"
-                                        id="mobile_number" name="mobile_number" maxlength="10"
+                                        id="mobile_number" name="mobile_number"
+                                        data-type="mobile" maxlength="11"
                                         value="{{ old('mobile_number') }}">
                                     @error('mobile_number')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -70,7 +71,8 @@
                                     <label for="adhar_number" class="form-label">{{ @trans('portal.adhar_number') }} <span
                                             class="text-danger">*</span></label>
                                     <input type="text" class="form-control @error('adhar_number') is-invalid @enderror"
-                                        id="adhar_number" name="adhar_number" maxlength="12"
+                                        id="adhar_number" name="adhar_number"
+                                        data-type="adhar" maxlength="14"
                                         value="{{ old('adhar_number') }}">
                                     @error('adhar_number')
                                         <div class="invalid-feedback">{{ $message }}</div>

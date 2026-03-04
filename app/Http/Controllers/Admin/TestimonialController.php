@@ -124,8 +124,7 @@ class TestimonialController extends Controller
     public function update(Request $request, Testimonial $testimonial)
     {
         try {
-
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'post' => 'nullable',
                 'description' => 'required',
@@ -138,6 +137,10 @@ class TestimonialController extends Controller
                 'image.max' => __('validation.max'),
                 'image.uploaded' => __('validation.uploaded'),
             ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
 
             $tr = new GoogleTranslate('en');
             $en_post = $tr->translate($request->post);

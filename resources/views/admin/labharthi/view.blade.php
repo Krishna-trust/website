@@ -21,25 +21,7 @@
             <td>{{ $labharthis->firstItem() + $index }}</td>
             <td>{{ $labharthi->labharthi_number ? $labharthi->labharthi_number : '-'}}</td>
             <td>{{ $labharthi->name ? $labharthi->name : '-'}}</td>
-            <td>@if ($labharthi->mobile_number)
-                @php
-                    $number = $labharthi->mobile_number;
-                    // Remove non-digit characters
-                    $digits = preg_replace('/\D/', '', $number);
-        
-                    // Format the number based on conditions
-                    if (strlen($digits) === 10) {
-                        $formatted = '+91 ' . $digits;
-                    } elseif (preg_match('/^(?:\+91|91)(\d{10})$/', $digits, $matches)) {
-                        $formatted = '+91 ' . $matches[1];
-                    } else {
-                        $formatted = $number; // Fallback if format is incorrect
-                    }
-                @endphp
-                {{ $formatted }}
-            @else
-                -
-            @endif</td>
+            <td>{{ formatMobileNumber($labharthi->mobile_number) }}</td>
             <td style="white-space: nowrap;">{{ $labharthi->tifin_starting_date ? date('d/m/Y', strtotime($labharthi->tifin_starting_date)) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">

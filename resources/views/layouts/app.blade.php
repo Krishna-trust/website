@@ -81,6 +81,68 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
     <script>
+        // ── Number input masking ──────────────────────────────────────────────
+        (function () {
+            function formatMobile(val) {
+                // Strip non-digits
+                var d = val.replace(/\D/g, '');
+                // Strip leading country code (91 or 0)
+                if (d.length === 12 && d.startsWith('91')) d = d.slice(2);
+                if (d.length === 11 && d.startsWith('0'))  d = d.slice(1);
+                d = d.slice(0, 10);
+                return d.length > 5 ? d.slice(0, 5) + ' ' + d.slice(5) : d;
+            }
+
+            function formatAdhar(val) {
+                var d = val.replace(/\D/g, '').slice(0, 12);
+                var out = '';
+                for (var i = 0; i < d.length; i++) {
+                    if (i > 0 && i % 4 === 0) out += ' ';
+                    out += d[i];
+                }
+                return out;
+            }
+
+            function applyMasking() {
+                document.querySelectorAll('input[data-type="mobile"]').forEach(function (el) {
+                    el.value = formatMobile(el.value);
+                    el.removeEventListener('input', el._mobileHandler);
+                    el._mobileHandler = function () {
+                        var pos = el.selectionStart;
+                        el.value = formatMobile(el.value);
+                    };
+                    el.addEventListener('input', el._mobileHandler);
+                });
+
+                document.querySelectorAll('input[data-type="adhar"]').forEach(function (el) {
+                    el.value = formatAdhar(el.value);
+                    el.removeEventListener('input', el._adharHandler);
+                    el._adharHandler = function () {
+                        el.value = formatAdhar(el.value);
+                    };
+                    el.addEventListener('input', el._adharHandler);
+                });
+
+                // Strip spaces on submit so controller gets plain digits
+                document.querySelectorAll('form').forEach(function (form) {
+                    if (form._maskSubmitBound) return;
+                    form._maskSubmitBound = true;
+                    form.addEventListener('submit', function () {
+                        form.querySelectorAll('input[data-type="mobile"], input[data-type="adhar"]').forEach(function (el) {
+                            el.value = el.value.replace(/\s/g, '');
+                        });
+                    });
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', applyMasking);
+            // Re-apply after AJAX loads (e.g., attendance view partial)
+            document.addEventListener('ajax:complete', applyMasking);
+        })();
+        // ─────────────────────────────────────────────────────────────────────
+    </script>
+
+    <script>
         let map;
         let marker;
 

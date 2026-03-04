@@ -28,11 +28,11 @@
                             </li>
                             <li class="mb-2">
                                 <i class="fa fa-phone me-2 text-success"></i>
-                                <span class="fw-bolder">{{ $employee->mobile_number ?? '-' }}</span>
+                                <span class="fw-bolder">{{ formatMobileNumber($employee->mobile_number) }}</span>
                             </li>
                             <li class="mb-2">
                                 <i class="fa fa-id-card me-2 text-success"></i>
-                                <span class="fw-bolder">{{ formatByGroups($employee->adhar_number, 4) ?? '-' }}</span>
+                                <span class="fw-bolder">{{ formatAdharNumber($employee->adhar_number) }}</span>
                             </li>
                             <li class="mb-2 d-flex justify-content-start">
                                 <i

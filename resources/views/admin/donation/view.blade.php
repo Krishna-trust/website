@@ -23,25 +23,7 @@
             <td>{{ $donation->receipt_number ? $donation->receipt_number : '-' }}</td>
             <td style="white-space: nowrap;">{{ $donation->date ? date('d-m-Y', strtotime($donation->date)) : '-' }}</td>
             <td>{{ $donation->full_name ? $donation->full_name : '-' }}</td>
-            <td>@if ($donation->mobile_number)
-                @php
-                    $number = $donation->mobile_number;
-                    // Remove non-digit characters
-                    $digits = preg_replace('/\D/', '', $number);
-        
-                    // Format the number based on conditions
-                    if (strlen($digits) === 10) {
-                        $formatted = '+91 ' . $digits;
-                    } elseif (preg_match('/^(?:\+91|91)(\d{10})$/', $digits, $matches)) {
-                        $formatted = '+91 ' . $matches[1];
-                    } else {
-                        $formatted = $number; // Fallback if format is incorrect
-                    }
-                @endphp
-                {{ $formatted }}
-            @else
-                -
-            @endif</td>
+            <td>{{ formatMobileNumber($donation->mobile_number) }}</td>
             <td>₹ {{ $donation->amount ? number_format($donation->amount, 2) : '-' }}</td>
             <td>{{ $donation->payment_mode ? ucfirst($donation->payment_mode) : '-' }}</td>
             <td class="text-center">
