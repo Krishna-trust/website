@@ -15,6 +15,8 @@
 10. [Exports (Excel Reports)](#exports-excel-reports)
 11. [Localization](#localization)
 12. [Authentication & Authorization](#authentication--authorization)
+13. [Security Hardening](#security-hardening)
+14. [Performance Optimizations](#performance-optimizations)
 
 ---
 
@@ -695,6 +697,165 @@ Located in `app/Helpers/helpers.php` and auto-loaded globally.
 | `formatByGroups($number, $group)` | Format a number string into spaced groups |
 | `encryptResponse(...)` | AES-256-CBC encryption |
 | `decryptAesResponse(...)` | AES-256-CBC decryption |
+
+-------------------------------------------------------------------------
+
+## Security Hardening
+
+The following security measures have been implemented across the application.
+
+### 1. Route Protection (Critical Fix)
+
+All DELETE, export, and employee withdrawal routes are placed **inside** the `auth + admin` middleware group. Previously these were publicly accessible without authentication.
+
+**Protected routes (now require login + admin role):**
+- `DELETE /admin/labharthi` — delete beneficiary
+- `DELETE /admin/donation` — delete donation
+- `DELETE /admin/contents` — delete content/image
+- `DELETE /admin/service` — delete service
+- `DELETE /admin/testimonial` — delete testimonial
+- `DELETE /admin/expense` — delete expense
+- `DELETE /admin/employee` — delete employee
+- `GET /admin/donation/export` — download donation Excel
+- `GET /admin/labharthi/export` — download labharthi Excel
+- `GET /admin/employee/withdrawal/{id}` — view withdrawals
+- `POST /admin/employee/withdrawal` — save withdrawal
+
+**File:** `routes/web.php`
+
+---
+
+### 2. Login Brute-Force Protection
+
+The `POST /login` route has rate limiting applied:
+
+```php
+Route::post('/login', [...])→middleware('throttle:5,1');
+// Max 5 login attempts per minute per IP
+// Returns HTTP 429 Too Many Requests on violation
+```
+
+**File:** `routes/web.php`
+
+---
+
+### 3. HTTP Security Headers
+
+Security headers added via Apache `.htaccess` using `mod_headers`:
+
+| Header | Value | Purpose |
+|---|---|---|
+| `X-Frame-Options` | `SAMEORIGIN` | Prevents clickjacking attacks |
+| `X-Content-Type-Options` | `nosniff` | Prevents MIME-type sniffing |
+| `X-XSS-Protection` | `1; mode=block` | Enables legacy browser XSS filter |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | Controls referrer info sent |
+| `Permissions-Policy` | `geolocation=(), camera=(), microphone=()` | Restricts browser API access |
+| `X-Powered-By` | *(removed)* | Hides PHP version from responses |
+| `Server` | *(removed)* | Hides server software info |
+
+> **Note:** Requires `mod_headers` enabled in Apache/WAMP.
+
+**File:** `public/.htaccess`
+
+---
+
+### 4. Session Hardening
+
+Two session security settings strengthened in `config/session.php`:
+
+| Setting | Before | After | Reason |
+|---|---|---|---|
+| `encrypt` | `false` | `true` | Session data encrypted at rest in storage |
+| `same_site` | `lax` | `strict` | Stricter CSRF cross-site protection |
+
+Other session security already in place:
+- `http_only: true` — cookies inaccessible to JavaScript
+- Session files stored server-side (not in browser cookies)
+
+**File:** `config/session.php`
+
+---
+
+### 5. CORS Restriction
+
+CORS configuration restricted from wildcard to application domain only:
+
+| Setting | Before | After |
+|---|---|---|
+| `allowed_origins` | `['*']` (any domain) | `[env('APP_URL')]` (your domain only) |
+| `allowed_methods` | `['*']` (all methods) | `['GET', 'POST']` |
+
+CORS only applies to `api/*` and `sanctum/csrf-cookie` paths.
+
+**File:** `config/cors.php`
+
+---
+
+### 6. Input Validation & Sanitization (Existing)
+
+All controller methods validate and sanitize inputs:
+- Format validation: Aadhaar (12-digit numeric), PAN (`/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/`), mobile (10-digit)
+- Type validation: enum (category, payment_mode), numeric (amount, latitude/longitude)
+- Unique constraints: Aadhaar number, labharthi number, receipt number
+- `strip_tags()` applied to all string inputs before saving
+- Mobile numbers stored with `+91` prefix after format validation
+
+---
+
+### 7. CSRF Protection (Existing)
+
+- `VerifyCsrfToken` middleware active on all web routes
+- CSRF token included in all layout `<head>` sections via `<meta name="csrf-token">`
+- No routes excluded from CSRF verification
+
+---
+
+## Performance Optimizations
+
+### 1. Database Indexes
+
+Migration `2026_03_04_000001_add_performance_indexes.php` adds indexes on all frequently searched and filtered columns:
+
+| Table | Column | Index Name | Benefit |
+|---|---|---|---|
+| `labharthi_form` | `status` | `idx_labharthi_status` | Every list query filters by status |
+| `labharthi_form` | `name` | `idx_labharthi_name` | Search by name (LIKE) |
+| `labharthi_form` | `mobile_number` | `idx_labharthi_mobile` | Search by mobile |
+| `labharthi_form` | `area_id` | `idx_labharthi_area` | FK join with area table |
+| `donations` | `date` | `idx_donations_date` | Monthly report filtering |
+| `donations` | `full_name` | `idx_donations_full_name` | Search by donor name |
+| `attendances` | `attendance_date` | `idx_attendance_date` | Daily attendance lookup |
+| `attendances` | `labharthi_id` | `idx_attendance_labharthi` | FK join performance |
+| `contents` | `upload_date` | `idx_contents_upload_date` | Gallery sorting |
+| `employees` | `status` | `idx_employees_status` | Employee list filtering |
+
+> The migration also fixes legacy `0000-00-00` invalid date values in the `donations` table by setting them to `NULL`.
+
+**File:** `database/migrations/2026_03_04_000001_add_performance_indexes.php`
+
+---
+
+### 2. Eager Loading (N+1 Query Prevention)
+
+`LabharthiController` now eager-loads the `area` relationship to eliminate N+1 database queries:
+
+### 3. Homepage Caching
+
+Services and testimonials are cached for **10 minutes** on the public homepage since they change infrequently:
+
+Cache is automatically **invalidated** whenever an admin creates, updates, or deletes a service or testimonial:
+
+
+### 4. Image Lazy Loading
+
+All below-the-fold images on public pages use the browser-native `loading="lazy"` attribute. This defers image loading until the image scrolls into the viewport, reducing initial page load time and bandwidth.
+
+| View | Images with lazy loading |
+|---|---|
+| `web/index.blade.php` | Service images, gallery images, testimonial photos |
+| `web/impacts.blade.php` | All monthly gallery images |
+
+
 
 ---
 

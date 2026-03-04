@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -104,6 +105,8 @@ class TestimonialController extends Controller
                 'status' => $request->status,
             ]);
 
+            Cache::forget('homepage_testimonials');
+
             return redirect()->route('admin.testimonial.index')
                 ->with('success', __('portal.testimonial_created'));
         } catch (\Exception $e) {
@@ -160,6 +163,7 @@ class TestimonialController extends Controller
             }
 
             $testimonial->update($data);
+            Cache::forget('homepage_testimonials');
 
             return redirect()->route('admin.testimonial.index')
                 ->with('success', __('portal.testimonial_updated'));
@@ -183,6 +187,7 @@ class TestimonialController extends Controller
             }
 
             $testimonial->delete();
+            Cache::forget('homepage_testimonials');
 
             return redirect()->route('admin.testimonial.index')
                 ->with('success', __('portal.testimonial_deleted'));

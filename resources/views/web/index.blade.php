@@ -60,7 +60,7 @@
             @foreach($services as $service)
             <div class="col-md-4 mb-4 animate__animated animate__flipInX">
                 <div class="yearly-services-item">
-                    <img src="{{ Storage::url($service->image) }}" alt="service" class="img-fluid rounded">
+                    <img src="{{ Storage::url($service->image) }}" alt="service" class="img-fluid rounded" loading="lazy">
                     <div class="yearly-services-caption">
                         <h5>
                             {{ $service->{app()->getLocale() . '_title'} ?? '' }}
@@ -126,7 +126,7 @@
         <div class="row g-4">
             @foreach($contents as $content)
             <div class="col-md-6 col-lg-3 animate__animated animate__rotateIn">
-                <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image object-fit-sm-contain px-3">
+                <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image object-fit-sm-contain px-3" loading="lazy">
             </div>
             @endforeach
         </div>
@@ -142,7 +142,7 @@
             <div class="col-md-4 mb-4 animate__animated animate__jackInTheBox">
                 <div class="card h-100 rounded-lg shadow">
                     <div class="testimonial-image-wrapper mb-0">
-                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid  shadow-lg">
+                        <img src="{{ Storage::url($testimonial->image) }}" alt="testimonial" class="testimonial-image img-fluid  shadow-lg" loading="lazy">
                     </div>
                     <div class="card-body">
                         <p class="testimonial-text">{{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}</p>

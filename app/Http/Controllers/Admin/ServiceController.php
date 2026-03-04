@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -72,6 +73,8 @@ class ServiceController extends Controller
                 'status' => $request->status,
             ]);
 
+            Cache::forget('homepage_services');
+
             // Redirect to the service index page with a success message
             return redirect()->route('admin.service.index')
                 ->with('success', __('portal.service_created'));
@@ -126,6 +129,7 @@ class ServiceController extends Controller
             }
 
             $service->update($data);
+            Cache::forget('homepage_services');
 
             Log::info('service update : ' . $service->id);
             return redirect()->route('admin.service.index')
@@ -149,6 +153,7 @@ class ServiceController extends Controller
             }
 
             $service->delete();
+            Cache::forget('homepage_services');
 
             return redirect()->route('admin.service.index')
                 ->with('success', __('portal.service_deleted'));

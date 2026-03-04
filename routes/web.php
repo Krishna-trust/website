@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/register', [App\Http\Controllers\AuthController::class, 'showRegister'])->name('register');
 // Route::post('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register.post');
 Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])->name('login');
-Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.post');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.post');
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 
@@ -34,21 +34,6 @@ Route::get('/impact', [webController::class, 'impacts'])->name('impact');
 Route::post('/donation', [webController::class, 'donationStore'])->name('donation.store');
 Route::get('privacy-policy', [webController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('terms-and-conditions', [webController::class, 'termsAndConditions'])->name('terms-and-conditions');
-
-// Employee Withdrawal
-Route::get('employee/withdrawal/{id}', [App\Http\Controllers\Admin\EmployeeController::class, 'Withdrawal'])->name('admin.employee.withdrawal');
-Route::post('employee/withdrawal', [App\Http\Controllers\Admin\EmployeeController::class, 'WithdrawalStore'])->name('admin.employee.withdrawal.store');
-
-Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('admin.labharthi.destroy');
-Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.contents.destroy');
-Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('admin.donation.destroy');
-Route::delete('service', [App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('admin.service.destroy');
-Route::delete('testimonial', [App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])->name('admin.testimonial.destroy');
-Route::delete('expense', [App\Http\Controllers\Admin\ExpenseController::class, 'destroy'])->name('admin.expense.destroy');
-Route::delete('employee', [App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
-
-Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('admin.donation.export');
-Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::class, 'export'])->name('admin.labharthi.export');
 
 
 // Admin Routes
@@ -70,29 +55,40 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
     // Content Routes
     Route::resource('contents', App\Http\Controllers\Admin\ContentController::class)->except('destroy');
+    Route::delete('contents', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('contents.destroy');
 
     // Labharthi Routes
     Route::resource('labharthi', App\Http\Controllers\Admin\LabharthiController::class)->except(['show','destroy']);
+    Route::delete('labharthi', [App\Http\Controllers\Admin\LabharthiController::class, 'destroy'])->name('labharthi.destroy');
+    Route::get('labharthi/export', [App\Http\Controllers\Admin\LabharthiController::class, 'export'])->name('labharthi.export');
 
     // Attendance Routes for Labharthi
     Route::resource('attendance', App\Http\Controllers\Admin\AttendanceController::class)->except('destroy');
 
     // Donation Routes
     Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
+    Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('donation.destroy');
+    Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('donation.export');
 
     // Expense Routes
     Route::resource('expense', App\Http\Controllers\Admin\ExpenseController::class)->except('destroy');
+    Route::delete('expense', [App\Http\Controllers\Admin\ExpenseController::class, 'destroy'])->name('expense.destroy');
 
     // Employee Routes
     Route::resource('employee', App\Http\Controllers\Admin\EmployeeController::class)->except('destroy');
+    Route::delete('employee', [App\Http\Controllers\Admin\EmployeeController::class, 'destroy'])->name('employee.destroy');
+    Route::get('employee/withdrawal/{id}', [App\Http\Controllers\Admin\EmployeeController::class, 'Withdrawal'])->name('employee.withdrawal');
+    Route::post('employee/withdrawal', [App\Http\Controllers\Admin\EmployeeController::class, 'WithdrawalStore'])->name('employee.withdrawal.store');
 
     // Service Routes
     Route::resource('service', App\Http\Controllers\Admin\ServiceController::class)->except('destroy');
+    Route::delete('service', [App\Http\Controllers\Admin\ServiceController::class, 'destroy'])->name('service.destroy');
 
     // Testimonial Routes
     Route::resource('testimonial', App\Http\Controllers\Admin\TestimonialController::class)->except('destroy');
+    Route::delete('testimonial', [App\Http\Controllers\Admin\TestimonialController::class, 'destroy'])->name('testimonial.destroy');
 
-    // cotanct us
+    // contact us
     Route::get('contact', [App\Http\Controllers\Admin\ContactController::class, 'index'])->name('contact.index');
 
     // Reports
@@ -108,7 +104,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::get('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePassword'])->name('changePassword');
     Route::post('changePassword', [App\Http\Controllers\Admin\AdminController::class, 'changePasswordPost'])->name('changePassword.save');
 
-    // Labharthi Order postion
+    // Labharthi Order position
     Route::get('labharthi/position', [App\Http\Controllers\Admin\LabharthiController::class, 'position'])->name('labharthi.position');
     Route::post('labharthi/update-order', [App\Http\Controllers\Admin\LabharthiController::class, 'updateOrder'])->name('labharthi.update-order');
 

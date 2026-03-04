@@ -12,7 +12,7 @@
                 <p class="lead">{{ @trans('messages.impact_desc') }}</p>
             </div>
             <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Grocery distribution" class="img-fluid rounded-lg shadow-lg hero-image w-100">
+                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Grocery distribution" class="img-fluid rounded-lg shadow-lg hero-image w-100" loading="lazy">
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
             <div class="row g-4">
                 @foreach($contents as $content)
                 <div class="col-md-6 col-lg-3">
-                    <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image w-100">
+                    <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image w-100" loading="lazy">
                 </div>
                 @endforeach
             </div>

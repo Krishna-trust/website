@@ -9,6 +9,7 @@ use App\Models\Labharthi;
 use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class WebController extends Controller
 {
@@ -19,8 +20,14 @@ class WebController extends Controller
 
         // contents
         $contents = Content::orderBy('upload_date', 'desc')->take(4)->get();
-        $services = Service::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
-        $testimonials = Testimonial::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
+
+        // cache services and testimonials for 10 minutes (600 seconds) — they rarely change
+        $services = Cache::remember('homepage_services', 600, function () {
+            return Service::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
+        });
+        $testimonials = Cache::remember('homepage_testimonials', 600, function () {
+            return Testimonial::orderByDesc('status')->orderBy('created_at', 'desc')->take(4)->get();
+        });
 
         return view('web.index', [
             'nextReceiptNumber' => str_pad($nextReceiptNumber, 6, '0', STR_PAD_LEFT),

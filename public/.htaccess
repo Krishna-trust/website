@@ -19,3 +19,24 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<IfModule mod_headers.c>
+    # Prevent clickjacking attacks
+    Header always set X-Frame-Options "SAMEORIGIN"
+
+    # Prevent MIME-type sniffing
+    Header always set X-Content-Type-Options "nosniff"
+
+    # Enable XSS filter in legacy browsers
+    Header always set X-XSS-Protection "1; mode=block"
+
+    # Control referrer information sent with requests
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # Restrict access to browser APIs
+    Header always set Permissions-Policy "geolocation=(), camera=(), microphone=(), payment=()"
+
+    # Remove server version info from responses
+    Header always unset X-Powered-By
+    Header always unset Server
+</IfModule>
