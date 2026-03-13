@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
@@ -72,6 +73,35 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
+
+        return redirect()->route('admin.dashboard');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect()->route('login')->withErrors(['email' => 'Google authentication failed. Please try again.']);
+        }
+
+        $user = User::where('email', $googleUser->getEmail())->first();
+
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['email' => 'No account found for this Google email. Please contact the administrator.']);
+        }
+
+        if (!$user->isAdmin()) {
+            return redirect()->route('login')->with('error', 'You do not have admin access.');
+        }
+
+        Auth::login($user, true);
+        request()->session()->regenerate();
 
         return redirect()->route('admin.dashboard');
     }

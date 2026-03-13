@@ -89,6 +89,19 @@
                                         </button>
                                     </div>
                                 </form>
+
+                                <div class="d-flex align-items-center my-3">
+                                    <hr class="flex-grow-1">
+                                    <span class="px-2 text-muted small">OR</span>
+                                    <hr class="flex-grow-1">
+                                </div>
+
+                                <div class="d-grid">
+                                    <a href="{{ route('auth.google') }}" class="btn btn-outline-dark py-2">
+                                        <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" class="me-2" alt="Google">
+                                        Continue with Google
+                                    </a>
+                                </div>
                                 {{-- <div class="mt-3 text-center">
                                     <p>Don't have an account? <a class="text-primary" href="{{ route('register') }}">Register here</a></p>
                                 </div> --}}

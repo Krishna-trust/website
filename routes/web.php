@@ -23,6 +23,10 @@ Route::get('/login', [App\Http\Controllers\AuthController::class, 'showLogin'])-
 Route::post('/login', [App\Http\Controllers\AuthController::class, 'login'])->middleware('throttle:5,1')->name('login.post');
 Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
+// Google OAuth Routes
+Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [App\Http\Controllers\AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
+
 
 // Website Routes
 Route::get('/', [webController::class, 'index'])->name('index');
