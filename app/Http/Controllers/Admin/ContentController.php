@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +50,7 @@ class ContentController extends Controller
 
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('content_images', 'public');
+                $imagePath = ImageHelper::compressAndStore($request->file('image'), 'content_images');
             }
 
             Content::create([
@@ -101,7 +102,7 @@ class ContentController extends Controller
                 if ($content->image) {
                     Storage::disk('public')->delete($content->image);
                 }
-                $data['image'] = $request->file('image')->store('content_images', 'public');
+                $data['image'] = ImageHelper::compressAndStore($request->file('image'), 'content_images');
             }
 
             $content->update($data);

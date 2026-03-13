@@ -7,6 +7,7 @@ use App\Models\Employee;
 use App\Models\EmployeeWithdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -107,7 +108,7 @@ class EmployeeController extends Controller
 
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('employee_images', 'public');
+                $imagePath = ImageHelper::compressAndStore($request->file('image'), 'employee_images');
             }
 
             // Save the employee data

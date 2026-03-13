@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -55,7 +56,7 @@ class ServiceController extends Controller
             // Check if the image exists in the request
             if ($request->hasFile('image')) {
                 // Store the image in the "public" storage under "service_images"
-                $imagePath = $request->file('image')->store('service_images', 'public');
+                $imagePath = ImageHelper::compressAndStore($request->file('image'), 'service_images');
             }
 
             // Translate title and description to English (if needed)
@@ -129,7 +130,7 @@ class ServiceController extends Controller
                 if ($service->image) {
                     Storage::disk('public')->delete($service->image);
                 }
-                $data['image'] = $request->file('image')->store('service_images', 'public');
+                $data['image'] = ImageHelper::compressAndStore($request->file('image'), 'service_images');
             }
 
             $service->update($data);

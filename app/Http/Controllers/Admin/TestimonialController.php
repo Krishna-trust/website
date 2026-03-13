@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use App\Helpers\ImageHelper;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -85,7 +86,7 @@ class TestimonialController extends Controller
 
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('testimonial_images', 'public');
+                $imagePath = ImageHelper::compressAndStore($request->file('image'), 'testimonial_images');
             }
 
             // translate to english
@@ -162,7 +163,7 @@ class TestimonialController extends Controller
                 if ($testimonial->image) {
                     Storage::disk('public')->delete($testimonial->image);
                 }
-                $data['image'] = $request->file('image')->store('testimonial_images', 'public');
+                $data['image'] = ImageHelper::compressAndStore($request->file('image'), 'testimonial_images');
             }
 
             $testimonial->update($data);
