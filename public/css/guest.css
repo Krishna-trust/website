@@ -75,7 +75,7 @@ a {
 }
 
 .bg-primary {
-    background-color: #d12c47;
+    background-color: var(--primary-bg-color);
 }
 
 .toast {

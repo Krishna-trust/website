@@ -24,13 +24,13 @@ License        :   Licensed under ThemeForest License
 /*Dark Theme Variables*/
 /*Transparent variables*/
 :root {
-    --primary01: #d7042b3d;
-    --primary-bg-color: #d7042b;
-    --primary-bg-hover: #ff0634;
-    --primary-bg-border: #d7042b;
-    --secondary-bg-color: #808080;
-    --secondary-bg-hover: #b1afaf00;
-    --secondary-bg-border: #808080;
+    --primary01: #D977063d;
+    --primary-bg-color: #D97706;
+    --primary-bg-hover: #B45309;
+    --primary-bg-border: #D97706;
+    --secondary-bg-color: #3730A3;
+    --secondary-bg-hover: #4F46E5;
+    --secondary-bg-border: #3730A3;
     --dark-body: #2c2f3e;
     --dark-theme: rgba(0, 0, 0, 0.3);
     --dark-bg: rgba(0, 0, 0, 0.2);
