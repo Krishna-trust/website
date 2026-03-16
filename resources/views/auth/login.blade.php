@@ -97,7 +97,7 @@
                                 </div>
 
                                 <div class="d-grid">
-                                    <a href="{{ route('auth.google') }}" class="btn btn-outline-dark py-2">
+                                    <a href="{{ route('auth.google') }}" class="btn btn-outline-dark py-2" style="color: #d12c47;">
                                         <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="20" height="20" class="me-2" alt="Google">
                                         Continue with Google
                                     </a>
