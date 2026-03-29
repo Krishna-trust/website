@@ -28,6 +28,14 @@ Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'redirec
 Route::get('/auth/google/callback', [App\Http\Controllers\AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 
 
+// Language switcher (public)
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['en', 'gu'])) {
+        session()->put('locale', $locale);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
 // Website Routes
 Route::get('/', [webController::class, 'index'])->name('index');
 Route::get('/about', [webController::class, 'about'])->name('about');

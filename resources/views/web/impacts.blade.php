@@ -3,37 +3,53 @@
 @section('title', __('messages.impact') . ' - ' . __('messages.trust_name'))
 
 @section('content')
-<!-- Services Hero Section -->
-<section class="bg-primary text-white py-5">
+
+{{-- ========================
+     HERO SECTION
+======================== --}}
+<section class="hero-section text-white">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
-                <h1 class="display-4 fw-bold mb-3">{{ @trans('messages.impact') }}</h1>
-                <p class="lead">{{ @trans('messages.impact_desc') }}</p>
+            <div class="col-lg-6 mb-4 mb-lg-0" data-reveal="left">
+                <h1 class="hero-title mb-3">{{ @trans('messages.impact') }}</h1>
+                <p class="hero-desc">{{ @trans('messages.impact_desc') }}</p>
             </div>
-            <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Grocery distribution" class="img-fluid rounded-lg shadow-lg hero-image w-100" loading="lazy">
+            <div class="col-lg-6" data-reveal="right">
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80"
+                         alt="{{ @trans('messages.impact') }}"
+                         class="hero-image"
+                         loading="lazy">
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-
-<section id="monthly-gallery" class="py-5">
+{{-- ========================
+     MONTHLY GALLERY
+======================== --}}
+<section id="monthly-gallery" class="section-py">
     <div class="container">
 
         @foreach($groupedContents as $month => $contents)
-        <div class="month-section mb-5">
+        <div class="month-section" data-reveal="up">
             <h3>{{ $month }}</h3>
-            <div class="row g-4">
+            <div class="row g-3">
                 @foreach($contents as $content)
                 <div class="col-md-6 col-lg-3">
-                    <img src="{{ asset('storage/' . $content->image) }}" alt="Image" class="img-fluid rounded-lg shadow gallery-image w-100" loading="lazy">
+                    <div class="gallery-item">
+                        <img src="{{ asset('storage/' . $content->image) }}"
+                             alt="{{ @trans('messages.impact') }}"
+                             class="gallery-image w-100"
+                             loading="lazy">
+                    </div>
                 </div>
                 @endforeach
             </div>
         </div>
         @endforeach
+
     </div>
 </section>
 

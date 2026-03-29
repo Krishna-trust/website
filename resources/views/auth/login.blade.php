@@ -37,7 +37,7 @@
                     <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
                         <div class="bg-white p-4" style="border-radius:29px;">
                             <div class="text-center">
-                                <img src="{{ asset('images/logo.png') }}" width="124" height="80" />
+                                <img src="{{ asset('images/logo.png') }}" width="124"/>
                                 <h2 class="guest-heading mt-4">Login</h2>
                                 <!-- <p class="guest-subline text-center ">Login</p> -->
                             </div>

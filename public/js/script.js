@@ -1,125 +1,104 @@
-// Form submission handling
-document.addEventListener('DOMContentLoaded', function() {
-    // Navbar scroll effect
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ===========================
+    // NAVBAR SCROLL EFFECT
+    // ===========================
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
 
-    const handleScroll = function() {
-        const currentScroll = window.pageYOffset;
-
-        // Always show the colored header when scrolling down
-        if (currentScroll > 50) {
-            navbar.classList.add('scrolled');
-            navbar.classList.remove('navbar-dark');
-            navbar.classList.add('navbar-light');
-        } else {
-            // Show transparent header at the top
-            navbar.classList.remove('scrolled');
-            navbar.classList.remove('navbar-light');
-            navbar.classList.add('navbar-dark');
+    if (navbar) {
+        function handleNavbarScroll() {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         }
+        window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+        handleNavbarScroll();
+    }
 
-        lastScroll = currentScroll;
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    // Initial check
-    handleScroll();
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+    // ===========================
+    // SMOOTH SCROLL FOR ANCHORS
+    // ===========================
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+        anchor.addEventListener('click', function (e) {
+            var href = this.getAttribute('href');
+            if (!href || href.length <= 1) return;
+            var target = document.querySelector(href);
             if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                e.preventDefault();
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // ===========================
+    // SCROLL REVEAL (Intersection Observer)
+    // Replaces animate.css dependency
+    // ===========================
+    var revealEls = document.querySelectorAll('[data-reveal]');
+
+    if (revealEls.length > 0) {
+        if ('IntersectionObserver' in window) {
+            var revealObserver = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        revealObserver.unobserve(entry.target);
+                    }
                 });
-            }
-        });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+
+            revealEls.forEach(function (el) {
+                // Apply custom delay if specified via data attribute
+                var delay = el.getAttribute('data-reveal-delay');
+                if (delay) {
+                    el.style.transitionDelay = delay + 'ms';
+                }
+                revealObserver.observe(el);
+            });
+        } else {
+            // Fallback: show all immediately if browser lacks IntersectionObserver
+            revealEls.forEach(function (el) {
+                el.classList.add('revealed');
+            });
+        }
+    }
+
+    // ===========================
+    // GALLERY ITEM CLICK LIGHTBOX (simple zoom feedback)
+    // ===========================
+    document.querySelectorAll('.gallery-item').forEach(function (item) {
+        item.style.cursor = 'pointer';
     });
 
-    // Animate elements on scroll
-    const animateOnScroll = function() {
-        const elements = document.querySelectorAll('.card, .gallery-item, .achievement-box');
-        elements.forEach(element => {
-            const elementPosition = element.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight;
-            
-            if (elementPosition < screenPosition) {
-                element.classList.add('animate-fadeInUp');
-            }
-        });
-    };
+    // ===========================
+    // MOBILE FULLSCREEN NAV DRAWER
+    // ===========================
+    var toggler = document.getElementById('mobileNavToggler');
+    var drawer  = document.getElementById('mobileNavDrawer');
+    var overlay = document.getElementById('mobileNavOverlay');
+    var closeBtn = document.getElementById('mobileNavClose');
 
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check
+    function openDrawer() {
+        drawer.classList.add('open');
+        overlay.classList.add('open');
+        document.body.classList.add('mobile-nav-open');
+    }
 
-    // Form handling with enhanced feedback
-    const donateForm = document.getElementById('donateForm');
-    if (donateForm) {
-        donateForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const button = this.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
-            
-            button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check me-2"></i>Thank You!';
-                button.classList.remove('btn-primary');
-                button.classList.add('btn-success');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-primary');
-                    button.disabled = false;
-                    this.reset();
-                }, 2000);
-            }, 1500);
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        overlay.classList.remove('open');
+        document.body.classList.remove('mobile-nav-open');
+    }
+
+    if (toggler)  toggler.addEventListener('click', openDrawer);
+    if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+    if (overlay)  overlay.addEventListener('click', closeDrawer);
+
+    if (drawer) {
+        drawer.querySelectorAll('a').forEach(function (link) {
+            link.addEventListener('click', closeDrawer);
         });
     }
 
-    // Contact form handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const button = this.querySelector('button[type="submit"]');
-            const originalText = button.innerHTML;
-            
-            button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-            button.disabled = true;
-            
-            setTimeout(() => {
-                button.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
-                button.classList.remove('btn-primary');
-                button.classList.add('btn-success');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalText;
-                    button.classList.remove('btn-success');
-                    button.classList.add('btn-primary');
-                    button.disabled = false;
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
-    }
-
-    // Gallery image hover effect
-    const galleryItems = document.querySelectorAll('.gallery-item');
-    galleryItems.forEach(item => {
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-            this.style.transition = 'all 0.3s ease';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
 });
