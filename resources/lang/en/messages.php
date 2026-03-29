@@ -16,6 +16,7 @@ return [
     'donation' => 'Donation',
     'total_content' => 'Total Content',
     'total_donations' => 'Total Donations',
+    'total_donors' => 'Total Donors',
     'total_donations_amount' => 'Total Donations Amount',
     'total_labharthi' => 'Total Labharthi',
     'pan_card_compulsory' => 'PAN card is mandatory for tax exemption under Section 80G.',
@@ -141,5 +142,11 @@ return [
     'testimonial_3' => '“We are a small team of dedicated, passionate, and creative individuals who are committed to delivering the best possible experience for our customers. We believe that our team’s expertise and passion for delivering exceptional customer service will help us to exceed our clients’ expectations and exceed their expectations.”',
 
     'employee_withdrawal' => 'Employee Withdrawal',
-    'monthly-report' => 'Monthly Report'
+    'monthly-report' => 'Monthly Report',
+
+    // Aadhaar duplicate popup
+    'adhar_duplicate_title'   => 'Aadhaar Already Registered!',
+    'adhar_duplicate_body'    => 'This Aadhaar number is already linked to',
+    'adhar_duplicate_confirm' => 'Edit Existing Record',
+    'adhar_duplicate_cancel'  => 'Stay Here',
 ];

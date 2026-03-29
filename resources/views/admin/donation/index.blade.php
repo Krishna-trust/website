@@ -27,7 +27,7 @@
             <div class="p-4 card-body">
                 <div class="row d-md-flex justify-content-between align-items-center">
                     <div class="col-12 col-md-auto mb-2 mb-md-0">
-                        <select id="selected_data" onchange="reloadTable()" class="col-md-9 col-lg-3 form-control form-select me-2">
+                        <select id="selected_data" onchange="reloadTable()" class="form-control form-select me-md-2">
                             <option value="10">10</option>
                             <option value="25">25</option>
                             <option value="50">50</option>
@@ -58,7 +58,7 @@
                     </div>
 
                 </div>
-                <div class="mt-4 table-responsive">
+                <div class="mt-4">
                     @include('admin.donation.view')
                 </div>
             </div>

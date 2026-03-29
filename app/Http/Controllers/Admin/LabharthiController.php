@@ -128,21 +128,22 @@ class LabharthiController extends Controller
             // Check if validation fails
             if ($validator->fails()) {
                 Log::warning('LabharthiController@store Validation Failed: ', $validator->errors()->toArray());
-                // Check specifically for Aadhaar uniqueness error
-                // if ($validator->errors()->has('adhar_number') && 
-                //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
 
-                //     return redirect()->back()
-                //         ->withErrors($validator)
-                //         ->withInput()
-                //         ->with('aadhaar_popup', [
-                //             'title' => __('messages.error_title'),
-                //             'message' => __('validation.unique_adhar_number'),
-                //             'type' => 'error'
-                //         ]);
-                // }
+                // Special popup for duplicate Aadhaar
+                if ($validator->errors()->has('adhar_number') && $request->filled('adhar_number')) {
+                    $existing = Labharthi::where('adhar_number', $request->adhar_number)->first();
+                    if ($existing) {
+                        return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput()
+                            ->with('adhar_duplicate', [
+                                'name'     => $existing->name,
+                                'number'   => $existing->labharthi_number,
+                                'edit_url' => route('admin.labharthi.edit', $existing->id),
+                            ]);
+                    }
+                }
 
-                // Return back with errors and old input
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
@@ -255,21 +256,24 @@ class LabharthiController extends Controller
 
             // Check if validation fails
             if ($validator->fails()) {
-                // Check specifically for Aadhaar uniqueness error
-                // if ($validator->errors()->has('adhar_number') && 
-                //     strpos($validator->errors()->first('adhar_number'), __('validation.unique_adhar_number')) !== false) {
 
-                //     return redirect()->back()
-                //         ->withErrors($validator)
-                //         ->withInput()
-                //         ->with('aadhaar_popup', [
-                //             'title' => __('messages.error_title'),
-                //             'message' => __('validation.unique_adhar_number'),
-                //             'type' => 'error'
-                //         ]);
-                // }
+                // Special popup for duplicate Aadhaar
+                if ($validator->errors()->has('adhar_number') && $request->filled('adhar_number')) {
+                    $existing = Labharthi::where('adhar_number', $request->adhar_number)
+                        ->where('id', '!=', $labharthi->id)
+                        ->first();
+                    if ($existing) {
+                        return redirect()->back()
+                            ->withErrors($validator)
+                            ->withInput()
+                            ->with('adhar_duplicate', [
+                                'name'     => $existing->name,
+                                'number'   => $existing->labharthi_number,
+                                'edit_url' => route('admin.labharthi.edit', $existing->id),
+                            ]);
+                    }
+                }
 
-                // Return back with errors and old input
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 

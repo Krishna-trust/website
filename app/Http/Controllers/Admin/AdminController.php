@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\ChangePasswordRequest;
 use App\Models\Content;
 use App\Models\Donation;
+use App\Models\Employee;
+use App\Models\Expense;
 use App\Models\Labharthi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +23,43 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $total_contents = Content::count();
-        $total_donations = Donation::count();
-        $total_labharthi = Labharthi::count();
+        $total_contents        = Content::count();
+        $total_donations       = Donation::count();
+        $total_labharthi       = Labharthi::count();
         $total_donations_amount = Donation::sum('amount');
+        $total_expenses_amount = Expense::sum('amount');
+        $total_employees       = Employee::count();
 
-        return view('admin.dashboard', compact('total_contents', 'total_donations', 'total_labharthi', 'total_donations_amount'));
+        // Recent records
+        $recent_donations  = Donation::latest()->take(5)->get();
+        $recent_labharthi  = Labharthi::latest()->take(5)->get();
+
+        // Monthly donation amounts for current year
+        $rawMonthly = Donation::selectRaw('MONTH(created_at) as month, SUM(amount) as total')
+            ->whereYear('date', now()->year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->pluck('total', 'month')
+            ->toArray();
+
+        $monthly_chart_data = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $monthly_chart_data[] = isset($rawMonthly[$i]) ? (float) $rawMonthly[$i] : 0;
+        }
+
+        // Donation count by payment mode
+        $donation_by_mode = Donation::selectRaw('payment_mode, COUNT(*) as count')
+            ->whereNotNull('payment_mode')
+            ->groupBy('payment_mode')
+            ->pluck('count', 'payment_mode')
+            ->toArray();
+
+        return view('admin.dashboard', compact(
+            'total_contents', 'total_donations', 'total_labharthi',
+            'total_donations_amount', 'total_expenses_amount', 'total_employees',
+            'recent_donations', 'recent_labharthi',
+            'monthly_chart_data', 'donation_by_mode'
+        ));
     }
 
     // change password

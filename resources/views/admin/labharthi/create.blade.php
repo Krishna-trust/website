@@ -319,6 +319,40 @@
     @include('admin.location-map')
 @endsection
 
+@if(session('adhar_duplicate'))
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var info  = @json(session('adhar_duplicate'));
+    var trans = {
+        title:   @json(__('messages.adhar_duplicate_title')),
+        body:    @json(__('messages.adhar_duplicate_body')),
+        confirm: @json(__('messages.adhar_duplicate_confirm')),
+        cancel:  @json(__('messages.adhar_duplicate_cancel')),
+    };
+    Swal.fire({
+        icon: 'error',
+        title: trans.title,
+        html:
+            trans.body + '<br>' +
+            '<strong>' + info.name + '</strong>' +
+            (info.number ? ' &nbsp;(<em>' + info.number + '</em>)' : '') + '.',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fa fa-pencil"></i>&nbsp; ' + trans.confirm,
+        cancelButtonText: trans.cancel,
+        confirmButtonColor: '#1417a3',
+        cancelButtonColor: '#6c757d',
+        reverseButtons: true,
+        focusCancel: true,
+    }).then(function (result) {
+        if (result.isConfirmed) {
+            window.location.href = info.edit_url;
+        }
+    });
+});
+</script>
+@endif
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const areaSelect = document.getElementById('area_id');

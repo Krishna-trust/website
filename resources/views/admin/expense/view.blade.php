@@ -16,6 +16,7 @@
     }
 </style>
 
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -35,7 +36,7 @@
         @else
         @forelse($expenses as $index => $expense)
         <tr>
-            <td>{{ $expenses->firstItem() + $index }}</td>
+            <td>{{ $expenses->total() - $expenses->firstItem() - $index + 1 }}</td>
             <td>{{ $expense->purpose ? trans('portal.'.$expense->purpose) : '-' }}</td>
             <td>₹ {{ $expense->amount ? $expense->amount : '-' }}</td>
             <td>{{ $expense->comment ? $expense->comment : '-' }}</td>
@@ -53,6 +54,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $expenses->links('admin.parts.pagination') }}

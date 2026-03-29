@@ -1,3 +1,4 @@
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -18,7 +19,7 @@
         @else
         @forelse($labharthis as $index => $labharthi)
         <tr>
-            <td>{{ $labharthis->firstItem() + $index }}</td>
+            <td>{{ $labharthis->total() - $labharthis->firstItem() - $index + 1 }}</td>
             <td>{{ $labharthi->labharthi_number ? $labharthi->labharthi_number : '-'}}</td>
             <td>{{ $labharthi->name ? $labharthi->name : '-'}}</td>
             <td>{{ formatMobileNumber($labharthi->mobile_number) }}</td>
@@ -48,6 +49,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $labharthis->links('admin.parts.pagination') }}

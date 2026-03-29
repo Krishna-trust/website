@@ -1,3 +1,4 @@
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -19,7 +20,7 @@
         @else
         @forelse($donations as $index => $donation)
         <tr>
-            <td>{{ $donations->firstItem() + $index }}</td>
+            <td>{{ $donations->total() - $donations->firstItem() - $index + 1 }}</td>
             <td>{{ $donation->receipt_number ? $donation->receipt_number : '-' }}</td>
             <td style="white-space: nowrap;">{{ $donation->date ? date('d-m-Y', strtotime($donation->date)) : '-' }}</td>
             <td>{{ $donation->full_name ? $donation->full_name : '-' }}</td>
@@ -51,6 +52,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $donations->links('admin.parts.pagination') }}

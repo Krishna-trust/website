@@ -1,3 +1,4 @@
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -6,14 +7,14 @@
             {{-- <th class="text-uppercase fw-bold">{{ @trans('portal.position') }}</th> --}}
             <th class="text-uppercase fw-bold">{{ @trans('portal.name') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.address') }}</th>
-            <th class="text-uppercase fw-bold">{{ @trans('portal.mobile_number') }}</th>
+            <th class="text-uppercase fw-bold text-nowrap">{{ @trans('portal.mobile_number') }}</th>
             <th class="text-uppercase fw-bold">{{ @trans('portal.attendance') }}</th>
         </tr>
     </thead>
     <tbody>
         @if ($attendences->isEmpty())
             <tr>
-                <td colspan="7" class="text-center text-danger">{{ @trans('messages.no_attendence_records') }}</td>
+                <td colspan="6" class="text-center text-danger">{{ @trans('messages.no_attendence_records') }}</td>
             </tr>
         @else
             @forelse($attendences as $index => $attendence)
@@ -57,6 +58,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 @if(false)
     <div class="d-md-flex justify-content-center">

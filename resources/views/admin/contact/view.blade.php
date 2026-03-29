@@ -16,6 +16,7 @@
     }
 </style>
 
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -37,7 +38,7 @@
         @else
         @forelse($contacts as $index => $contact)
         <tr>
-            <td>{{ $contacts->firstItem() + $index }}</td>
+            <td>{{ $contacts->total() - $contacts->firstItem() - $index + 1 }}</td>
             <td>{{ $contact->name ? $contact->name : '-' }}</td>
             <td>{{ $contact->email ? $contact->email : '-' }}</td>
             <td>{{ formatMobileNumber($contact->mobile) }}</td>
@@ -49,6 +50,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $contacts->links('admin.parts.pagination') }}

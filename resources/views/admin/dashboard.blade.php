@@ -2,6 +2,132 @@
 
 @section('content')
 
+<style>
+/* ── Dashboard Mobile Responsive Fixes ── */
+
+/* Welcome banner: stack stats below on xs */
+.dash-banner-stats {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+@media (max-width: 575.98px) {
+    .dash-banner-stats {
+        justify-content: center;
+        width: 100%;
+        gap: 0.5rem;
+    }
+    .dash-banner-stats .dash-stat-item {
+        flex: 1 1 calc(33% - 0.5rem);
+        min-width: 70px;
+    }
+    .dash-banner-stats .dash-stat-item .fw-bold { font-size: 1rem !important; }
+}
+
+/* Chart canvas containers: fixed height so canvas never collapses */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+@media (max-width: 575.98px) {
+    .chart-container { height: 220px; }
+    .chart-container-doughnut { height: 260px; }
+}
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .chart-container { height: 260px; }
+    .chart-container-doughnut { height: 280px; }
+}
+.chart-container-doughnut {
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+
+/* ── KPI Stat Cards ── */
+.stat-kpi-card {
+    border: none;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none !important;
+    display: block;
+}
+.stat-kpi-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.13) !important;
+}
+.stat-kpi-card .kpi-inner {
+    padding: 14px 14px 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.stat-kpi-card .kpi-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.stat-kpi-card .kpi-icon svg { width: 20px; height: 20px; }
+.stat-kpi-card .kpi-body { flex: 1; min-width: 0; }
+.stat-kpi-label {
+    font-size: 10.5px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: #9ba3b4;
+    margin-bottom: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.stat-kpi-count {
+    font-size: 1.45rem;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+    margin-bottom: 3px;
+}
+.stat-kpi-link {
+    font-size: 10.5px;
+    font-weight: 600;
+    opacity: 0.55;
+    transition: opacity 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+.stat-kpi-card:hover .stat-kpi-link { opacity: 1; }
+.stat-kpi-bar {
+    height: 3px;
+    width: 100%;
+    border-radius: 0 0 14px 14px;
+}
+@media (max-width: 575.98px) {
+    .stat-kpi-card .kpi-inner { padding: 11px 11px 10px; gap: 9px; }
+    .stat-kpi-card .kpi-icon { width: 36px; height: 36px; border-radius: 10px; }
+    .stat-kpi-count { font-size: 1.2rem; }
+    .stat-kpi-label { font-size: 9.5px; }
+}
+
+/* Recent tables: tighter on mobile */
+@media (max-width: 575.98px) {
+    .dashboard-table td,
+    .dashboard-table th { padding: 0.45rem 0.5rem; }
+    .dashboard-table .avatar-circle { width: 26px !important; height: 26px !important; font-size: 10px !important; }
+}
+</style>
+
+{{-- Page Header --}}
 <div class="page-header mx-2">
     <div>
         <h1 class="page-title">{{ @trans('messages.dashboard') }}</h1>
@@ -14,138 +140,501 @@
     </div>
 </div>
 
-
-<div class="row d-flex justify-content-center">
-
-    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
-        <div class="card overflow-hidden">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_content') }}</p>
-                        <div class="d-flex justify-content-start">
-                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
-                                <span class="dashboard-currency me-2">Total:</span>
-                            </div> -->
-                            <div class="d-flex align-items-start">
-                                <h4 class="fw-semibold spincrement m-0 text-danger" id="">{{ $total_contents ?? 0 }}
-                                </h4>
-                            </div>
-                        </div>
+{{-- Welcome Banner --}}
+<div class="row mx-1">
+    <div class="col-12">
+        <div class="card border-0 text-white" style="background: linear-gradient(135deg, #1417a3 0%, #4ECDC4 100%); border-radius: 14px;">
+            <div class="card-body py-3 px-3 px-md-4 d-flex align-items-center justify-content-between flex-wrap gap-2">
+                <div>
+                    <h4 class="fw-bold mb-1 text-white fs-6 fs-md-4">
+                        Welcome back, {{ Auth::user()->name ?? 'Admin' }}!
+                    </h4>
+                    <p class="mb-0 opacity-75 small d-none d-sm-block">
+                        {{ now()->format('l, d F Y') }} &nbsp;|&nbsp; Krishna Niswarth Seva Trust &mdash; Admin Panel
+                    </p>
+                    <p class="mb-0 opacity-75 small d-block d-sm-none">
+                        {{ now()->format('d M Y') }}
+                    </p>
+                </div>
+                <div class="dash-banner-stats">
+                    <div class="dash-stat-item text-center">
+                        <div class="fw-bold fs-6">{{ $total_donations_amount ? '₹ ' . number_format($total_donations_amount, 0) : '₹ 0' }}</div>
+                        <div class="small opacity-75" style="font-size:11px;">Collected</div>
                     </div>
-                    <div class="col col-auto top-icn dash">
-                        <div class="counter-icon bg-danger dash ms-auto box-shadow-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M20 4H4v2h16V4zm1 10v-2l-1-5H4l-1 5v2h1v6h10v-6h4v6h2v-6h1zm-9 4H6v-4h6v4z" />
-                            </svg>
-                        </div>
+                    <div class="vr opacity-50 d-none d-md-block"></div>
+                    <div class="dash-stat-item text-center">
+                        <div class="fw-bold fs-6">{{ $total_labharthi }}</div>
+                        <div class="small opacity-75" style="font-size:11px;">Beneficiaries</div>
+                    </div>
+                    <div class="vr opacity-50 d-none d-md-block"></div>
+                    <div class="dash-stat-item text-center">
+                        <div class="fw-bold fs-6">{{ $total_employees }}</div>
+                        <div class="small opacity-75" style="font-size:11px;">Employees</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
-        <div class="card overflow-hidden">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_donations') }}</p>
-                        <div class="d-flex justify-content-start">
-                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
-                                <span class="dashboard-currency me-2">Total:</span>
-                            </div> -->
-                            <div class="d-flex align-items-start">
-                                <h4 class="fw-semibold spincrement m-0 text-success" id="">{{ $total_donations ?? 0 }}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-auto top-icn dash">
-                        <div class="counter-icon bg-success dash ms-auto box-shadow-primary">
+</div>
 
-                            <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                                <g>
-                                    <rect fill="none" height="24" width="24" />
-                                </g>
-                                <g>
-                                    <g>
-                                        <path d="M21,12.22C21,6.73,16.74,3,12,3c-4.69,0-9,3.65-9,9.28C2.4,12.62,2,13.26,2,14v2c0,1.1,0.9,2,2,2h1v-6.1 c0-3.87,3.13-7,7-7s7,3.13,7,7V19h-8v2h8c1.1,0,2-0.9,2-2v-1.22c0.59-0.31,1-0.92,1-1.64v-2.3C22,13.14,21.59,12.53,21,12.22z" />
-                                        <circle cx="9" cy="13" r="1" />
-                                        <circle cx="15" cy="13" r="1" />
-                                        <path d="M18,11.03C17.52,8.18,15.04,6,12.05,6c-3.03,0-6.29,2.51-6.03,6.45c2.47-1.01,4.33-3.21,4.86-5.89 C12.19,9.19,14.88,11,18,11.03z" />
-                                    </g>
-                                </g>
-                            </svg>
-                        </div>
-                    </div>
+{{-- Stats Cards Row --}}
+<div class="row mx-1 mb-4 g-2 g-md-3 mb-1 row-cols-1 row-cols-md-3 row-cols-lg-5">
+
+    {{-- Donations Amount --}}
+    <div class="col">
+        <a href="{{ route('admin.donation.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(20,23,163,0.1);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.93V18h-2v-1.07C9.28 16.54 8 15.38 8 14h2c0 .55.9 1 2 1s2-.45 2-1c0-.56-.44-.67-1.8-1.04C10.72 12.56 8 11.88 8 10c0-1.38 1.28-2.54 3-2.93V6h2v1.07c1.72.39 3 1.55 3 2.93h-2c0-.55-.9-1-2-1s-2 .45-2 1c0 .56.44.67 1.8 1.04C13.28 11.44 16 12.12 16 14c0 1.38-1.28 2.54-3 2.93z" fill="#1417a3"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Donations</div>
+                    <div class="stat-kpi-count" style="color:#1417a3;">₹ {{ number_format($total_donations_amount ?? 0, 0) }}</div>
+                    <span class="stat-kpi-link" style="color:#1417a3;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#1417a3,#4ECDC4);"></div>
+        </a>
+    </div>
+
+    {{-- Donors Count --}}
+    <div class="col">
+        <a href="{{ route('admin.donation.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(28,200,138,0.1);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#1cc88a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Total Donors</div>
+                    <div class="stat-kpi-count" style="color:#1cc88a;">{{ $total_donations ?? 0 }}</div>
+                    <span class="stat-kpi-link" style="color:#1cc88a;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#1cc88a,#36d399);"></div>
+        </a>
+    </div>
+
+    {{-- Labharthi --}}
+    <div class="col">
+        <a href="{{ route('admin.labharthi.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(246,194,62,0.12);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="#f6c23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Labharthi</div>
+                    <div class="stat-kpi-count" style="color:#e0a800;">{{ $total_labharthi ?? 0 }}</div>
+                    <span class="stat-kpi-link" style="color:#e0a800;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#f6c23e,#f46a1f);"></div>
+        </a>
+    </div>
+
+    {{-- Expenses --}}
+    <div class="col">
+        <a href="{{ route('admin.expense.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(231,74,59,0.1);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 14l6-6m0 0v4m0-4h-4M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="#e74a3b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Expenses</div>
+                    <div class="stat-kpi-count" style="color:#e74a3b;">₹ {{ number_format($total_expenses_amount ?? 0, 0) }}</div>
+                    <span class="stat-kpi-link" style="color:#e74a3b;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#e74a3b,#ff6b6b);"></div>
+        </a>
+    </div>
+
+    {{-- Employees --}}
+    <div class="col">
+        <a href="{{ route('admin.employee.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(78,205,196,0.12);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Employees</div>
+                    <div class="stat-kpi-count" style="color:#4ECDC4;">{{ $total_employees ?? 0 }}</div>
+                    <span class="stat-kpi-link" style="color:#4ECDC4;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#4ECDC4,#1417a3);"></div>
+        </a>
+    </div>
+
+    {{-- Content --}}
+    {{-- <div class="col">
+        <a href="{{ route('admin.contents.index') }}" class="stat-kpi-card">
+            <div class="kpi-inner">
+                <div class="kpi-icon" style="background:rgba(108,117,125,0.1);">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke="#6c757d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="kpi-body">
+                    <div class="stat-kpi-label">Content</div>
+                    <div class="stat-kpi-count" style="color:#6c757d;">{{ $total_contents ?? 0 }}</div>
+                    <span class="stat-kpi-link" style="color:#6c757d;">View all <i class="fa fa-arrow-right" style="font-size:9px;"></i></span>
+                </div>
+            </div>
+            <div class="stat-kpi-bar" style="background:linear-gradient(90deg,#6c757d,#adb5bd);"></div>
+        </a>
+    </div> --}}
+
+</div>
+
+{{-- Charts Row --}}
+<div class="row mx-1 g-3 mb-3">
+
+    {{-- Monthly Donations Chart --}}
+    <div class="col-12 col-lg-8">
+        <div class="card h-100">
+            <div class="card-header bg-white border-bottom d-flex align-items-center justify-content-between py-3 px-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="fa fa-bar-chart me-2 text-primary"></i>
+                    Monthly Donations — {{ now()->year }}
+                </h6>
+            </div>
+            <div class="card-body p-2 p-md-3">
+                <div class="chart-container">
+                    <canvas id="monthlyDonationsChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
-        <div class="card overflow-hidden">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_donations_amount') }}</p>
-                        <div class="d-flex justify-content-start">
-                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
-                                <span class="dashboard-currency me-2">Total:</span>
-                            </div> -->
-                            <div class="d-flex align-items-start">
-                                <h4 class="fw-semibold spincrement m-0 text-primary d-flex align-items-center" id="">
-                                    <span class="fs-22 me-2">
-                                    (₹) {{ $total_donations_amount ?? 0 }}
+
+    {{-- Donation by Payment Mode --}}
+    <div class="col-12 col-lg-4">
+        <div class="card h-100">
+            <div class="card-header bg-white border-bottom d-flex align-items-center justify-content-between py-3 px-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="fa fa-pie-chart me-2 text-success"></i>
+                    Payment Modes
+                </h6>
+            </div>
+            <div class="card-body d-flex flex-column align-items-center justify-content-center p-2 p-md-3">
+                @if(count($donation_by_mode) > 0)
+                    <div class="chart-container-doughnut w-100">
+                        <canvas id="paymentModeChart"></canvas>
+                    </div>
+                @else
+                    <div class="text-center text-muted py-5">
+                        <i class="fa fa-pie-chart fa-3x mb-3 opacity-25"></i>
+                        <p class="mb-0">No payment data available</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{-- Recent Activity Row --}}
+<div class="row mx-1 g-3 mb-3">
+
+    {{-- Recent Donations Table --}}
+    <div class="col-12 col-lg-7">
+        <div class="card h-100">
+            <div class="card-header bg-white border-bottom d-flex align-items-center justify-content-between py-3 px-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="fa fa-clock-o me-2 text-primary"></i>
+                    Recent Donations
+                </h6>
+                <a href="{{ route('admin.donation.index') }}" class="">
+                    View All
+                </a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 dashboard-table">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3 small text-muted fw-semibold">Name</th>
+                                <th class="small text-muted fw-semibold">Amount</th>
+                                <th class="small text-muted fw-semibold d-none d-sm-table-cell">Mode</th>
+                                <th class="small text-muted fw-semibold d-none d-md-table-cell">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recent_donations as $donation)
+                            <tr>
+                                <td class="ps-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="width:32px;height:32px;background:linear-gradient(135deg,#1417a3,#4ECDC4);font-size:12px;font-weight:700;color:#fff;">
+                                            {{ strtoupper(substr($donation->full_name ?? 'D', 0, 1)) }}
+                                        </div>
+                                        <span class="fw-medium small">{{ $donation->full_name }}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="fw-semibold text-success small">₹ {{ number_format($donation->amount, 0) }}</span>
+                                </td>
+                                <td class="d-none d-sm-table-cell">
+                                    <span class="badge bg-light text-dark small">{{ $donation->payment_mode ?? '—' }}</span>
+                                </td>
+                                <td class="d-none d-md-table-cell">
+                                    <span class="text-muted small">
+                                        {{ $donation->created_at ? $donation->created_at->format('d M Y') : '—' }}
                                     </span>
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-auto top-icn dash">
-                        <div class="counter-icon bg-primary dash ms-auto box-shadow-primary">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000">
-                                <path d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9L16.9 18.31C15.55 19.37 13.85 20 12 20zm6.31-3.1L7.1 5.69C8.45 4.63 10.15 4 12 4c4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z" />
-                            </svg>
-                        </div>
-                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">
+                                    <i class="fa fa-inbox fa-2x mb-2 d-block opacity-25"></i>
+                                    No donations yet
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-6 col-sm-12 col-md-6 col-xl-3">
-        <div class="card overflow-hidden">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col d-flex flex-column justify-content-between">
-                        <p class="text-muted fs-17 mb-0">{{ @trans('messages.total_labharthi') }}</p>
 
-                        <div class="d-flex justify-content-start">
-                            <!-- <div class="d-flex flex-column align-items-end justify-content-end">
-                                <span class="dashboard-currency me-2">Total:</span>
-                            </div> -->
-                            <div class="d-flex align-items-start">
-                                <h4 class="fw-semibold spincrement m-0 text-warning" id="">{{ $total_labharthi ?? 0 }}
-                                </h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col col-auto top-icn dash">
-                        <div class="counter-icon bg-warning dash ms-auto box-shadow-primary">
-                            <svg class="fw-bold text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-                                <path d="M32.21484 25.75a5.25 5.25 0 1 1 5.25-5.25A5.25605 5.25605 0 0 1 32.21484 25.75zm0-9a3.75 3.75 0 1 0 3.75 3.75A3.75442 3.75442 0 0 0 32.21484 16.75zM38.78516 60.75h43.77539a.7502.7502 0 0 1-.75-.75V48A1.25279 1.25279 0 0 0 32 46.77 1.25279 1.25279 0 0 0 30.97461 48V60a.7502.7502 0 0 1-.75.75H25.21484a.7502.7502 0 0 1-.75-.75V36.23291l-1.876 1.6416a.73215.73215 0 0 1-.56348.18213l-11.87988-1.1001a.74982.74982 0 0 1-.4834-1.2539l2.03027-2.21a.74915.74915 0 0 1 .4209-.231l8.68164-1.55567 3.89942-4.21533a.75212.75212 0 0 1 .55078-.24072h4.22949a.7482.7482 0 0 1 .625.33594A3.71832 3.71832 0 0 0 32 29.24414a3.71832 3.71832 0 0 0 2.90039-1.6582.7482.7482 0 0 1 .625-.33594h4.22949a.75212.75212 0 0 1 .55078.24072l3.89942 4.21533 8.68164 1.55567a.74915.74915 0 0 1 .4209.231l2.03027 2.21a.74982.74982 0 0 1-.4834 1.2539l-11.87988 1.1001a.74549.74549 0 0 1-.56348-.18213l-1.876-1.6416V60A.7502.7502 0 0 1 38.78516 60.75zm-4.25977-1.5h4.50977V34.58008a.75017.75017 0 0 1 1.24414-.56445l2.87793 2.51806L52.209 35.60254l-.835-.90869-8.68066-1.55567a.753.753 0 0 1-.41895-.229L38.42676 28.75h45.90918a5.21084 5.21084 0 0 1-3.44043 1.95605.75365.75365 0 0 1-.25391.04395h-.42968a.75365.75365 0 0 1-.25391-.04395A5.21084 5.21084 0 0 1 28.09082 28.75H25.57324l-3.84765 4.15918a.753.753 0 0 1-.41895.229L12.626 34.69385l-.835.90869 10.05175.93115 2.87793-2.51806a.75017.75017 0 0 1 1.24414.56445V59.25h4.50977V48a2.75455 2.75455 0 0 1 1.84863-2.59814.74457.74457 0 0 1 .45215-.15186h.44922a.74457.74457 0 0 1 .45215.15186A2.75455 2.75455 0 0 1 34.52539 48zM12 29.75A8.75 8.75 0 1 1 20.75 21 8.75967 8.75967 0 0 1 12 29.75zm0-16A7.25 7.25 0 1 0 19.25 21 7.258 7.258 0 0 0 12 13.75z" fill="#fff"></path>
-                                <path d="M12.5,24.75H10a.75.75,0,0,1,0-1.5h2.5a.75.75,0,0,0,0-1.5h-1a2.25,2.25,0,0,1,0-4.5H14a.75.75,0,0,1,0,1.5H11.5a.75.75,0,0,0,0,1.5h1a2.25,2.25,0,0,1,0,4.5Z" fill="#fff"></path>
-                                <path d="M12 18.75a.7502.7502 0 0 1-.75-.75V16a.75.75 0 0 1 1.5 0v2A.7502.7502 0 0 1 12 18.75zM12 26.75a.7502.7502 0 0 1-.75-.75V24a.75.75 0 0 1 1.5 0v2A.7502.7502 0 0 1 12 26.75zM52 29.75A8.75 8.75 0 1 1 60.75 21 8.75967 8.75967 0 0 1 52 29.75zm0-16A7.25 7.25 0 1 0 59.25 21 7.258 7.258 0 0 0 52 13.75z" fill="#fff"></path>
-                                <path d="M50 23.75a.75.75 0 0 1-.53027-1.28027L51.25 20.68945V16a.75.75 0 0 1 1.5 0v5a.75027.75027 0 0 1-.21973.53027l-2 2A.74671.74671 0 0 1 50 23.75zM52 13.75a.7502.7502 0 0 1-.75-.75V11a.75.75 0 0 1 1.5 0v2A.7502.7502 0 0 1 52 13.75zM57.5 15.25a.75.75 0 0 1-.53027-1.28027l1.5-1.5a.74992.74992 0 0 1 1.06054 1.06054l-1.5 1.5A.74671.74671 0 0 1 57.5 15.25z" fill="#fff"></path>
-                                <path d="M60,14.75a.74671.74671,0,0,1-.53027-.21973l-2-2a.74992.74992,0,0,1,1.06054-1.06054l2,2A.75.75,0,0,1,60,14.75Z" fill="#fff"></path>
-                            </svg>
-                        </div>
-                    </div>
+    {{-- Recent Labharthi Table --}}
+    <div class="col-12 col-lg-5">
+        <div class="card h-100">
+            <div class="card-header bg-white border-bottom d-flex align-items-center justify-content-between py-3 px-3">
+                <h6 class="mb-0 fw-semibold">
+                    <i class="fa fa-users me-2 text-warning"></i>
+                    Recent Labharthi
+                </h6>
+                <a href="{{ route('admin.labharthi.index') }}" class="text-warning">
+                    View All
+                </a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0 dashboard-table">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3 small text-muted fw-semibold">Name</th>
+                                <th class="small text-muted fw-semibold d-none d-sm-table-cell">Category</th>
+                                <th class="small text-muted fw-semibold">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recent_labharthi as $l)
+                            <tr>
+                                <td class="ps-3">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="avatar-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"
+                                            style="width:32px;height:32px;background:linear-gradient(135deg,#f6c23e,#f46a1f);font-size:12px;font-weight:700;color:#fff;">
+                                            {{ strtoupper(substr($l->name ?? 'L', 0, 1)) }}
+                                        </div>
+                                        <div>
+                                            <div class="fw-medium small">{{ $l->name }}</div>
+                                            <div class="text-muted" style="font-size:11px;">{{ $l->labharthi_number }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="d-none d-sm-table-cell">
+                                    <span class="small text-muted">{{ $l->category ?? '—' }}</span>
+                                </td>
+                                <td>
+                                    @if($l->status == 'active' || $l->status == 1)
+                                        <span class="badge bg-success-subtle text-success" style="font-size:11px;">Active</span>
+                                    @else
+                                        <span class="badge bg-secondary-subtle text-secondary" style="font-size:11px;">{{ ucfirst($l->status ?? 'N/A') }}</span>
+                                    @endif
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="3" class="text-center text-muted py-4">
+                                    <i class="fa fa-inbox fa-2x mb-2 d-block opacity-25"></i>
+                                    No records yet
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
 
 </div>
+
+
+@endsection
+
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Monthly Donations Bar + Trend Chart ─────────────────────────────
+    var monthlyCtx = document.getElementById('monthlyDonationsChart');
+    if (monthlyCtx) {
+        var monthlyData = @json($monthly_chart_data);
+
+        var ctx2d = monthlyCtx.getContext('2d');
+        var barGradient = ctx2d.createLinearGradient(0, 0, 0, 320);
+        barGradient.addColorStop(0,   'rgba(20, 23, 163, 0.85)');
+        barGradient.addColorStop(0.6, 'rgba(78, 205, 196, 0.55)');
+        barGradient.addColorStop(1,   'rgba(78, 205, 196, 0.10)');
+
+        var maxVal = Math.max.apply(null, monthlyData);
+        var suggestedMax = Math.max(maxVal * 1.25, 10000);
+
+        function rupeeLabel(val) {
+            if (val >= 10000000) return '₹' + (val / 10000000).toFixed(1) + 'Cr';
+            if (val >= 100000)   return '₹' + (val / 100000).toFixed(1) + 'L';
+            if (val >= 1000)     return '₹' + (val / 1000).toFixed(0) + 'K';
+            return '₹' + val;
+        }
+
+        var isMobile = window.innerWidth < 576;
+
+        new Chart(monthlyCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+                datasets: [
+                    {
+                        label: 'Donations (₹)',
+                        data: monthlyData,
+                        backgroundColor: barGradient,
+                        borderColor: '#1417a3',
+                        borderWidth: 1.5,
+                        borderRadius: 6,
+                        borderSkipped: false,
+                        order: 2,
+                    },
+                    {
+                        label: 'Trend',
+                        data: monthlyData,
+                        type: 'line',
+                        borderColor: '#4ECDC4',
+                        borderWidth: 2,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: '#4ECDC4',
+                        pointBorderWidth: 2,
+                        pointRadius: isMobile ? 2 : 4,
+                        pointHoverRadius: 5,
+                        fill: false,
+                        tension: 0.45,
+                        order: 1,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        align: 'end',
+                        labels: {
+                            boxWidth: 10,
+                            padding: 12,
+                            font: { size: isMobile ? 10 : 12 },
+                            usePointStyle: true,
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(20,23,163,0.92)',
+                        titleColor: '#fff',
+                        bodyColor: 'rgba(255,255,255,0.85)',
+                        padding: 10,
+                        cornerRadius: 8,
+                        callbacks: {
+                            label: function(ctx) {
+                                if (ctx.dataset.label === 'Trend') return null;
+                                var v = ctx.parsed.y;
+                                return '  ₹ ' + v.toLocaleString('en-IN');
+                            },
+                            afterBody: function(items) {
+                                var v = items[0] ? items[0].parsed.y : 0;
+                                if (v >= 100000) return ['  (' + (v/100000).toFixed(2) + ' Lakh)'];
+                                if (v >= 1000)   return ['  (' + (v/1000).toFixed(1) + 'K)'];
+                                return [];
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: suggestedMax,
+                        grid: { color: 'rgba(0,0,0,0.05)', drawTicks: false },
+                        border: { dash: [4, 4], display: false },
+                        ticks: {
+                            padding: 6,
+                            font: { size: isMobile ? 9 : 11 },
+                            maxTicksLimit: isMobile ? 5 : 8,
+                            callback: function(val) { return rupeeLabel(val); }
+                        }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: {
+                            font: { size: isMobile ? 9 : 11 },
+                            padding: 4,
+                            maxRotation: isMobile ? 45 : 0,
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // ── Payment Mode Doughnut Chart ──────────────────────────────────────
+    var modeCtx = document.getElementById('paymentModeChart');
+    if (modeCtx) {
+        var modeData   = @json(array_values($donation_by_mode));
+        var modeLabels = @json(array_keys($donation_by_mode));
+        new Chart(modeCtx, {
+            type: 'doughnut',
+            data: {
+                labels: modeLabels.map(function(l){ return l || 'Unknown'; }),
+                datasets: [{
+                    data: modeData,
+                    backgroundColor: [
+                        'rgba(20,23,163,0.75)',
+                        'rgba(78,205,196,0.75)',
+                        'rgba(246,194,62,0.75)',
+                        'rgba(231,74,59,0.75)',
+                        'rgba(28,200,138,0.75)',
+                        'rgba(108,117,125,0.75)',
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 8,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '65%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { boxWidth: 10, padding: 12, font: { size: 11 } }
+                    }
+                }
+            }
+        });
+    }
+
+});
+</script>
 @endsection

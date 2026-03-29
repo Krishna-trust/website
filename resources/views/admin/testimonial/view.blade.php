@@ -16,6 +16,7 @@
     }
 </style>
 
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -42,7 +43,7 @@
         @else
         @forelse($testimonials as $index => $testimonial)
         <tr>
-            <td>{{ $testimonials->firstItem() + $index }}</td>
+            <td>{{ $testimonials->total() - $testimonials->firstItem() - $index + 1 }}</td>
             <td>
                 @if($testimonial->image)
                 <img src="{{ asset('storage/' . $testimonial->image) }}"
@@ -75,6 +76,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $testimonials->links('admin.parts.pagination') }}

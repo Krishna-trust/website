@@ -16,6 +16,7 @@
     }
 </style>
 
+<div class="table-responsive mb-3">
 <table class="table table-bordered border-bottom w-100 table-checkable no-footer " id="logs-table">
     <thead>
         <tr role="row">
@@ -40,7 +41,7 @@
         @else
         @forelse($services as $index => $service)
         <tr>
-            <td>{{ $services->firstItem() + $index }}</td>
+            <td>{{ $services->total() - $services->firstItem() - $index + 1 }}</td>
             <td>
                 @if($service->image)
                 <img src="{{ asset('storage/' . $service->image) }}"
@@ -71,6 +72,7 @@
         @endif
     </tbody>
 </table>
+</div>
 
 <div class="d-md-flex justify-content-center">
     {{ $services->links('admin.parts.pagination') }}
