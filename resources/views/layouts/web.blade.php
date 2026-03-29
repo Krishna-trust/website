@@ -26,6 +26,17 @@
     </script>
     <!-- End Google Tag Manager -->
 
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EWS1NNPFEV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-EWS1NNPFEV');
+    </script>
+    <!-- End Google tag -->
+
     <meta name="description"
         content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
 
