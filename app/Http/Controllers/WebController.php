@@ -10,6 +10,7 @@ use App\Models\Service;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class WebController extends Controller
 {
@@ -68,7 +69,11 @@ class WebController extends Controller
 
     public function impacts()
     {
-        $contents = Content::orderBy('upload_date', 'desc')->get();
+        // $contents = Content::orderBy('upload_date', 'desc')->get();
+        $contents = Content::orderBy('upload_date', 'desc')->get()
+            ->filter(function ($content) {
+                return $content->image && Storage::disk('public')->exists($content->image);
+            });
 
         // Group contents by month
         $groupedContents = $contents->groupBy(function ($date) {
