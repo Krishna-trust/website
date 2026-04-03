@@ -77,7 +77,7 @@ class EmployeeController extends Controller
                 // 'password' => 'nullable',
                 'status' => 'required',
                 'salary' => 'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             ], [
                 'name.required' => __('validation.required_name'),
                 'address.required' => __('validation.required_address'),
@@ -153,6 +153,7 @@ class EmployeeController extends Controller
                 // 'password' => 'required',
                 'status' => 'required',
                 'salary' => 'required',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             ], [
                 'name.required' => __('validation.required_name'),
                 'address.required' => __('validation.required_address'),
@@ -193,7 +194,7 @@ class EmployeeController extends Controller
                 if ($employee->image) {
                     Storage::disk('public')->delete($employee->image);
                 }
-                $data['image'] = $request->file('image')->store('employee_images', 'public');
+                $data['image'] = ImageHelper::compressAndStore($request->file('image'), 'employee_images');
             }
 
             $employee->update($data);

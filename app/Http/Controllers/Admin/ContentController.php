@@ -27,7 +27,7 @@ class ContentController extends Controller
     {
         try {
             $rules = [
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
                 'upload_date' => 'required|date'
             ];
 
@@ -75,7 +75,7 @@ class ContentController extends Controller
     {
         try {
             $rules = [
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
                 'upload_date' => 'nullable|date'
             ];
 

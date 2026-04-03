@@ -167,7 +167,7 @@ return [
     'employee_deleted' => 'સહાયક કાઢી નાખવાયેલ છે!',
     'employee_withdrawal_created' => 'સહાયક ઉપાડ બનાવાયેલ છે!',
 
-    'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 2MB',
+    'accepted_formats' => 'પોસ્ટરનુ ફોર્મેટ: JPEG, PNG, JPG, GIF. મહત્તમ પોસ્ટરનુ માપ: 5MB',
 
     'contact_form_submitted' => 'તમારું સંદેશ મોકલી નાખ્યો છે.',
 ];

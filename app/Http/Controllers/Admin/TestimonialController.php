@@ -63,7 +63,7 @@ class TestimonialController extends Controller
                 'name' => 'required',
                 'post' => 'nullable',
                 'description' => 'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
                 'status' => 'required|integer',
             ];
             $messages = [
@@ -129,7 +129,7 @@ class TestimonialController extends Controller
                 'name' => 'required',
                 'post' => 'nullable',
                 'description' => 'required',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             ], [
                 'name.required' => __('validation.required_name'),
                 'post.required' => __('validation.required_post'),

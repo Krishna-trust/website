@@ -33,7 +33,7 @@ class ServiceController extends Controller
                 'title' => 'required',
                 'description' => 'required',
                 'status' => 'required',
-                'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             ], [
                 'title.required' => __('validation.required_title'),
                 'description.required' => __('validation.required_description'),
@@ -99,7 +99,7 @@ class ServiceController extends Controller
             $validator = Validator::make($request->all(), [
                 'title' => 'required',
                 'description' => 'required',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120',
             ], [
                 'title.required' => __('validation.required_title'),
                 'description.required' => __('validation.required_description'),

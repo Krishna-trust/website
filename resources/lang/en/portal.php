@@ -168,7 +168,7 @@ return [
     'employee_deleted' => 'Employee deleted successfully!',
     'employee_withdrawal_created' => 'Employee withdrawal created successfully!',
 
-    'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 2MB',
+    'accepted_formats' => 'Accepted formats: JPEG, PNG, JPG, GIF. Max size: 5MB',
 
     'contact_form_submitted' => 'Your message has been sent successfully!',
 

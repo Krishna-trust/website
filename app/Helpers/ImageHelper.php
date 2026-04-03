@@ -19,8 +19,8 @@ class ImageHelper
     public static function compressAndStore(
         UploadedFile $file,
         string $folder,
-        int $maxWidth = 1200,
-        int $quality  = 80
+        int $maxWidth = 800,
+        int $quality  = 70
     ): string {
         $extension = strtolower($file->getClientOriginalExtension());
 
@@ -46,13 +46,11 @@ class ImageHelper
             $newHeight = (int) round($origHeight * $ratio);
             $canvas    = imagecreatetruecolor($newWidth, $newHeight);
 
-            // Keep alpha for PNG
-            if ($extension === 'png') {
-                imagealphablending($canvas, false);
-                imagesavealpha($canvas, true);
-                $transparent = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
-                imagefilledrectangle($canvas, 0, 0, $newWidth, $newHeight, $transparent);
-            }
+            // Handle transparency for WebP/PNG
+            imagealphablending($canvas, false);
+            imagesavealpha($canvas, true);
+            $transparent = imagecolorallocatealpha($canvas, 0, 0, 0, 127);
+            imagefilledrectangle($canvas, 0, 0, $newWidth, $newHeight, $transparent);
 
             imagecopyresampled($canvas, $source, 0, 0, 0, 0, $newWidth, $newHeight, $origWidth, $origHeight);
             imagedestroy($source);
@@ -65,11 +63,15 @@ class ImageHelper
             mkdir($storagePath, 0755, true);
         }
 
-        if ($extension === 'png') {
-            $filename = Str::random(40) . '.png';
-            $fullPath = "{$storagePath}/{$filename}";
-            imagepng($source, $fullPath, 6); // 0-9 compression level
+        // Generate a random filename with .webp extension for best compression
+        $filename = Str::random(40) . '.webp';
+        $fullPath = "{$storagePath}/{$filename}";
+
+        // WebP is significantly smaller than JPG/PNG
+        if (function_exists('imagewebp')) {
+            imagewebp($source, $fullPath, $quality);
         } else {
+            // Fallback to JPG if WebP isn't supported (shouldn't happen on modern PHP)
             $filename = Str::random(40) . '.jpg';
             $fullPath = "{$storagePath}/{$filename}";
             imagejpeg($source, $fullPath, $quality);
