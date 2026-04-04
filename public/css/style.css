@@ -35,6 +35,11 @@
 
 html { scroll-behavior: smooth; }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 body {
     font-family: var(--font);
     color: var(--text-dark);
@@ -399,12 +404,14 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
     box-shadow: -6px 0 40px rgba(0, 0, 0, 0.15);
     transform: translateX(100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    visibility: hidden;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s;
     overflow-y: auto;
 }
 
 .mobile-nav-drawer.open {
     transform: translateX(0);
+    visibility: visible;
 }
 
 /* Drawer header row */
@@ -578,7 +585,7 @@ body.mobile-nav-open {
 /* ===========================
    ABOUT SECTION
 =========================== */
-.about-section { padding: 5rem 0; }
+.about-section { padding: 5rem 0; overflow: hidden; }
 
 .about-section .lead {
     color: var(--text-body);
@@ -592,6 +599,7 @@ body.mobile-nav-open {
 .services-section {
     background: var(--bg-light);
     padding: 5rem 0;
+    overflow: hidden;
 }
 
 .yearly-services-item {
@@ -661,7 +669,7 @@ body.mobile-nav-open {
 /* ===========================
    GALLERY SECTION
 =========================== */
-.gallery-section { padding: 5rem 0; }
+.gallery-section { padding: 5rem 0; overflow: hidden; }
 
 .gallery-item {
     overflow: hidden;
@@ -694,6 +702,7 @@ body.mobile-nav-open {
 .testimonials-section {
     background: linear-gradient(160deg, #f0f4ff 0%, #eef2ff 50%, #f8fafc 100%);
     padding: 5rem 0;
+    overflow: hidden;
 }
 
 .testimonial-card {
