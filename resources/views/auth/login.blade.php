@@ -482,6 +482,13 @@
                     </div>
                 @endif
 
+                <a href="{{ route('auth.google') }}" class="btn-google">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    Continue with Google
+                </a>
+
+                <div class="separator">or sign in with email</div>
+
                 <form action="{{ route('login.post') }}" method="POST">
                     @csrf
                     <div class="mb-4">
@@ -532,12 +539,6 @@
                     </button>
                 </form>
 
-                <div class="separator">or sign in with</div>
-
-                <a href="{{ route('auth.google') }}" class="btn-google">
-                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
-                    Continue with Google
-                </a>
 
                 <div class="back-to-site">
                     <a href="{{ url('/') }}">

@@ -150,4 +150,6 @@ return [
     'adhar_duplicate_body'    => 'This Aadhaar number is already linked to',
     'adhar_duplicate_confirm' => 'Edit Existing Record',
     'adhar_duplicate_cancel'  => 'Stay Here',
+    'notify_donor' => 'Notify Donor',
+    'whatsapp_message' => 'Hello :name, Krishna Niswarth Seva Trust wishes to inform you that you donated ₹:amount for :purpose on :date. We are grateful for your support. Would you like to donate again this year? Thank you.',
 ];

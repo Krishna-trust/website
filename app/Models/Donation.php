@@ -26,7 +26,8 @@ class Donation extends Model
         'cheque_number',
         'cheque_date',
         'transaction_id',
-        'transaction_date'
+        'transaction_date',
+        'whatsapp_notify'
     ];
 
     // protected $casts = [

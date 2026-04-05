@@ -124,4 +124,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     // Route::get('attendance/export', [App\Http\Controllers\Admin\AttendanceController::class, 'export'])->name('attendance.export');
     Route::get('get-next-labharthi-number/{areaId}', [App\Http\Controllers\Admin\LabharthiController::class, 'getNextLabharthiNumber'])
         ->name('get-next-labharthi-number');
+
+    // Notify Donor Routes
+    Route::get('notify-donor', [App\Http\Controllers\Admin\NotifyDonorController::class, 'index'])->name('notify-donor.index');
+    Route::post('notify-donor/mark-as-done', [App\Http\Controllers\Admin\NotifyDonorController::class, 'markAsDone'])->name('notify-donor.markAsDone');
 });

@@ -137,6 +137,7 @@ return [
 
     // monthly report
     'monthly-reports' => 'રિપોર્ટ્સ',
+    'notify_donor' => 'દાતાઓને જાણ',
 
     'map' => 'નકશો',
     'get_location' => 'વર્તમાન સ્થાન મેળવો',

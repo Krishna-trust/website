@@ -138,6 +138,7 @@ return [
 
     // monthly report
     'monthly-reports' => 'Monthly Reports',
+    'notify_donor' => 'Notify Donor',
 
     'map' => 'Map',
     'get_location' => 'Get Location',
