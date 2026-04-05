@@ -56,7 +56,7 @@ class LabharthiController extends Controller
     public function store(Request $request)
     {
         try {
-            Log::info('LabharthiController@store Request Data: ', $request->all());
+            // Log::info('LabharthiController@store Request Data: ', $request->all());
             $rules = [
                 'name' => 'required|string|max:255',
                 'address' => 'required|string',
