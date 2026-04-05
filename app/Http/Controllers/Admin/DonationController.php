@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DonationController extends Controller
 {
@@ -267,6 +268,48 @@ class DonationController extends Controller
             Log::error('DonationController@destroy Error: ' . $th->getMessage());
             return redirect()->route('admin.donation.index')
                 ->with('error', $th->getMessage());
+        }
+    }
+
+    public function downloadReceipt($id)
+    {
+        try {
+            $donation = Donation::findOrFail($id);
+            $pdf = Pdf::loadView('admin.donation.receipt', compact('donation'));
+            
+            return $pdf->download('donation-receipt-' . $donation->receipt_number . '.pdf');
+        } catch (\Throwable $th) {
+            Log::error('DonationController@downloadReceipt Error: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Error generating PDF: ' . $th->getMessage());
+        }
+    }
+
+    public function sendWhatsApp($id)
+    {
+        try {
+            $donation = Donation::findOrFail($id);
+            $mobile = $donation->mobile_number;
+            
+            if (empty($mobile)) {
+                return redirect()->back()->with('error', 'Mobile number not found for this donor.');
+            }
+
+            // Remove non-numeric characters for WhatsApp
+            $mobile = preg_replace('/[^0-9]/', '', $mobile);
+            
+            // Add +91 if missing (assuming India, based on controller logic)
+            if (strlen($mobile) == 10) {
+                $mobile = '91' . $mobile;
+            }
+
+            $message = "Hello " . $donation->full_name . ",\n\nThank you for your generous donation of ₹" . number_format($donation->amount, 2) . " to Krishna Trust. We have successfully received your contribution.\n\nYou can download your digital receipt using the link below:\n" . route('admin.donation.receipt', $donation->id) . "\n\nWarm regards,\nKrishna Trust";
+            
+            $url = "https://wa.me/" . $mobile . "?text=" . urlencode($message);
+            
+            return redirect()->away($url);
+        } catch (\Throwable $th) {
+            Log::error('DonationController@sendWhatsApp Error: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Error opening WhatsApp: ' . $th->getMessage());
         }
     }
 }

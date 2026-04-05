@@ -47,6 +47,9 @@ Route::post('/donation', [webController::class, 'donationStore'])->name('donatio
 Route::get('privacy-policy', [webController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('terms-and-conditions', [webController::class, 'termsAndConditions'])->name('terms-and-conditions');
 
+// Public Donation Receipt
+Route::get('/donation/receipt/{id}', [App\Http\Controllers\Admin\DonationController::class, 'downloadReceipt'])->name('admin.donation.receipt');
+
 
 // Admin Routes
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
@@ -81,6 +84,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
     Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('donation.destroy');
     Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('donation.export');
+    Route::get('donation/whatsapp/{id}', [App\Http\Controllers\Admin\DonationController::class, 'sendWhatsApp'])->name('donation.whatsapp');
 
     // Expense Routes
     Route::resource('expense', App\Http\Controllers\Admin\ExpenseController::class)->except('destroy');

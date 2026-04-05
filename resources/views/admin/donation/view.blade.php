@@ -29,6 +29,12 @@
             <td>{{ $donation->payment_mode ? ucfirst($donation->payment_mode) : '-' }}</td>
             <td class="text-center">
                 <div class="btn-group">
+                    <a class="secondary me-2" href="{{ route('admin.donation.whatsapp', $donation->id) }}" target="_blank" title="Send WhatsApp Receipt">
+                        <i class="fa fa-whatsapp"></i>
+                    </a>
+                    <a class="primary me-2" href="{{ route('admin.donation.receipt', $donation->id) }}" title="Download PDF Receipt">
+                        <i class="fa fa-file-pdf-o"></i>
+                    </a>
                     <a class="secondary edit-technician-btn me-2" href="{{ route('admin.donation.edit', $donation->id) }}"><i class="fa fa-edit"></i></a>
                     <a class="primary user-delete-btn" data-bs-toggle="modal" data-bs-target="#user-delete" data-donation-id="{{ $donation->id }}">
                         <i class="fa fa-trash-o"></i>

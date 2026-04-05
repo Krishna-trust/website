@@ -423,6 +423,8 @@ Manages beneficiaries receiving the trust's tiffin/food service.
 
 **Payment Modes:** `cash`, `cheque`, `online`
 
+- send donation receipt on whatsapp
+
 ---
 
 #### Employee Management (`/admin/employee`)
@@ -441,6 +443,9 @@ Manages beneficiaries receiving the trust's tiffin/food service.
 **Withdrawal Feature:** Tracks partial salary withdrawals per month. Shows final salary = salary − total withdrawals for that month.
 
 ---
+
+### Notify Donor for re-donation
+- send notification to donor for re-donation on whatsapp
 
 #### Attendance Tracking (`/admin/attendance`)
 
