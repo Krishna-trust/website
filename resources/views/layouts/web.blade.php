@@ -1,6 +1,6 @@
 <!-- resources/views/layouts/master.blade.php -->
 <!DOCTYPE html>
-<html lang={{ app()->getLocale() }}>
+<html lang="{{ app()->getLocale() }}" itemscope itemtype="https://schema.org/WebPage">
 
 <head>
     <meta charset="UTF-8">
@@ -38,11 +38,11 @@
     <!-- End Google tag -->
 
     <meta name="description"
-        content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
+        content="@yield('meta_description', 'Krishna Niswarth Seva Trust | Naranpura, Ahmedabad — Providing free home-delivered nutritious meals to elderly & disabled individuals living alone. Donate to support 273+ beneficiaries. ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ — સેવા, પ્રેમ અને કરુણા.')">
 
     <!-- Keywords Tag (Gujarati and English) -->
     <meta name="keywords"
-        content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ ચાંદલોડિયા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ ચાંદલોડિયા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ,ચાંદલોડિયા, વિના મુલ્યે ટિફીન સેવા,Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Chandlodiya, Krishna Niswarth Seva Trust Ahmedabad,Krishna Seva Trust,Krishna Seva Trust Chandlodiya,Krishna Seva Trust Ahmedabad,Krishna Trust,Krishna Trust Chandlodiya,Krishna Trust Ahmedabad,Chandlodiya, free food">
+        content="ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ નારણપુરા, ક્રિષ્ના નિસ્વાર્થ સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના સેવા ટ્રસ્ટ,ક્રિષ્ના સેવા ટ્રસ્ટ નારણપુરા, ક્રિષ્ના સેવા ટ્રસ્ટ અમદાવાદ, ક્રિષ્ના ટ્રસ્ટ, ક્રિષ્ના ટ્રસ્ટ નારણપુરા,ક્રિષ્ના ટ્રસ્ટ ગોતા, ક્રિષ્ના ટ્રસ્ટ અમદાવાદ,નારણપુરા, વિના મુલ્યે ટિફીન સેવા, Krishna Niswarth Seva Trust,Krishna Niswarth Seva Trust Naranpura, Krishna Niswarth Seva Trust Ahmedabad, Krishna Seva Trust, Krishna Seva Trust Naranpura, Krishna Seva Trust Ahmedabad, Krishna Trust,Krishna Trust Naranpura, Krishna Trust Ahmedabad, Naranpura, free food">
 
     <!-- Language Tag (English and Gujarati) -->
     <meta name="language" content="Gujarati, English">
@@ -50,13 +50,13 @@
     <!-- Open Graph Tags (Social Media Optimization) -->
     <meta property="og:title" content="Krishna Niswarth Seva Trust">
     <meta property="og:description"
-        content="ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ એકલા રહેતાં અશક્ત વડીલોને ઘરે બેઠાં વિનામૂલ્યે ભોજન પહોંચાડતી સંસ્થા.">
+        content="@yield('og_description', 'Krishna Niswarth Seva Trust | Naranpura, Ahmedabad — Providing free home-delivered nutritious meals to elderly & disabled individuals living alone. Donate to support 273+ beneficiaries.')">
     <meta property="og:image" content="{{ asset('images/logo.png') }}">
     <meta property="og:url" content="https://www.krishnaniswarthsevatrust.com/">
     <meta property="og:type" content="website">
 
     <!-- To avoid potential duplicate content issues.  -->
-    <link rel="canonical" href="https://www.krishnaniswarthsevatrust.com/">
+    <link rel="canonical" href="@yield('canonical', url()->current())">
 
     <!-- Structured Data for Local Business in Gujarati and English -->
     <script type="application/ld+json">
@@ -69,9 +69,9 @@
             "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "જૂની શિવમ ગેસ એજન્સીની સામે | Opp Old Shivam Gas Agency",
-                "addressLocality": "ચાંદલોડિયા, અમદાવાદ, | Chandlodiya, Ahmedabad",
+                "addressLocality": "નારણપુરા, અમદાવાદ, | Naranpura, Ahmedabad",
                 "addressRegion": "ગુજરાત | Gujarat",
-                "postalCode": "382481",
+                "postalCode": "380013",
                 "addressCountry": "IN"
             },
             "sameAs": [

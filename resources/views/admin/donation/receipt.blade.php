@@ -163,22 +163,21 @@
                     <img src="{{ $logoPath }}" class="logo">
                 @endif
             </div>
-            <h1 class="trust-name">Shree Krishna Seva Trust</h1>
-            <div class="guj-trust-name">શ્રી કૃષ્ણ સેવા ટ્રસ્ટ</div>
+            <h1 class="trust-name">શ્રી કૃષ્ણ સેવા ટ્રસ્ટ</h1>
             <div class="trust-details">
-                Registration No: E/12345/SURAT | રજીસ્ટ્રેશન નં: ઇ/૧૨૩૪૫/સુરત<br>
-                Address: 123, Trust House, Near Temple, Surat, Gujarat - 395006<br>
-                Contact: +91 98765 43210 | Email: info@krishnatrust.org
+                રજીસ્ટ્રેશન નં: ઇ/૧૨૩૪૫/સુરત<br>
+                સરનામું: ૧૨૩, ટ્રસ્ટ હાઉસ, મંદિર પાસે, સુરત, ગુજરાત - ૩૯૫૦૦૬<br>
+                સંપર્ક: +૯૧ ૯૮૭૬૫ ૪૩૨૧૦ | ઇમેઇલ: [EMAIL_ADDRESS]
             </div>
         </div>
 
-        <div class="receipt-title">DONATION RECEIPT / દાનની રસીદ</div>
+        <div class="receipt-title">દાનની રસીદ</div>
 
         <div class="row-group">
             <div class="col-half">
                 <table class="details-table" style="border-right: 1px solid #eee;">
                     <tr>
-                        <td class="label">Receipt No / રસીદ નં:</td>
+                        <td class="label">રસીદ નં:</td>
                         <td class="value">{{ $donation->receipt_number ?? '-' }}</td>
                     </tr>
                 </table>
@@ -195,22 +194,22 @@
 
         <table class="details-table">
             <tr>
-                <td class="label">Donor Name / દાતાનું નામ:</td>
+                <td class="label">દાતાનું નામ:</td>
                 <td class="value">{{ $donation->full_name }}</td>
             </tr>
             <tr>
-                <td class="label">Amount / રકમ:</td>
+                <td class="label">રકમ:</td>
                 <td class="value" style="font-size: 18px; color: #ff3366;">₹ {{ number_format($donation->amount, 2) }}</td>
             </tr>
             <tr>
-                <td class="label">Purpose / હેતુ:</td>
+                <td class="label">હેતુ:</td>
                 <td class="value">
                     @php
                         $purposes = [
-                            'meals' => 'ભોજન સહાય (Meals Assistance)',
-                            'medical' => 'મેડિકલ સહાય (Medical Assistance)',
-                            'education' => 'શૈક્ષણિક સહાય (Education Assistance)',
-                            'rasankit' => 'રાશન કિટ સહાય (Ration Kit Assistance)',
+                            'meals' => 'ભોજન સહાય',
+                            'medical' => 'મેડિકલ સહાય',
+                            'education' => 'શૈક્ષણિક સહાય',
+                            'rasankit' => 'રાશન કિટ સહાય',
                             'other' => 'અન્ય (Other)'
                         ];
                         $purposeValue = $donation->donation_for;
@@ -223,9 +222,9 @@
                 <td class="value">
                     @php
                         $modes = [
-                            'cash' => 'રોકડ (Cash)',
-                            'cheque' => 'ચેક (Cheque)',
-                            'online' => 'ઓનલાઇન (Online Transfer)'
+                            'cash' => 'રોકડ',
+                            'cheque' => 'ચેક',
+                            'online' => 'ઓનલાઇન'
                         ];
                         $modeValue = $donation->payment_mode;
                     @endphp
@@ -234,26 +233,25 @@
             </tr>
             @if($donation->payment_mode == 'online' && $donation->transaction_id)
             <tr>
-                <td class="label">Transaction ID / સંદર્ભ નં:</td>
+                <td class="label">સંદર્ભ નં:</td>
                 <td class="value">{{ $donation->transaction_id }}</td>
             </tr>
             @endif
             @if($donation->payment_mode == 'cheque' && $donation->cheque_number)
             <tr>
-                <td class="label">Cheque Details / ચેકની વિગત:</td>
+                <td class="label">ચેકની વિગત:</td>
                 <td class="value">No: {{ $donation->cheque_number }} | Date: {{ $donation->cheque_date ? date('d-m-Y', strtotime($donation->cheque_date)) : '-' }}</td>
             </tr>
             @endif
             @if($donation->pan_number)
             <tr>
-                <td class="label">PAN Number / પાન નં:</td>
+                <td class="label">પાન નં:</td>
                 <td class="value">{{ $donation->pan_number }}</td>
             </tr>
             @endif
         </table>
 
         <div class="thanks-note">
-            "Your contribution makes a difference. Thank you for your support!"<br>
             "તમારો સહયોગ ફેરફાર લાવશે. તમારા સપોર્ટ માટે આભાર!"
         </div>
 
@@ -263,14 +261,12 @@
                     (Trust Stamp)
                 </div>
                 <div class="signature-line">
-                    Authorized Signatory<br>
                     અધિકૃત સહી
                 </div>
             </div>
         </div>
 
         <div class="note">
-            Note: This is a computer-generated digital receipt and does not require a physical signature.<br>
             નોંધ: આ કોમ્પ્યુટર દ્વારા જનરેટ કરેલ ડિજિટલ રસીદ છે અને તેમાં ભૌતિક સહીની જરૂર નથી.
         </div>
     </div>

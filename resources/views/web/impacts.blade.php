@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
 @section('title', __('messages.impact') . ' - ' . __('messages.trust_name'))
+@section('canonical', 'https://www.krishnaniswarthsevatrust.com/impact')
+@section('meta_description', 'See the real impact of Krishna Niswarth Seva Trust — 500K+ meals delivered, 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad. Browse our monthly photo gallery of community service and outreach activities.')
+@section('og_description', 'See the real impact of Krishna Niswarth Seva Trust — 500K+ meals delivered, 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad. Browse our monthly gallery.')
 
 @section('content')
 
@@ -31,6 +34,7 @@
 ======================== --}}
 <section id="monthly-gallery" class="section-py">
     <div class="container">
+        <h2 class="text-center section-title mb-5" data-reveal="up">{{ @trans('messages.impact') }}</h2>
 
         @foreach($groupedContents as $month => $contents)
         <div class="month-section" data-reveal="up">

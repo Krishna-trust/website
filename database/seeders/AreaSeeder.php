@@ -26,7 +26,7 @@ class AreaSeeder extends Seeder
                 'name' => 'Nirnay Nagar',
                 'slug' => 'નિર્ણયનગર',
                 'short_form' => 'NN',
-                'pincode' => '382481'
+                'pincode' => '380013'
             ],
             [
                 'name' => 'Ranip',
@@ -44,13 +44,13 @@ class AreaSeeder extends Seeder
                 'name' => 'Chandlodiya',
                 'slug' => 'ચાંદલોડિયા',
                 'short_form' => 'CL',
-                'pincode' => '382481'
+                'pincode' => '380013'
             ],
             [
                 'name' => 'Gota',
                 'slug' => 'ગોતા',
                 'short_form' => 'GT',
-                'pincode' => '382481'
+                'pincode' => '380013'
             ]
         ];
 

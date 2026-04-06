@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
 @section('title', __('messages.home') . ' - ' . __('messages.trust_name'))
+@section('canonical', 'https://www.krishnaniswarthsevatrust.com/')
+@section('meta_description', 'Krishna Niswarth Seva Trust — Free home-delivered meals to 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad, Gujarat. Donate online to support our free tiffin service. Krishna Niswarth Seva Trust — 50K+ meals served.')
+@section('og_description', 'Krishna Niswarth Seva Trust — Free home-delivered meals to 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad. Donate to support our free tiffin service.')
 
 @section('content')
 
@@ -33,14 +36,16 @@
 {{-- ========================
      ABOUT SECTION
 ======================== --}}
-<section id="about" class="about-section">
+<section id="about" class="about-section" itemscope itemtype="https://schema.org/NGO">
+    <meta itemprop="name" content="Krishna Niswarth Seva Trust">
+    <meta itemprop="url" content="https://www.krishnaniswarthsevatrust.com/">
     <div class="container">
         <h2 class="text-center mb-5 section-title" data-reveal="up">
             {{ @trans('messages.about_us') }}
         </h2>
         <div class="row g-4">
             <div class="col-md-6" data-reveal="left">
-                <p class="lead">{{ @trans('messages.about_us_desc') }}</p>
+                <p class="lead" itemprop="description">{{ @trans('messages.about_us_desc') }}</p>
             </div>
             <div class="col-md-6" data-reveal="right">
                 <p class="lead">{{ @trans('messages.about_us_desc_2') }}</p>
@@ -65,7 +70,7 @@
                          alt="{{ $service->{app()->getLocale() . '_title'} ?? 'service' }}"
                          loading="lazy">
                     <div class="yearly-services-caption">
-                        <h5>{{ $service->{app()->getLocale() . '_title'} ?? '' }}</h5>
+                        <h3>{{ $service->{app()->getLocale() . '_title'} ?? '' }}</h3>
                         <p>{{ $service->{app()->getLocale() . '_description'} ?? '' }}</p>
                     </div>
                 </div>
@@ -112,20 +117,27 @@
         <div class="row g-4">
             @foreach($testimonials as $testimonial)
             <div class="col-md-4" data-reveal="up" data-reveal-delay="{{ min($loop->index * 120, 360) }}">
-                <div class="testimonial-card">
+                <div class="testimonial-card" itemscope itemtype="https://schema.org/Review">
+                    <div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+                        <meta itemprop="name" content="Krishna Niswarth Seva Trust">
+                    </div>
+                    <div itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+                        <meta itemprop="ratingValue" content="5">
+                        <meta itemprop="bestRating" content="5">
+                    </div>
                     <div class="testimonial-image-wrapper">
                         <img src="{{ Storage::url($testimonial->image) }}"
                              alt="{{ $testimonial->{app()->getLocale() . '_name'} ?? 'testimonial' }}"
                              class="testimonial-image"
                              loading="lazy">
                     </div>
-                    <p class="testimonial-text">
+                    <p class="testimonial-text" itemprop="reviewBody">
                         {{ $testimonial->{app()->getLocale() . '_description'} ?? '' }}
                     </p>
-                    <p class="testimonial-author">
-                        — {{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}
+                    <p class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                        — <span itemprop="name">{{ $testimonial->{app()->getLocale() . '_name'} ?? '' }}</span>
                     </p>
-                    <span class="testimonial-post">
+                    <span class="testimonial-post" itemprop="position">
                         {{ $testimonial->{app()->getLocale() . '_post'} ?? '' }}
                     </span>
                 </div>

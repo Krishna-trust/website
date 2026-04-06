@@ -3,20 +3,22 @@
         <div class="row g-4">
 
             {{-- Trust Info --}}
-            <div class="col-lg-4 col-md-6">
-                <h5>{{ @trans('messages.trust_name') }}</h5>
-                <p class="mb-4">{{ @trans('messages.about_us_desc') }}</p>
+            <div class="col-lg-4 col-md-6" itemscope itemtype="https://schema.org/NGO">
+                <meta itemprop="url" content="https://www.krishnaniswarthsevatrust.com/">
+                <meta itemprop="email" content="krishnasevatrust@gmail.com">
+                <h5 itemprop="name">{{ @trans('messages.trust_name') }}</h5>
+                <p class="mb-4" itemprop="description">{{ @trans('messages.about_us_desc') }}</p>
                 <div class="social-links">
-                    <a href="https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P" aria-label="WhatsApp" target="_blank" rel="noopener">
+                    <a href="https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P" aria-label="WhatsApp" target="_blank" rel="noopener" itemprop="sameAs">
                         <i class="bi bi-whatsapp"></i>
                     </a>
-                    <a href="https://www.facebook.com/people/Krishna-Niswarth-Seva-Trust/pfbid02JJW4F82dQP3szekEKW7R3cfHeGLG8jAK8USN19vivRu8dVQJUVwBmzfUZz6Y7FMyl/" aria-label="Facebook" target="_blank" rel="noopener">
+                    <a href="https://www.facebook.com/people/Krishna-Niswarth-Seva-Trust/pfbid02JJW4F82dQP3szekEKW7R3cfHeGLG8jAK8USN19vivRu8dVQJUVwBmzfUZz6Y7FMyl/" aria-label="Facebook" target="_blank" rel="noopener" itemprop="sameAs">
                         <i class="bi bi-facebook"></i>
                     </a>
-                    <a href="https://www.youtube.com/@krishnaniswarthsevatrust" aria-label="YouTube" target="_blank" rel="noopener">
+                    <a href="https://www.youtube.com/@krishnaniswarthsevatrust" aria-label="YouTube" target="_blank" rel="noopener" itemprop="sameAs">
                         <i class="bi bi-youtube"></i>
                     </a>
-                    <a href="https://www.instagram.com/krishnaniswarth/?utm_source=qr&igsh=OGpwNnp5YWFqaHg0#" aria-label="Instagram" target="_blank" rel="noopener">
+                    <a href="https://www.instagram.com/krishnaniswarth/?utm_source=qr&igsh=OGpwNnp5YWFqaHg0#" aria-label="Instagram" target="_blank" rel="noopener" itemprop="sameAs">
                         <i class="bi bi-instagram"></i>
                     </a>
                 </div>
@@ -34,20 +36,24 @@
             </div>
 
             {{-- Contact Info --}}
-            <div class="col-lg-3 col-md-6 col-6">
+            <div class="col-lg-3 col-md-6 col-6" itemscope itemtype="https://schema.org/PostalAddress">
                 <h6>{{ @trans('messages.contact_info') }}</h6>
                 <ul class="list-unstyled">
                     <li class="mb-2 d-flex gap-2">
                         <i class="bi bi-geo-alt-fill mt-1 flex-shrink-0" style="color: rgba(255,255,255,0.5);"></i>
-                        <span>{{ @trans('messages.addrress_desc') }}</span>
+                        <span itemprop="streetAddress">{{ @trans('messages.addrress_desc') }}</span>
+                        <meta itemprop="addressLocality" content="Naranpura, Ahmedabad">
+                        <meta itemprop="addressRegion" content="Gujarat">
+                        <meta itemprop="postalCode" content="380013">
+                        <meta itemprop="addressCountry" content="IN">
                     </li>
                     <li class="mb-2 d-flex gap-2 align-items-start">
                         <i class="bi bi-telephone-fill mt-1 flex-shrink-0" style="color: rgba(255,255,255,0.5);"></i>
-                        <span>{{ @trans('messages.phone_desc') }}</span>
+                        <span itemprop="telephone">{{ @trans('messages.phone_desc') }}</span>
                     </li>
                     <li class="d-flex gap-2 align-items-start">
                         <i class="bi bi-envelope-fill mt-1 flex-shrink-0" style="color: rgba(255,255,255,0.5);"></i>
-                        <span>{{ @trans('messages.email_desc') }}</span>
+                        <span itemprop="email">{{ @trans('messages.email_desc') }}</span>
                     </li>
                 </ul>
             </div>

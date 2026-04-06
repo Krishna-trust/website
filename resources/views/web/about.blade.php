@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
 @section('title', __('messages.about_us') . ' - ' . __('messages.trust_name'))
+@section('canonical', 'https://www.krishnaniswarthsevatrust.com/about')
+@section('meta_description', 'About Krishna Niswarth Seva Trust — Our mission is to serve elderly & disabled individuals with free daily home-delivered meals in Naranpura, Ahmedabad. 500K+ meals served and 273+ beneficiaries helped. Learn about our team and vision.')
+@section('og_description', 'About Krishna Niswarth Seva Trust — Our mission is to serve elderly & disabled individuals with free daily home-delivered meals in Naranpura, Ahmedabad. 500K+ meals served and 273+ beneficiaries helped.')
 
 @section('content')
 
@@ -94,7 +97,7 @@
                          alt="{{ @trans('messages.chandukaka_name') }}"
                          class="team-img">
                     <div class="card-body">
-                        <h5 class="card-title">{{ @trans('messages.chandukaka_name') }}</h5>
+                        <h3 class="card-title">{{ @trans('messages.chandukaka_name') }}</h3>
                         <p class="card-text">{{ @trans('messages.trust_founder') }}</p>
                     </div>
                 </div>
@@ -106,7 +109,7 @@
                          alt="{{ @trans('messages.vinukaKa_name') }}"
                          class="team-img">
                     <div class="card-body">
-                        <h5 class="card-title">{{ @trans('messages.vinukaKa_name') }}</h5>
+                        <h3 class="card-title">{{ @trans('messages.vinukaKa_name') }}</h3>
                         <p class="card-text">{{ @trans('messages.trust_trustees') }}</p>
                     </div>
                 </div>
@@ -118,7 +121,7 @@
                          alt="{{ @trans('messages.dhruv_name') }}"
                          class="team-img">
                     <div class="card-body">
-                        <h5 class="card-title">{{ @trans('messages.dhruv_name') }}</h5>
+                        <h3 class="card-title">{{ @trans('messages.dhruv_name') }}</h3>
                         <p class="card-text">{{ @trans('messages.trust_it_supporter') }}</p>
                     </div>
                 </div>

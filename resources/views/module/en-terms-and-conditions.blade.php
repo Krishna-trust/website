@@ -52,7 +52,7 @@
             <p>We reserve the right to modify or update these Terms and Conditions at any time. Any changes will be effective immediately upon posting the updated Terms on the website. We encourage you to periodically review this page.</p>
 
             <h2>Governing Law</h2>
-            <p>These Terms are governed by the laws of [Your Country/State]. Any disputes related to these Terms will be resolved in the courts located in Chandlodiya, Ahmedabad, India.</p>
+            <p>These Terms are governed by the laws of Gujarat, India. Any disputes related to these Terms will be resolved in the courts located in Naranpura, Ahmedabad, India.</p>
 
             <h2>Contact Us</h2>
             <p>If you have any questions about these Terms and Conditions, please contact us at our location or mobile number..</p>

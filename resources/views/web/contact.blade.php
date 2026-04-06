@@ -1,6 +1,9 @@
 @extends('layouts.web')
 
 @section('title', __('messages.contact_us') . ' - ' . __('messages.trust_name'))
+@section('canonical', 'https://www.krishnaniswarthsevatrust.com/contact')
+@section('meta_description', 'Contact Krishna Niswarth Seva Trust in Naranpura, Ahmedabad. Call +91 98984 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals. Find us on Google Maps. Krishna Niswarth Seva Trust.')
+@section('og_description', 'Contact Krishna Niswarth Seva Trust — Call +91 98984 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals in Ahmedabad.')
 
 @section('content')
 
