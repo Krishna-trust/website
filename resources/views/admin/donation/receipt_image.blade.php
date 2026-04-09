@@ -206,7 +206,7 @@
     <table>
         <tr>
             <td style="width:1%; white-space:nowrap;"><span class="label">શ્રી: </span></td>
-            <td style="width:80%;"><span class="line">{{ $donation->full_name }}/-</span></td>
+            <td style="width:80%;"><span class="line">{{ $donation->full_name }}</span></td>
             <td style="width:1%; white-space:nowrap; text-align:right;"><span class="label">ફોન: </span></td>
             <td><span class="line">{{ $donation->mobile_number }}</span></td>
         </tr>
