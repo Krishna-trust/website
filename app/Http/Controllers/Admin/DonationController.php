@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 class DonationController extends Controller
 {
@@ -271,16 +270,20 @@ class DonationController extends Controller
         }
     }
 
-    public function downloadReceipt($id)
+    public function downloadReceiptImage($id)
     {
         try {
             $donation = Donation::findOrFail($id);
-            $pdf = Pdf::loadView('admin.donation.receipt', compact('donation'));
-            
-            return $pdf->download('donation-receipt-' . $donation->receipt_number . '.pdf');
+            $donation->trust_name = "ક્રિષ્ના નિઃસ્વાર્થ સેવા ટ્રસ્ટ";
+            $donation->register_number = "GST નં: 24ABCDE1234F1Z5";
+
+            // Embed font as base64 so the browser can render Gujarati without a public URL
+            $fontBase64 = base64_encode(file_get_contents(storage_path('fonts/Rasa-VariableFont_wght.ttf')));
+
+            return view('admin.donation.receipt_image', compact('donation', 'fontBase64'));
         } catch (\Throwable $th) {
-            Log::error('DonationController@downloadReceipt Error: ' . $th->getMessage());
-            return redirect()->back()->with('error', 'Error generating PDF: ' . $th->getMessage());
+            Log::error('DonationController@downloadReceiptImage Error: ' . $th->getMessage());
+            return redirect()->back()->with('error', 'Error generating image: ' . $th->getMessage());
         }
     }
 

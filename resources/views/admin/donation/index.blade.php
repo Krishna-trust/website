@@ -404,6 +404,31 @@
 }
 </style>
 
+<!-- Full-screen receipt download loader -->
+<div id="receipt-download-loader" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#fff; border-radius:12px; padding:35px 55px; text-align:center; font-family:sans-serif;">
+        <div style="font-size:16px; color:#333; margin-bottom:8px;">&#9203; Generating receipt image&hellip;</div>
+        <div style="font-size:12px; color:#888;">Please wait, download will start automatically.</div>
+    </div>
+</div>
+<iframe id="receipt-download-frame" style="position:fixed; left:-9999px; top:-9999px; width:1200px; height:700px; border:0;" src="about:blank"></iframe>
+
+<script>
+    function downloadReceiptImage(url) {
+        var loader = document.getElementById('receipt-download-loader');
+        var frame  = document.getElementById('receipt-download-frame');
+        loader.style.display = 'flex';
+        frame.src = url;
+    }
+
+    window.addEventListener('message', function(event) {
+        if (event.data === 'receipt-image-done' || event.data === 'receipt-image-error') {
+            document.getElementById('receipt-download-loader').style.display = 'none';
+            document.getElementById('receipt-download-frame').src = 'about:blank';
+        }
+    });
+</script>
+
 @push('scripts')
 <script>
     $(document).ready(function() {

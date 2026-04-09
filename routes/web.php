@@ -48,7 +48,7 @@ Route::get('privacy-policy', [webController::class, 'privacyPolicy'])->name('pri
 Route::get('terms-and-conditions', [webController::class, 'termsAndConditions'])->name('terms-and-conditions');
 
 // Public Donation Receipt
-Route::get('/donation/receipt/{id}', [App\Http\Controllers\Admin\DonationController::class, 'downloadReceipt'])->name('admin.donation.receipt');
+Route::get('/donation/receipt/{id}/image', [App\Http\Controllers\Admin\DonationController::class, 'downloadReceiptImage'])->name('admin.donation.receipt.image');
 
 
 // Admin Routes
