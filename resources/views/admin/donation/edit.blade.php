@@ -90,8 +90,14 @@
 
                             <div class="col-md-6 mb-3">
                                 <label for="donation_for" class="form-label">{{ @trans('portal.donation_for') }} <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control @error('donation_for') is-invalid @enderror"
-                                    id="donation_for" name="donation_for" value="{{ old('donation_for', $donation->donation_for) }}" required>
+                                <select name="donation_for" id="donation_for" class="form-select @error('donation_for') is-invalid @enderror" required>
+                                    <option value="">{{ @trans('portal.select_donation_for') }}</option>
+                                    <option value="meals" {{ old('donation_for', $donation->donation_for) == 'meals' ? 'selected' : '' }}>{{ @trans('portal.meals') }}</option>
+                                    <option value="medical" {{ old('donation_for', $donation->donation_for) == 'medical' ? 'selected' : '' }}>{{ @trans('portal.medical') }}</option>
+                                    <option value="education" {{ old('donation_for', $donation->donation_for) == 'education' ? 'selected' : '' }}>{{ @trans('portal.education') }}</option>
+                                    <option value="rasankit" {{ old('donation_for', $donation->donation_for) == 'rasankit' ? 'selected' : '' }}>{{ @trans('portal.rasankit') }}</option>
+                                    <option value="other" {{ old('donation_for', $donation->donation_for) == 'other' ? 'selected' : '' }}>{{ @trans('portal.other') }}</option>
+                                </select>
                                 @error('donation_for')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror

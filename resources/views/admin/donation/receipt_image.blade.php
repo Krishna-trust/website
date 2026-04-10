@@ -267,8 +267,8 @@
     {{-- Donation for --}}
     <table>
         <tr>
-            <td style="width:1%; white-space:nowrap;"><span class="label">દાન માટે: </span></td>
-            <td><span class="line">{{ $donation->donation_for }}</span></td>
+            <td style="width:1%; white-space:nowrap;"><span class="label">દાન હેતુ: </span></td>
+            <td><span class="line">{{ @trans('portal.' . $donation->donation_for) }}</span></td>
         </tr>
     </table>
 
