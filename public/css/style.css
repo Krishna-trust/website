@@ -674,30 +674,243 @@ body.mobile-nav-open {
 =========================== */
 .gallery-section { padding: 5rem 0; overflow: hidden; }
 
+/* Uniform grid — every card is the same size */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
 .gallery-item {
-    overflow: hidden;
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    height: 400px;   /* portrait: taller than column width (~275px) */
+    overflow: hidden;
 }
 
 .gallery-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
 }
 
+.gallery-item:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+/* Absolutely fill the aspect-ratio box — works in all browsers */
 .gallery-image {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    /* height: 240px; */
+    height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     transition: transform 0.5s ease;
 }
 
-.gallery-item:hover .gallery-image { transform: scale(1.06); }
+.gallery-item:hover .gallery-image { transform: scale(1.07); }
+
+/* Hover overlay */
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 23, 163, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: var(--radius);
+}
+
+.gallery-item:hover .gallery-overlay,
+.gallery-item:focus-visible .gallery-overlay { opacity: 1; }
+
+.gallery-zoom-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 2px solid rgba(255,255,255,0.7);
+    backdrop-filter: blur(6px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0.7);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+}
+
+.gallery-item:hover .gallery-zoom-icon,
+.gallery-item:focus-visible .gallery-zoom-icon { transform: scale(1); }
 
 /* Impact page gallery */
 /* #monthly-gallery .gallery-image { height: 220px; } */
+
+/* ===========================
+   LIGHTBOX
+=========================== */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.lightbox[hidden] { display: none !important; }
+
+.lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 8, 40, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.lightbox-inner {
+    position: relative;
+    z-index: 1;
+    max-width: min(92vw, 1100px);
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: lbFadeIn 0.3s ease;
+}
+
+@keyframes lbFadeIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.lightbox-img {
+    max-width: 100%;
+    max-height: 85vh;
+    border-radius: var(--radius);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    display: block;
+    object-fit: contain;
+    transition: opacity 0.25s ease;
+}
+
+.lightbox-img.loading { opacity: 0; }
+
+.lightbox-spinner {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.lightbox-spinner::after {
+    content: '';
+    width: 44px;
+    height: 44px;
+    border: 3px solid rgba(255,255,255,0.2);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+}
+
+.lightbox-spinner.hidden { display: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Close button */
+.lightbox-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox-close:hover { background: rgba(255,255,255,0.25); transform: rotate(90deg); }
+
+/* Prev / Next */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+    backdrop-filter: blur(6px);
+}
+
+.lightbox-prev { left: 16px; }
+.lightbox-next { right: 16px; }
+
+.lightbox-prev:hover { background: rgba(255,255,255,0.25); transform: translateY(-50%) scale(1.08); }
+.lightbox-next:hover { background: rgba(255,255,255,0.25); transform: translateY(-50%) scale(1.08); }
+
+/* Counter */
+.lightbox-counter {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.85rem;
+    font-family: var(--font);
+    letter-spacing: 0.05em;
+    background: rgba(0,0,0,0.35);
+    padding: 4px 14px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+/* ===========================
+   GALLERY RESPONSIVE
+=========================== */
+@media (max-width: 1199px) {
+    .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+    .gallery-item { height: 400px; }
+}
+
+@media (max-width: 767px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .gallery-item { height: 300px; }
+    .lightbox-nav { width: 38px; height: 38px; }
+    .lightbox-prev { left: 8px; }
+    .lightbox-next { right: 8px; }
+}
+
+@media (max-width: 479px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .gallery-item { height: 270px; }
+}
 
 /* ===========================
    TESTIMONIALS SECTION

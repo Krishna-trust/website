@@ -305,7 +305,7 @@ class DonationController extends Controller
                 $mobile = '91' . $mobile;
             }
 
-            $message = "Hello " . $donation->full_name . ",\n\nThank you for your generous donation of ₹" . number_format($donation->amount, 2) . " to Krishna Trust. We have successfully received your contribution.\n\nYou can download your digital receipt using the link below:\n" . route('admin.donation.receipt', $donation->id) . "\n\nWarm regards,\nKrishna Trust";
+            $message = "Hello " . $donation->full_name . ",\n\nThank you for your generous donation of ₹" . number_format($donation->amount, 2) . " to Krishna Trust. We have successfully received your contribution.\n\nYou can download your digital receipt using the link below:\n" . route('admin.donation.receipt.image', $donation->id) . "\n\nWarm regards,\nKrishna Trust";
             
             $url = "https://wa.me/" . $mobile . "?text=" . urlencode($message);
             

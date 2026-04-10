@@ -91,20 +91,59 @@
                 {{ @trans('messages.view_more') }} &rarr;
             </a>
         </div>
-        <div class="row g-3">
-            @foreach($contents as $content)
-            <div class="col-md-6 col-lg-3" data-reveal="zoom" data-reveal-delay="{{ min($loop->index * 80, 320) }}">
-                <div class="gallery-item">
-                    <img src="{{ asset('storage/' . $content->image) }}"
-                         alt="Impact Image"
-                         class="gallery-image"
-                         loading="lazy">
+        <div class="gallery-grid" id="galleryGrid">
+            @foreach($contents as $index => $content)
+            <div class="gallery-item" data-reveal="zoom" data-reveal-delay="{{ min($loop->index * 60, 300) }}"
+                 data-index="{{ $index }}"
+                 data-src="{{ asset('storage/' . $content->image) }}"
+                 role="button"
+                 tabindex="0"
+                 aria-label="View image {{ $index + 1 }}">
+                <img src="{{ asset('storage/' . $content->image) }}"
+                     alt="Impact Image {{ $index + 1 }}"
+                     class="gallery-image"
+                     loading="lazy">
+                <div class="gallery-overlay">
+                    <div class="gallery-zoom-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+                            <path d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z"/>
+                            <path fill-rule="evenodd" d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </div>
                 </div>
             </div>
             @endforeach
         </div>
     </div>
 </section>
+
+{{-- ========================
+     LIGHTBOX POPUP
+======================== --}}
+<div id="galleryLightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <div class="lightbox-backdrop"></div>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </button>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+        </svg>
+    </button>
+    <div class="lightbox-inner">
+        <div class="lightbox-spinner" id="lightboxSpinner"></div>
+        <img src="" alt="Gallery image" class="lightbox-img" id="lightboxImg">
+    </div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
 
 {{-- ========================
      TESTIMONIALS SECTION

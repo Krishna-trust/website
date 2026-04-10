@@ -65,11 +65,106 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ===========================
-    // GALLERY ITEM CLICK LIGHTBOX (simple zoom feedback)
+    // GALLERY LIGHTBOX
     // ===========================
-    document.querySelectorAll('.gallery-item').forEach(function (item) {
-        item.style.cursor = 'pointer';
+    var lightbox     = document.getElementById('galleryLightbox');
+    var lbImg        = document.getElementById('lightboxImg');
+    var lbSpinner    = document.getElementById('lightboxSpinner');
+    var lbCounter    = document.getElementById('lightboxCounter');
+    var lbClose      = document.getElementById('lightboxClose');
+    var lbPrev       = document.getElementById('lightboxPrev');
+    var lbNext       = document.getElementById('lightboxNext');
+    var lbBackdrop   = lightbox && lightbox.querySelector('.lightbox-backdrop');
+
+    var galleryItems = Array.from(document.querySelectorAll('#galleryGrid .gallery-item'));
+    var currentIndex = 0;
+
+    function openLightbox(index) {
+        currentIndex = index;
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+        showImage(currentIndex);
+        lbClose && lbClose.focus();
+    }
+
+    function closeLightbox() {
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        // return focus to the triggering item
+        if (galleryItems[currentIndex]) galleryItems[currentIndex].focus();
+    }
+
+    function showImage(index) {
+        var src = galleryItems[index].getAttribute('data-src');
+        var total = galleryItems.length;
+        lbCounter.textContent = (index + 1) + ' / ' + total;
+
+        // Show spinner, hide image while loading
+        lbImg.classList.add('loading');
+        lbSpinner.classList.remove('hidden');
+
+        var tmpImg = new Image();
+        tmpImg.onload = function () {
+            lbImg.src = src;
+            lbImg.classList.remove('loading');
+            lbSpinner.classList.add('hidden');
+        };
+        tmpImg.onerror = function () {
+            lbImg.src = src;
+            lbImg.classList.remove('loading');
+            lbSpinner.classList.add('hidden');
+        };
+        tmpImg.src = src;
+
+        // Show/hide nav arrows
+        lbPrev.style.display = total > 1 ? '' : 'none';
+        lbNext.style.display = total > 1 ? '' : 'none';
+    }
+
+    function goPrev() {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        showImage(currentIndex);
+    }
+
+    function goNext() {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        showImage(currentIndex);
+    }
+
+    // Open on click / Enter / Space
+    galleryItems.forEach(function (item, i) {
+        item.addEventListener('click', function () { openLightbox(i); });
+        item.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+        });
     });
+
+    if (lbClose)   lbClose.addEventListener('click', closeLightbox);
+    if (lbPrev)    lbPrev.addEventListener('click', goPrev);
+    if (lbNext)    lbNext.addEventListener('click', goNext);
+    if (lbBackdrop) lbBackdrop.addEventListener('click', closeLightbox);
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+        if (!lightbox || lightbox.hidden) return;
+        if (e.key === 'Escape')      closeLightbox();
+        if (e.key === 'ArrowLeft')   goPrev();
+        if (e.key === 'ArrowRight')  goNext();
+    });
+
+    // Touch swipe support
+    var touchStartX = 0;
+    if (lightbox) {
+        lightbox.addEventListener('touchstart', function (e) {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        lightbox.addEventListener('touchend', function (e) {
+            var diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 40) {
+                if (diff > 0) goNext(); else goPrev();
+            }
+        }, { passive: true });
+    }
 
     // ===========================
     // MOBILE FULLSCREEN NAV DRAWER
