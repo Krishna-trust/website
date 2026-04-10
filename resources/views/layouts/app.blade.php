@@ -153,6 +153,177 @@
         // ─────────────────────────────────────────────────────────────────────
     </script>
 
+    {{-- ── Auto Logout Modal ──────────────────────────────────────────────── --}}
+    <style>
+        /* Responsive auto-logout modal */
+        #autoLogoutModal .modal-dialog {
+            margin: 1rem auto;
+            width: calc(100% - 2rem);
+            max-width: 420px;
+        }
+        @media (max-width: 575px) {
+            #autoLogoutModal .modal-dialog {
+                margin: auto 0.75rem;
+                width: calc(100% - 1.5rem);
+            }
+            #autoLogoutModal .als-header  { padding: 1.1rem 1.25rem !important; }
+            #autoLogoutModal .als-body    { padding: 1.25rem 1rem 0.75rem !important; }
+            #autoLogoutModal .als-footer  { padding: 0.75rem 1rem 1.25rem !important; }
+            #autoLogoutModal .als-circle-wrap { width: 100px !important; height: 100px !important; margin-bottom: 1rem !important; }
+            #autoLogoutModal .als-circle-wrap svg { width: 100px !important; height: 100px !important; }
+            #autoLogoutModal #als-number  { font-size: 2rem !important; }
+            #autoLogoutModal .als-footer .btn { font-size: 0.875rem; padding: 0.55rem 0.75rem; }
+        }
+    </style>
+
+    <div class="modal fade" id="autoLogoutModal" tabindex="-1" aria-labelledby="autoLogoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="border-radius:20px;border:none;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.18);">
+
+                {{-- Header --}}
+                <div class="als-header" style="background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%);padding:1.5rem 2rem;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                            <i class="fa fa-clock-o" style="color:white;font-size:1.5rem;"></i>
+                        </div>
+                        <div>
+                            <h5 id="autoLogoutModalLabel" class="mb-0" style="color:white;font-weight:700;font-size:1.1rem;">Session Expiring</h5>
+                            <small style="color:rgba(255,255,255,0.85);font-size:0.82rem;">You will be logged out soon</small>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Body --}}
+                <div class="als-body modal-body text-center" style="padding:2rem 2rem 1rem;">
+                    {{-- SVG Countdown Circle --}}
+                    <div class="als-circle-wrap" style="position:relative;width:130px;height:130px;margin:0 auto 1.5rem;">
+                        <svg width="130" height="130" style="transform:rotate(-90deg);" aria-hidden="true">
+                            <circle cx="65" cy="65" r="56" fill="none" stroke="#fef3c7" stroke-width="9"/>
+                            <circle id="als-circle" cx="65" cy="65" r="56" fill="none" stroke="#f59e0b" stroke-width="9"
+                                stroke-dasharray="351.86" stroke-dashoffset="0"
+                                style="transition:stroke-dashoffset 1s linear;stroke-linecap:round;"/>
+                        </svg>
+                        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
+                            <span id="als-number" style="font-size:2.6rem;font-weight:800;color:#1e293b;line-height:1;">30</span>
+                            <div style="font-size:0.65rem;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-top:2px;">sec</div>
+                        </div>
+                    </div>
+                    <p style="color:#475569;font-size:0.95rem;line-height:1.6;margin-bottom:0;">
+                        Due to inactivity, your session will expire in&nbsp;<strong id="als-text">30</strong>&nbsp;seconds.<br>
+                        <span style="font-size:0.85rem;color:#94a3b8;">Click anywhere on the screen to stay logged in.</span>
+                    </p>
+                </div>
+
+                {{-- Footer --}}
+                <div class="als-footer modal-footer" style="border:none;padding:1rem 2rem 1.75rem;gap:0.75rem;">
+                    <form id="als-logout-form" action="{{ route('logout') }}" method="POST" style="display:none;">@csrf</form>
+                    <button type="button" onclick="alsLogoutNow()" class="btn btn-outline-secondary" style="flex:1;border-radius:10px;font-weight:500;">
+                        Logout Now
+                    </button>
+                    <button type="button" onclick="alsStayLoggedIn()" class="btn" style="flex:1;border-radius:10px;font-weight:600;background:linear-gradient(135deg,#1417a3,#0f1285);color:white;border:none;">
+                        Stay Logged In
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {{-- ── End Auto Logout Modal ───────────────────────────────────────────── --}}
+
+    <script>
+        (function () {
+            var IDLE_MS        = 5 * 60 * 1000;   // 5 minutes idle before warning
+            var COUNTDOWN_SEC  = 30;               // 30-second countdown
+            var CIRCUMFERENCE  = 2 * Math.PI * 56; // ≈ 351.86 (matches r=56 in SVG)
+
+            var idleTimer      = null;
+            var countdownTimer = null;
+            var timeLeft       = COUNTDOWN_SEC;
+            var modalInstance  = null;
+            var loggingOut     = false;
+
+            /* ── Start / reset the idle countdown ── */
+            function startIdleTimer() {
+                clearTimeout(idleTimer);
+                idleTimer = setTimeout(showWarning, IDLE_MS);
+            }
+
+            /* ── Show the warning modal ── */
+            function showWarning() {
+                timeLeft = COUNTDOWN_SEC;
+                updateDisplay();
+
+                var el = document.getElementById('autoLogoutModal');
+                modalInstance = new bootstrap.Modal(el, { backdrop: false, keyboard: false });
+                modalInstance.show();
+
+                clearInterval(countdownTimer);
+                countdownTimer = setInterval(function () {
+                    timeLeft--;
+                    updateDisplay();
+                    if (timeLeft <= 0) {
+                        clearInterval(countdownTimer);
+                        document.getElementById('als-logout-form').submit();
+                    }
+                }, 1000);
+            }
+
+            /* ── Update the circle + number ── */
+            function updateDisplay() {
+                var numEl    = document.getElementById('als-number');
+                var txtEl    = document.getElementById('als-text');
+                var circleEl = document.getElementById('als-circle');
+                if (numEl)    numEl.textContent    = timeLeft;
+                if (txtEl)    txtEl.textContent    = timeLeft;
+                if (circleEl) {
+                    var offset = CIRCUMFERENCE * (1 - timeLeft / COUNTDOWN_SEC);
+                    circleEl.style.strokeDashoffset = offset;
+                }
+            }
+
+            /* ── Dismiss modal and restart idle timer ── */
+            function dismissAndReset() {
+                clearInterval(countdownTimer);
+                timeLeft = COUNTDOWN_SEC;
+                if (modalInstance) {
+                    modalInstance.hide();
+                    modalInstance = null;
+                }
+                startIdleTimer();
+            }
+
+            /* ── Exposed to button onclick handlers ── */
+            window.alsStayLoggedIn = function () { dismissAndReset(); };
+            window.alsLogoutNow    = function () {
+                loggingOut = true;
+                clearInterval(countdownTimer);
+                clearTimeout(idleTimer);
+                document.getElementById('als-logout-form').submit();
+            };
+
+            /* ── mousemove / keypress / scroll / touch: reset idle timer only, never dismiss modal ── */
+            ['mousemove', 'keypress', 'scroll', 'touchstart'].forEach(function (evt) {
+                document.addEventListener(evt, function () {
+                    if (loggingOut || modalInstance) return;
+                    startIdleTimer();
+                }, { passive: true });
+            });
+
+            /* ── click only: reset idle timer AND dismiss modal if it is showing ── */
+            document.addEventListener('click', function () {
+                if (loggingOut) return;
+                if (modalInstance) {
+                    dismissAndReset();
+                } else {
+                    startIdleTimer();
+                }
+            }, { passive: true });
+
+            /* ── Kick off on page load ── */
+            startIdleTimer();
+        })();
+    </script>
+
     <script>
         let map;
         let marker;

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\RateLimiter;
 use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
@@ -21,6 +22,11 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
+    private function throttleKey(Request $request): string
+    {
+        return 'login|' . strtolower($request->input('email', '')) . '|' . $request->ip();
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
@@ -32,7 +38,30 @@ class AuthController extends Controller
             'password.required' => __('validation.required_password'),
         ]);
 
+        $throttleKey = $this->throttleKey($request);
+
+        // Check if temporarily blocked
+        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
+            $seconds  = RateLimiter::availableIn($throttleKey);
+            $hours    = floor($seconds / 3600);
+            $minutes  = ceil(($seconds % 3600) / 60);
+
+            if ($hours > 0) {
+                $timeMsg = $hours . ' hour' . ($hours > 1 ? 's' : '');
+                if ($minutes > 0) {
+                    $timeMsg .= ' ' . $minutes . ' minute' . ($minutes > 1 ? 's' : '');
+                }
+            } else {
+                $timeMsg = $minutes . ' minute' . ($minutes > 1 ? 's' : '');
+            }
+
+            return back()->withErrors([
+                'email' => "Too many failed login attempts. Your account is temporarily blocked. Please try again after {$timeMsg}.",
+            ])->withInput($request->only('email'));
+        }
+
         if (Auth::attempt($credentials)) {
+            RateLimiter::clear($throttleKey);
             $request->session()->regenerate();
 
             if (Auth::user()->isAdmin()) {
@@ -42,8 +71,20 @@ class AuthController extends Controller
             return redirect()->route('login')->with('error', 'You do not have admin access.');
         }
 
+        // Record failed attempt (blocks for 2 hours after 5 failures)
+        RateLimiter::hit($throttleKey, 7200);
+
+        $attempts  = RateLimiter::attempts($throttleKey);
+        $remaining = 5 - $attempts;
+
+        if ($remaining > 0) {
+            return back()->withErrors([
+                'email' => 'The provided credentials do not match our records. ' . $remaining . ' attempt' . ($remaining > 1 ? 's' : '') . ' remaining before temporary block.',
+            ])->withInput($request->only('email'));
+        }
+
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Too many failed login attempts. Your account has been temporarily blocked for 2 hours.',
         ])->withInput($request->only('email'));
     }
 

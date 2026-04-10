@@ -423,7 +423,22 @@ Manages beneficiaries receiving the trust's tiffin/food service.
 
 **Payment Modes:** `cash`, `cheque`, `online`
 
-- send donation receipt on whatsapp
+**Donation Receipt**
+
+A printable HTML receipt in **Gujarati** can be generated for any donation.
+
+- URL: `GET /donation/receipt/{id}/image` (public — shareable link)
+- The receipt is rendered by `receipt_image.blade.php` using the **Rasa variable font** embedded as a Base64 data URI so the Gujarati script renders correctly in any browser without a public font URL.
+- Fields shown: receipt number, trust name (*ક્રિષ્ના નિઃસ્વાર્થ સેવા ટ્રસ્ટ*), registration number (*Reg. No.: F-19512*), donor name, amount, mobile, address, date, and payment mode.
+- Font file: `storage/fonts/Rasa-VariableFont_wght.ttf`
+- **File:** `app/Http/Controllers/Admin/DonationController.php` → `downloadReceiptImage()`, `resources/views/admin/donation/receipt_image.blade.php`
+
+**WhatsApp Sharing**
+
+`DonationController@sendWhatsApp` builds a localised message (English or Gujarati, based on the active session locale) containing the donor name, amount, and a direct link to the receipt, then opens WhatsApp Web with the message pre-filled.
+
+- Route: `GET /admin/donation/whatsapp/{id}`
+- Mobile numbers are normalised to 12-digit format (`91xxxxxxxxxx`) before building the WhatsApp URL.
 
 ---
 
@@ -732,15 +747,25 @@ All DELETE, export, and employee withdrawal routes are placed **inside** the `au
 
 ### 2. Login Brute-Force Protection
 
-The `POST /login` route has rate limiting applied:
+Custom rate limiting is implemented inside `AuthController@login` using Laravel's `RateLimiter` facade. The old `throttle:5,1` route middleware has been removed.
 
-```php
-Route::post('/login', [...])→middleware('throttle:5,1');
-// Max 5 login attempts per minute per IP
-// Returns HTTP 429 Too Many Requests on violation
-```
+**Behaviour**
 
-**File:** `routes/web.php`
+| Attempt | Result shown to user |
+|---------|----------------------|
+| 1 – 4 wrong | Error + remaining attempts (e.g. *"4 attempts remaining before temporary block"*) |
+| 5th failure | Blocked for **2 hours** (*"Your account has been temporarily blocked for 2 hours"*) |
+| While blocked | Error shows exact time left (e.g. *"Please try again after 1 hour 43 minutes"*) |
+| Successful login | Failed-attempt counter is **cleared** — legitimate users are not penalized |
+
+**Key details**
+
+- Rate limit key: `login|{lowercase email}|{client IP}` — per-email-per-IP, so an attacker cannot lock out another user's account from a different IP address.
+- `RateLimiter::hit($key, 7200)` — each failed attempt sets the block window to **7 200 seconds (2 hours)** from that attempt.
+- `RateLimiter::tooManyAttempts($key, 5)` — checked at the top of every request before credentials are validated, preventing unnecessary database queries while blocked.
+- `RateLimiter::clear($key)` — called immediately on successful login.
+
+**Files:** `app/Http/Controllers/AuthController.php`, `routes/web.php`
 
 ---
 
@@ -807,7 +832,40 @@ All controller methods validate and sanitize inputs:
 
 ---
 
-### 7. CSRF Protection (Existing)
+### 7. Auto Logout on Idle Session
+
+Automatically ends the admin session after a period of inactivity, preventing unauthorised access on unattended machines.
+
+**Behaviour**
+
+| Step | What happens |
+|------|-------------|
+| 1 | Admin is idle (no mouse move, click, keypress, or scroll) for **5 minutes** |
+| 2 | A warning modal appears with an animated **30-second SVG countdown ring** |
+| 3 | Admin **clicks anywhere** on the screen → modal closes, idle timer resets to 5 min |
+| 4 | Admin clicks **"Stay Logged In"** → same as above |
+| 5 | Admin clicks **"Logout Now"** → immediately logged out via POST to `/logout` |
+| 6 | Countdown reaches **0** → form auto-submits to `/logout` |
+
+**Key details**
+
+- Only a **click** dismisses the modal. Mouse movement, scrolling, and key presses reset the background idle timer but will **not** close the popup once it is visible.
+- The countdown ring is a pure SVG `stroke-dashoffset` animation — no external library needed.
+- The hidden logout form uses `@csrf` so the POST is always CSRF-valid.
+- The modal is **fully responsive**: narrows and reduces padding on screens smaller than 576 px.
+
+**Timing constants** (in `app.blade.php`):
+
+```js
+var IDLE_MS       = 5 * 60 * 1000;  // 5 minutes of inactivity before warning
+var COUNTDOWN_SEC = 30;              // seconds on the countdown ring
+```
+
+**File:** `resources/views/layouts/app.blade.php`
+
+---
+
+### 8. CSRF Protection (Existing)
 
 - `VerifyCsrfToken` middleware active on all web routes
 - CSRF token included in all layout `<head>` sections via `<meta name="csrf-token">`
