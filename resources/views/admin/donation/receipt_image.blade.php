@@ -172,13 +172,14 @@
         @endif
 
         <div class="title">
+            <p style="margin: 0 0 4px; font-size: 13px; font-weight: bold; color: #1a237e;">સ્થાપના: ૦૮ - ૦૮ - ૨૦૧૬</p>
             <h1>{{ $donation->trust_name }}</h1>
             <p>{{ $donation->register_number }}</p>
         </div>
 
         <div class="contact">
             ચંદ્રકાન્તભાઈ પટેલ<br>
-            ૯૯૨૪૮૧૯૩૫૬
+            ૯૯૨૪૮ ૧૯૩૫૬
         </div>
     </div>
 
@@ -208,7 +209,7 @@
             <td style="width:1%; white-space:nowrap;"><span class="label">શ્રી: </span></td>
             <td style="width:80%;"><span class="line">{{ $donation->full_name }}</span></td>
             <td style="width:1%; white-space:nowrap; text-align:right;"><span class="label">ફોન: </span></td>
-            <td><span class="line">{{ $donation->mobile_number }}</span></td>
+            <td><span class="line">{{ formatMobileNumber($donation->mobile_number, true) }}</span></td>
         </tr>
     </table>
 
@@ -278,7 +279,14 @@
             "અન્નદાન શ્રેષ્ઠ દાન"<br>
             "ટુકડો ત્યાં હરી ટુકડો"
         </div>
-        <div class="sign">નાણા લેનારની સહી</div>
+        <div class="sign" style="border-top: none;">
+            @php $signPath = public_path('images/sign.png'); @endphp
+            @if(file_exists($signPath))
+                <img src="data:image/png;base64,{{ base64_encode(file_get_contents($signPath)) }}"
+                     style="height: 50px; max-width: 180px; object-fit: contain; display: block; margin: 0 auto; border-bottom: 1px solid #000; padding-bottom: 4px;">
+            @endif
+            નાણા લેનારની સહી
+        </div>
     </div>
 
 </div>

@@ -275,7 +275,7 @@ class DonationController extends Controller
         try {
             $donation = Donation::findOrFail($id);
             $donation->trust_name = "ક્રિષ્ના નિઃસ્વાર્થ સેવા ટ્રસ્ટ";
-            $donation->register_number = "GST નં: 24ABCDE1234F1Z5";
+            $donation->register_number = "Reg. No.: F-19512";
 
             // Embed font as base64 so the browser can render Gujarati without a public URL
             $fontBase64 = base64_encode(file_get_contents(storage_path('fonts/Rasa-VariableFont_wght.ttf')));
@@ -292,14 +292,14 @@ class DonationController extends Controller
         try {
             $donation = Donation::findOrFail($id);
             $mobile = $donation->mobile_number;
-            
+
             if (empty($mobile)) {
                 return redirect()->back()->with('error', 'Mobile number not found for this donor.');
             }
 
             // Remove non-numeric characters for WhatsApp
             $mobile = preg_replace('/[^0-9]/', '', $mobile);
-            
+
             // Add +91 if missing (assuming India, based on controller logic)
             if (strlen($mobile) == 10) {
                 $mobile = '91' . $mobile;
@@ -312,12 +312,17 @@ class DonationController extends Controller
                 'link'   => $receiptLink,
             ];
 
-            $messageEn = __('portal.whatsapp_message', $params, 'en');
-            $messageGu = __('portal.whatsapp_message', $params, 'gu');
-            $message = $messageEn . "\n\n---\n\n" . $messageGu;
-            
+            $message = '';
+            if (app()->getLocale() == 'en') {
+                $messageEn = __('portal.whatsapp_message', $params, 'en');
+                $message = $messageEn;
+            } else {
+                $messageGu = __('portal.whatsapp_message', $params, 'gu');
+                $message = $messageGu;
+            }
+
             $url = "https://wa.me/" . $mobile . "?text=" . rawurlencode($message);
-            
+
             return redirect()->away($url);
         } catch (\Throwable $th) {
             Log::error('DonationController@sendWhatsApp Error: ' . $th->getMessage());

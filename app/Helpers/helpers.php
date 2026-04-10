@@ -106,7 +106,7 @@ if (!function_exists('decryptAesResponse')) {
 
 // Format mobile number for display: +91 XXXXX XXXXX
 if (!function_exists('formatMobileNumber')) {
-    function formatMobileNumber($mobile = '')
+    function formatMobileNumber($mobile = '', $withoutCountryCode = false)
     {
         if (empty($mobile)) return '-';
         $digits = preg_replace('/\D/', '', $mobile);
@@ -115,6 +115,9 @@ if (!function_exists('formatMobileNumber')) {
             $digits = substr($digits, 2);
         }
         if (strlen($digits) === 10) {
+            if ($withoutCountryCode) {
+                return substr($digits, 0, 5) . ' ' . substr($digits, 5);
+            }
             return '+91 ' . substr($digits, 0, 5) . ' ' . substr($digits, 5);
         }
         return $mobile;
