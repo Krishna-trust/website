@@ -172,7 +172,7 @@
         @endif
 
         <div class="title">
-            <p style="margin: 0 0 4px; font-size: 13px; font-weight: bold; color: #1a237e;">સ્થાપના: ૦૮ - ૦૮ - ૨૦૧૬</p>
+            <p style="margin: 0 0 4px; font-size: 13px; font-weight: bold; color: #1a237e;">સ્થાપના: ૨૦૧૬</p>
             <h1>{{ $donation->trust_name }}</h1>
             <p>{{ $donation->register_number }}</p>
         </div>
