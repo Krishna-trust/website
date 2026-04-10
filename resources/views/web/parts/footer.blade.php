@@ -21,6 +21,9 @@
                     <a href="https://www.instagram.com/krishnaniswarth/?utm_source=qr&igsh=OGpwNnp5YWFqaHg0#" aria-label="Instagram" target="_blank" rel="noopener" itemprop="sameAs">
                         <i class="bi bi-instagram"></i>
                     </a>
+                    <a href="https://maps.app.goo.gl/FYnUp3QTuSUubZYK8" aria-label="View our location on Google Maps" target="_blank" rel="noopener">
+                        <i class="bi bi-geo-alt-fill"></i>
+                    </a>
                 </div>
             </div>
 

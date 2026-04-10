@@ -637,17 +637,20 @@ body.mobile-nav-open {
     background: linear-gradient(to top, rgba(10,12,80,0.95) 0%, rgba(10,12,80,0.7) 60%, transparent 100%);
 }
 
+.yearly-services-caption h3,
 .yearly-services-caption h5 {
     color: var(--white);
     font-size: 1.05rem;
     font-weight: 700;
     margin-bottom: 0;
     text-shadow: 0 1px 4px rgba(0,0,0,0.4);
-    transition: margin-bottom 0.35s ease;
+    transition: margin-bottom 0.35s ease, color 0.3s ease;
 }
 
+.yearly-services-item:hover .yearly-services-caption h3,
 .yearly-services-item:hover .yearly-services-caption h5 {
     margin-bottom: 0.5rem;
+    color: #ffd580;
 }
 
 .yearly-services-caption p {
