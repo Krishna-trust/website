@@ -305,9 +305,18 @@ class DonationController extends Controller
                 $mobile = '91' . $mobile;
             }
 
-            $message = "Hello " . $donation->full_name . ",\n\nThank you for your generous donation of ₹" . number_format($donation->amount, 2) . " to Krishna Trust. We have successfully received your contribution.\n\nYou can download your digital receipt using the link below:\n" . route('admin.donation.receipt.image', $donation->id) . "\n\nWarm regards,\nKrishna Trust";
+            $receiptLink = route('admin.donation.receipt.image', $donation->id);
+            $params = [
+                'name'   => $donation->full_name,
+                'amount' => number_format($donation->amount, 2),
+                'link'   => $receiptLink,
+            ];
+
+            $messageEn = __('portal.whatsapp_message', $params, 'en');
+            $messageGu = __('portal.whatsapp_message', $params, 'gu');
+            $message = $messageEn . "\n\n---\n\n" . $messageGu;
             
-            $url = "https://wa.me/" . $mobile . "?text=" . urlencode($message);
+            $url = "https://wa.me/" . $mobile . "?text=" . rawurlencode($message);
             
             return redirect()->away($url);
         } catch (\Throwable $th) {

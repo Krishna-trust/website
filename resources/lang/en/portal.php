@@ -173,4 +173,6 @@ return [
 
     'contact_form_submitted' => 'Your message has been sent successfully!',
 
+    // WhatsApp message
+    'whatsapp_message' => "🙏 Jai Shri Krishna :name,\n\n". "Thank you very much for your generous donation of ₹:amount to Krishna Trust. 💐\n". "Your contribution has been successfully received. ✅\n\n". "📄 Download your digital receipt using the link below:\n". "🔗 :link\n\n". "📲 For any queries, feel free to contact us on WhatsApp.\n\n". "Thank you,\n". "Krishna Trust 🙏",
 ];
