@@ -132,7 +132,7 @@
         }
 
         .footer {
-            margin-top: 40px;
+            margin-top: 10px;
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -152,6 +152,27 @@
             color: #c62828;
             font-weight: bold;
             font-size: 15px;
+        }
+
+        .tax-info {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .tax-info .gu-box {
+            display: inline-block;
+            border: 2px solid #002e5b;
+            border-radius: 30px;
+            padding: 6px 24px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .tax-info .en-text {
+            font-size: 13px;
+            font-weight: bold;
+            color: #002e5b;
         }
     </style>
 </head>
@@ -174,7 +195,7 @@
         <div class="title">
             <p style="margin: 0 0 4px; font-size: 13px; font-weight: bold; color: #1a237e;">સ્થાપના: ૨૦૧૬</p>
             <h1>{{ $donation->trust_name }}</h1>
-            <p>{{ $donation->register_number }}</p>
+            <p>{{ $donation->register_number }} &nbsp;&nbsp;&nbsp;&nbsp; પાન કાર્ડ નં. : AADTK2798N</p>
         </div>
 
         <div class="contact">
@@ -286,6 +307,15 @@
                      style="height: 50px; max-width: 180px; object-fit: contain; display: block; margin: 0 auto; border-bottom: 1px solid #000; padding-bottom: 4px;">
             @endif
             નાણા લેનારની સહી
+        </div>
+    </div>
+
+    {{-- Tax Benefit Info --}}
+    <div class="tax-info">
+        <div class="gu-box">સંસ્થાને આપેલ દાન આવકવેરામાં બાદ મળવા પાત્ર છે.</div>
+        <div class="en-text">
+            Donation are Eligible for TAX benefit U/S 80 G(5) of the Income TAX Act 1961 vide<br>
+            provisional Approval Number AADTK2798NF20214 DATED 31-05-2021
         </div>
     </div>
 
