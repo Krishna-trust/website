@@ -81,10 +81,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::resource('attendance', App\Http\Controllers\Admin\AttendanceController::class)->except('destroy');
 
     // Donation Routes
-    Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
-    Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('donation.destroy');
     Route::get('donation/export', [App\Http\Controllers\Admin\DonationController::class, 'export'])->name('donation.export');
     Route::get('donation/whatsapp/{id}', [App\Http\Controllers\Admin\DonationController::class, 'sendWhatsApp'])->name('donation.whatsapp');
+    Route::resource('donation', App\Http\Controllers\Admin\DonationController::class)->except('destroy');
+    Route::delete('donation', [App\Http\Controllers\Admin\DonationController::class, 'destroy'])->name('donation.destroy');
 
     // Expense Routes
     Route::resource('expense', App\Http\Controllers\Admin\ExpenseController::class)->except('destroy');

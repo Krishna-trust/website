@@ -16,20 +16,26 @@ class LabharthiExport implements FromCollection, WithHeadings, WithStyles, WithC
 {
     public $monthYear;
 
-    public function __construct($monthYear)
+    public function __construct($monthYear = null)
     {
         $this->monthYear = $monthYear;
     }
 
     public function collection()
     {
-        $start = Carbon::parse($this->monthYear . '-01')->startOfMonth();
-        $end = Carbon::parse($this->monthYear . '-01')->endOfMonth();
+        $query = Labharthi::query();
 
-        Log::info('Export Start Date: ' . $start);
-        Log::info('Export End Date: ' . $end);
+        if ($this->monthYear) {
+            $start = Carbon::parse($this->monthYear . '-01')->startOfMonth();
+            $end = Carbon::parse($this->monthYear . '-01')->endOfMonth();
 
-        $labharthis = Labharthi::whereBetween('created_at', [$start, $end])->get();
+            Log::info('Export Start Date: ' . $start);
+            Log::info('Export End Date: ' . $end);
+
+            $query->whereBetween('created_at', [$start, $end]);
+        }
+
+        $labharthis = $query->orderBy('created_at', 'desc')->get();
 
         Log::info('Labharthi record count: ' . $labharthis->count());
 

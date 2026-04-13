@@ -15,17 +15,22 @@ class DonationExport implements FromCollection, WithHeadings, WithStyles, WithCo
 {
     public $monthYear;
 
-    public function __construct($monthYear)
+    public function __construct($monthYear = null)
     {
         $this->monthYear = $monthYear;
     }
 
     public function collection()
     {
-        $start = Carbon::parse($this->monthYear . '-01')->startOfMonth();
-        $end = Carbon::parse($this->monthYear . '-01')->endOfMonth();
+        $query = Donation::query();
 
-        return Donation::whereBetween('date', [$start, $end])->get()->map(function ($item) {
+        if ($this->monthYear) {
+            $start = Carbon::parse($this->monthYear . '-01')->startOfMonth();
+            $end = Carbon::parse($this->monthYear . '-01')->endOfMonth();
+            $query->whereBetween('date', [$start, $end]);
+        }
+
+        return $query->orderBy('date', 'desc')->get()->map(function ($item) {
             return [
                 'receipt_number'   => $item->receipt_number ?? '-',
                 'date'             => $item->date ? date('d-m-Y', strtotime($item->date)) : '-',
