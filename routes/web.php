@@ -132,4 +132,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     // Notify Donor Routes
     Route::get('notify-donor', [App\Http\Controllers\Admin\NotifyDonorController::class, 'index'])->name('notify-donor.index');
     Route::post('notify-donor/mark-as-done', [App\Http\Controllers\Admin\NotifyDonorController::class, 'markAsDone'])->name('notify-donor.markAsDone');
+
+    // Save user language preference
+    Route::post('save-language', [App\Http\Controllers\AuthController::class, 'saveLanguage'])->name('save.language');
 });

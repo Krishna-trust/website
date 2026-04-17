@@ -147,6 +147,20 @@
         reloadTable(sort);
     });
 
+    function downloadReceiptImage(url) {
+        var iframe = document.createElement('iframe');
+        iframe.style.cssText = 'position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;border:none;';
+        document.body.appendChild(iframe);
+        iframe.src = url;
+
+        window.addEventListener('message', function handler(e) {
+            if (e.data === 'receipt-image-done' || e.data === 'receipt-image-error') {
+                window.removeEventListener('message', handler);
+                setTimeout(function () { document.body.removeChild(iframe); }, 1000);
+            }
+        });
+    }
+
     //search and filter
     function reloadTable(sort) {
         let search_string = $('#search-val').val();

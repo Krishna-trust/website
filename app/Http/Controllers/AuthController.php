@@ -65,6 +65,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->isAdmin()) {
+                $this->applyUserLanguage(Auth::user());
                 return redirect()->route('admin.dashboard');
             }
 
@@ -145,8 +146,32 @@ class AuthController extends Controller
 
         Auth::login($user, true);
         request()->session()->regenerate();
+        $this->applyUserLanguage($user);
 
         return redirect()->route('admin.dashboard');
+    }
+
+    private function applyUserLanguage(User $user): void
+    {
+        if ($user->language) {
+            session(['locale' => $user->language]);
+        } else {
+            session(['show_language_popup' => true]);
+        }
+    }
+
+    public function saveLanguage(Request $request)
+    {
+        $locale = $request->input('language');
+        if (!in_array($locale, ['en', 'gu'])) {
+            return response()->json(['error' => 'Invalid language'], 422);
+        }
+
+        Auth::user()->update(['language' => $locale]);
+        session(['locale' => $locale]);
+        session()->forget('show_language_popup');
+
+        return response()->json(['success' => true]);
     }
 
     public function logout(Request $request)
