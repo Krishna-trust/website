@@ -136,10 +136,14 @@
                 "https://www.instagram.com/krishnaniswarth/"
             ],
             "foundingDate": "2016",
-            "areaServed": {
-                "@type": "City",
-                "name": "{{ $schemaCity }}"
-            },
+            "areaServed": [
+                {"@type": "Place", "name": "{{ $isGu ? 'નારણપુરા' : 'Naranpura' }}, Ahmedabad"},
+                {"@type": "Place", "name": "{{ $isGu ? 'ગોતા' : 'Gota' }}, Ahmedabad"},
+                {"@type": "Place", "name": "{{ $isGu ? 'ચાંદલોડિયા' : 'Chandlodiya' }}, Ahmedabad"},
+                {"@type": "Place", "name": "{{ $isGu ? 'નિર્ણયનગર' : 'Nirnaynagar' }}, Ahmedabad"},
+                {"@type": "Place", "name": "{{ $isGu ? 'નવા વાડજ' : 'Nava Vadaj' }}, Ahmedabad"},
+                {"@type": "Place", "name": "{{ $isGu ? 'રાણીપ' : 'Ranip' }}, Ahmedabad"}
+            ],
             "knowsAbout": [
                 "{{ $isGu ? 'વૃદ્ધ સંભાળ' : 'Elderly Care' }}",
                 "{{ $isGu ? 'ભોજન પહોંચાડવું' : 'Meal Delivery' }}",
@@ -237,6 +241,14 @@
             "currenciesAccepted": "INR",
             "paymentAccepted": "Cash, UPI",
             "hasMap": "https://maps.app.goo.gl/FYnUp3QTuSUubZYK8",
+            "areaServed": [
+                {"@type": "Place", "name": "Naranpura, Ahmedabad"},
+                {"@type": "Place", "name": "Gota, Ahmedabad"},
+                {"@type": "Place", "name": "Chandlodiya, Ahmedabad"},
+                {"@type": "Place", "name": "Nirnaynagar, Ahmedabad"},
+                {"@type": "Place", "name": "Nava Vadaj, Ahmedabad"},
+                {"@type": "Place", "name": "Ranip, Ahmedabad"}
+            ],
             "sameAs": [
                 "https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P",
                 "https://www.facebook.com/people/Krishna-Niswarth-Seva-Trust/pfbid02JJW4F82dQP3szekEKW7R3cfHeGLG8jAK8USN19vivRu8dVQJUVwBmzfUZz6Y7FMyl/",

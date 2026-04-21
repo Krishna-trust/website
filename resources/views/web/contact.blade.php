@@ -38,7 +38,7 @@
             "@type": "ContactPoint",
             "telephone": "+91-98984-45831",
             "contactType": "customer service",
-            "areaServed": "IN",
+            "areaServed": "Naranpura, Gota, Chandlodiya, Nirnaynagar, Nava Vadaj, Ranip, Ahmedabad",
             "availableLanguage": ["English", "Gujarati"],
             "hoursAvailable": {
                 "@type": "OpeningHoursSpecification",
@@ -51,14 +51,14 @@
             "@type": "ContactPoint",
             "telephone": "+91-96248-19356",
             "contactType": "customer service",
-            "areaServed": "IN",
+            "areaServed": "Naranpura, Gota, Chandlodiya, Nirnaynagar, Nava Vadaj, Ranip, Ahmedabad",
             "availableLanguage": ["English", "Gujarati"]
         },
         {
             "@type": "ContactPoint",
             "telephone": "+91-81284-45831",
             "contactType": "customer service",
-            "areaServed": "IN",
+            "areaServed": "Naranpura, Gota, Chandlodiya, Nirnaynagar, Nava Vadaj, Ranip, Ahmedabad",
             "availableLanguage": ["English", "Gujarati"]
         }
     ]
