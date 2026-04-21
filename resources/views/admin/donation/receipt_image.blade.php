@@ -75,6 +75,12 @@
             font-weight: bold;
             text-align: right;
             flex-shrink: 0;
+            line-height: 1.6;
+        }
+        .contact .phone {
+            display: block;
+            font-size: 14px;
+            letter-spacing: 0.5px;
         }
 
         .address {
@@ -200,7 +206,10 @@
 
         <div class="contact">
             ચંદ્રકાન્તભાઈ પટેલ<br>
-            ૮૧૨૮૪ ૪૫૮૩૧
+            {{-- <span class="phone">૮૧૨૮૪ ૪૫૮૩૧</span> --}}
+            {{-- <span class="phone">૯૮૯૮૪ ૪૫૮૩૧</span> --}}
+            <span class="phone">81284 45831</span>
+            <span class="phone">98984 45831</span>
         </div>
     </div>
 
