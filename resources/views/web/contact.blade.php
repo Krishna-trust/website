@@ -2,8 +2,69 @@
 
 @section('title', __('messages.contact_us') . ' - ' . __('messages.trust_name'))
 @section('canonical', 'https://www.krishnaniswarthsevatrust.com/contact')
-@section('meta_description', 'Contact Krishna Niswarth Seva Trust in Naranpura, Ahmedabad. Call +91 98984 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals. Find us on Google Maps. Krishna Niswarth Seva Trust.')
-@section('og_description', 'Contact Krishna Niswarth Seva Trust — Call +91 98984 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals in Ahmedabad.')
+@section('meta_description', 'Contact Krishna Niswarth Seva Trust in Naranpura, Ahmedabad. Call +91 98984 45831 / +91 81284 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals. Find us on Google Maps.')
+@section('og_description', 'Contact Krishna Niswarth Seva Trust — Call +91 98984 45831 or +91 81284 45831 or email krishnasevatrust@gmail.com. Donate online to support free meals for elderly individuals in Ahmedabad.')
+
+@section('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.krishnaniswarthsevatrust.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Contact Us",
+            "item": "https://www.krishnaniswarthsevatrust.com/contact"
+        }
+    ]
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact Krishna Niswarth Seva Trust",
+    "url": "https://www.krishnaniswarthsevatrust.com/contact",
+    "description": "Contact Krishna Niswarth Seva Trust for donations, beneficiary registration, or general enquiries. Located in Naranpura, Ahmedabad, Gujarat.",
+    "contactPoint": [
+        {
+            "@type": "ContactPoint",
+            "telephone": "+91-98984-45831",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Gujarati"],
+            "hoursAvailable": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                "opens": "07:00",
+                "closes": "20:00"
+            }
+        },
+        {
+            "@type": "ContactPoint",
+            "telephone": "+91-96248-19356",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Gujarati"]
+        },
+        {
+            "@type": "ContactPoint",
+            "telephone": "+91-81284-45831",
+            "contactType": "customer service",
+            "areaServed": "IN",
+            "availableLanguage": ["English", "Gujarati"]
+        }
+    ]
+}
+</script>
+@endsection
 
 @section('content')
 
@@ -24,6 +85,9 @@
                     </button>
                     <a href="tel:+919898445831" class="btn btn-outline-light btn-lg rounded-pill px-4">
                         <i class="bi bi-telephone me-2"></i>+91 98984 45831
+                    </a>
+                    <a href="tel:+918128445831" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                        <i class="bi bi-telephone me-2"></i>+91 81284 45831
                     </a>
                 </div>
             </div>
@@ -72,7 +136,8 @@
                     <h3 class="fw-bold mb-2" style="font-size:1.05rem;">{{ @trans('messages.phone') }}</h3>
                     <p style="color: var(--text-body); font-size: 0.88rem; margin-bottom: 0.35rem;">
                         <a href="tel:+919898445831" style="color: var(--primary); font-weight:600;">+91 98984 45831</a><br>
-                        <a href="tel:+919624819356" style="color: var(--primary); font-weight:600;">+91 96248 19356</a>
+                        <a href="tel:+919624819356" style="color: var(--primary); font-weight:600;">+91 96248 19356</a><br>
+                        <a href="tel:+918128445831" style="color: var(--primary); font-weight:600;">+91 81284 45831</a>
                     </p>
                     <p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">
                         {{ @trans('messages.mon_sun') }}
@@ -378,7 +443,7 @@
                                     </div>
                                     <div class="donation-trust-info-row">
                                         <i class="bi bi-telephone"></i>
-                                        <span>+91 98984 45831</span>
+                                        <span>+91 98984 45831 | +91 81284 45831</span>
                                     </div>
                                     <div class="donation-trust-info-row">
                                         <i class="bi bi-envelope"></i>

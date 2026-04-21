@@ -1,2 +1,44 @@
+# robots.txt — Krishna Niswarth Seva Trust
+# https://www.krishnaniswarthsevatrust.com/
+
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /admin/
+Disallow: /login
+Disallow: /auth/
+Disallow: /lang/
+
+# AI / LLM crawlers — full public content allowed
+User-agent: GPTBot
+Allow: /
+Disallow: /admin/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /admin/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+
+User-agent: GoogleOther
+Allow: /
+Disallow: /admin/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /admin/
+
+User-agent: anthropic-ai
+Allow: /
+Disallow: /admin/
+
+User-agent: cohere-ai
+Allow: /
+Disallow: /admin/
+
+Sitemap: https://www.krishnaniswarthsevatrust.com/sitemap.xml

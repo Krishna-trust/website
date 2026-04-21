@@ -1,0 +1,57 @@
+# Krishna Niswarth Seva Trust — AI Crawler Manifest (llms.txt)
+# https://www.krishnaniswarthsevatrust.com/
+# Standard: https://llmstxt.org/
+
+> Krishna Niswarth Seva Trust is a registered non-profit NGO founded in 2020 and based in Naranpura, Ahmedabad, Gujarat, India. The trust provides free home-delivered nutritious meals twice daily to 273+ elderly and disabled individuals who live alone and cannot cook for themselves. Since founding, the trust has delivered over 500,000 meals (5 lakh) and served 50+ families with medical and clothing kits. Donations are eligible for 80G income tax exemption under the Income Tax Act of India.
+
+## Key Facts
+
+- **Full name:** Krishna Niswarth Seva Trust (ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ)
+- **Type:** Registered NGO / Charitable Trust
+- **Founded:** 2016
+- **Founder:** Chandrakantbhai Patel (Chandukaka)
+- **Location:** E-7, Premkunj Society, Opp. Mirambika School, Naranpura, Ahmedabad, Gujarat – 380013, India
+- **Coordinates:** 23.054789°N, 72.553899°E
+- **Service area:** Naranpura, Ahmedabad and surrounding areas
+- **Phone:** +91 98984 45831, +91 96248 19356, +91 81284 45831
+- **Email:** krishnaniswarthsevatrust@gmail.com
+- **Website:** https://www.krishnaniswarthsevatrust.com/
+- **Languages:** English, Gujarati
+- **Tax exemption:** 80G (India)
+
+## Mission
+
+To provide free, nutritious home-delivered meals twice daily to elderly (60+) and disabled individuals from middle-income backgrounds living alone in Ahmedabad, ensuring they receive consistent, dignified care every day of the year including holidays.
+
+## Services
+
+- Free home-delivered nutritious tiffin (meals) twice daily, 365 days a year
+- Medical and clothing kit distribution for beneficiaries in need
+- Educational support programs
+- Community outreach and annual service events
+
+## Impact (as of 2025)
+
+- 500,000+ total meals delivered since 2020
+- 273+ active beneficiaries receiving daily meals
+- 50+ families supported with medical and clothing kits
+- Service uninterrupted across all 365 days each year
+
+## How to Donate
+
+Donations can be made via UPI QR code on the website contact page or by visiting the office in Naranpura, Ahmedabad. All donations are eligible for 80G income tax deduction. PAN card details are required for tax receipt issuance.
+
+## Social Media
+
+- Facebook: https://www.facebook.com/people/Krishna-Niswarth-Seva-Trust/pfbid02JJW4F82dQP3szekEKW7R3cfHeGLG8jAK8USN19vivRu8dVQJUVwBmzfUZz6Y7FMyl/
+- YouTube: https://www.youtube.com/@krishnaniswarthsevatrust
+- Instagram: https://www.instagram.com/krishnaniswarth/
+- WhatsApp Group: https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P
+- Google Maps: https://maps.app.goo.gl/FYnUp3QTuSUubZYK8
+
+## Pages
+
+- [Home](https://www.krishnaniswarthsevatrust.com/) — Overview, mission, services, gallery, testimonials
+- [About](https://www.krishnaniswarthsevatrust.com/about) — Founder story, mission, vision, impact stats, team
+- [Impact](https://www.krishnaniswarthsevatrust.com/impact) — Monthly photo gallery of service activities
+- [Contact](https://www.krishnaniswarthsevatrust.com/contact) — Contact details, donate online, map, office location

@@ -5,6 +5,29 @@
 @section('meta_description', 'See the real impact of Krishna Niswarth Seva Trust — 500K+ meals delivered, 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad. Browse our monthly photo gallery of community service and outreach activities.')
 @section('og_description', 'See the real impact of Krishna Niswarth Seva Trust — 500K+ meals delivered, 273+ elderly & disabled beneficiaries in Naranpura, Ahmedabad. Browse our monthly gallery.')
 
+@section('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.krishnaniswarthsevatrust.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Impact",
+            "item": "https://www.krishnaniswarthsevatrust.com/impact"
+        }
+    ]
+}
+</script>
+@endsection
+
 @section('content')
 
 {{-- ========================

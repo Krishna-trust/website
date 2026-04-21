@@ -113,7 +113,7 @@
             "description": "{{ $schemaDesc }}",
             "logo": "{{ asset('images/logo.png') }}",
             "image": "{{ asset('images/logo.png') }}",
-            "telephone": "+919898445831",
+            "telephone": ["+919898445831", "+918128445831"],
             "email": "krishnaniswarthsevatrust@gmail.com",
             "url": "https://www.krishnaniswarthsevatrust.com/",
             "address": {
@@ -135,7 +135,7 @@
                 "https://www.youtube.com/@krishnaniswarthsevatrust",
                 "https://www.instagram.com/krishnaniswarth/"
             ],
-            "foundingDate": "2020",
+            "foundingDate": "2016",
             "areaServed": {
                 "@type": "City",
                 "name": "{{ $schemaCity }}"
@@ -179,6 +179,75 @@
             }
         }
     </script>
+
+    <!-- Structured Data — WebSite with SearchAction -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "{{ $schemaName }}",
+            "url": "https://www.krishnaniswarthsevatrust.com/",
+            "inLanguage": ["en", "gu"],
+            "description": "{{ $schemaDesc }}",
+            "publisher": {
+                "@type": "NGO",
+                "name": "{{ $schemaName }}",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "{{ asset('images/logo.png') }}"
+                }
+            }
+        }
+    </script>
+
+    <!-- Structured Data — LocalBusiness (strong local SEO signal) -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "NGO"],
+            "name": "{{ $schemaName }}",
+            "alternateName": "{{ $isGu ? 'Krishna Niswarth Seva Trust' : 'ક્રિષ્ના નિ:સ્વાર્થ સેવા ટ્રસ્ટ' }}",
+            "description": "{{ $schemaDesc }}",
+            "url": "https://www.krishnaniswarthsevatrust.com/",
+            "logo": "{{ asset('images/logo.png') }}",
+            "image": "{{ asset('images/logo.png') }}",
+            "telephone": ["+919898445831", "+918128445831"],
+            "email": "krishnaniswarthsevatrust@gmail.com",
+            "foundingDate": "2016",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "E-7, Premkunj Society, Opp. Mirambika School",
+                "addressLocality": "Naranpura, Ahmedabad",
+                "addressRegion": "Gujarat",
+                "postalCode": "380013",
+                "addressCountry": "IN"
+            },
+            "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": "23.054789642390173",
+                "longitude": "72.55389999569623"
+            },
+            "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+                "opens": "07:00",
+                "closes": "20:00"
+            },
+            "priceRange": "Free",
+            "currenciesAccepted": "INR",
+            "paymentAccepted": "Cash, UPI",
+            "hasMap": "https://maps.app.goo.gl/FYnUp3QTuSUubZYK8",
+            "sameAs": [
+                "https://chat.whatsapp.com/IKoFgfff0o64XjKEtutY4P",
+                "https://www.facebook.com/people/Krishna-Niswarth-Seva-Trust/pfbid02JJW4F82dQP3szekEKW7R3cfHeGLG8jAK8USN19vivRu8dVQJUVwBmzfUZz6Y7FMyl/",
+                "https://www.youtube.com/@krishnaniswarthsevatrust",
+                "https://www.instagram.com/krishnaniswarth/"
+            ]
+        }
+    </script>
+
+    <!-- Page-specific structured data -->
+    @yield('schema')
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

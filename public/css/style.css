@@ -1798,3 +1798,46 @@ footer.site-footer .quick-links li a:hover {
     .testimonial-card { padding: 1.5rem 1.25rem; }
     .stats-card { padding: 2rem 1.5rem; }
 }
+
+/* ===========================
+   FAQ SECTION
+=========================== */
+.faq-section { background: var(--bg-light, #f8f9fa); }
+
+.faq-item {
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: var(--radius-sm, 0.5rem) !important;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.faq-btn {
+    font-weight: 600;
+    font-size: 0.97rem;
+    color: var(--text-heading, #1a1a2e);
+    background: #fff;
+    padding: 1.1rem 1.25rem;
+    box-shadow: none !important;
+}
+
+.faq-btn:not(.collapsed) {
+    color: var(--primary, #1417a3);
+    background: #fff;
+}
+
+.faq-btn::after {
+    filter: none;
+}
+
+.faq-btn:not(.collapsed)::after {
+    filter: none;
+}
+
+.faq-body {
+    font-size: 0.93rem;
+    color: var(--text-body, #444);
+    line-height: 1.8;
+    background: #fff;
+    padding: 0.25rem 1.25rem 1.1rem;
+}
+

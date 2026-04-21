@@ -5,6 +5,64 @@
 @section('meta_description', 'About Krishna Niswarth Seva Trust — Our mission is to serve elderly & disabled individuals with free daily home-delivered meals in Naranpura, Ahmedabad. 500K+ meals served and 273+ beneficiaries helped. Learn about our team and vision.')
 @section('og_description', 'About Krishna Niswarth Seva Trust — Our mission is to serve elderly & disabled individuals with free daily home-delivered meals in Naranpura, Ahmedabad. 500K+ meals served and 273+ beneficiaries helped.')
 
+@section('schema')
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.krishnaniswarthsevatrust.com/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About Us",
+            "item": "https://www.krishnaniswarthsevatrust.com/about"
+        }
+    ]
+}
+</script>
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Krishna Niswarth Seva Trust",
+    "url": "https://www.krishnaniswarthsevatrust.com/about",
+    "description": "Krishna Niswarth Seva Trust was founded in 2016 by Chandrakantbhai Patel (Chandukaka) with a mission to provide free home-delivered nutritious meals to elderly and disabled individuals living alone in Naranpura, Ahmedabad.",
+    "about": {
+        "@type": "NGO",
+        "name": "Krishna Niswarth Seva Trust",
+        "foundingDate": "2016",
+        "founder": {
+            "@type": "Person",
+            "name": "Chandrakantbhai Patel",
+            "alternateName": "Chandukaka",
+            "jobTitle": "Founder & Trustee"
+        }
+    },
+    "mainEntity": {
+        "@type": "NGO",
+        "name": "Krishna Niswarth Seva Trust",
+        "member": [
+            {
+                "@type": "OrganizationRole",
+                "member": {
+                    "@type": "Person",
+                    "name": "Chandrakantbhai Patel",
+                    "alternateName": "Chandukaka"
+                },
+                "roleName": "Founder"
+            }
+        ]
+    }
+}
+</script>
+@endsection
+
 @section('content')
 
 {{-- ========================

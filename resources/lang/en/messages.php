@@ -83,7 +83,7 @@ return [
     'phone' => 'Phone',
     'email' => 'Email',
     'addrress_desc' => 'Krishna Niswarth Seva Trust, E-7, Premkunj Society, Opp. Mirambika School, Naranpura, Ahmedabad – 380013.',
-    'phone_desc' => '+91 98984 45831',
+    'phone_desc' => '+91 98984 45831 | +91 81284 45831',
     'email_desc' => 'krishnasevatrust@gmail.com',
     'contact_info' => 'Contact Info',
     'join' => 'Join',
