@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Trust - User Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .suggestion-box {
+            background-color: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        ul, ol {
+            margin-left: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Krishna Trust - User Guide & Functionality Documentation</h1>
+
+    <div class="card">
+        <h2>1. Introduction</h2>
+        <p><strong>What is the Krishna Trust Project?</strong><br>
+        Krishna Trust is a comprehensive web application built for a charitable organization. It helps the trust manage its day-to-day activities efficiently while providing a transparent platform for the public to learn about their work and contribute.</p>
+
+        <p><strong>Who is this for?</strong></p>
+        <ul>
+            <li><strong>Public Users / Donors:</strong> Can view the trust's work, read testimonials, see impact photos, and make online donations.</li>
+            <li><strong>Administrators:</strong> Can log into a secure backend to manage beneficiaries (Labharthis), record donations, notify past donors, track employee attendance, manage expenses, and generate detailed reports.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>2. Public Website (For General Users)</h2>
+        <p>The public website is open to everyone and does not require a login.</p>
+        
+        <h3>Step-by-Step Process:</h3>
+        <ol>
+            <li><strong>Home Page:</strong> Open the website URL. Here, you will see an overview of the trust's services, recent impact photos, and testimonials.</li>
+            <li><strong>Making a Donation:</strong> On the Home page, locate the Donation Form. Fill in your details (Name, Mobile, Address, Amount, PAN, etc.), select the payment mode, and submit the form to record your donation.</li>
+            <li><strong>Viewing Impacts (Gallery):</strong> Click on the <em>Impact</em> menu. You can view photos of the trust's charitable activities categorized by month.</li>
+            <li><strong>Contacting the Trust:</strong> Go to the <em>Contact</em> page and fill out the inquiry form with your message, which will be sent directly to the administrators.</li>
+        </ol>
+    </div>
+
+    <div class="card">
+        <h2>3. Admin Panel (For Administrators)</h2>
+        <p>The Admin Panel is a secure area for managing the trust's operations.</p>
+
+        <h3>Step-by-Step Process:</h3>
+        
+        <h4>A. Logging In & Dashboard</h4>
+        <ul>
+            <li>Go to the <code>/login</code> page.</li>
+            <li>Enter your Admin Email and Password, or <strong>Sign in with Google</strong> if your Google account has admin access.</li>
+            <li>Upon successful login, you will see the <strong>Dashboard</strong>, displaying a quick summary of Total Donations, Beneficiaries, and Uploaded Media.</li>
+            <li><strong>Language Preferences:</strong> You can switch the portal language between English and Gujarati to suit your preference.</li>
+        </ul>
+
+        <h4>B. Beneficiary (Labharthi) Management</h4>
+        <p><em>Labharthis are the people receiving aid (like tiffin services) from the trust.</em></p>
+        <ul>
+            <li><strong>View:</strong> Go to the <strong>Labharthi</strong> section to see a list of all beneficiaries.</li>
+            <li><strong>Add New:</strong> Click "Add Labharthi". Fill in their details. A unique Labharthi Number (e.g., RJ0001) will be auto-generated.</li>
+            <li><strong>Edit/Delete:</strong> Use the Action buttons to update or remove records.</li>
+            <li><strong>Reorder:</strong> Use the drag-and-drop feature to change the display position of beneficiaries.</li>
+        </ul>
+
+        <h4>C. Donation Management</h4>
+        <ul>
+            <li>Go to the <strong>Donation</strong> section to view all received donations.</li>
+            <li><strong>Add Manual Donation:</strong> Click "Add Donation" to record cash or cheque donations.</li>
+            <li><strong>Receipt Generation:</strong> Click the receipt button next to a donation to generate a digital receipt in Gujarati.</li>
+            <li><strong>WhatsApp Sharing:</strong> Click the WhatsApp icon to instantly send the donation receipt to the donor's mobile number.</li>
+        </ul>
+
+        <h4>D. Notify Past Donors</h4>
+        <ul>
+            <li>Navigate to the <strong>Notify Donor</strong> section.</li>
+            <li>The system lists donors who contributed in the previous years (1 or 2 years ago) during the current month but haven't donated yet this year.</li>
+            <li><strong>Mark as Done:</strong> After sending them a reminder message (e.g. via WhatsApp), click "Mark as Notified" to remove them from the pending list.</li>
+        </ul>
+
+        <h4>E. Attendance Tracking</h4>
+        <ul>
+            <li>Navigate to the <strong>Attendance</strong> section.</li>
+            <li>Mark daily attendance for active beneficiaries as <strong>Present</strong>, <strong>Absent</strong>, or <strong>Not Specified</strong>.</li>
+        </ul>
+
+        <h4>F. Employee Management</h4>
+        <ul>
+            <li>Go to the <strong>Employee</strong> section to manage staff details and salaries.</li>
+            <li><strong>Withdrawals:</strong> Record partial salary withdrawals. The system automatically calculates their remaining final salary.</li>
+        </ul>
+
+        <h4>G. Media Gallery (Content)</h4>
+        <ul>
+            <li>Go to the <strong>Contents</strong> section to upload new photos of recent charitable events. These will appear on the public "Impact" page.</li>
+        </ul>
+
+        <h4>H. Expense Tracking</h4>
+        <ul>
+            <li>Go to the <strong>Expense</strong> section to record operational expenses and keep accounting up to date.</li>
+        </ul>
+
+        <h4>I. Monthly Reports</h4>
+        <ul>
+            <li>Navigate to <strong>Monthly Reports</strong>.</li>
+            <li>Select a module and choose a Month/Year to download a formatted <strong>Excel Report</strong>.</li>
+        </ul>
+
+        <h4>J. Leaflet Map</h4>
+        <ul>
+            <li>Go to the <strong>Map</strong> section to view an interactive map displaying the geographical locations of all beneficiaries.</li>
+        </ul>
+    </div>
+
+    <div class="card suggestion-box">
+        <h2>4. Suggestions for Document Improvement</h2>
+        <p>To make this documentation even more user-friendly and easily understandable, consider the following enhancements:</p>
+        <ol>
+            <li><span class="highlight">Include Visuals:</span> Add screenshots of the actual software interfaces (e.g., a screenshot of the Dashboard, Donation Form, and Notify Donor page) next to each step. Visuals reduce cognitive load significantly.</li>
+            <li><span class="highlight">Create Short GIF Tutorials:</span> For complex processes like "Reordering Labharthis" or "Generating and Sending a Receipt via WhatsApp", a 5-second GIF is much better than text.</li>
+            <li><span class="highlight">Provide a Glossary of Terms:</span> Clarify local terms used in the software (e.g., defining exactly what a "Labharthi" or "Tiffin service" means in the context of the app).</li>
+            <li><span class="highlight">Add an FAQ Section:</span> Address common issues such as "What do I do if I forgot my password?" or "How do I fix an incorrect donation entry?"</li>
+            <li><span class="highlight">In-App Tooltips:</span> Instead of forcing users to read a separate document, embed small info-icons (?) next to complex fields within the application itself.</li>
+        </ol>
+    </div>
+
+</body>
+</html>

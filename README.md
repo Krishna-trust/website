@@ -40,7 +40,7 @@
 | Excel Export | Maatwebsite/Excel v3.1 |
 | JS Validation | proengsoft/laravel-jsvalidation v4.9 |
 | Translation | stichoza/google-translate-php v5.2 |
-| Authentication | Laravel built-in Auth + Sanctum |
+| Authentication | Laravel built-in Auth + Sanctum + Laravel Socialite (Google OAuth) |
 
 ---
 
@@ -459,8 +459,14 @@ A printable HTML receipt in **Gujarati** can be generated for any donation.
 
 ---
 
-### Notify Donor for re-donation
-- send notification to donor for re-donation on whatsapp
+#### Notify Donor (`/admin/notify-donor`)
+
+Intelligently identifies and lists donors who contributed in previous years (1 or 2 years ago) during the current month but have not donated yet in the current year.
+
+| Action | URL | Description |
+|---|---|---|
+| List | `GET /admin/notify-donor` | List pending donors for the selected month |
+| Mark Notified | `POST /admin/notify-donor/mark-as-done` | Mark donor as notified (AJAX) |
 
 #### Attendance Tracking (`/admin/attendance`)
 
@@ -584,12 +590,15 @@ GET  /terms-and-conditions       → WebController@termsAndConditions
 GET  /login                      → AuthController@showLogin
 POST /login                      → AuthController@login
 POST /logout                     → AuthController@logout
+GET  /auth/google                → AuthController@redirectToGoogle
+GET  /auth/google/callback       → AuthController@handleGoogleCallback
 ```
 
 ### Admin Routes (prefix: `/admin`, middleware: `auth`, `admin`)
 ```
 GET  /admin/dashboard
 GET  /admin/lang/{locale}        → Session language switcher (en/gu)
+POST /admin/save-language        → Save admin language preference via AJAX
 GET  /admin/leaflet-map
 
 Resource: /admin/contents        → ContentController
@@ -624,8 +633,9 @@ GET  /admin/get-next-labharthi-number/{areaId}
 | Controller | Namespace | Responsibility |
 |---|---|---|
 | `WebController` | `App\Http\Controllers` | Public website pages |
-| `AuthController` | `App\Http\Controllers` | Login, logout, register |
+| `AuthController` | `App\Http\Controllers` | Login, logout, register, Google OAuth |
 | `AdminController` | `App\Http\Controllers\Admin` | Dashboard, map, change password |
+| `NotifyDonorController` | `App\Http\Controllers\Admin` | Manage notifications for past donors |
 | `LabharthiController` | `App\Http\Controllers\Admin` | Beneficiary CRUD + export + ordering |
 | `DonationController` | `App\Http\Controllers\Admin` | Donation CRUD + export |
 | `EmployeeController` | `App\Http\Controllers\Admin` | Employee CRUD + salary withdrawals |
@@ -677,10 +687,10 @@ All exports use **Maatwebsite/Excel** and are organized in `app/Exports/`.
 
 The application supports **English** and **Gujarati** languages.
 
-- Language is toggled via `GET /admin/lang/{locale}` (`en` or `gu`)
-- Selected locale is stored in the PHP session
-- Views dynamically serve locale-specific content (e.g., `en-privacy-policy`, `gu-privacy-policy`)
-- Validation and portal messages use Laravel's `__()` translation helper
+- Language is toggled via `GET /admin/lang/{locale}` (`en` or `gu`) or via a user preference popup `POST /admin/save-language`.
+- The user's preferred language is saved to their `User` model and the PHP session.
+- Views dynamically serve locale-specific content (e.g., `en-privacy-policy`, `gu-privacy-policy`).
+- Validation and portal messages use Laravel's `__()` translation helper.
 
 Translation files are located in `resources/lang/`.
 
@@ -689,9 +699,10 @@ Translation files are located in `resources/lang/`.
 ## Authentication & Authorization
 
 ### Login
-- URL: `GET /login`
-- Only users with `is_admin = true` can access the admin panel
-- After login, non-admin users are redirected back to login with an error
+- **Standard Login:** URL `GET /login` using Email & Password.
+- **Google OAuth Login:** URL `GET /auth/google`. Only Google accounts associated with an existing user in the database with `is_admin = true` are permitted access.
+- Only users with `is_admin = true` can access the admin panel.
+- After login, non-admin users are redirected back to login with an error.
 
 ### Middleware
 - `auth` — Ensures the user is logged in

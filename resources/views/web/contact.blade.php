@@ -185,6 +185,11 @@
                            class="contact-social-icon" aria-label="Instagram" style="color:#e1306c;">
                             <i class="bi bi-instagram fs-4"></i>
                         </a>
+                        {{-- map --}}
+                        <a href="https://www.google.com/maps/place/Krishna+Niswarth+Seva+Trust/@23.0805177,72.5473193,17z/data=!3m1!4b1!4m5!3m4!1s0x395e83556736c135:0x7e063934e92372c3!8m2!3d23.0805177!4d72.5473193" target="_blank" rel="noopener"
+                           class="contact-social-icon" aria-label="Map" style="color:#1417a3;">
+                            <i class="bi bi-geo-alt-fill fs-4"></i>
+                        </a>
                     </div>
                 </div>
             </div>
